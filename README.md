@@ -1,6 +1,4 @@
 # Newbe.ObjectVisitor
-![Banner](https://github.com/newbe36524/Newbe.ObjectVisitor/blob/docs/assets/banner.svg)
-
 
 ![Banner](https://github.com/newbe36524/Newbe.ObjectVisitor/raw/docs/assets/banner.svg)
 
