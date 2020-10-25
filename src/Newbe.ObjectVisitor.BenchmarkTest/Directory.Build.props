@@ -1,0 +1,6 @@
+<Project>
+ 
+  <PropertyGroup>
+    <TargetFrameworks>net461;net48;netcoreapp2.1;netcoreapp3.1;netcoreapp5.0;</TargetFrameworks>
+  </PropertyGroup>
+</Project>
