@@ -7,7 +7,7 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
 
     steps:
       - uses: actions/checkout@v2
@@ -32,5 +32,5 @@ jobs:
 
       - name: Push nuget package to nuget.org registry
         run: |
-          cd $GITHUB_WORKSPACE/src
+          cd $ENV:GITHUB_WORKSPACE/src
           dotnet nuget push **/*.nupkg --api-key ${{ secrets.NUGET_TOKEN }} --no-symbols --skip-duplicate --source https://api.nuget.org/v3/index.json
