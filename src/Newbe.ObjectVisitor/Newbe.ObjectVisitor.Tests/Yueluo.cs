@@ -31,5 +31,14 @@ namespace Newbe.ObjectVisitor.Tests
             var re = sb.ToString();
             return re;
         }
+        
+        public string FormatOnlyString()
+        {
+            var sb = new StringBuilder();
+            sb.AppendFormat("{0}:{1}{2}", nameof(Name), Name, Environment.NewLine);
+            sb.AppendFormat("{0}:{1}{2}", nameof(NickName), NickName, Environment.NewLine);
+            var re = sb.ToString();
+            return re;
+        }
     }
 }

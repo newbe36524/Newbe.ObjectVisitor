@@ -47,11 +47,11 @@ order.FormatToString();
 
 ## API
 
-| icon | remark                                                      |
-| ---- | ----------------------------------------------------------- |
-| ✔️   | it is already avaliable in latest version                   |
-| 🚧   | still in plan or development and will be changed or removed |
-| ❌   | it is removed form the latest version                       |
+| icon | remark                                                                   |
+| ---- | ------------------------------------------------------------------------ |
+| ✔️   | it is already avaliable in latest version                                |
+| 🚧   | still in plan or development and will be implemented, changed or removed |
+| ❌   | it is removed form the latest version                                    |
 
 ```cs
 var o = new Yueluo();
@@ -97,8 +97,9 @@ var cachedVisitor = deafult(Yueluo).V()
 cachedVisitor.Run(new Yueluo(), new StringBuilder());
 
 
-//🚧 you can modify value if return a new value
-o.V().ForEach((context)=>context.Value.SubString(0,1)).Run();
+//✔️ from 0.2
+// you can modify value if return a new value
+o.V().ForEach((context)=>context.Value = context.Value.SubString(0,1)).Run();
 
 //✔️ from 0.1
 // get debug info about expression now

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
 
@@ -12,7 +13,6 @@ namespace Newbe.ObjectVisitor
             var inputExp = Expression.Parameter(inputType, "sourceObject");
             if (extendType == null)
             {
-                var actionType = Expression.GetActionType(inputType);
                 IEnumerable<Expression> blockItems;
                 switch (contextItem)
                 {
@@ -27,6 +27,7 @@ namespace Newbe.ObjectVisitor
                 }
 
                 var final = Expression.Block(blockItems);
+                var actionType = Expression.GetActionType(inputType);
                 var re = Expression.Lambda(actionType, final, inputExp);
                 return re;
             }
@@ -58,14 +59,29 @@ namespace Newbe.ObjectVisitor
             ParameterExpression inputExp,
             ForEachActionContextItem forEachActionContextItem)
         {
-            foreach (var propertyInfo in inputType.GetRuntimeProperties())
+            var propertyInfos = FilterProperties(inputType, forEachActionContextItem);
+            var valueType = forEachActionContextItem.ValueExpectedType ?? typeof(object);
+            var isValueTypeNotSpecified = forEachActionContextItem.ValueExpectedType == null;
+            
+            foreach (var propertyInfo in propertyInfos)
             {
-                var methodInfo = ObjectVisitorContext.GetCreateMethodInfo(inputType, typeof(object));
+                var getterType = Expression.GetFuncType(inputType, valueType);
+                var setterType = Expression.GetActionType(inputType, valueType);
+                var methodInfo = ObjectVisitorContext.GetCreateMethodInfo(inputType, valueType);
+                var getter =
+                    isValueTypeNotSpecified
+                        ? ValueGetter.Get(inputType, propertyInfo)
+                        : ValueGetter.Get(inputType, valueType, propertyInfo);
+                var setter =
+                    isValueTypeNotSpecified
+                        ? ValueSetter.Get(inputType, propertyInfo)
+                        : ValueSetter.Get(inputType, valueType, propertyInfo);
                 var newExpression = Expression.Call(methodInfo,
                     Expression.Constant(propertyInfo.Name),
-                    Expression.Convert(Expression.Property(inputExp, propertyInfo), typeof(object)),
                     inputExp,
-                    Expression.Constant(propertyInfo));
+                    Expression.Constant(propertyInfo),
+                    Expression.Constant(getter, getterType),
+                    Expression.Constant(setter, setterType));
                 yield return Expression.Invoke(forEachActionContextItem.ForEachAction, newExpression);
             }
         }
@@ -76,15 +92,30 @@ namespace Newbe.ObjectVisitor
             ParameterExpression extendExp,
             ForEachActionContextItem forEachActionContextItem)
         {
-            foreach (var propertyInfo in inputType.GetRuntimeProperties())
+            var propertyInfos = FilterProperties(inputType, forEachActionContextItem);
+            var valueType = forEachActionContextItem.ValueExpectedType ?? typeof(object);
+            var isValueTypeNotSpecified = forEachActionContextItem.ValueExpectedType == null;
+
+            foreach (var propertyInfo in propertyInfos)
             {
-                var methodInfo = ObjectVisitorContext.GetCreateMethodInfo(inputType, extendType, typeof(object));
+                var getterType = Expression.GetFuncType(inputType, valueType);
+                var setterType = Expression.GetActionType(inputType, valueType);
+                var methodInfo = ObjectVisitorContext.GetCreateMethodInfo(inputType, extendType, valueType);
+                var getter =
+                    isValueTypeNotSpecified
+                        ? ValueGetter.Get(inputType, propertyInfo)
+                        : ValueGetter.Get(inputType, valueType, propertyInfo);
+                var setter =
+                    isValueTypeNotSpecified
+                        ? ValueSetter.Get(inputType, propertyInfo)
+                        : ValueSetter.Get(inputType, valueType, propertyInfo);
                 var newExpression = Expression.Call(methodInfo,
                     Expression.Constant(propertyInfo.Name),
-                    Expression.Convert(Expression.Property(inputExp, propertyInfo), typeof(object)),
                     inputExp,
                     extendExp,
-                    Expression.Constant(propertyInfo));
+                    Expression.Constant(propertyInfo),
+                    Expression.Constant(getter, getterType),
+                    Expression.Constant(setter, setterType));
                 yield return Expression.Invoke(forEachActionContextItem.ForEachAction, newExpression);
             }
         }
@@ -93,11 +124,13 @@ namespace Newbe.ObjectVisitor
             ParameterExpression inputExp,
             ForEachActionContextItem forEachActionContextItem)
         {
-            foreach (var propertyInfo in inputType.GetRuntimeProperties())
+            var propertyInfos = FilterProperties(inputType, forEachActionContextItem);
+            var valueType = forEachActionContextItem.ValueExpectedType ?? typeof(object);
+            foreach (var propertyInfo in propertyInfos)
             {
                 yield return Expression.Invoke(forEachActionContextItem.ForEachAction,
                     Expression.Constant(propertyInfo.Name),
-                    Expression.Convert(Expression.Property(inputExp, propertyInfo), typeof(object)));
+                    Expression.Convert(Expression.Property(inputExp, propertyInfo), valueType));
             }
         }
 
@@ -106,13 +139,23 @@ namespace Newbe.ObjectVisitor
             ParameterExpression extendExp,
             ForEachActionContextItem forEachActionContextItem)
         {
-            foreach (var propertyInfo in inputType.GetRuntimeProperties())
+            var propertyInfos = FilterProperties(inputType, forEachActionContextItem);
+            var valueType = forEachActionContextItem.ValueExpectedType ?? typeof(object);
+            foreach (var propertyInfo in propertyInfos)
             {
                 yield return Expression.Invoke(forEachActionContextItem.ForEachAction,
                     Expression.Constant(propertyInfo.Name),
-                    Expression.Convert(Expression.Property(inputExp, propertyInfo), typeof(object)),
+                    Expression.Convert(Expression.Property(inputExp, propertyInfo), valueType),
                     extendExp);
             }
+        }
+
+        private static IEnumerable<PropertyInfo> FilterProperties(Type inputType,
+            ForEachActionContextItem forEachActionContextItem)
+        {
+            var runtimeProperties = inputType.GetRuntimeProperties();
+            var re = runtimeProperties.Where(forEachActionContextItem.PropertyInfoFilter).ToArray();
+            return re;
         }
     }
 }
