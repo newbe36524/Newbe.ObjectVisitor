@@ -55,11 +55,15 @@ namespace Newbe.ObjectVisitor
 
         public static string GetDebugInfo(this IObjectVisitor visitor)
         {
+#if DEBUG
+            return visitor.ToString();
+#else
             var exp = visitor.CreateExpression();
             var propertyInfo =
                 typeof(Expression).GetRuntimeProperties().First(x => x.Name == "DebugView");
             Debug.Assert(propertyInfo != null, nameof(propertyInfo) + " != null");
             return propertyInfo.GetValue(exp) as string;
+#endif
         }
 
         internal static void Run<T>(this IObjectVisitor visitor, T obj)

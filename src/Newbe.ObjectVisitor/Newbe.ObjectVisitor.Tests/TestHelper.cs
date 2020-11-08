@@ -10,10 +10,9 @@ namespace Newbe.ObjectVisitor.Tests
             {
                 assertion();
             }
-            catch (Exception)
+            finally
             {
                 Console.WriteLine($"exp:{Environment.NewLine}{context.GetDebugInfo()}");
-                throw;
             }
         }
     }

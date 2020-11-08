@@ -3,4 +3,17 @@
   <PropertyGroup>
     
   </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <DocumentationFile>bin\Debug\Newbe.ObjectVisitor.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <DocumentationFile>bin\Release\Newbe.ObjectVisitor.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <ItemGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <PackageReference Include="AgileObjects.ReadableExpressions" Version="2.5.1" />
+  </ItemGroup>
+  
 </Project>
