@@ -4,63 +4,58 @@ using System.Reflection;
 
 namespace Newbe.ObjectVisitor
 {
-    public class ObjectVisitorContext<TObj, TValue> : IObjectVisitorContext<TObj, TValue>
+    public class ObjectVisitorContext<TObj, TValue> : ObjectVisitorContextBase<TObj, TValue>,
+        IObjectVisitorContext<TObj, TValue>
     {
-        public ObjectVisitorContext(string name, TValue value, TObj sourceObject, PropertyInfo propertyInfo)
+        public ObjectVisitorContext(string name,
+            TObj sourceObject,
+            PropertyInfo propertyInfo,
+            Func<TObj, TValue> getter,
+            Action<TObj, TValue> setter)
+            : base(name, sourceObject, propertyInfo, getter, setter)
         {
-            Name = name;
-            Value = value;
-            SourceObject = sourceObject;
-            PropertyInfo = propertyInfo;
         }
 
         public static ObjectVisitorContext<TObj, TValue> Create(string name,
-            TValue value,
             TObj sourceObject,
-            PropertyInfo propertyInfo)
+            PropertyInfo propertyInfo,
+            Func<TObj, TValue> getter,
+            Action<TObj, TValue> setter)
         {
-            return new ObjectVisitorContext<TObj, TValue>(name, value, sourceObject, propertyInfo);
+            return new ObjectVisitorContext<TObj, TValue>(name, sourceObject, propertyInfo, getter, setter);
         }
-
-        public string Name { get; }
-        public TValue Value { get; }
-        public TObj SourceObject { get; }
-        public PropertyInfo PropertyInfo { get; }
     }
 
-    public class ObjectVisitorContext<TObj, TExtend, TValue> : IObjectVisitorContext<TObj, TExtend, TValue>
+    public class ObjectVisitorContext<TObj, TExtend, TValue> : ObjectVisitorContextBase<TObj, TValue>,
+        IObjectVisitorContext<TObj, TExtend, TValue>
     {
         public ObjectVisitorContext(string name,
-            TValue value,
             TObj sourceObject,
             TExtend extendObject,
-            PropertyInfo propertyInfo)
+            PropertyInfo propertyInfo,
+            Func<TObj, TValue> getter,
+            Action<TObj, TValue> setter)
+            : base(name, sourceObject, propertyInfo, getter, setter)
         {
-            Name = name;
-            Value = value;
             ExtendObject = extendObject;
-            SourceObject = sourceObject;
-            PropertyInfo = propertyInfo;
         }
 
         public static ObjectVisitorContext<TObj, TExtend, TValue> Create(string name,
-            TValue value,
             TObj sourceObject,
             TExtend extendObject,
-            PropertyInfo propertyInfo)
+            PropertyInfo propertyInfo,
+            Func<TObj, TValue> getter,
+            Action<TObj, TValue> setter)
         {
             return new ObjectVisitorContext<TObj, TExtend, TValue>(name,
-                value,
                 sourceObject,
                 extendObject,
-                propertyInfo);
+                propertyInfo,
+                getter,
+                setter);
         }
 
-        public string Name { get; }
-        public TValue Value { get; }
         public TExtend ExtendObject { get; }
-        public TObj SourceObject { get; }
-        public PropertyInfo PropertyInfo { get; }
     }
 
 

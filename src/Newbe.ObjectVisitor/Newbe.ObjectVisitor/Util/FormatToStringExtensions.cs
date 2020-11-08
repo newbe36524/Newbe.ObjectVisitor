@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Concurrent;
-using System.Linq;
-using System.Reflection;
 using System.Text;
 
 namespace Newbe.ObjectVisitor
@@ -25,7 +22,8 @@ namespace Newbe.ObjectVisitor
                 var re = default(T)!
                     .V()
                     .WithExtendObject<T, StringBuilder>()
-                    .ForEach((name, value, s) => s.Append($"{name}:{value}{Environment.NewLine}"))
+                    .ForEach((name, value, s) => s.AppendFormat("{0}:{1}{2}", name, value,
+                        Environment.NewLine))
                     .Cache();
                 return re;
             }
