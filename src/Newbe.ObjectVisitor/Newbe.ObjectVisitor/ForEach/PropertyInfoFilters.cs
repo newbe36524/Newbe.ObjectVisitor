@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using AgileObjects.NetStandardPolyfills;
 
 namespace Newbe.ObjectVisitor
 {
@@ -35,7 +34,7 @@ namespace Newbe.ObjectVisitor
         public static Type[] GetAllInterfaces(this Type type)
         {
             var source = new List<Type>();
-            for (; (object) type != null; type = type.GetBaseType())
+            for (; (object) type != null; type = type.GetTypeInfo().BaseType)
             {
                 source.AddRange(type.GetTypeInfo().ImplementedInterfaces);
             }

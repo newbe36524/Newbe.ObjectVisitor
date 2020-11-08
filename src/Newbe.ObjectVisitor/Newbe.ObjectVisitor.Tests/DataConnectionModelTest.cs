@@ -65,7 +65,6 @@ namespace Newbe.ObjectVisitor.Tests
                 }
             }
 
-
             public override string ToString()
             {
                 var sb = new StringBuilder();

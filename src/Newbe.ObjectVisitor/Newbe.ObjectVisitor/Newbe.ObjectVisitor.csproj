@@ -12,4 +12,8 @@
     <DocumentationFile>bin\Release\Newbe.ObjectVisitor.xml</DocumentationFile>
   </PropertyGroup>
 
+  <ItemGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <PackageReference Include="AgileObjects.ReadableExpressions" Version="2.5.1" />
+  </ItemGroup>
+  
 </Project>

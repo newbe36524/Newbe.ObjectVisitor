@@ -5,15 +5,15 @@
 
 ![Banner](https://github.com/newbe36524/Newbe.ObjectVisitor/raw/docs/assets/banner.svg)
 
-You can visit all properties about your class by this lib with high performance as you visit properties in hard coding way.
+Newbe.ObjectVisitor 帮助开发者可以用最简单的最高效的方式访问一个普通 class 的所有属性。从而实现：验证、映射、收集等等操作。
 
-For example, here is object in your code.
+例如, 在你的代码中有这样一个简单的类。
 
 ```cs
 var order = new OrderInfo();
 ```
 
-And, you want to print all properties of the order.
+你想要将这个类所有的属性和值都打印出来，那么你可以采用反射来完成：
 
 ```cs
 for(var pInfo in typeof(OrderInfo).GetProperties())
@@ -22,11 +22,11 @@ for(var pInfo in typeof(OrderInfo).GetProperties())
 }
 ```
 
-By using this lib, you can handle it in this way:
+如果你使用这个类库，则可以采用以下方式来实现一样的效果：
 
 ```cs
-// call .V what is a static extension method
-// you get a visitor object for order
+// 调用扩展方法 .V
+// 就可以得到一个针对 Order 类型的 visitor
 var visitor = order.V();
 
 visitor.ForEach(context=>{
@@ -35,26 +35,26 @@ visitor.ForEach(context=>{
     Console.Writeline($"{name}: {value}");
 }).Run();
 
-// you can also make it into one line
+// 也可以把代码都写在一行
 order.V().ForEach(c=> Console.Writeline($"{c.Name}: {c.Value}")).Run();
 
-// or using quick style
+// 或者也可以调用这个较短的方法
 order.FormatToString();
 ```
 
-## Why do I need this?
+## 那我为什么要这样做?
 
-- **It is faster.** This lib is impletmented with [Expression Trees](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/expression-trees/) that cost 1/10 time as in Reflection way.
-- **It is readable.** This lib can generate a lambda func to handle the code flow you create that just as your hard coding without reflection.
-- **It is extendable.** If you can visit all properties of a object in easy way, you can validate them as you wish, change some value if there are something sensitive, creare a mapper like automapper, and etc.
+- **因为这样更快！** 这个类库使用[表达式树](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/expression-trees/)实现，因此它拥有比直接使用反射快上 10 倍的性能.
+- **因为这样更可读！** 通过这个类库你可以使用链式 API 和命名方法来创建一个委托，这样可以让你的代码实现和硬编码同样的可读效果。
+- **因为这样更具扩展性！** 如果使用了这个类库，你就拥有了一个简便的方法来访问一个类所有的属性。因此，你就做很多你想做的事情，比如：创建一个验证器来验证你的模型，修改一些可能包含敏感数据的属性从而避免输出到日志中，创建一个类似于 AutoMapper 的对象映射器但是拥有更好的性能，诸如此类。
 
 ## API
 
-| icon | remark                                                                   |
-| ---- | ------------------------------------------------------------------------ |
-| ✔️   | it is already avaliable in latest version                                |
-| 🚧   | still in plan or development and will be implemented, changed or removed |
-| ❌   | it is removed form the latest version                                    |
+| 图标 | 说明                                             |
+| ---- | ------------------------------------------------ |
+| ✔️   | 在最新的版本中已经可用                           |
+| 🚧   | 仍然在计划或者开发中，未来可能可用、修改或者移除 |
+| ❌   | 已经在最新的版本中被移除                         |
 
 ```cs
 var o = new Yueluo();
@@ -62,27 +62,26 @@ var o = new Yueluo();
 using Newbe.ObjectVisitor;
 
 //✔️ from 0.1
-// V is a static extension method
+// V 是一个扩展方法
 var visitor = o.V();
 
 //✔️ from 0.1
-// create visitor from factory method
+// 使用工厂来创建
 var visitor = typeof(Yueluo).V();
 
 //✔️ from 0.1
-// create and fire way.
-// this is the most simple structure about this lib
-// there are Name, Value, PropertyInfo, SourceObj, SourceObjType and etc in the context
+// 创建并立即执行
+// 这是使用本库最简单的一种形式
+// 在 context 中包含了 Name, Value, PropertyInfo, SourceObj, SourceObjType 等属性
 o.V().ForEach((context)=>{}).Run();
 o.V().ForEach((name,value)=>{}).Run();
 
 // ✔️ from 0.2
-// multiple foreach
+// 多重 foreach
 o.V().ForEach((context)=>{}).ForEach((context)=>{}).Run();
 
-
 //✔️ from 0.1
-// create a visitor with extend object as parameter
+// 创建一个支持扩展多一个参数的 visitor
 o.V().WithExtendObject<Yueluo, StringBuilder>()
     .ForEach((context)=>{var _ = context.ExtendObject})
     .Run(new StringBuilder());
@@ -91,13 +90,13 @@ o.V().WithExtendObject<Yueluo, StringBuilder>()
     .Run(new StringBuilder());
 
 //✔️ from 0.1
-// create and cache way. This is suggested way to use.
-// cache object visitor to run it with anothor object
+// 创建并缓存 visitor 。这是一种被建议使用的方案
+// 缓存一个 visitor 对对象，然后再执行它，这样可以反复使用被缓存的 visitor ，性能更强。
 var cachedVisitor = deafult(Yueluo).V().ForEach((context)=>{}).Cache();
 cachedVisitor.Run(new Yueluo());
 
 //✔️ from 0.1
-// cache object visitor with extend object
+// 缓存一个带有一个扩展参数的 visitor
 var cachedVisitor = deafult(Yueluo).V()
     .WithExtendObject<Yueluo, StringBuilder>()
     .ForEach((context)=>{var _ = context.ExtendObject})
@@ -106,7 +105,7 @@ cachedVisitor.Run(new Yueluo(), new StringBuilder());
 
 
 //✔️ from 0.2
-// you can modify value if return a new value
+// 可以修改属性
 o.V().ForEach((context) => ModifyData（context）).Run();
 
 public static void ModifyData(IObjectVisitorContext<Yueluo,string> context)
@@ -115,42 +114,42 @@ public static void ModifyData(IObjectVisitorContext<Yueluo,string> context)
 }
 
 //✔️ from 0.1
-// get debug info about expression now
+// 可以读取当前表达式相关的调试信息
 var debugInfo = o.V().ForEach((context)=>{}).GetDebugInfo();
 
-//🚧 generate code in C# as a string about expression now
+//🚧 生成 C# 代码
 var code = o.V().ForEach((context)=>{}).GenerateCode();
 
 //✔️ from 0.1
-// generate a lambda func
+// 生成一个 lambda 函数
 var func = o.V().ForEach((context)=>{}).GetLambda();
 
 
 //✔️ from 0.2
-// foreach properties with specified type
+// 遍历指定类型的属性
 o.V().ForEach<Yueluo, string>((context) => {});
-// the same as above
+// 和上一条完全一样
 o.V().ForEach<Yueluo, string>((context) => {}, x => x.PropertyType == typeof(string));
-// foreach properties with string type and marked with RequiredAttribute
+// 遍历被标记了 RequiredAttribute 的 string 属性
 o.V().ForEach<Yueluo, string>((context) => {}, x => x.PropertyType == typeof(string) && x.GetCustomAttribute<RequiredAttribute>());
-// foreach properties that implemented IEnumerable<int> ,such as List<int>, int[], IEnumerable<int>, HashSet<int> and etc.
+// 遍历“是”或者实现了 IEnumerable<int> 接口的属性, 例如 List<int>, int[], IEnumerable<int>, HashSet<int> 等等。
 o.V().ForEach<Yueluo, IEnumerable<int>>((context) => {}, x => x.IsOrImplOf<IEnumerable<int>>());
-// with extend object as parameter
+// 指定属性类型，并包含一个扩展的参数
 o.V().WithExtendObject<Yueluo, StringBuilder>().ForEach<Yueluo, StringBuilder, string>((context) => {});
 
-//🚧  using linq to filter
+//🚧  使用 linq 过滤
 o.V().AsEnumerable().Where((context)=>context.Name == "YueLuo").ForEach((context)=>{}).Run();
 
-//🚧  suppending visiting sub object
+//🚧  不处理子集对象
 o.V().SuppendSubObject().ForEach((context)=>{}).Run();
 
-//🚧  suppending visiting enumerable object
+//🚧  不对集合内的元素进行处理
 o.V().SuppendEnumerable().ForEach((context)=>{}).Run();
 
 
 /**
  ✔️ from 0.1
- sample to join all properties to string
+ 将所有的属性和值拼接为一个字符串
 */
 var sb = new StringBuilder();
 o.V().ForEach((context)=>{
@@ -161,10 +160,10 @@ o.V().ForEach((context)=>{
 var s = sb.ToString();
 
 //✔️ from 0.1
-// quick style for above
+// 上面代码的一种简短形式
 var s = o.FormatString();
 
-//🚧 Deconstruct as C# 7 but more flexible
+//🚧 和 C# 7 中一样的类型解构方案，但是根据扩展性
 var destructor1 = Destructor<Yueluo>
     .Property(x=>x.Name)
     .Property(x=>x.Age)
@@ -182,11 +181,11 @@ var (name, age) = o.V().Destruct(destructor1).Run();
 var (name, ageInLong) = o.V().Destruct(destructor2).Run();
 var (name, nickName, age) = o.V().Destruct(destructor3).Run();
 
-// namespace for operation with collections
+// 集合操作相关的名称空间
 using Newbe.ObjectVisitor.Collections;
 
 /**
- 🚧collect properties into a dictionary
+ 🚧 将属性和值收集为一个字典
 */
 
 var dic1 = o.V().CollectAsDictionary().Run();
@@ -194,17 +193,17 @@ var dic1 = o.V().CollectAsDictionary().Run();
 var dic1 = o.V().ToDictionary();
 
 /**
- 🚧apply value from a dictionary to object
+ 🚧 将字典中的值赋值到对象上
 */
 o.V().ApplyFromDictionary(dic).Run();
 // quick style for above
 o.V().FromDictionary(dic);
 
 
-// namespace for data validation
+// 验证器相关的名称空间
 using Newbe.ObjectVisitor.Validation;
 
-// 🚧create rule to validation
+// 🚧 创建一个验证器规则
 var rule = ValidateRule<Yueluo>
     .GetBuilder()
     .Property(x=>x.Name).Required().Length(2,10)
@@ -217,8 +216,8 @@ o.V().Validate(rule).Run();
 o.Validate(rule);
 
 
-// 🚧validate data in flunet api
-// attribute-based enabled by default
+// 🚧 使用连贯API进行验证
+// 此时，标签验证仍然是默认生效的
 o.V().Validate(v=>
     v
      .Property(x=>x.Name).Required().Length(2,10)
@@ -227,7 +226,7 @@ o.V().Validate(v=>
      .Property(x=>x.Level).Validate(value=>value + 1 >= 0)
 ).Run();
 
-// 🚧suppending attribute-based validation
+// 🚧 移除标签验证规则
 o.V().SuppendAttributeValidation()
     .Validate(v=>
         v
@@ -237,7 +236,7 @@ o.V().SuppendAttributeValidation()
         .Property(x=>x.Level).Validate(value=>value + 1 >= 0)
 ).Run();
 
-// 🚧suppending sub-object validation
+// 🚧 移除子对象的验证
 o.V().SuppendSubObject()
     .SuppendAttributeValidation()
     .Validate(v=>
@@ -251,29 +250,29 @@ o.V().SuppendSubObject()
         .Property(x=>x.Level).Validate(value=>value + 1 >= 0)
 ).Run();
 
-// namespace for Task
+// Task相关的名称空间
 using Newbe.ObjectVisitor.Task;
 
-// 🚧async way
+// 🚧 async
 await o.V().ForEachAsync((context)=>{}).RunAsync();
 
-// 🚧controlling concurrency
+// 🚧 控制多 Task 的执行方式
 await o.V().ForEachAsync((context)=>{}).WhenAsync(tasks=>Task.WhenAll(tasks)).RunAsync();
 
 // namespace for Microsoft.Extensions.DependencyInjection
 using Newbe.ObjectVistory.DepencyInjection;
 
-// 🚧inject services to the properties of this object
+// 🚧 实现属性注入
 this.V().ForEach(context=>this.ServiceProvider.GetService(context.PropertyInfo.PorpertyType)).Run();
 
-// 🚧quick style for above
+// 🚧 和上面代码相同的简短形式
 this.V().PropertyInject(this.ServiceProvider);
 
 ```
 
-## Benchmark
+## 基准测试
 
-Machine info about benchmark.
+以下基准测试所使用的物理机配置：
 
 ```ini
 
@@ -292,19 +291,19 @@ Intel Xeon CPU E5-2678 v3 2.50GHz, 1 CPU, 24 logical and 12 physical cores
 
 ### Newbe.ObjectVisitor vs Reflection vs Directly
 
-We are going to join property infos about a object into a string. That string will be join by methods below:
+我们将会把属性的名称和值拼接为一个字符串，采用以下这些方案：
 
-| Method       | Descrption                                                                                                                  |
-| ------------ | --------------------------------------------------------------------------------------------------------------------------- |
-| Directly     | Join properties with StringBuilder by hard coding.                                                                          |
-| CacheVisitor | Build a ObjectVisitor with Newbe.ObjectVisitor and cache it into a field. Using that cached visitor to join all properties. |
-| QuickStyle   | Using a method built in Newbe.ObjectVisitor to handle this problem without building ObjectVisitor by yourself               |
+| 方法         | 描述                                                                                        |
+| ------------ | ------------------------------------------------------------------------------------------- |
+| Directly     | 使用 StringBuilder 硬编码进行拼接                                                           |
+| CacheVisitor | 使用 Newbe.ObjectVisitor 创建一个 ObjectVisitor 并缓存它，然后使用缓存后的 visitor 进行拼接 |
+| QuickStyle   | 使用 Newbe.ObjectVisitor 中内置写好的方法                                                   |
 
-chart:
+图表:
 
 ![Newbe.ObjectVisitor.BenchmarkTest.FormatStringTest](https://github.com/newbe36524/Newbe.ObjectVisitor/raw/docs/assets/Newbe.ObjectVisitor.BenchmarkTest.FormatStringTest-barplot.png)
 
-data:
+数据:
 
 | Method       | Job          | Runtime       |     Mean |    Error |   StdDev | Ratio | RatioSD | Rank |
 | ------------ | ------------ | ------------- | -------: | -------: | -------: | ----: | ------: | ---: |
@@ -328,24 +327,24 @@ data:
 | QuickStyle   | netcoreapp5  | .NET Core 5.0 | 641.2 ns |  5.60 ns |  4.97 ns |  1.03 |    0.01 |    3 |
 | CacheVisitor | netcoreapp5  | .NET Core 5.0 | 604.2 ns |  8.19 ns |  7.66 ns |  0.97 |    0.01 |    1 |
 
-summary:
+结论:
 
-1. By using Newbe.ObjectVisitor, it only takes very little time to achieve the same effect as hard code.
-2. By using quick style, it cost very little time to build a cache visitor with few codes.
+1. 使用 Newbe.ObjectVisitor, 仅仅只用非常少的额外时间消耗就得到了和硬编码完全一样的效果。
+2. 使用 Newbe.ObjectVisitor 内置的方法，仅仅需要消耗非常少的额外时间就可以省去自己构建 visitor 的时间。是一种值得参考的编写方式。
 
-We are going to show no cache object visitor and reflection:
+现在我们对比一下缓存和不缓存 visitor 的区别:
 
-| Method          | Descrption                                                                                                                  |
-| --------------- | --------------------------------------------------------------------------------------------------------------------------- |
-| CacheVisitor    | Build a ObjectVisitor with Newbe.ObjectVisitor and cache it into a field. Using that cached visitor to join all properties. |
-| NoCacheVisitor  | Build a ObjectVisitor with Newbe.ObjectVisitor and use it without cache it.                                                 |
-| ReflectProperty | Using reflection to get all properties and join them into string                                                            |
+| 方法            | 描述           |
+| --------------- | -------------- |
+| CacheVisitor    | 缓存 Visitor   |
+| NoCacheVisitor  | 不缓存 Visitor |
+| ReflectProperty | 使用反射来实现 |
 
-chart:
+图表:
 
 ![Newbe.ObjectVisitor.BenchmarkTest.CacheVisitorTest](https://github.com/newbe36524/Newbe.ObjectVisitor/raw/docs/assets/Newbe.ObjectVisitor.BenchmarkTest.CacheVisitorTest-barplot.png)
 
-data：
+数据：
 
 | Method          | Job          | Runtime       |         Mean |       Error |      StdDev |    Ratio | RatioSD | Rank |
 | --------------- | ------------ | ------------- | -----------: | ----------: | ----------: | -------: | ------: | ---: |
@@ -369,25 +368,25 @@ data：
 | ReflectProperty | netcoreapp5  | .NET Core 5.0 |   1,211.6 ns |    14.09 ns |    13.18 ns |     1.92 |    0.02 |    2 |
 | NoCacheVisitor  | netcoreapp5  | .NET Core 5.0 | 545,642.6 ns | 1,633.25 ns | 1,447.83 ns |   866.61 |    4.45 |    3 |
 
-summary:
+结论:
 
-1. It will cost much more time to build a ObjectVisitor, since it will take more time to build more object and reflection. So we suggest to use build ObjectVisitor and cache it. You can still create a un-cached object visitor in cold code path since it take less then 1 ms.
-2. A Cache visitor is faster than reflection way.
+1. 构建一个 ObjectVisitor 需要花费一些时间，因为其中需要构建一些对象并且需要反射。所以我们建议将 ObjectVisitor 缓存起来使用。当然，在一些性能不敏感的场景，不缓存也无所谓，毕竟这个构建过程小于一毫秒。
+2. 缓存的 ObjectVisitor 比起反射要快多了。
 
-### Modify Data with Condition
+### 修改对象的数据
 
-Maybe you want to replace a property named Password with '\*\*\*' in you object. That string will be done by methods below:
+现在，你可能需要将一个对象中的 Password 属性值替换为'\*\*\*'。我们可以采用以下方案实现：
 
-| Method       | Descrption                                                                                                          |
-| ------------ | ------------------------------------------------------------------------------------------------------------------- |
-| Directly     | Modify data directly with assign statement                                                                          |
-| UsingVisitor | Build a ObjectVisitor with Newbe.ObjectVisitor and cache it into a field. Using that cached visitor to modify info. |
+| 方法         | 描述                              |
+| ------------ | --------------------------------- |
+| Directly     | 直接使用赋值语句进行修改          |
+| UsingVisitor | 使用缓存的 ObjectVisitor 进行修改 |
 
-chart:
+图表:
 
 ![Newbe.ObjectVisitor.BenchmarkTest.ChangePasswordTest-barplot](https://github.com/newbe36524/Newbe.ObjectVisitor/raw/docs/assets/Newbe.ObjectVisitor.BenchmarkTest.ChangePasswordTest-barplot.png)
 
-data:
+数据:
 
 | Method       | Job          | Runtime       |       Mean |    Error |   StdDev | Ratio | RatioSD | Rank |
 | ------------ | ------------ | ------------- | ---------: | -------: | -------: | ----: | ------: | ---: |
@@ -406,9 +405,9 @@ data:
 | Directly     | netcoreapp5  | .NET Core 5.0 |   533.8 ns |  1.72 ns |  1.44 ns |  1.00 |    0.00 |    1 |
 | UsingVisitor | netcoreapp5  | .NET Core 5.0 | 1,398.0 ns |  9.24 ns |  8.19 ns |  2.62 |    0.02 |    2 |
 
-summary:
+结论:
 
-1. It will take 1000-3000 ns more to modify data by visitor. So you can take this way if you think it is acceptable in your case.
+1. 使用 visitor 会额外消耗 1-3 微秒（百万分之一秒）。所以如果你觉得这点时间可以接受，那就尽管使用。
 
 ### validate vs FluentValidation
 
@@ -424,9 +423,9 @@ TODO
 | ------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------ |
 | Newbe.ObjectVisitor | [![Newbe.ObjectVisitor.Version](https://img.shields.io/nuget/v/Newbe.ObjectVisitor.svg?style=flat-square)](https://www.nuget.org/packages/Newbe.ObjectVisitor/) | [![Newbe.ObjectVisitor.Download](https://img.shields.io/nuget/dt/Newbe.ObjectVisitor.svg?style=flat-square)](https://www.nuget.org/packages/Newbe.ObjectVisitor.Asset/) | Core about Newbe.ObjectVisitor |
 
-## Contact
+## 联系方式
 
-QQ Group: 【Newbe.Claptrap CL4P-TP 610394020 】：<https://jq.qq.com/?_wv=1027&k=Lkhbwj0o>
+QQ 群: 【Newbe.Claptrap CL4P-TP 610394020 】：<https://jq.qq.com/?_wv=1027&k=Lkhbwj0o>
 
 ## Stargazers over time
 

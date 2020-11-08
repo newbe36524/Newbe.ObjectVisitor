@@ -14,8 +14,8 @@ namespace Newbe.ObjectVisitor.Tests
         public PropertyGetterTest()
         {
             _yueluo = Yueluo.Create();
-            _nameProperty = typeof(Yueluo).GetProperty(nameof(Yueluo.Name));
-            _ageProperty = typeof(Yueluo).GetProperty(nameof(Yueluo.Age));
+            _nameProperty = typeof(Yueluo).GetProperty(nameof(Yueluo.Name))!;
+            _ageProperty = typeof(Yueluo).GetProperty(nameof(Yueluo.Age))!;
             _nameFunc = ValueGetter<Yueluo, string, string>.GetGetter(_nameProperty);
             _ = ValueGetter<Yueluo, int, int>.GetGetter(_ageProperty).Invoke(_yueluo);
             _ = ValueGetter<Yueluo>.GetGetter(_nameProperty).Invoke(_yueluo);
