@@ -2,15 +2,15 @@
 using System.IO;
 using NUnit.Framework;
 
-namespace Newbe.ObjectVisitor.Tests.CarBuilder
+namespace Newbe.ObjectVisitor.Tests.ConnectionStringBuilderFluentApi
 {
     [Category("FluentAPI")]
     [Explicit]
-    public class CarFluentApiTest
+    public class GenerateFluentApiTest
     {
         private static string GetTestFile() =>
             File.ReadAllText(Path.Combine(AppDomain.CurrentDomain.BaseDirectory!, "Content",
-                "car_builder.fluent.md"));
+                "ConnectionStringBuilder.fluent.md"));
 
         [Test]
         public void CreateBuilder()
@@ -21,10 +21,9 @@ namespace Newbe.ObjectVisitor.Tests.CarBuilder
             var generator = new FluentApiFileGenerator();
             var output = generator.Generate(re);
 
-            var nodesCs = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "../../../", "CarBuilder",
-                "CarBuilder.cs");
+            var nodesCs = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "../../../", "ConnectionStringBuilderFluentApi",
+                "ConnectionStringBuilder.cs");
             File.WriteAllText(nodesCs, output.FluentApiFiles.AutoGenerate);
-            
         }
     }
 }
