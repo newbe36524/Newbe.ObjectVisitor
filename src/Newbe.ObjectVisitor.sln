@@ -16,6 +16,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Newbe.ObjectVisitor.Tests",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Newbe.ObjectVisitor.BenchmarkTest", "Newbe.ObjectVisitor.BenchmarkTest\Newbe.ObjectVisitor.BenchmarkTest.csproj", "{ED4E3D0A-F4AD-4467-8BE4-5C5D562BE5D6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Newbe.ObjectVisitor.FlunetApiTool", "Newbe.ObjectVisitor\Newbe.ObjectVisitor.FlunetApiTool\Newbe.ObjectVisitor.FlunetApiTool.csproj", "{21BA7FA4-50A9-4484-990B-25713356CBF8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -34,6 +36,10 @@ Global
 		{ED4E3D0A-F4AD-4467-8BE4-5C5D562BE5D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ED4E3D0A-F4AD-4467-8BE4-5C5D562BE5D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ED4E3D0A-F4AD-4467-8BE4-5C5D562BE5D6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{21BA7FA4-50A9-4484-990B-25713356CBF8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{21BA7FA4-50A9-4484-990B-25713356CBF8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{21BA7FA4-50A9-4484-990B-25713356CBF8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{21BA7FA4-50A9-4484-990B-25713356CBF8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -41,6 +47,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{67E69A00-ACD0-4ACE-A0AE-08D5BEB21B07} = {B026ED50-528D-4180-9D54-1113588EEE9C}
 		{FE79A341-E03B-481E-B69A-2318F2EE39E6} = {B026ED50-528D-4180-9D54-1113588EEE9C}
+		{21BA7FA4-50A9-4484-990B-25713356CBF8} = {B026ED50-528D-4180-9D54-1113588EEE9C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {594E59AF-14B6-4BA7-A33F-5F202BC03640}
