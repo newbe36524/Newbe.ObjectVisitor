@@ -3,6 +3,12 @@
 [![All Contributors](https://img.shields.io/badge/all_contributors-2-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
+<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
+
+[![All Contributors](https://img.shields.io/badge/all_contributors-2-orange.svg?style=flat-square)](#contributors-)
+
+<!-- ALL-CONTRIBUTORS-BADGE:END -->
+
 - [简体中文](README_zh_Hans.md)
 - [English](README.md)
 
@@ -156,11 +162,9 @@ o.V().SuppendEnumerable().ForEach((context)=>{}).Run();
  sample to join all properties to string
 */
 var sb = new StringBuilder();
-o.V().ForEach((context)=>{
-    sb.Append(context.Name);
-    sb.Append(context.Value);
-    sb.Append(Enviroment.Newline);
-}).Run();
+o.V()
+.ForEach((context)=>s.AppendFormat("{0}:{1}{2}", name, value,Environment.NewLine))
+.Run();
 var s = sb.ToString();
 
 //✔️ from 0.1
@@ -271,6 +275,15 @@ this.V().ForEach(context=>this.ServiceProvider.GetService(context.PropertyInfo.P
 
 // 🚧quick style for above
 this.V().PropertyInject(this.ServiceProvider);
+
+// ✔️ from 0.3
+// generate api code from a fluent api DSL
+var content = File.ReadAllText("SumBuilder.fluent.md");
+var parser = new FluentApiDesignParser();
+var re = parser.Parse(content);
+var generator = new FluentApiFileGenerator();
+var output = generator.Generate(re);
+File.WriteAllText("SumBuilder.cs", output.FluentApiFiles.AutoGenerate);
 
 ```
 
@@ -423,9 +436,9 @@ TODO
 
 ## Packages
 
-| package             | version                                                                                                                                                         | download                                                                                                                                                                | descrption                     |
-| ------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------ |
-| Newbe.ObjectVisitor | [![Newbe.ObjectVisitor.Version](https://img.shields.io/nuget/v/Newbe.ObjectVisitor.svg?style=flat-square)](https://www.nuget.org/packages/Newbe.ObjectVisitor/) | [![Newbe.ObjectVisitor.Download](https://img.shields.io/nuget/dt/Newbe.ObjectVisitor.svg?style=flat-square)](https://www.nuget.org/packages/Newbe.ObjectVisitor.Asset/) | Core about Newbe.ObjectVisitor |
+| package             | version                                                                                                                                                         | download                                                                                                                                                          | descrption                     |
+| ------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------ |
+| Newbe.ObjectVisitor | [![Newbe.ObjectVisitor.Version](https://img.shields.io/nuget/v/Newbe.ObjectVisitor.svg?style=flat-square)](https://www.nuget.org/packages/Newbe.ObjectVisitor/) | [![Newbe.ObjectVisitor.Download](https://img.shields.io/nuget/dt/Newbe.ObjectVisitor.svg?style=flat-square)](https://www.nuget.org/packages/Newbe.ObjectVisitor/) | Core about Newbe.ObjectVisitor |
 
 ## Contact
 
@@ -451,6 +464,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 
 <!-- markdownlint-enable -->
 <!-- prettier-ignore-end -->
+
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
 This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!

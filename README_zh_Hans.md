@@ -152,11 +152,9 @@ o.V().SuppendEnumerable().ForEach((context)=>{}).Run();
  将所有的属性和值拼接为一个字符串
 */
 var sb = new StringBuilder();
-o.V().ForEach((context)=>{
-    sb.Append(context.Name);
-    sb.Append(context.Value);
-    sb.Append(Enviroment.Newline);
-}).Run();
+o.V()
+.ForEach((context)=>s.AppendFormat("{0}:{1}{2}", name, value,Environment.NewLine))
+.Run();
 var s = sb.ToString();
 
 //✔️ from 0.1
@@ -267,6 +265,15 @@ this.V().ForEach(context=>this.ServiceProvider.GetService(context.PropertyInfo.P
 
 // 🚧 和上面代码相同的简短形式
 this.V().PropertyInject(this.ServiceProvider);
+
+// ✔️ from 0.3
+// 通过 Fluent API DSL 生成一个 fluent api 代码
+var content = File.ReadAllText("SumBuilder.fluent.md");
+var parser = new FluentApiDesignParser();
+var re = parser.Parse(content);
+var generator = new FluentApiFileGenerator();
+var output = generator.Generate(re);
+File.WriteAllText("SumBuilder.cs", output.FluentApiFiles.AutoGenerate);
 
 ```
 
@@ -419,9 +426,9 @@ TODO
 
 ## Packages
 
-| package             | version                                                                                                                                                         | download                                                                                                                                                                | descrption                     |
-| ------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------ |
-| Newbe.ObjectVisitor | [![Newbe.ObjectVisitor.Version](https://img.shields.io/nuget/v/Newbe.ObjectVisitor.svg?style=flat-square)](https://www.nuget.org/packages/Newbe.ObjectVisitor/) | [![Newbe.ObjectVisitor.Download](https://img.shields.io/nuget/dt/Newbe.ObjectVisitor.svg?style=flat-square)](https://www.nuget.org/packages/Newbe.ObjectVisitor.Asset/) | Core about Newbe.ObjectVisitor |
+| package             | version                                                                                                                                                         | download                                                                                                                                                          | descrption                     |
+| ------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------ |
+| Newbe.ObjectVisitor | [![Newbe.ObjectVisitor.Version](https://img.shields.io/nuget/v/Newbe.ObjectVisitor.svg?style=flat-square)](https://www.nuget.org/packages/Newbe.ObjectVisitor/) | [![Newbe.ObjectVisitor.Download](https://img.shields.io/nuget/dt/Newbe.ObjectVisitor.svg?style=flat-square)](https://www.nuget.org/packages/Newbe.ObjectVisitor/) | Core about Newbe.ObjectVisitor |
 
 ## 联系方式
 
