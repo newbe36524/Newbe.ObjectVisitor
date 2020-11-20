@@ -295,7 +295,7 @@ Machine info about benchmark.
 
 BenchmarkDotNet=v0.12.1, OS=Windows 10.0.19041.572 (2004/?/20H1)
 Intel Xeon CPU E5-2678 v3 2.50GHz, 1 CPU, 24 logical and 12 physical cores
-.NET Core SDK=5.0.100-rc.2.20479.15
+.NET Core SDK=5.0.100
   [Host]       : .NET Core 2.1.23 (CoreCLR 4.6.29321.03, CoreFX 4.6.29321.01), X64 RyuJIT
   net461       : .NET Framework 4.8 (4.8.4250.0), X64 RyuJIT
   net48        : .NET Framework 4.8 (4.8.4250.0), X64 RyuJIT
