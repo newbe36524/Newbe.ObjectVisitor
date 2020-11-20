@@ -1,4 +1,6 @@
-﻿namespace Newbe.ObjectVisitor.Tpl
+﻿#pragma warning disable 8618
+
+namespace Newbe.ObjectVisitor.Tpl
 {
     public class StepInterfaceImplFinalTpl : ICodeTpl
     {

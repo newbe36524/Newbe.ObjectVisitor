@@ -19,7 +19,7 @@ namespace Newbe.ObjectVisitor.Tests
 
             // create a data visitor to cover sensitive data
             var visitor = userModel.V()
-                .ForEach<UserModel, string>(x => CoverSensitiveData(x))
+                .ForEach<string>(x => CoverSensitiveData(x))
                 .Cache();
 
             visitor.Run(userModel);

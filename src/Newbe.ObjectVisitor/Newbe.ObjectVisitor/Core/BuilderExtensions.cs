@@ -4,14 +4,14 @@ namespace Newbe.ObjectVisitor
 {
     internal static class BuilderExtensions
     {
-        public static bool TryGetObject<T>(this IOvBuilderContext<T> builderContext, out T obj)
+        public static bool TryGetObject<T>(this IOvBuilderContext builderContext, out T obj)
         {
             var re = TryGetContextItem<SourceObjectOvBuilderContextItem>(builderContext, out var item);
             obj = (T) item?.SourceObject!;
             return re;
         }
 
-        public static bool TryGetExtObject<T, TExtend>(this IOvBuilderContext<T, TExtend> builderContext,
+        public static bool TryGetExtObject<T, TExtend>(this IOvBuilderContext builderContext,
             out TExtend obj)
         {
             var re = TryGetContextItem<ExtendObjectOvBuilderContextItem>(builderContext, out var item);

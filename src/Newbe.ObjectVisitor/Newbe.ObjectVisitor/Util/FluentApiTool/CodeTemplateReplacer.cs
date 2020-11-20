@@ -9,8 +9,8 @@ namespace Newbe.ObjectVisitor
     {
         private static readonly ICachedObjectVisitor<T, CodeInput> Visitor = default(T)!.V()
             .WithExtendObject<T, CodeInput>()
-            .ForEach<T, CodeInput, string>(context => Replace(context))
-            .ForEach<T, CodeInput, string[]>(context => ReplaceArray(context))
+            .ForEach<string>(context => Replace(context))
+            .ForEach<string[]>(context => ReplaceArray(context))
             .Cache();
 
         private static void ReplaceArray(IObjectVisitorContext<T, CodeInput, string[]> c)

@@ -12,7 +12,7 @@ namespace Newbe.ObjectVisitor.BenchmarkTest
         {
             // create a data visitor to cover sensitive data
             _visitor = default(UserModel).V()
-                .ForEach<UserModel, string>(x => CoverSensitiveData(x))
+                .ForEach<string>(x => CoverSensitiveData(x))
                 .Cache();
         }
 

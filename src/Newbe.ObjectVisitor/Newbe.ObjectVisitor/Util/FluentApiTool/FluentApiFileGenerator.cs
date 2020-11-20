@@ -68,7 +68,7 @@ namespace Newbe.ObjectVisitor
                 {
                     Returning = x.ContainsReturn ? x.Return : "void",
                     ArgsList = GetArgsList(x.Action),
-                    MethodName = GetSharedMethodName(x.Action),
+                    MethodName = GetSharedMethodName(x.Share),
                     Impl = "throw new NotImplementedException();"
                 })
                 .Select(x => x.Format())
@@ -106,10 +106,9 @@ namespace Newbe.ObjectVisitor
                             ArgsList = GetArgsList(x.Action),
                             Impl = new StepInterfaceImplMiddleTpl
                             {
-                                Returning = bodyReturning,
                                 Args = GetArgs(x.Action),
                                 MethodName = x.ContainsShare
-                                    ? GetSharedMethodName(x.Action)
+                                    ? GetSharedMethodName(x.Share)
                                     : GetNotSharedMethodName(x.Action)
                             }.Format()
                         };
@@ -124,15 +123,14 @@ namespace Newbe.ObjectVisitor
                                 Returning = bodyReturning,
                                 Args = GetArgs(x.Action),
                                 MethodName = x.ContainsShare
-                                    ? GetSharedMethodName(x.Action)
+                                    ? GetSharedMethodName(x.Share)
                                     : GetNotSharedMethodName(x.Action)
                             }.Format()
                             : new StepInterfaceImplMiddleTpl
                             {
-                                Returning = bodyReturning,
                                 Args = GetArgs(x.Action),
                                 MethodName = x.ContainsShare
-                                    ? GetSharedMethodName(x.Action)
+                                    ? GetSharedMethodName(x.Share)
                                     : GetNotSharedMethodName(x.Action)
                             }.Format();
                     return (ICodeTpl) new ImplicitMethodCodeTpl
@@ -180,8 +178,9 @@ namespace Newbe.ObjectVisitor
             var visitor = default(ApiStep)!
                 .V()
                 .WithExtendObject(mapping)
-                .ForEach<ApiStep, Dictionary<string, string>, string>(c => ReplaceValueWithMapping(c),
-                    info => info.PropertyType == typeof(string) && info.Name != nameof(ApiStep.SourceContent))
+                .FilterProperty(info =>
+                    info.PropertyType == typeof(string) && info.Name != nameof(ApiStep.SourceContent))
+                .ForEach<string>(c => ReplaceValueWithMapping(c))
                 .CreateVisitor();
 
             var re = steps.Select(x =>

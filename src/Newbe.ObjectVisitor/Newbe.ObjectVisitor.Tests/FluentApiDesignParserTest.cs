@@ -8,7 +8,7 @@ namespace Newbe.ObjectVisitor.Tests
     public class FluentApiDesignParserTest
     {
         private static string GetTestFile() =>
-            File.ReadAllText(Path.Combine(AppDomain.CurrentDomain.BaseDirectory!, "Content", "foreach.fluent.md"));
+            File.ReadAllText(Path.Combine(AppDomain.CurrentDomain.BaseDirectory!, "Content", "ObjectVisitorBuilder.fluent.md"));
 
         [Test]
         public void Parse()

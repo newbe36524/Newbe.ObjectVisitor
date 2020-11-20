@@ -26,7 +26,8 @@ namespace Newbe.ObjectVisitor
                         throw new ArgumentOutOfRangeException();
                 }
 
-                var final = Expression.Block(blockItems);
+                var items = blockItems.ToArray();
+                var final = items.Any() ? (Expression) Expression.Block(items) : Expression.Empty();
                 var actionType = Expression.GetActionType(inputType);
                 var re = Expression.Lambda(actionType, final, inputExp);
                 return re;
@@ -48,7 +49,8 @@ namespace Newbe.ObjectVisitor
                         throw new ArgumentOutOfRangeException();
                 }
 
-                var final = Expression.Block(blockItems);
+                var items = blockItems.ToArray();
+                var final = items.Any() ? (Expression) Expression.Block(items) : Expression.Empty();
                 var actionType = Expression.GetActionType(inputType, extendType);
                 var re = Expression.Lambda(actionType, final, inputExp, extendP);
                 return re;

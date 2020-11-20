@@ -5,14 +5,14 @@
     /// </summary>
     public static class CacheExtensions
     {
-        public static ICachedObjectVisitor<T> Cache<T>(this IOvBuilderContext<T> builderContext)
+        public static ICachedObjectVisitor<T> Cache<T>(this OVBuilder<T>.IOVBuilder_V builderContext)
         {
             var visitor = builderContext.CreateVisitor();
             return new CachedObjectVisitor<T>(visitor);
         }
 
         public static ICachedObjectVisitor<T, TExtend> Cache<T, TExtend>(
-            this IOvBuilderContext<T, TExtend> builderContext)
+            this OVBuilderExt<T, TExtend>.IOVBuilderExt_V builderContext)
         {
             var visitor = builderContext.CreateVisitor();
             return new CachedObjectVisitor<T, TExtend>(visitor);

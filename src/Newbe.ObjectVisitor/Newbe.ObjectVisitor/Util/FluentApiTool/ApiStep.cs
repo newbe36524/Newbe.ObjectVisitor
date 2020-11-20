@@ -1,4 +1,5 @@
-﻿namespace Newbe.ObjectVisitor
+﻿#pragma warning disable 8618
+namespace Newbe.ObjectVisitor
 {
     public class ApiStep
     {

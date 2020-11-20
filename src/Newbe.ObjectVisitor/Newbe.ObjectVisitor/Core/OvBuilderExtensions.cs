@@ -34,20 +34,26 @@ namespace Newbe.ObjectVisitor
             return new ObjectVisitor<T, TExtend>(visitor);
         }
 
-        public static Action<T> GetLambda<T>(this IOvBuilderContext<T> builderContext)
+        public static Action<T> GetLambda<T>(this OVBuilder<T>.IOVBuilder_V builderContext)
         {
             builderContext.CreateVisitor().TryCreateActionExpression<T>(out var action);
             return action.Compile();
         }
 
         public static Action<T, TExtend> GetLambda<T, TExtend>(
-            this IOvBuilderContext<T, TExtend> builderContext)
+            this OVBuilderExt<T, TExtend>.IOVBuilderExt_V builderContext)
         {
             builderContext.CreateVisitor().TryCreateActionExpression<T, TExtend>(out var action);
             return action.Compile();
         }
 
-        public static string GetDebugInfo(this IOvBuilderContext context)
+        public static string GetDebugInfo<T, TExtend>(this OVBuilderExt<T, TExtend>.IOVBuilderExt_V context)
+        {
+            var visitor = context.CreateVisitor();
+            return GetDebugInfo(visitor);
+        }
+        
+        public static string GetDebugInfo<T>(this OVBuilder<T>.IOVBuilder_V context)
         {
             var visitor = context.CreateVisitor();
             return GetDebugInfo(visitor);
@@ -94,9 +100,9 @@ namespace Newbe.ObjectVisitor
             Run((IObjectVisitor) visitor, obj, extendObj);
         }
 
-        public static void Run<T>(this IOvBuilderContext<T> builderContext)
+        public static void Run<T>(this OVBuilder<T>.IOVBuilder_V builderContext)
         {
-            if (builderContext.TryGetObject(out var obj))
+            if (builderContext.GetContext().TryGetObject<T>(out var obj))
             {
                 builderContext.Run(obj);
                 return;
@@ -105,15 +111,15 @@ namespace Newbe.ObjectVisitor
             throw new MissingSourceObjectException();
         }
 
-        public static void Run<T>(this IOvBuilderContext<T> builderContext, T obj)
+        public static void Run<T>(this OVBuilder<T>.IOVBuilder_V builderContext, T obj)
         {
             var visitor = builderContext.CreateVisitor();
             visitor.Run(obj);
         }
 
-        public static void Run<T, TExtend>(this IOvBuilderContext<T, TExtend> builderContext)
+        public static void Run<T, TExtend>(this OVBuilderExt<T, TExtend>.IOVBuilderExt_V builderContext)
         {
-            if (!builderContext.TryGetObject<T>(out var obj))
+            if (!builderContext.GetContext().TryGetObject<T>(out var obj))
             {
                 throw new MissingSourceObjectException();
             }
@@ -121,9 +127,9 @@ namespace Newbe.ObjectVisitor
             builderContext.Run(obj);
         }
 
-        public static void Run<T, TExtend>(this IOvBuilderContext<T, TExtend> builderContext, T obj)
+        public static void Run<T, TExtend>(this OVBuilderExt<T, TExtend>.IOVBuilderExt_V builderContext, T obj)
         {
-            if (builderContext.TryGetExtObject(out var extend))
+            if (builderContext.GetContext().TryGetExtObject<T, TExtend>(out var extend))
             {
                 builderContext.Run(obj, extend);
                 return;
@@ -132,19 +138,19 @@ namespace Newbe.ObjectVisitor
             throw new MissingExtendObjectException();
         }
 
-        public static void Run<T, TExtend>(this IOvBuilderContext<T, TExtend> builderContext, T obj, TExtend extendObj)
+        public static void Run<T, TExtend>(this OVBuilderExt<T, TExtend>.IOVBuilderExt_V builderContext, T obj, TExtend extendObj)
         {
             var visitor = builderContext.CreateVisitor();
             visitor.Run(obj, extendObj);
         }
 
-        public static IOvBuilderContext<T> V<T>(this T obj)
+        public static OVBuilder<T>.IOVBuilder_V V<T>(this T obj)
         {
             var context = new OvBuilderContext<T>(new OvBuilderContext())
             {
                 new SourceObjectOvBuilderContextItem {InputType = typeof(T), SourceObject = obj}
             };
-            return context;
+            return new OVBuilder<T>(context).GetBuilder();
         }
 
         public static IOvBuilderContext V(this Type obj)
@@ -156,19 +162,26 @@ namespace Newbe.ObjectVisitor
             return context;
         }
 
-        public static IOvBuilderContext<T, TExtend> WithExtendObject<T, TExtend>(this IOvBuilderContext<T> context)
+        public static OVBuilderExt<T, TExtend>.IOVBuilderExt_V WithExtendObject<T,
+            TExtend>(
+            this OVBuilder<T>.IOVBuilder_V context)
         {
             return context.WithExtendObject<T, TExtend>(default!);
         }
 
-        public static IOvBuilderContext<T, TExtend> WithExtendObject<T, TExtend>(this IOvBuilderContext<T> context,
+        public static OVBuilderExt<T, TExtend>.IOVBuilderExt_V WithExtendObject<T,
+            TExtend>(
+            this OVBuilder<T>.IOVBuilder_V context,
             TExtend extendObj)
         {
-            var c = context.ReplaceExtendObject(typeof(TExtend), extendObj);
-            return new OvBuilderContext<T, TExtend>(c);
+            var sourceContext = context.GetContext()
+                .ReplaceExtendObject(typeof(TExtend), extendObj);
+            var objectVisitorBuilderExt =
+                new OVBuilderExt<T, TExtend>(new OvBuilderContext<T, TExtend>(sourceContext));
+            return objectVisitorBuilderExt.GetBuilder();
         }
 
-        public static IOvBuilderContext ReplaceExtendObject(this IOvBuilderContext context,
+        private static IOvBuilderContext ReplaceExtendObject(this IOvBuilderContext context,
             Type extendType,
             object? extendObj)
         {
@@ -184,19 +197,6 @@ namespace Newbe.ObjectVisitor
             };
             context.Add(item);
             return context;
-        }
-
-        private static bool TryGetObject<T>(this IEnumerable<IOvBuilderContextItem> builderContext, out T obj)
-        {
-            var item = builderContext.OfType<SourceObjectOvBuilderContextItem>().FirstOrDefault();
-            if (item != null)
-            {
-                obj = (T) item.SourceObject!;
-                return true;
-            }
-
-            obj = default!;
-            return false;
         }
     }
 }
