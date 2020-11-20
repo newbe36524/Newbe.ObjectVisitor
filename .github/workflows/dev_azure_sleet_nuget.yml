@@ -24,7 +24,7 @@ jobs:
         env:
           NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
 
-      - uses: aarnott/nbgv@v0.3
+      - uses: aarnott/nbgv@v0.3.1
         with:
           setAllVars: true
 

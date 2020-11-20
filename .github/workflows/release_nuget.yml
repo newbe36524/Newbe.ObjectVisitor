@@ -19,7 +19,7 @@ jobs:
         with:
           dotnet-version: 5.0.100-rc.2.20479.15
 
-      - uses: aarnott/nbgv@v0.3
+      - uses: aarnott/nbgv@v0.3.1
         with:
           setAllVars: true
 
