@@ -48,7 +48,7 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         shell: powershell
         run: |
-          .\.sonar\scanner\dotnet-sonarscanner begin /k:"newbe36524_Newbe.ObjectVisitor" /o:"newbe36524" /d:sonar.login="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.cs.opencover.reportsPaths='"src/Newbe.ObjectVisitor/*.Tests/TestResults/*/coverage.opencover.xml"'
+          .\.sonar\scanner\dotnet-sonarscanner begin /k:"newbe36524_Newbe.ObjectVisitor" /o:"newbe36524" /d:sonar.login="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.cs.opencover.reportsPaths='"src/Newbe.ObjectVisitor/*.Tests/TestResults/*/coverage.opencover.xml"' /d:sonar.scanner.force-deprecated-java-version="true"
           dotnet build $ENV:GITHUB_WORKSPACE/src --configuration Release
           dotnet test $ENV:GITHUB_WORKSPACE/src --configuration Release -l "console;verbosity=detailed" --collect:"XPlat Code Coverage" --settings $ENV:GITHUB_WORKSPACE/src/coverlet.runsettings -- NUnit.Where="namespace =~ ^Newbe"
           .\.sonar\scanner\dotnet-sonarscanner end /d:sonar.login="${{ secrets.SONAR_TOKEN }}"
@@ -87,6 +87,7 @@ jobs:
       #   # Specify whether or not CI build should fail if Codecov runs into an error during upload
       #   fail_ci_if_error: # optional
       - name: Codacy Coverage Reporter
+        shell: bash
         run: bash <(curl -s https://codecov.io/bash)
       # - name: Codacy Coverage Reporter
       #   uses: codacy/codacy-coverage-reporter-action@master
