@@ -1,0 +1,58 @@
+name: build and scan
+
+on:
+  push:
+    branches:
+      - master
+      - develop
+      - feature/ci
+      - feature/ut
+
+  pull_request:
+    branches:
+      - master
+      - develop
+
+jobs:
+  build:
+    runs-on: windows-latest
+    env:
+      ACTIONS_ALLOW_UNSECURE_COMMANDS: true
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          # Disabling shallow clone is recommended for improving relevancy of reporting
+          fetch-depth: 0
+      - name: Cache SonarCloud packages
+        uses: actions/cache@v1
+        with:
+          path: ~\sonar\cache
+          key: ${{ runner.os }}-sonar
+          restore-keys: ${{ runner.os }}-sonar
+      - name: Cache SonarCloud scanner
+        id: cache-sonar-scanner
+        uses: actions/cache@v1
+        with:
+          path: .\.sonar\scanner
+          key: ${{ runner.os }}-sonar-scanner
+          restore-keys: ${{ runner.os }}-sonar-scanner
+      - name: Install SonarCloud scanner
+        if: steps.cache-sonar-scanner.outputs.cache-hit != 'true'
+        shell: powershell
+        run: |
+          New-Item -Path .\.sonar\scanner -ItemType Directory
+          dotnet tool update dotnet-sonarscanner --tool-path .\.sonar\scanner
+      - name: Build and analyze
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Needed to get PR information, if any
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        shell: powershell
+        run: |
+          .\.sonar\scanner\dotnet-sonarscanner begin /k:"newbe36524_Newbe.ObjectVisitor" /o:"newbe36524" /d:sonar.login="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.cs.opencover.reportsPaths='"src/Newbe.ObjectVisitor/*.Tests/TestResults/*/coverage.opencover.xml"' /d:sonar.scanner.force-deprecated-java-version="true"
+          dotnet build $ENV:GITHUB_WORKSPACE/src --configuration Release
+          dotnet test $ENV:GITHUB_WORKSPACE/src --configuration Release -l "console;verbosity=detailed" --collect:"XPlat Code Coverage" --settings $ENV:GITHUB_WORKSPACE/src/coverlet.runsettings
+          # dotnet test $ENV:GITHUB_WORKSPACE/src --configuration Release -l "console;verbosity=detailed" --collect:"XPlat Code Coverage" --settings $ENV:GITHUB_WORKSPACE/src/coverlet.runsettings -- NUnit.Where="namespace =~ ^Newbe"
+          .\.sonar\scanner\dotnet-sonarscanner end /d:sonar.login="${{ secrets.SONAR_TOKEN }}"
+      - name: Codacy Coverage Reporter
+        shell: bash
+        run: bash <(curl -s https://codecov.io/bash)
