@@ -23,18 +23,43 @@ jobs:
         with:
           # Disabling shallow clone is recommended for improving relevancy of reporting
           fetch-depth: 0
-      - name: Install dependencies
+      - name: Cache SonarCloud packages
+        uses: actions/cache@v1
+        with:
+          path: ~\sonar\cache
+          key: ${{ runner.os }}-sonar
+          restore-keys: ${{ runner.os }}-sonar
+      - name: Cache SonarCloud scanner
+        id: cache-sonar-scanner
+        uses: actions/cache@v1
+        with:
+          path: .\.sonar\scanner
+          key: ${{ runner.os }}-sonar-scanner
+          restore-keys: ${{ runner.os }}-sonar-scanner
+      - name: Install SonarCloud scanner
+        if: steps.cache-sonar-scanner.outputs.cache-hit != 'true'
+        shell: powershell
         run: |
-          cd $ENV:GITHUB_WORKSPACE/src
-          dotnet restore
-          dotnet tool install --global dotnet-sonarscanner --version 4.8.0
-
-      - name: Soanr scan
+          New-Item -Path .\.sonar\scanner -ItemType Directory
+          dotnet tool update dotnet-sonarscanner --tool-path .\.sonar\scanner
+      - name: Build and analyze
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Needed to get PR information, if any
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        shell: powershell
         run: |
-          dotnet sonarscanner begin /k:"newbe36524_Newbe.ObjectVisitor" /d:sonar.cs.opencover.reportsPaths='"src/Newbe.ObjectVisitor/*.Tests/TestResults/*/coverage.opencover.xml"'
+          .\.sonar\scanner\dotnet-sonarscanner begin /k:"newbe36524_Newbe.ObjectVisitor" /o:"newbe36524" /d:sonar.login="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.cs.opencover.reportsPaths='"src/Newbe.ObjectVisitor/*.Tests/TestResults/*/coverage.opencover.xml"'
+          <your clean build command>
           dotnet build $ENV:GITHUB_WORKSPACE/src --configuration Release
           dotnet test $ENV:GITHUB_WORKSPACE/src --configuration Release -l "console;verbosity=detailed" --collect:"XPlat Code Coverage" --settings $ENV:GITHUB_WORKSPACE/src/coverlet.runsettings -- NUnit.Where="namespace =~ ^Newbe"
-          dotnet sonarscanner end
+          .\.sonar\scanner\dotnet-sonarscanner end /d:sonar.login="${{ secrets.SONAR_TOKEN }}"
+
+      # - name: Soanr scan
+      #   run: |
+      #     dotnet sonarscanner begin /k:"newbe36524_Newbe.ObjectVisitor" /d:sonar.cs.opencover.reportsPaths='"src/Newbe.ObjectVisitor/*.Tests/TestResults/*/coverage.opencover.xml"' /d:sonar.host.url=<value>
+      #     dotnet build $ENV:GITHUB_WORKSPACE/src --configuration Release
+      #     dotnet test $ENV:GITHUB_WORKSPACE/src --configuration Release -l "console;verbosity=detailed" --collect:"XPlat Code Coverage" --settings $ENV:GITHUB_WORKSPACE/src/coverlet.runsettings -- NUnit.Where="namespace =~ ^Newbe"
+      #     dotnet sonarscanner end
 
       # - name: Sonarscanner for dotnet
       #   uses: Secbyte/dotnet-sonarscanner@master
