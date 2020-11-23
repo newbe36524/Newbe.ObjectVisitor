@@ -9,10 +9,16 @@ namespace Newbe.ObjectVisitor.Validator.Rules
         where TValue : IEquatable<TValue>
     {
         public IsInSetRule(
-            ICollection<TValue> expectedSet)
+            IEnumerable<TValue> expectedSet)
         {
-            var range = $"{{{string.Join(",", expectedSet)}}}";
-            MustExpression = x => expectedSet.Contains(x);
+            var set = new HashSet<TValue>();
+            foreach (var value in expectedSet)
+            {
+                set.Add(value);
+            }
+
+            var range = $"{{{string.Join(",", set)}}}";
+            MustExpression = x => set.Contains(x);
             ErrorMessageExpression = (input, value, p) =>
                 $"Value of {p.Name} must be in range {range}, but found {value}";
         }

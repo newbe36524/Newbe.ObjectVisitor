@@ -44,8 +44,5 @@ namespace Newbe.ObjectVisitor.Validator.Rules
                     $"Value of {p.Name} must be in range {range}, but found {value}";
             }
         }
-
-        public override Expression<Func<TValue, bool>> MustExpression { get; }
-        public override Expression<Func<T, TValue, PropertyInfo, string>> ErrorMessageExpression { get; }
     }
 }

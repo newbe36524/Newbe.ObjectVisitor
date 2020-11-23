@@ -11,14 +11,25 @@ namespace Newbe.ObjectVisitor
 
         public static bool IsOrImplOf<TInterface>(this PropertyInfo info)
         {
-            return GetAll().Contains(typeof(TInterface));
+            return info.PropertyType.IsOrImplOf<TInterface>();
+        }
+
+        public static bool IsOrImplOf<TInterface>(this Type type)
+        {
+            return type.IsOrImplOf(typeof(TInterface));
+        }
+        
+        
+        public static bool IsOrImplOf(this Type type,Type interfaceType)
+        {
+            return GetAll().Contains(interfaceType);
 
             IEnumerable<Type> GetAll()
             {
-                yield return info.PropertyType;
-                foreach (var type in GetAllInterfaces(info.PropertyType))
+                yield return type;
+                foreach (var t in GetAllInterfaces(type))
                 {
-                    yield return type;
+                    yield return t;
                 }
             }
         }
