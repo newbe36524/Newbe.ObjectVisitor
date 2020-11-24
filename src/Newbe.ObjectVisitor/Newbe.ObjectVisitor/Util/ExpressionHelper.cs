@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Reflection;
 
@@ -29,7 +30,7 @@ namespace Newbe.ObjectVisitor
                 return base.VisitMember(node);
             }
         }
-        
+
         public static Expression<Func<T, TValue, PropertyInfo, bool>> CreateValidateExpression<T, TValue>(
             Expression<Func<TValue, bool>> func)
         {
@@ -39,6 +40,52 @@ namespace Newbe.ObjectVisitor
             var bodyExp = Expression.Invoke(func, valueExp);
             var funcExp = Expression.Lambda<Func<T, TValue, PropertyInfo, bool>>(bodyExp, inputExp, valueExp, pExp);
             return funcExp;
+        }
+
+        public static Expression<Func<T, bool>> AndAlso<T>(this Expression<Func<T, bool>> exp1,
+            Expression<Func<T, bool>> exp2)
+        {
+            var pExp = Expression.Parameter(typeof(T), "x");
+            var exp1Body = exp1.Unwrap(pExp);
+            var exp2Body = exp2.Unwrap(pExp);
+            var bodyExp = Expression.AndAlso(exp1Body, exp2Body);
+            return Expression.Lambda<Func<T, bool>>(bodyExp, pExp);
+        }
+
+        public static Expression Unwrap(this LambdaExpression lambdaExpression, params Expression[] parameterExpression)
+        {
+            var ps = lambdaExpression.Parameters;
+            var dic = new Dictionary<ParameterExpression, Expression>();
+            for (int i = 0; i < ps.Count; i++)
+            {
+                var p = ps[i];
+                dic.Add(p, parameterExpression[i]);
+            }
+
+            var visitor = new UnwrapVisitor(dic);
+            var re = visitor.Visit(lambdaExpression.Body);
+            return re;
+        }
+
+        private class UnwrapVisitor : ExpressionVisitor
+        {
+            private readonly Dictionary<ParameterExpression, Expression> _replacementDic;
+
+            public UnwrapVisitor(
+                Dictionary<ParameterExpression, Expression> replacementDic)
+            {
+                _replacementDic = replacementDic;
+            }
+
+            protected override Expression VisitParameter(ParameterExpression node)
+            {
+                if (_replacementDic.TryGetValue(node, out var value))
+                {
+                    return value;
+                }
+
+                return base.VisitParameter(node);
+            }
         }
     }
 }

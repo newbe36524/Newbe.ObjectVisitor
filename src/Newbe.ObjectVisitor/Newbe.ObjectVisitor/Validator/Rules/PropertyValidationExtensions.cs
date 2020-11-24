@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using Newbe.ObjectVisitor.Validator.Rules;
 
 // ReSharper disable once CheckNamespace
@@ -9,12 +10,62 @@ namespace Newbe.ObjectVisitor.Validator
     public static class PropertyValidationExtensions
     {
         public static PropertyValidationRuleBuilder<T, TValue>.IPropertyValidationRuleBuilder_V
+            Equal<T, TValue>(
+                this IPropertyValidationRuleBuilderValidateStep<T, TValue> step,
+                TValue expected)
+            where TValue : IEquatable<TValue>
+        {
+            var rule = EqualRuleFactory.Create<T, TValue>(expected);
+            return step.Validate(rule);
+        }
+
+        public static PropertyValidationRuleBuilder<T, TValue>.IPropertyValidationRuleBuilder_V
+            Equal<T, TValue>(
+                this IPropertyValidationRuleBuilderValidateStep<T, TValue> step,
+                TValue expected,
+                IEqualityComparer<TValue> comparer)
+        {
+            var rule = EqualRuleFactory.Create<T, TValue>(expected, comparer);
+            return step.Validate(rule);
+        }
+
+        public static PropertyValidationRuleBuilder<T, TValue>.IPropertyValidationRuleBuilder_V
+            NotEqual<T, TValue>(
+                this IPropertyValidationRuleBuilderValidateStep<T, TValue> step,
+                TValue expected)
+            where TValue : IEquatable<TValue>
+        {
+            var rule = NotEqualRuleFactory.Create<T, TValue>(expected);
+            return step.Validate(rule);
+        }
+
+        public static PropertyValidationRuleBuilder<T, TValue>.IPropertyValidationRuleBuilder_V
+            NotEqual<T, TValue>(
+                this IPropertyValidationRuleBuilderValidateStep<T, TValue> step,
+                TValue expected,
+                IEqualityComparer<TValue> comparer)
+        {
+            var rule = NotEqualRuleFactory.Create<T, TValue>(expected, comparer);
+            return step.Validate(rule);
+        }
+
+        public static PropertyValidationRuleBuilder<T, TValue>.IPropertyValidationRuleBuilder_V
             LessThan<T, TValue>(
                 this IPropertyValidationRuleBuilderValidateStep<T, TValue> step,
                 TValue max)
             where TValue : IComparable<TValue>
         {
-            var rule = new LessThanRule<T, TValue>(max);
+            var rule = LessThanRuleFactory.Create<T, TValue>(max);
+            return step.Validate(rule);
+        }
+
+        public static PropertyValidationRuleBuilder<T, TValue>.IPropertyValidationRuleBuilder_V
+            LessThan<T, TValue>(
+                this IPropertyValidationRuleBuilderValidateStep<T, TValue> step,
+                TValue max,
+                IComparer<TValue> comparer)
+        {
+            var rule = LessThanRuleFactory.Create<T, TValue>(max, comparer);
             return step.Validate(rule);
         }
 
@@ -24,27 +75,57 @@ namespace Newbe.ObjectVisitor.Validator
                 TValue max)
             where TValue : IComparable<TValue>
         {
-            var rule = new LessThanOrEqual<T, TValue>(max);
+            var rule = LessThanOrEqualRuleFactory.Create<T, TValue>(max);
+            return step.Validate(rule);
+        }
+
+        public static PropertyValidationRuleBuilder<T, TValue>.IPropertyValidationRuleBuilder_V
+            LessThanOrEqual<T, TValue>(
+                this IPropertyValidationRuleBuilderValidateStep<T, TValue> step,
+                TValue max,
+                IComparer<TValue> comparer)
+        {
+            var rule = LessThanOrEqualRuleFactory.Create<T, TValue>(max, comparer);
             return step.Validate(rule);
         }
 
         public static PropertyValidationRuleBuilder<T, TValue>.IPropertyValidationRuleBuilder_V
             GreaterThan<T, TValue>(
                 this IPropertyValidationRuleBuilderValidateStep<T, TValue> step,
-                TValue max)
+                TValue min)
             where TValue : IComparable<TValue>
         {
-            var rule = new GreaterThan<T, TValue>(max);
+            var rule = GreaterThanRuleFactory.Create<T, TValue>(min);
+            return step.Validate(rule);
+        }
+
+        public static PropertyValidationRuleBuilder<T, TValue>.IPropertyValidationRuleBuilder_V
+            GreaterThan<T, TValue>(
+                this IPropertyValidationRuleBuilderValidateStep<T, TValue> step,
+                TValue min,
+                IComparer<TValue> comparer)
+        {
+            var rule = GreaterThanRuleFactory.Create<T, TValue>(min, comparer);
             return step.Validate(rule);
         }
 
         public static PropertyValidationRuleBuilder<T, TValue>.IPropertyValidationRuleBuilder_V
             GreaterThanOrEqual<T, TValue>(
                 this IPropertyValidationRuleBuilderValidateStep<T, TValue> step,
-                TValue max)
+                TValue min)
             where TValue : IComparable<TValue>
         {
-            var rule = new GreaterThanOrEqual<T, TValue>(max);
+            var rule = GreaterThanOrEqualRuleFactory.Create<T, TValue>(min);
+            return step.Validate(rule);
+        }
+
+        public static PropertyValidationRuleBuilder<T, TValue>.IPropertyValidationRuleBuilder_V
+            GreaterThanOrEqual<T, TValue>(
+                this IPropertyValidationRuleBuilderValidateStep<T, TValue> step,
+                TValue min,
+                IComparer<TValue> comparer)
+        {
+            var rule = GreaterThanOrEqualRuleFactory.Create<T, TValue>(min, comparer);
             return step.Validate(rule);
         }
 
@@ -57,7 +138,20 @@ namespace Newbe.ObjectVisitor.Validator
                 bool excludeMax = true)
             where TValue : IComparable<TValue>
         {
-            var rule = new IsInRangeRule<T, TValue>(min, max, excludeMin, excludeMax);
+            var rule = IsInRangeRuleFactory.Create<T, TValue>(min, max, excludeMin, excludeMax);
+            return step.Validate(rule);
+        }
+
+        public static PropertyValidationRuleBuilder<T, TValue>.IPropertyValidationRuleBuilder_V
+            IsInRange<T, TValue>(
+                this IPropertyValidationRuleBuilderValidateStep<T, TValue> step,
+                TValue min,
+                TValue max,
+                IComparer<TValue> comparer,
+                bool excludeMin = false,
+                bool excludeMax = true)
+        {
+            var rule = IsInRangeRuleFactory.Create<T, TValue>(min, max, excludeMin, excludeMax, comparer);
             return step.Validate(rule);
         }
 
@@ -67,7 +161,37 @@ namespace Newbe.ObjectVisitor.Validator
                 IEnumerable<TValue> expectedSet)
             where TValue : IEquatable<TValue>
         {
-            var rule = new IsInSetRule<T, TValue>(expectedSet);
+            var rule = IsInSetRuleFactory.Create<T, TValue>(expectedSet);
+            return step.Validate(rule);
+        }
+
+        public static PropertyValidationRuleBuilder<T, TValue>.IPropertyValidationRuleBuilder_V
+            IsInSet<T, TValue>(
+                this IPropertyValidationRuleBuilderValidateStep<T, TValue> step,
+                IEnumerable<TValue> expectedSet,
+                IEqualityComparer<TValue> comparer)
+        {
+            var rule = IsInSetRuleFactory.Create<T, TValue>(expectedSet, comparer);
+            return step.Validate(rule);
+        }
+
+        public static PropertyValidationRuleBuilder<T, TValue>.IPropertyValidationRuleBuilder_V
+            IsNotInSet<T, TValue>(
+                this IPropertyValidationRuleBuilderValidateStep<T, TValue> step,
+                IEnumerable<TValue> expectedSet)
+            where TValue : IEquatable<TValue>
+        {
+            var rule = IsNotInSetRuleFactory.Create<T, TValue>(expectedSet);
+            return step.Validate(rule);
+        }
+
+        public static PropertyValidationRuleBuilder<T, TValue>.IPropertyValidationRuleBuilder_V
+            IsNotInSet<T, TValue>(
+                this IPropertyValidationRuleBuilderValidateStep<T, TValue> step,
+                IEnumerable<TValue> expectedSet,
+                IEqualityComparer<TValue> comparer)
+        {
+            var rule = IsNotInSetRuleFactory.Create<T, TValue>(expectedSet, comparer);
             return step.Validate(rule);
         }
 
@@ -79,7 +203,6 @@ namespace Newbe.ObjectVisitor.Validator
             var rule = new ClassNullRule<T, TValue>();
             return step.Validate(rule);
         }
-
 
         public static PropertyValidationRuleBuilder<T, TValue>.IPropertyValidationRuleBuilder_V
             NotNull<T, TValue>(
@@ -121,6 +244,42 @@ namespace Newbe.ObjectVisitor.Validator
             where TValue : IEnumerable
         {
             var rule = new EnumerableEmptyRule<T, TValue>();
+            return step.Validate(rule);
+        }
+
+        public static PropertyValidationRuleBuilder<T, string>.IPropertyValidationRuleBuilder_V
+            MatchRegex<T>(
+                this IPropertyValidationRuleBuilderValidateStep<T, string> step,
+                string pattern)
+        {
+            var rule = MatchRegexRuleFactory.Create<T>(pattern);
+            return step.Validate(rule);
+        }
+        
+        public static PropertyValidationRuleBuilder<T, string>.IPropertyValidationRuleBuilder_V
+            MatchRegex<T>(
+                this IPropertyValidationRuleBuilderValidateStep<T, string> step,
+                Regex regex)
+        {
+            var rule = MatchRegexRuleFactory.Create<T>(regex);
+            return step.Validate(rule);
+        }
+        
+        public static PropertyValidationRuleBuilder<T, string>.IPropertyValidationRuleBuilder_V
+            NotMatchRegex<T>(
+                this IPropertyValidationRuleBuilderValidateStep<T, string> step,
+                string pattern)
+        {
+            var rule = NotMatchRegexRuleFactory.Create<T>(pattern);
+            return step.Validate(rule);
+        }
+        
+        public static PropertyValidationRuleBuilder<T, string>.IPropertyValidationRuleBuilder_V
+            NotMatchRegex<T>(
+                this IPropertyValidationRuleBuilderValidateStep<T, string> step,
+                Regex regex)
+        {
+            var rule = NotMatchRegexRuleFactory.Create<T>(regex);
             return step.Validate(rule);
         }
 

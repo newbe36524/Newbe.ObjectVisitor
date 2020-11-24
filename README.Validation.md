@@ -97,29 +97,30 @@ https://docs.fluentvalidation.net/en/latest/built-in-validators.html
 
 all,number,string,enum,class,enumerable
 
-| Build in Validators   | FluentValidation 9.X | Newbe.ObjectVistor                |
-| --------------------- | -------------------- | --------------------------------- |
-| NotNull               | ✔️                   | ✔️ NotNull; class                 |
-| NotEmpty              | ✔️                   | ✔️ NotEmpty; string,enumerable    |
-| NotEqual              | ✔️                   | 🚧 NotEqual; all                  |
-| Equal                 | ✔️                   | 🚧 Equal; all                     |
-| Length                | ✔️                   | ✔️ Length; string,enumerable      |
-| MaxLength             | ✔️                   | ✔️ MaxLength; string,enumerable   |
-| MinLength             | ✔️                   | ✔️ MinLength; string,enumerable   |
-| Less Than             | ✔️                   | ✔️ LessThan; number               |
-| Less Than Or Equal    | ✔️                   | ✔️ LessThanOrEqual; number        |
-| Greater Than          | ✔️                   | ✔️ GreaterThan; number            |
-| Greater Than Or Equal | ✔️                   | ✔️ GreaterThanOrEqual; number     |
-| Predicate             | ✔️                   | ✔️ Validate; all                  |
-| Regular Expression    | ✔️                   | 🚧 MatchRegex; string             |
-| Email                 | ✔️                   | 🚧 Email; string                  |
-| Credit Card           | ✔️                   | 💭                                |
-| Enum                  | ✔️                   | 🚧 IsInEnum; number,string,enum   |
-| Enum Name             | ✔️                   | 🚧 IsEnumName; number,string,enum |
-| Empty                 | ✔️                   | ✔️ Empty; string,enumerable       |
-| Null                  | ✔️                   | ✔️ Null; class                    |
-| ExclusiveBetween      | ✔️                   | ✔️ IsInRange; number,enum         |
-| InclusiveBetween      | ✔️                   | ✔️ IsInRange; number,enum         |
-| ScalePrecision        | ✔️                   | 🚧 ScalePrecision; number         |
-| Or                    | ❌                   | 🚧 Or; all                        |
-| IsInSet               | ❌                   | 🚧 IsInSet; all                   |
+| Build in Validators   | FluentValidation 9.X | Newbe.ObjectVistor                  |
+| --------------------- | -------------------- | ----------------------------------- |
+| NotNull               | ✔️                   | ✔️ NotNull; class                   |
+| NotEmpty              | ✔️                   | ✔️ NotEmpty; string,enumerable      |
+| NotEqual              | ✔️                   | ✔️ NotEqual; all                    |
+| Equal                 | ✔️                   | ✔️ Equal; all                       |
+| Length                | ✔️                   | ✔️ Length; string,enumerable        |
+| MaxLength             | ✔️                   | ✔️ MaxLength; string,enumerable     |
+| MinLength             | ✔️                   | ✔️ MinLength; string,enumerable     |
+| Less Than             | ✔️                   | ✔️ LessThan; number                 |
+| Less Than Or Equal    | ✔️                   | ✔️ LessThanOrEqual; number          |
+| Greater Than          | ✔️                   | ✔️ GreaterThan; number              |
+| Greater Than Or Equal | ✔️                   | ✔️ GreaterThanOrEqual; number       |
+| Predicate             | ✔️                   | ✔️ Validate; all                    |
+| Regular Expression    | ✔️                   | ✔️ MatchRegex,NotMatchRegex; string |
+| Email                 | ✔️                   | 🚧 Email; string                    |
+| Credit Card           | ✔️                   | 💭                                  |
+| Enum                  | ✔️                   | 🚧 IsInEnum; number,string,enum     |
+| Enum Name             | ✔️                   | 🚧 IsEnumName; number,string,enum   |
+| Empty                 | ✔️                   | ✔️ Empty; string,enumerable         |
+| Null                  | ✔️                   | ✔️ Null; class                      |
+| ExclusiveBetween      | ✔️                   | ✔️ IsInRange; number,enum           |
+| InclusiveBetween      | ✔️                   | ✔️ IsInRange; number,enum           |
+| ScalePrecision        | ✔️                   | 🚧 ScalePrecision; number           |
+| Or                    | ❌                   | 🚧 Or; all                          |
+| IsInSet               | ❌                   | ✔️ IsInSet; all                     |
+| IsNotInSet            | ❌                   | ✔️ IsNotInSet; all                  |

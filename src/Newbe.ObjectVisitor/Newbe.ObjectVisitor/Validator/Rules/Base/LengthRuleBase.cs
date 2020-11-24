@@ -22,7 +22,7 @@ namespace Newbe.ObjectVisitor.Validator.Rules
             var valueExp = Expression.Parameter(typeof(TValue), "value");
             var pExp = Expression.Parameter(typeof(PropertyInfo), "p");
             var lengthExp = GetLengthExpression(valueExp);
-            var bodyExp = Expression.Invoke(ErrorMessageExp, Expression.Property(pExp, nameof(PropertyInfo.Name)),
+            var bodyExp = ErrorMessageExp.Unwrap(Expression.Property(pExp, nameof(PropertyInfo.Name)),
                 lengthExp);
             ErrorMessageExpression =
                 Expression.Lambda<Func<T, TValue, PropertyInfo, string>>(bodyExp, inputExp, valueExp, pExp);
@@ -32,11 +32,11 @@ namespace Newbe.ObjectVisitor.Validator.Rules
         {
             var pExp = Expression.Parameter(typeof(TValue), "value");
             var lengthExp = GetLengthExpression(pExp);
-            MustExpression =
-                Expression.Lambda<Func<TValue, bool>>(Expression.Invoke(LengthCompareExp, lengthExp), pExp);
+            var bodyExp = LengthCompareExp.Unwrap(lengthExp);
+            MustExpression = Expression.Lambda<Func<TValue, bool>>(bodyExp, pExp);
         }
 
-        protected static Expression GetLengthExpression(Expression pExp)
+        private static Expression GetLengthExpression(Expression pExp)
         {
             if (typeof(TValue) == typeof(string))
             {

@@ -1,32 +1,21 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Reflection;
 
 namespace Newbe.ObjectVisitor.Validator.Rules
 {
-    public class IsInRangeRule<T, TValue> : ValueRangeRuleBase<T, TValue>
-        where TValue : IComparable<TValue>
+    public class IsInRangeRule<T, TValue> : PropertyValidationRuleBase<T, TValue>
     {
         public IsInRangeRule(
             TValue min,
             TValue max,
-            bool excludeMin = false,
-            bool excludeMax = true)
-        {
-            MustExpression = CreateIsInRangeExp(min, max, excludeMin, excludeMax);
-            ErrorMessageExpression = CreateIsInRangeErrorExp(min, max, excludeMin, excludeMax);
-        }
-
-        private static Expression<Func<TValue, bool>> CreateIsInRangeExp(TValue min, TValue max,
             bool excludeMin,
-            bool excludeMax)
+            bool excludeMax,
+            Expression<Func<TValue, bool>> must)
         {
-            var pExp = Expression.Parameter(typeof(TValue), "value");
-            var gtExp = CreateGtExpression(pExp, min, excludeMin);
-            var ltExp = CreateLtExpression(pExp, max, excludeMax);
-            var bodyExp = Expression.AndAlso(gtExp, ltExp);
-            var funcExp = Expression.Lambda<Func<TValue, bool>>(bodyExp, pExp);
-            return funcExp;
+            MustExpression = must;
+            ErrorMessageExpression = CreateIsInRangeErrorExp(min, max, excludeMin, excludeMax);
         }
 
         private static Expression<Func<T, TValue, PropertyInfo, string>> CreateIsInRangeErrorExp(
@@ -43,6 +32,48 @@ namespace Newbe.ObjectVisitor.Validator.Rules
                 return (input, value, p) =>
                     $"Value of {p.Name} must be in range {range}, but found {value}";
             }
+        }
+    }
+
+
+    public static class IsInRangeRuleFactory
+    {
+        public static IsInRangeRule<T, TValue> Create<T, TValue>(
+            TValue min,
+            TValue max,
+            bool excludeMin,
+            bool excludeMax)
+            where TValue : IComparable<TValue>
+        {
+            var pExp = Expression.Parameter(typeof(TValue), "value");
+            var gtExp = RuleExpressionHelper.Greater(min, excludeMin);
+            var ltExp = RuleExpressionHelper.Less(max, excludeMax);
+            var bodyExp = gtExp.AndAlso(ltExp);
+            var funcExp = Expression.Lambda<Func<TValue, bool>>(bodyExp.Unwrap(pExp), pExp);
+
+            return new IsInRangeRule<T, TValue>(min,
+                max,
+                excludeMin,
+                excludeMax,
+                funcExp);
+        }
+
+        public static IsInRangeRule<T, TValue> Create<T, TValue>(TValue min,
+            TValue max,
+            bool excludeMin,
+            bool excludeMax,
+            IComparer<TValue> comparer)
+        {
+            var pExp = Expression.Parameter(typeof(TValue), "value");
+            var gtExp = RuleExpressionHelper.Greater(min, excludeMin, comparer);
+            var ltExp = RuleExpressionHelper.Less(max, excludeMax, comparer);
+            var bodyExp = gtExp.AndAlso(ltExp);
+            var funcExp = Expression.Lambda<Func<TValue, bool>>(bodyExp.Unwrap(pExp), pExp);
+            return new IsInRangeRule<T, TValue>(min,
+                max,
+                excludeMin,
+                excludeMax,
+                funcExp);
         }
     }
 }

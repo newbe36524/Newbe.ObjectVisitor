@@ -5,24 +5,24 @@ using System.Reflection;
 
 namespace Newbe.ObjectVisitor.Validator.Rules
 {
-    public class IsInSetRule<T, TValue> : IPropertyValidationRule<T, TValue>
+    public class IsNotInSetRule<T, TValue> : IPropertyValidationRule<T, TValue>
     {
-        public IsInSetRule(
+        public IsNotInSetRule(
             ICollection<TValue> expectedSet)
         {
             var range = $"{{{string.Join(",", expectedSet)}}}";
-            MustExpression = x => expectedSet.Contains(x);
+            MustExpression = x => !expectedSet.Contains(x);
             ErrorMessageExpression = (input, value, p) =>
-                $"Value of {p.Name} must be in range {range}, but found {value}";
+                $"Value of {p.Name} must be not in range {range}, but found {value}";
         }
 
         public Expression<Func<TValue, bool>> MustExpression { get; }
         public Expression<Func<T, TValue, PropertyInfo, string>> ErrorMessageExpression { get; }
     }
 
-    public static class IsInSetRuleFactory
+    public static class IsNotInSetRuleFactory
     {
-        public static IsInSetRule<T, TValue> Create<T, TValue>(IEnumerable<TValue> expectedSet)
+        public static IsNotInSetRule<T, TValue> Create<T, TValue>(IEnumerable<TValue> expectedSet)
             where TValue : IEquatable<TValue>
         {
             var set = new HashSet<TValue>();
@@ -31,10 +31,10 @@ namespace Newbe.ObjectVisitor.Validator.Rules
                 set.Add(item);
             }
 
-            return new IsInSetRule<T, TValue>(set);
+            return new IsNotInSetRule<T, TValue>(set);
         }
 
-        public static IsInSetRule<T, TValue> Create<T, TValue>(IEnumerable<TValue> expectedSet,
+        public static IsNotInSetRule<T, TValue> Create<T, TValue>(IEnumerable<TValue> expectedSet,
             IEqualityComparer<TValue> comparer)
         {
             var set = new HashSet<TValue>(comparer);
@@ -43,7 +43,7 @@ namespace Newbe.ObjectVisitor.Validator.Rules
                 set.Add(item);
             }
 
-            return new IsInSetRule<T, TValue>(set);
+            return new IsNotInSetRule<T, TValue>(set);
         }
     }
 }
