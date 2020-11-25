@@ -255,7 +255,7 @@ namespace Newbe.ObjectVisitor.Validator
             var rule = MatchRegexRuleFactory.Create<T>(pattern);
             return step.Validate(rule);
         }
-        
+
         public static PropertyValidationRuleBuilder<T, string>.IPropertyValidationRuleBuilder_V
             MatchRegex<T>(
                 this IPropertyValidationRuleBuilderValidateStep<T, string> step,
@@ -264,7 +264,7 @@ namespace Newbe.ObjectVisitor.Validator
             var rule = MatchRegexRuleFactory.Create<T>(regex);
             return step.Validate(rule);
         }
-        
+
         public static PropertyValidationRuleBuilder<T, string>.IPropertyValidationRuleBuilder_V
             NotMatchRegex<T>(
                 this IPropertyValidationRuleBuilderValidateStep<T, string> step,
@@ -273,7 +273,7 @@ namespace Newbe.ObjectVisitor.Validator
             var rule = NotMatchRegexRuleFactory.Create<T>(pattern);
             return step.Validate(rule);
         }
-        
+
         public static PropertyValidationRuleBuilder<T, string>.IPropertyValidationRuleBuilder_V
             NotMatchRegex<T>(
                 this IPropertyValidationRuleBuilderValidateStep<T, string> step,
@@ -311,6 +311,36 @@ namespace Newbe.ObjectVisitor.Validator
             where TValue : IEnumerable
         {
             var rule = new MaxLengthRule<T, TValue>(max);
+            return step.Validate(rule);
+        }
+
+        public static PropertyValidationRuleBuilder<T, TValue>.IPropertyValidationRuleBuilder_V
+            IsInEnum<T, TValue>(
+                this IPropertyValidationRuleBuilderValidateStep<T, TValue> step,
+                Type enumType,
+                bool? flagged = null)
+        {
+            var rule = IsInEnumRuleFactory.Create<T, TValue>(enumType,
+                flagged);
+            return step.Validate(rule);
+        }
+
+        public static PropertyValidationRuleBuilder<T, TValue>.IPropertyValidationRuleBuilder_V
+            IsInEnum<T, TValue>(
+                this IPropertyValidationRuleBuilderValidateStep<T, TValue> step,
+                bool? flagged = null)
+        {
+            var rule = IsInEnumRuleFactory.Create<T, TValue>(typeof(TValue),
+                flagged);
+            return step.Validate(rule);
+        }
+
+        public static PropertyValidationRuleBuilder<T, string>.IPropertyValidationRuleBuilder_V
+            IsInEnumName<T>(
+                this IPropertyValidationRuleBuilderValidateStep<T, string> step,
+                Type enumType)
+        {
+            var rule = IsInEnumRuleFactory.Create<T, string>(enumType, false);
             return step.Validate(rule);
         }
     }

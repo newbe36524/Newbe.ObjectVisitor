@@ -112,10 +112,10 @@ all,number,string,enum,class,enumerable
 | Greater Than Or Equal | ✔️                   | ✔️ GreaterThanOrEqual; number       |
 | Predicate             | ✔️                   | ✔️ Validate; all                    |
 | Regular Expression    | ✔️                   | ✔️ MatchRegex,NotMatchRegex; string |
-| Email                 | ✔️                   | 🚧 Email; string                    |
-| Credit Card           | ✔️                   | 💭                                  |
-| Enum                  | ✔️                   | 🚧 IsInEnum; number,string,enum     |
-| Enum Name             | ✔️                   | 🚧 IsEnumName; number,string,enum   |
+| Email                 | ✔️                   | 💭 MatchRegex; string               |
+| Credit Card           | ✔️                   | 💭 MatchRegex; string               |
+| Enum                  | ✔️                   | ✔️ IsInEnum; number,string,enum     |
+| Enum Name             | ✔️                   | ✔️ IsEnumName; string               |
 | Empty                 | ✔️                   | ✔️ Empty; string,enumerable         |
 | Null                  | ✔️                   | ✔️ Null; class                      |
 | ExclusiveBetween      | ✔️                   | ✔️ IsInRange; number,enum           |

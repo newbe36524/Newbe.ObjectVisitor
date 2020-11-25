@@ -19,6 +19,12 @@ namespace Newbe.ObjectVisitor.Tests.Validator
             public int[] Ints { get; set; }
             public IEnumerable<int> Items { get; set; }
             public EnumerableItem EnumerableItem { get; set; }
+            public NoFlagEnum NoFlagEnum { get; set; }
+            public byte NoFlagEnumByte { get; set; }
+            public string NoFlagEnumString { get; set; }
+            public FlagsEnum FlagsEnum { get; set; }
+            public int FlagsEnumInt { get; set; }
+            public string FlagsEnumString { get; set; }
         }
 
         public class EnumerableItem : IEnumerable
@@ -64,6 +70,22 @@ namespace Newbe.ObjectVisitor.Tests.Validator
 
                 public object Current => _now;
             }
+        }
+
+        public enum NoFlagEnum
+        {
+            Spring = 0,
+            Summer = 1,
+            Autumn = 3,
+            Winter = 4
+        }
+
+        [Flags]
+        public enum FlagsEnum
+        {
+            Morning = 0x01,
+            Afternoon = 0X02,
+            Evening = 0x04,
         }
 
         #endregion
@@ -137,6 +159,65 @@ namespace Newbe.ObjectVisitor.Tests.Validator
             result.Success.Should().Be(success);
             if (!success)
             {
+                result.Errors.Length.Should().Be(3);
+                foreach (var error in result.Errors)
+                {
+                    Console.WriteLine(error);
+                }
+            }
+        }
+
+        [Test]
+        [TestCase((NoFlagEnum) 5, 5, "???", false)]
+        [TestCase(NoFlagEnum.Autumn, 3, nameof(NoFlagEnum.Autumn), true)]
+        public void NoFlagEnumTest(NoFlagEnum enumValue, byte byteValue, string stringValue, bool success)
+        {
+            var builder = new ValidationRuleBuilder<TestModel>(new List<ValidationRule<TestModel>>());
+            var validationRules = builder.GetBuilder()
+                .Property(x => x.NoFlagEnum).IsInEnum()
+                .Property(x => x.NoFlagEnumByte).IsInEnum(typeof(NoFlagEnum))
+                .Property(x => x.NoFlagEnumString).IsInEnum(typeof(NoFlagEnum))
+                .GetRuleSet();
+            var validator = new Validator<TestModel>(validationRules);
+            var result = validator.Validate(new TestModel
+            {
+                NoFlagEnum = enumValue,
+                NoFlagEnumByte = byteValue,
+                NoFlagEnumString = stringValue
+            });
+            result.Success.Should().Be(success);
+            if (!success)
+            {
+                result.Errors.Length.Should().Be(3);
+                foreach (var error in result.Errors)
+                {
+                    Console.WriteLine(error);
+                }
+            }
+        }
+
+        [Test]
+        [TestCase((FlagsEnum) 0, 0, "0", false)]
+        [TestCase(FlagsEnum.Afternoon | FlagsEnum.Evening, 3, nameof(FlagsEnum.Evening), true)]
+        public void FlagsEnumTest(FlagsEnum enumValue, int intValue, string stringValue, bool success)
+        {
+            var builder = new ValidationRuleBuilder<TestModel>(new List<ValidationRule<TestModel>>());
+            var validationRules = builder.GetBuilder()
+                .Property(x => x.FlagsEnum).IsInEnum()
+                .Property(x => x.FlagsEnumInt).IsInEnum(typeof(FlagsEnum))
+                .Property(x => x.FlagsEnumString).IsInEnum(typeof(FlagsEnum))
+                .GetRuleSet();
+            var validator = new Validator<TestModel>(validationRules);
+            var result = validator.Validate(new TestModel
+            {
+                FlagsEnum = enumValue,
+                FlagsEnumInt = intValue,
+                FlagsEnumString = stringValue
+            });
+            result.Success.Should().Be(success);
+            if (!success)
+            {
+                result.Errors.Length.Should().Be(3);
                 foreach (var error in result.Errors)
                 {
                     Console.WriteLine(error);

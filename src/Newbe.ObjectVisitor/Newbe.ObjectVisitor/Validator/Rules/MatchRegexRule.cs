@@ -18,17 +18,9 @@ namespace Newbe.ObjectVisitor.Validator.Rules
     {
         private static readonly ConcurrentDictionary<string, Regex> Regexes = new ConcurrentDictionary<string, Regex>();
 
-        // TODO move to global factories
-        public static Func<string, Regex> RegexFactory { get; set; }
-
-        static MatchRegexRuleFactory()
-        {
-            RegexFactory = pattern => new Regex(pattern, RegexOptions.Compiled | RegexOptions.Singleline);
-        }
-
         public static MatchRegexRule<T> Create<T>(string pattern)
         {
-            var regex = Regexes.GetOrAdd(pattern, RegexFactory);
+            var regex = Regexes.GetOrAdd(pattern, GlobalFactories.Validator.RegexFactory);
             return new MatchRegexRule<T>(regex);
         }
 
