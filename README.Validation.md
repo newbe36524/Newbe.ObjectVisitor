@@ -124,3 +124,4 @@ all,number,string,enum,class,enumerable
 | Or                    | ❌                   | 🚧 Or; all                          |
 | IsInSet               | ❌                   | ✔️ IsInSet; all                     |
 | IsNotInSet            | ❌                   | ✔️ IsNotInSet; all                  |
+| CanParse              | ❌                   | ✔️ CanParse; all                    |

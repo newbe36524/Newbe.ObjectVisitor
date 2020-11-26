@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text.RegularExpressions;
 using Newbe.ObjectVisitor.Validator.Rules;
 
@@ -341,6 +342,28 @@ namespace Newbe.ObjectVisitor.Validator
                 Type enumType)
         {
             var rule = IsInEnumRuleFactory.Create<T, string>(enumType, false);
+            return step.Validate(rule);
+        }
+
+        public static PropertyValidationRuleBuilder<T, TValue>.IPropertyValidationRuleBuilder_V
+            ScalePrecision<T, TValue>(
+                this IPropertyValidationRuleBuilderValidateStep<T, TValue> step,
+                int scale,
+                int precision)
+            where T : struct
+        {
+            var rule = ScalePrecisionRuleFactory.Create<T, TValue>(scale, precision);
+            return step.Validate(rule);
+        }
+
+        public static PropertyValidationRuleBuilder<T, TValue>.IPropertyValidationRuleBuilder_V
+            Or<T, TValue>(
+                this IPropertyValidationRuleBuilderValidateStep<T, TValue> step,
+                params Func<IPropertyValidationRuleBuilderValidateStep<T, TValue>, IPropertyValidationRule<T, TValue>>[]
+                    ruleFactories)
+        {
+            var rules = ruleFactories.Select(x => x.Invoke(step)).ToArray();
+            var rule = new OrRule<T, TValue>(rules);
             return step.Validate(rule);
         }
     }

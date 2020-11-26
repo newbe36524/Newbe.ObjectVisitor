@@ -224,5 +224,33 @@ namespace Newbe.ObjectVisitor.Tests.Validator
                 }
             }
         }
+        //
+        // [Test]
+        // [TestCase((FlagsEnum) 0, 0, "0", false)]
+        // public void OrTest(int, bool success)
+        // {
+        //     var builder = new ValidationRuleBuilder<TestModel>(new List<ValidationRule<TestModel>>());
+        //     var validationRules = builder.GetBuilder()
+        //         .Property(x => x.Int).Or(x=>x.IsInRange(0,2),x=>x.)
+        //         .Property(x => x.FlagsEnumInt).IsInEnum(typeof(FlagsEnum))
+        //         .Property(x => x.FlagsEnumString).IsInEnum(typeof(FlagsEnum))
+        //         .GetRuleSet();
+        //     var validator = new Validator<TestModel>(validationRules);
+        //     var result = validator.Validate(new TestModel
+        //     {
+        //         FlagsEnum = enumValue,
+        //         FlagsEnumInt = intValue,
+        //         FlagsEnumString = stringValue
+        //     });
+        //     result.Success.Should().Be(success);
+        //     if (!success)
+        //     {
+        //         result.Errors.Length.Should().Be(3);
+        //         foreach (var error in result.Errors)
+        //         {
+        //             Console.WriteLine(error);
+        //         }
+        //     }
+        // }
     }
 }
