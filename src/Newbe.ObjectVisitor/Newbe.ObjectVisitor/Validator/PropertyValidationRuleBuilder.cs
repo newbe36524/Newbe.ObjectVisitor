@@ -2,22 +2,19 @@ using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Reflection;
-using Newbe.ObjectVisitor.Validator.Rules;
 
 namespace Newbe.ObjectVisitor.Validator
 {
     public class PropertyValidationRuleBuilder<T, TValue> : Newbe.ObjectVisitor.IFluentApi
+        , PropertyValidationRuleBuilder<T, TValue>.IPropertyValidationRuleBuilder_S
         , PropertyValidationRuleBuilder<T, TValue>.IPropertyValidationRuleBuilder_V
-        , PropertyValidationRuleBuilder<T, TValue>.IPropertyValidationRuleBuilder_IfV
     {
         private Expression<Func<T, TValue>> _propertyExp = null!;
         private PropertyInfo _propertyInfo = null!;
-        private readonly ValidationRuleBuilder<T>.IValidationRuleBuilder_V _context;
-        private Expression<Func<T, bool>>? _ifExp;
-        private Expression<Func<T, bool>> _mustExp = null!;
-        private Expression<Func<T, string>>? _errorMessageExp;
+        private ValidationRuleGroupBuilder<T>.IValidationRuleGroupBuilder_S _context;
+        private ValidationRuleGroupBuilder<T>.IValidationRuleGroupBuilder_V _contextV;
 
-        public PropertyValidationRuleBuilder(ValidationRuleBuilder<T>.IValidationRuleBuilder_V context)
+        public PropertyValidationRuleBuilder(ValidationRuleGroupBuilder<T>.IValidationRuleGroupBuilder_S context)
         {
             _context = context;
         }
@@ -37,25 +34,10 @@ namespace Newbe.ObjectVisitor.Validator
             var valueExp = Expression.Invoke(_propertyExp, pExp);
             var propertyInfoExp = Expression.Constant(_propertyInfo);
             var bodyExp = Expression.Invoke(func, pExp, valueExp, propertyInfoExp);
-            _mustExp = Expression.Lambda<Func<T, bool>>(bodyExp, pExp);
+            var mustExp = Expression.Lambda<Func<T, bool>>(bodyExp, pExp);
+            _contextV = _context.Validate(mustExp);
         }
 
-
-        private void Core_Validate(Expression<Func<TValue, bool>> func)
-        {
-            var pExp = Expression.Parameter(typeof(T), "input");
-            var valueExp = Expression.Invoke(_propertyExp, pExp);
-            var bodyExp = Expression.Invoke(func, valueExp);
-            var funcExp = Expression.Lambda<Func<T, bool>>(bodyExp, pExp);
-            _mustExp = funcExp;
-        }
-
-
-        private void Core_Validate(IPropertyValidationRule<T, TValue> rule)
-        {
-            Core_Validate(rule.MustExpression);
-            Core_ErrorMessage(rule.ErrorMessageExpression);
-        }
 
         private void Core_ErrorMessage(Expression<Func<T, TValue, PropertyInfo, string>> func)
         {
@@ -63,7 +45,8 @@ namespace Newbe.ObjectVisitor.Validator
             var valueExp = Expression.Invoke(_propertyExp, pExp);
             var propertyInfoExp = Expression.Constant(_propertyInfo);
             var bodyExp = Expression.Invoke(func, pExp, valueExp, propertyInfoExp);
-            _errorMessageExp = Expression.Lambda<Func<T, string>>(bodyExp, pExp);
+            var errorMessageExp = Expression.Lambda<Func<T, string>>(bodyExp, pExp);
+            _contextV = _contextV.ErrorMessage(errorMessageExp);
         }
 
 
@@ -73,40 +56,56 @@ namespace Newbe.ObjectVisitor.Validator
             var valueExp = Expression.Invoke(_propertyExp, pExp);
             var propertyInfoExp = Expression.Constant(_propertyInfo);
             var bodyExp = Expression.Invoke(func, pExp, valueExp, propertyInfoExp);
-            _ifExp = Expression.Lambda<Func<T, bool>>(bodyExp, pExp);
+            var ifExp = Expression.Lambda<Func<T, bool>>(bodyExp, pExp);
+            _context = _context.If(ifExp);
         }
 
 
-        private ValidationRuleBuilder<T>.IValidationRuleBuilder_V Core_AddToRuleSet()
+        private void Core_Next()
         {
-            return _context
-                .If(_ifExp!)
-                .Validate(_mustExp)
-                .ErrorMessage(_errorMessageExp!);
+            _context = _contextV.Next();
         }
 
 
-        private PropertyValidationRuleBuilder<T, TNewValue>.IPropertyValidationRuleBuilder_V Core_Property<TNewValue>(
+        private PropertyValidationRuleBuilder<T, TNewValue>.IPropertyValidationRuleBuilder_S Core_Property<TNewValue>(
             Expression<Func<T, TNewValue>> propertyExpression)
         {
-            return Core_AddToRuleSet().Property(propertyExpression);
+            var ruleSet = Core_GetRuleSet();
+            var builder = new ValidationRuleGroupBuilder<T>(ruleSet).GetBuilder();
+            return new PropertyValidationRuleBuilder<T, TNewValue>(builder)
+                .GetBuilder(propertyExpression);
         }
 
 
-        private List<ValidationRule<T>> Core_GetRuleSet()
+        private List<ValidationRuleGroup<T>> Core_GetRuleSet()
         {
-            return Core_AddToRuleSet().GetRuleSet();
+            return _context.GetRuleSet();
+        }
+
+
+        private Expression<Func<T, TValue>> Core_GetPropertyExpression()
+        {
+            return _propertyExp;
         }
 
         #endregion
 
         #region AutoGenerate
 
-        public IPropertyValidationRuleBuilder_V GetBuilder(Expression<Func<T, TValue>> propertyExpression)
+        public IPropertyValidationRuleBuilder_S GetBuilder(Expression<Func<T, TValue>> propertyExpression)
         {
             Core_GetBuilder(propertyExpression);
             return this;
         }
+
+
+        IPropertyValidationRuleBuilder_V IPropertyValidationRuleBuilder_S.Validate(
+            Expression<Func<T, TValue, PropertyInfo, bool>> func)
+        {
+            Core_Validate(func);
+            return this;
+        }
+
 
         IPropertyValidationRuleBuilder_V IPropertyValidationRuleBuilder_V.ErrorMessage(
             Expression<Func<T, TValue, PropertyInfo, string>> func)
@@ -116,7 +115,7 @@ namespace Newbe.ObjectVisitor.Validator
         }
 
 
-        IPropertyValidationRuleBuilder_IfV IPropertyValidationRuleBuilder_V.If(
+        IPropertyValidationRuleBuilder_S IPropertyValidationRuleBuilder_S.If(
             Expression<Func<T, TValue, PropertyInfo, bool>> func)
         {
             Core_If(func);
@@ -124,69 +123,57 @@ namespace Newbe.ObjectVisitor.Validator
         }
 
 
-        IPropertyValidationRuleBuilder_V IPropertyValidationRuleBuilderValidateStep<T, TValue>.Validate(
-            Expression<Func<T, TValue, PropertyInfo, bool>> func)
+        IPropertyValidationRuleBuilder_S IPropertyValidationRuleBuilder_V.Next()
         {
-            Core_Validate(func);
+            Core_Next();
             return this;
         }
 
 
-        IPropertyValidationRuleBuilder_V IPropertyValidationRuleBuilderValidateStep<T, TValue>.Validate(
-            Expression<Func<TValue, bool>> func)
-        {
-            Core_Validate(func);
-            return this;
-        }
-
-
-        IPropertyValidationRuleBuilder_V IPropertyValidationRuleBuilderValidateStep<T, TValue>.Validate(
-            IPropertyValidationRule<T, TValue> rule)
-        {
-            Core_Validate(rule);
-            return this;
-        }
-
-
-        ValidationRuleBuilder<T>.IValidationRuleBuilder_V IPropertyValidationRuleBuilder_V.AddToRuleSet()
-        {
-            return Core_AddToRuleSet();
-        }
-
-
-        PropertyValidationRuleBuilder<T, TNewValue>.IPropertyValidationRuleBuilder_V IPropertyValidationRuleBuilder_V.
+        PropertyValidationRuleBuilder<T, TNewValue>.IPropertyValidationRuleBuilder_S IPropertyValidationRuleBuilder_S.
             Property<TNewValue>(Expression<Func<T, TNewValue>> propertyExpression)
         {
             return Core_Property<TNewValue>(propertyExpression);
         }
 
 
-        List<ValidationRule<T>> IPropertyValidationRuleBuilder_V.GetRuleSet()
+        List<ValidationRuleGroup<T>> IPropertyValidationRuleBuilder_S.GetRuleSet()
         {
             return Core_GetRuleSet();
         }
 
 
-        public interface IPropertyValidationRuleBuilder_V : IPropertyValidationRuleBuilderValidateStep<T, TValue>
+        Expression<Func<T, TValue>> IPropertyValidationRuleBuilder_S.GetPropertyExpression()
         {
-            IPropertyValidationRuleBuilder_IfV If(Expression<Func<T, TValue, PropertyInfo, bool>> func);
-
-            IPropertyValidationRuleBuilder_V ErrorMessage(Expression<Func<T, TValue, PropertyInfo, string>> func);
-
-
-            ValidationRuleBuilder<T>.IValidationRuleBuilder_V AddToRuleSet();
-
-
-            PropertyValidationRuleBuilder<T, TNewValue>.IPropertyValidationRuleBuilder_V Property<TNewValue>(
-                Expression<Func<T, TNewValue>> propertyExpression);
-
-
-            List<ValidationRule<T>> GetRuleSet();
+            return Core_GetPropertyExpression();
         }
 
 
-        public interface IPropertyValidationRuleBuilder_IfV : IPropertyValidationRuleBuilderValidateStep<T, TValue>
+        public interface IPropertyValidationRuleBuilder_S
         {
+            IPropertyValidationRuleBuilder_S If(Expression<Func<T, TValue, PropertyInfo, bool>> func);
+
+
+            IPropertyValidationRuleBuilder_V Validate(Expression<Func<T, TValue, PropertyInfo, bool>> func);
+
+
+            PropertyValidationRuleBuilder<T, TNewValue>.IPropertyValidationRuleBuilder_S Property<TNewValue>(
+                Expression<Func<T, TNewValue>> propertyExpression);
+
+
+            List<ValidationRuleGroup<T>> GetRuleSet();
+
+
+            Expression<Func<T, TValue>> GetPropertyExpression();
+        }
+
+
+        public interface IPropertyValidationRuleBuilder_V
+        {
+            IPropertyValidationRuleBuilder_S Next();
+
+
+            IPropertyValidationRuleBuilder_V ErrorMessage(Expression<Func<T, TValue, PropertyInfo, string>> func);
         }
 
         #endregion

@@ -51,7 +51,7 @@ namespace Newbe.ObjectVisitor
             var bodyExp = Expression.AndAlso(exp1Body, exp2Body);
             return Expression.Lambda<Func<T, bool>>(bodyExp, pExp);
         }
-
+        
         public static Expression Unwrap(this LambdaExpression lambdaExpression, params Expression[] parameterExpression)
         {
             var ps = lambdaExpression.Parameters;

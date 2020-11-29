@@ -8,7 +8,7 @@ namespace Newbe.ObjectVisitor.Validator
         /// <summary>
         /// Func{T,bool}
         /// </summary>
-        public Expression<Func<T, bool>>? ConditionExpression { get; set; } = null!;
+        public Expression<Func<T, bool>>? IfExpression { get; set; }
 
         /// <summary>
         /// Func{T,bool}

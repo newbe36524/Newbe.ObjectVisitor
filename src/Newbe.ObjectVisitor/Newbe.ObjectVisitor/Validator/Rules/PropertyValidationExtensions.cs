@@ -10,9 +10,9 @@ namespace Newbe.ObjectVisitor.Validator
 {
     public static class PropertyValidationExtensions
     {
-        public static PropertyValidationRuleBuilder<T, TValue>.IPropertyValidationRuleBuilder_V
+        public static PropertyValidationRuleBuilder<T, TValue>.IPropertyValidationRuleBuilder_S
             Equal<T, TValue>(
-                this IPropertyValidationRuleBuilderValidateStep<T, TValue> step,
+                this PropertyValidationRuleBuilder<T, TValue>.IPropertyValidationRuleBuilder_S step,
                 TValue expected)
             where TValue : IEquatable<TValue>
         {
@@ -20,9 +20,9 @@ namespace Newbe.ObjectVisitor.Validator
             return step.Validate(rule);
         }
 
-        public static PropertyValidationRuleBuilder<T, TValue>.IPropertyValidationRuleBuilder_V
+        public static PropertyValidationRuleBuilder<T, TValue>.IPropertyValidationRuleBuilder_S
             Equal<T, TValue>(
-                this IPropertyValidationRuleBuilderValidateStep<T, TValue> step,
+                this PropertyValidationRuleBuilder<T, TValue>.IPropertyValidationRuleBuilder_S step,
                 TValue expected,
                 IEqualityComparer<TValue> comparer)
         {
@@ -30,9 +30,9 @@ namespace Newbe.ObjectVisitor.Validator
             return step.Validate(rule);
         }
 
-        public static PropertyValidationRuleBuilder<T, TValue>.IPropertyValidationRuleBuilder_V
+        public static PropertyValidationRuleBuilder<T, TValue>.IPropertyValidationRuleBuilder_S
             NotEqual<T, TValue>(
-                this IPropertyValidationRuleBuilderValidateStep<T, TValue> step,
+                this PropertyValidationRuleBuilder<T, TValue>.IPropertyValidationRuleBuilder_S step,
                 TValue expected)
             where TValue : IEquatable<TValue>
         {
@@ -40,9 +40,9 @@ namespace Newbe.ObjectVisitor.Validator
             return step.Validate(rule);
         }
 
-        public static PropertyValidationRuleBuilder<T, TValue>.IPropertyValidationRuleBuilder_V
+        public static PropertyValidationRuleBuilder<T, TValue>.IPropertyValidationRuleBuilder_S
             NotEqual<T, TValue>(
-                this IPropertyValidationRuleBuilderValidateStep<T, TValue> step,
+                this PropertyValidationRuleBuilder<T, TValue>.IPropertyValidationRuleBuilder_S step,
                 TValue expected,
                 IEqualityComparer<TValue> comparer)
         {
@@ -50,9 +50,9 @@ namespace Newbe.ObjectVisitor.Validator
             return step.Validate(rule);
         }
 
-        public static PropertyValidationRuleBuilder<T, TValue>.IPropertyValidationRuleBuilder_V
+        public static PropertyValidationRuleBuilder<T, TValue>.IPropertyValidationRuleBuilder_S
             LessThan<T, TValue>(
-                this IPropertyValidationRuleBuilderValidateStep<T, TValue> step,
+                this PropertyValidationRuleBuilder<T, TValue>.IPropertyValidationRuleBuilder_S step,
                 TValue max)
             where TValue : IComparable<TValue>
         {
@@ -60,9 +60,9 @@ namespace Newbe.ObjectVisitor.Validator
             return step.Validate(rule);
         }
 
-        public static PropertyValidationRuleBuilder<T, TValue>.IPropertyValidationRuleBuilder_V
+        public static PropertyValidationRuleBuilder<T, TValue>.IPropertyValidationRuleBuilder_S
             LessThan<T, TValue>(
-                this IPropertyValidationRuleBuilderValidateStep<T, TValue> step,
+                this PropertyValidationRuleBuilder<T, TValue>.IPropertyValidationRuleBuilder_S step,
                 TValue max,
                 IComparer<TValue> comparer)
         {
@@ -70,9 +70,9 @@ namespace Newbe.ObjectVisitor.Validator
             return step.Validate(rule);
         }
 
-        public static PropertyValidationRuleBuilder<T, TValue>.IPropertyValidationRuleBuilder_V
+        public static PropertyValidationRuleBuilder<T, TValue>.IPropertyValidationRuleBuilder_S
             LessThanOrEqual<T, TValue>(
-                this IPropertyValidationRuleBuilderValidateStep<T, TValue> step,
+                this PropertyValidationRuleBuilder<T, TValue>.IPropertyValidationRuleBuilder_S step,
                 TValue max)
             where TValue : IComparable<TValue>
         {
@@ -80,9 +80,9 @@ namespace Newbe.ObjectVisitor.Validator
             return step.Validate(rule);
         }
 
-        public static PropertyValidationRuleBuilder<T, TValue>.IPropertyValidationRuleBuilder_V
+        public static PropertyValidationRuleBuilder<T, TValue>.IPropertyValidationRuleBuilder_S
             LessThanOrEqual<T, TValue>(
-                this IPropertyValidationRuleBuilderValidateStep<T, TValue> step,
+                this PropertyValidationRuleBuilder<T, TValue>.IPropertyValidationRuleBuilder_S step,
                 TValue max,
                 IComparer<TValue> comparer)
         {
@@ -90,9 +90,9 @@ namespace Newbe.ObjectVisitor.Validator
             return step.Validate(rule);
         }
 
-        public static PropertyValidationRuleBuilder<T, TValue>.IPropertyValidationRuleBuilder_V
+        public static PropertyValidationRuleBuilder<T, TValue>.IPropertyValidationRuleBuilder_S
             GreaterThan<T, TValue>(
-                this IPropertyValidationRuleBuilderValidateStep<T, TValue> step,
+                this PropertyValidationRuleBuilder<T, TValue>.IPropertyValidationRuleBuilder_S step,
                 TValue min)
             where TValue : IComparable<TValue>
         {
@@ -100,9 +100,9 @@ namespace Newbe.ObjectVisitor.Validator
             return step.Validate(rule);
         }
 
-        public static PropertyValidationRuleBuilder<T, TValue>.IPropertyValidationRuleBuilder_V
+        public static PropertyValidationRuleBuilder<T, TValue>.IPropertyValidationRuleBuilder_S
             GreaterThan<T, TValue>(
-                this IPropertyValidationRuleBuilderValidateStep<T, TValue> step,
+                this PropertyValidationRuleBuilder<T, TValue>.IPropertyValidationRuleBuilder_S step,
                 TValue min,
                 IComparer<TValue> comparer)
         {
@@ -110,9 +110,9 @@ namespace Newbe.ObjectVisitor.Validator
             return step.Validate(rule);
         }
 
-        public static PropertyValidationRuleBuilder<T, TValue>.IPropertyValidationRuleBuilder_V
+        public static PropertyValidationRuleBuilder<T, TValue>.IPropertyValidationRuleBuilder_S
             GreaterThanOrEqual<T, TValue>(
-                this IPropertyValidationRuleBuilderValidateStep<T, TValue> step,
+                this PropertyValidationRuleBuilder<T, TValue>.IPropertyValidationRuleBuilder_S step,
                 TValue min)
             where TValue : IComparable<TValue>
         {
@@ -120,9 +120,9 @@ namespace Newbe.ObjectVisitor.Validator
             return step.Validate(rule);
         }
 
-        public static PropertyValidationRuleBuilder<T, TValue>.IPropertyValidationRuleBuilder_V
+        public static PropertyValidationRuleBuilder<T, TValue>.IPropertyValidationRuleBuilder_S
             GreaterThanOrEqual<T, TValue>(
-                this IPropertyValidationRuleBuilderValidateStep<T, TValue> step,
+                this PropertyValidationRuleBuilder<T, TValue>.IPropertyValidationRuleBuilder_S step,
                 TValue min,
                 IComparer<TValue> comparer)
         {
@@ -130,9 +130,9 @@ namespace Newbe.ObjectVisitor.Validator
             return step.Validate(rule);
         }
 
-        public static PropertyValidationRuleBuilder<T, TValue>.IPropertyValidationRuleBuilder_V
+        public static PropertyValidationRuleBuilder<T, TValue>.IPropertyValidationRuleBuilder_S
             IsInRange<T, TValue>(
-                this IPropertyValidationRuleBuilderValidateStep<T, TValue> step,
+                this PropertyValidationRuleBuilder<T, TValue>.IPropertyValidationRuleBuilder_S step,
                 TValue min,
                 TValue max,
                 bool excludeMin = false,
@@ -143,9 +143,9 @@ namespace Newbe.ObjectVisitor.Validator
             return step.Validate(rule);
         }
 
-        public static PropertyValidationRuleBuilder<T, TValue>.IPropertyValidationRuleBuilder_V
+        public static PropertyValidationRuleBuilder<T, TValue>.IPropertyValidationRuleBuilder_S
             IsInRange<T, TValue>(
-                this IPropertyValidationRuleBuilderValidateStep<T, TValue> step,
+                this PropertyValidationRuleBuilder<T, TValue>.IPropertyValidationRuleBuilder_S step,
                 TValue min,
                 TValue max,
                 IComparer<TValue> comparer,
@@ -156,9 +156,9 @@ namespace Newbe.ObjectVisitor.Validator
             return step.Validate(rule);
         }
 
-        public static PropertyValidationRuleBuilder<T, TValue>.IPropertyValidationRuleBuilder_V
+        public static PropertyValidationRuleBuilder<T, TValue>.IPropertyValidationRuleBuilder_S
             IsInSet<T, TValue>(
-                this IPropertyValidationRuleBuilderValidateStep<T, TValue> step,
+                this PropertyValidationRuleBuilder<T, TValue>.IPropertyValidationRuleBuilder_S step,
                 IEnumerable<TValue> expectedSet)
             where TValue : IEquatable<TValue>
         {
@@ -166,9 +166,9 @@ namespace Newbe.ObjectVisitor.Validator
             return step.Validate(rule);
         }
 
-        public static PropertyValidationRuleBuilder<T, TValue>.IPropertyValidationRuleBuilder_V
+        public static PropertyValidationRuleBuilder<T, TValue>.IPropertyValidationRuleBuilder_S
             IsInSet<T, TValue>(
-                this IPropertyValidationRuleBuilderValidateStep<T, TValue> step,
+                this PropertyValidationRuleBuilder<T, TValue>.IPropertyValidationRuleBuilder_S step,
                 IEnumerable<TValue> expectedSet,
                 IEqualityComparer<TValue> comparer)
         {
@@ -176,9 +176,9 @@ namespace Newbe.ObjectVisitor.Validator
             return step.Validate(rule);
         }
 
-        public static PropertyValidationRuleBuilder<T, TValue>.IPropertyValidationRuleBuilder_V
+        public static PropertyValidationRuleBuilder<T, TValue>.IPropertyValidationRuleBuilder_S
             IsNotInSet<T, TValue>(
-                this IPropertyValidationRuleBuilderValidateStep<T, TValue> step,
+                this PropertyValidationRuleBuilder<T, TValue>.IPropertyValidationRuleBuilder_S step,
                 IEnumerable<TValue> expectedSet)
             where TValue : IEquatable<TValue>
         {
@@ -186,9 +186,9 @@ namespace Newbe.ObjectVisitor.Validator
             return step.Validate(rule);
         }
 
-        public static PropertyValidationRuleBuilder<T, TValue>.IPropertyValidationRuleBuilder_V
+        public static PropertyValidationRuleBuilder<T, TValue>.IPropertyValidationRuleBuilder_S
             IsNotInSet<T, TValue>(
-                this IPropertyValidationRuleBuilderValidateStep<T, TValue> step,
+                this PropertyValidationRuleBuilder<T, TValue>.IPropertyValidationRuleBuilder_S step,
                 IEnumerable<TValue> expectedSet,
                 IEqualityComparer<TValue> comparer)
         {
@@ -196,97 +196,97 @@ namespace Newbe.ObjectVisitor.Validator
             return step.Validate(rule);
         }
 
-        public static PropertyValidationRuleBuilder<T, TValue>.IPropertyValidationRuleBuilder_V
+        public static PropertyValidationRuleBuilder<T, TValue>.IPropertyValidationRuleBuilder_S
             Null<T, TValue>(
-                this IPropertyValidationRuleBuilderValidateStep<T, TValue> step)
+                this PropertyValidationRuleBuilder<T, TValue>.IPropertyValidationRuleBuilder_S step)
             where TValue : class
         {
             var rule = new ClassNullRule<T, TValue>();
             return step.Validate(rule);
         }
 
-        public static PropertyValidationRuleBuilder<T, TValue>.IPropertyValidationRuleBuilder_V
+        public static PropertyValidationRuleBuilder<T, TValue>.IPropertyValidationRuleBuilder_S
             NotNull<T, TValue>(
-                this IPropertyValidationRuleBuilderValidateStep<T, TValue> step)
+                this PropertyValidationRuleBuilder<T, TValue>.IPropertyValidationRuleBuilder_S step)
             where TValue : class
         {
             var rule = new ClassNotNullRule<T, TValue>();
             return step.Validate(rule);
         }
 
-        public static PropertyValidationRuleBuilder<T, string>.IPropertyValidationRuleBuilder_V
+        public static PropertyValidationRuleBuilder<T, string>.IPropertyValidationRuleBuilder_S
             NotEmpty<T>(
-                this IPropertyValidationRuleBuilderValidateStep<T, string> step)
+                this PropertyValidationRuleBuilder<T, string>.IPropertyValidationRuleBuilder_S step)
         {
             var rule = new StringNotEmptyRule<T>();
             return step.Validate(rule);
         }
 
-        public static PropertyValidationRuleBuilder<T, string>.IPropertyValidationRuleBuilder_V
+        public static PropertyValidationRuleBuilder<T, string>.IPropertyValidationRuleBuilder_S
             Empty<T>(
-                this IPropertyValidationRuleBuilderValidateStep<T, string> step)
+                this PropertyValidationRuleBuilder<T, string>.IPropertyValidationRuleBuilder_S step)
         {
             var rule = new StringEmptyRule<T>();
             return step.Validate(rule);
         }
 
-        public static PropertyValidationRuleBuilder<T, TValue>.IPropertyValidationRuleBuilder_V
+        public static PropertyValidationRuleBuilder<T, TValue>.IPropertyValidationRuleBuilder_S
             NotEmpty<T, TValue>(
-                this IPropertyValidationRuleBuilderValidateStep<T, TValue> step)
+                this PropertyValidationRuleBuilder<T, TValue>.IPropertyValidationRuleBuilder_S step)
             where TValue : IEnumerable
         {
             var rule = new EnumerableNotEmptyRule<T, TValue>();
             return step.Validate(rule);
         }
 
-        public static PropertyValidationRuleBuilder<T, TValue>.IPropertyValidationRuleBuilder_V
+        public static PropertyValidationRuleBuilder<T, TValue>.IPropertyValidationRuleBuilder_S
             Empty<T, TValue>(
-                this IPropertyValidationRuleBuilderValidateStep<T, TValue> step)
+                this PropertyValidationRuleBuilder<T, TValue>.IPropertyValidationRuleBuilder_S step)
             where TValue : IEnumerable
         {
             var rule = new EnumerableEmptyRule<T, TValue>();
             return step.Validate(rule);
         }
 
-        public static PropertyValidationRuleBuilder<T, string>.IPropertyValidationRuleBuilder_V
+        public static PropertyValidationRuleBuilder<T, string>.IPropertyValidationRuleBuilder_S
             MatchRegex<T>(
-                this IPropertyValidationRuleBuilderValidateStep<T, string> step,
+                this PropertyValidationRuleBuilder<T, string>.IPropertyValidationRuleBuilder_S step,
                 string pattern)
         {
             var rule = MatchRegexRuleFactory.Create<T>(pattern);
             return step.Validate(rule);
         }
 
-        public static PropertyValidationRuleBuilder<T, string>.IPropertyValidationRuleBuilder_V
+        public static PropertyValidationRuleBuilder<T, string>.IPropertyValidationRuleBuilder_S
             MatchRegex<T>(
-                this IPropertyValidationRuleBuilderValidateStep<T, string> step,
+                this PropertyValidationRuleBuilder<T, string>.IPropertyValidationRuleBuilder_S step,
                 Regex regex)
         {
             var rule = MatchRegexRuleFactory.Create<T>(regex);
             return step.Validate(rule);
         }
 
-        public static PropertyValidationRuleBuilder<T, string>.IPropertyValidationRuleBuilder_V
+        public static PropertyValidationRuleBuilder<T, string>.IPropertyValidationRuleBuilder_S
             NotMatchRegex<T>(
-                this IPropertyValidationRuleBuilderValidateStep<T, string> step,
+                this PropertyValidationRuleBuilder<T, string>.IPropertyValidationRuleBuilder_S step,
                 string pattern)
         {
             var rule = NotMatchRegexRuleFactory.Create<T>(pattern);
             return step.Validate(rule);
         }
 
-        public static PropertyValidationRuleBuilder<T, string>.IPropertyValidationRuleBuilder_V
+        public static PropertyValidationRuleBuilder<T, string>.IPropertyValidationRuleBuilder_S
             NotMatchRegex<T>(
-                this IPropertyValidationRuleBuilderValidateStep<T, string> step,
+                this PropertyValidationRuleBuilder<T, string>.IPropertyValidationRuleBuilder_S step,
                 Regex regex)
         {
             var rule = NotMatchRegexRuleFactory.Create<T>(regex);
             return step.Validate(rule);
         }
 
-        public static PropertyValidationRuleBuilder<T, TValue>.IPropertyValidationRuleBuilder_V
+        public static PropertyValidationRuleBuilder<T, TValue>.IPropertyValidationRuleBuilder_S
             Length<T, TValue>(
-                this IPropertyValidationRuleBuilderValidateStep<T, TValue> step,
+                this PropertyValidationRuleBuilder<T, TValue>.IPropertyValidationRuleBuilder_S step,
                 int min,
                 int max)
             where TValue : IEnumerable
@@ -295,9 +295,9 @@ namespace Newbe.ObjectVisitor.Validator
             return step.Validate(rule);
         }
 
-        public static PropertyValidationRuleBuilder<T, TValue>.IPropertyValidationRuleBuilder_V
+        public static PropertyValidationRuleBuilder<T, TValue>.IPropertyValidationRuleBuilder_S
             MinLength<T, TValue>(
-                this IPropertyValidationRuleBuilderValidateStep<T, TValue> step,
+                this PropertyValidationRuleBuilder<T, TValue>.IPropertyValidationRuleBuilder_S step,
                 int min)
             where TValue : IEnumerable
         {
@@ -305,9 +305,9 @@ namespace Newbe.ObjectVisitor.Validator
             return step.Validate(rule);
         }
 
-        public static PropertyValidationRuleBuilder<T, TValue>.IPropertyValidationRuleBuilder_V
+        public static PropertyValidationRuleBuilder<T, TValue>.IPropertyValidationRuleBuilder_S
             MaxLength<T, TValue>(
-                this IPropertyValidationRuleBuilderValidateStep<T, TValue> step,
+                this PropertyValidationRuleBuilder<T, TValue>.IPropertyValidationRuleBuilder_S step,
                 int max)
             where TValue : IEnumerable
         {
@@ -315,9 +315,9 @@ namespace Newbe.ObjectVisitor.Validator
             return step.Validate(rule);
         }
 
-        public static PropertyValidationRuleBuilder<T, TValue>.IPropertyValidationRuleBuilder_V
+        public static PropertyValidationRuleBuilder<T, TValue>.IPropertyValidationRuleBuilder_S
             IsInEnum<T, TValue>(
-                this IPropertyValidationRuleBuilderValidateStep<T, TValue> step,
+                this PropertyValidationRuleBuilder<T, TValue>.IPropertyValidationRuleBuilder_S step,
                 Type enumType,
                 bool? flagged = null)
         {
@@ -326,9 +326,9 @@ namespace Newbe.ObjectVisitor.Validator
             return step.Validate(rule);
         }
 
-        public static PropertyValidationRuleBuilder<T, TValue>.IPropertyValidationRuleBuilder_V
+        public static PropertyValidationRuleBuilder<T, TValue>.IPropertyValidationRuleBuilder_S
             IsInEnum<T, TValue>(
-                this IPropertyValidationRuleBuilderValidateStep<T, TValue> step,
+                this PropertyValidationRuleBuilder<T, TValue>.IPropertyValidationRuleBuilder_S step,
                 bool? flagged = null)
         {
             var rule = IsInEnumRuleFactory.Create<T, TValue>(typeof(TValue),
@@ -336,18 +336,18 @@ namespace Newbe.ObjectVisitor.Validator
             return step.Validate(rule);
         }
 
-        public static PropertyValidationRuleBuilder<T, string>.IPropertyValidationRuleBuilder_V
+        public static PropertyValidationRuleBuilder<T, string>.IPropertyValidationRuleBuilder_S
             IsInEnumName<T>(
-                this IPropertyValidationRuleBuilderValidateStep<T, string> step,
+                this PropertyValidationRuleBuilder<T, string>.IPropertyValidationRuleBuilder_S step,
                 Type enumType)
         {
             var rule = IsInEnumRuleFactory.Create<T, string>(enumType, false);
             return step.Validate(rule);
         }
 
-        public static PropertyValidationRuleBuilder<T, TValue>.IPropertyValidationRuleBuilder_V
+        public static PropertyValidationRuleBuilder<T, TValue>.IPropertyValidationRuleBuilder_S
             ScalePrecision<T, TValue>(
-                this IPropertyValidationRuleBuilderValidateStep<T, TValue> step,
+                this PropertyValidationRuleBuilder<T, TValue>.IPropertyValidationRuleBuilder_S step,
                 int scale,
                 int precision)
             where T : struct
@@ -356,15 +356,25 @@ namespace Newbe.ObjectVisitor.Validator
             return step.Validate(rule);
         }
 
-        public static PropertyValidationRuleBuilder<T, TValue>.IPropertyValidationRuleBuilder_V
+        public static PropertyValidationRuleBuilder<T, TValue>.IPropertyValidationRuleBuilder_S
             Or<T, TValue>(
-                this IPropertyValidationRuleBuilderValidateStep<T, TValue> step,
-                params Func<IPropertyValidationRuleBuilderValidateStep<T, TValue>, IPropertyValidationRule<T, TValue>>[]
+                this PropertyValidationRuleBuilder<T, TValue>.IPropertyValidationRuleBuilder_S step,
+                params Func<PropertyValidationRuleBuilder<T, TValue>.IPropertyValidationRuleBuilder_S,
+                        PropertyValidationRuleBuilder<T, TValue>.IPropertyValidationRuleBuilder_S>[]
                     ruleFactories)
         {
-            var rules = ruleFactories.Select(x => x.Invoke(step)).ToArray();
-            var rule = new OrRule<T, TValue>(rules);
-            return step.Validate(rule);
+            // TODO cannot use ErrorMessage now, since Func<S,S>. It should could be Func<S,V>
+            var builder = new ValidationRuleGroupBuilder<T>(step.GetRuleSet());
+            var anyBuilder = builder.GetBuilder(ValidationRuleRelation.Any);
+            var pBuilder =
+                new PropertyValidationRuleBuilder<T, TValue>(anyBuilder).GetBuilder(step.GetPropertyExpression());
+            foreach (var func in ruleFactories)
+            {
+                pBuilder = func.Invoke(pBuilder);
+            }
+
+            _ = pBuilder.GetRuleSet();
+            return step;
         }
     }
 }

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq.Expressions;
 
 namespace Newbe.ObjectVisitor.Validator.Rules
@@ -12,20 +11,6 @@ namespace Newbe.ObjectVisitor.Validator.Rules
             MustExpression = must;
             ErrorMessageExpression = (input, value, p) =>
                 $"Value of {p.Name} must be < {max}, but found {value}";
-        }
-    }
-
-    public static class LessThanRuleFactory
-    {
-        public static LessThanRule<T, TValue> Create<T, TValue>(TValue max)
-            where TValue : IComparable<TValue>
-        {
-            return new LessThanRule<T, TValue>(max, RuleExpressionHelper.Greater(max, false));
-        }
-
-        public static LessThanRule<T, TValue> Create<T, TValue>(TValue max, IComparer<TValue> comparer)
-        {
-            return new LessThanRule<T, TValue>(max, RuleExpressionHelper.Greater(max, false, comparer));
         }
     }
 }

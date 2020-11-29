@@ -98,7 +98,7 @@ namespace Newbe.ObjectVisitor.Tests.Validator
         [TestCase(2, 3, false, true, true)]
         public void IsInRange(int min, int max, bool excludeMin, bool excludeMax, bool success)
         {
-            var builder = new ValidationRuleBuilder<TestModel>(new List<ValidationRule<TestModel>>());
+            var builder = new ValidationRuleGroupBuilder<TestModel>(new List<ValidationRuleGroup<TestModel>>());
             var validationRules = builder.GetBuilder()
                 .Property(x => x.Int).IsInRange(min, max, excludeMin, excludeMax)
                 .GetRuleSet();
@@ -120,7 +120,7 @@ namespace Newbe.ObjectVisitor.Tests.Validator
         [TestCase(new int[0], false)]
         public void IsInSet(int[] dataRange, bool success)
         {
-            var builder = new ValidationRuleBuilder<TestModel>(new List<ValidationRule<TestModel>>());
+            var builder = new ValidationRuleGroupBuilder<TestModel>(new List<ValidationRuleGroup<TestModel>>());
             var validationRules = builder.GetBuilder()
                 .Property(x => x.Int).IsInSet(dataRange)
                 .GetRuleSet();
@@ -142,7 +142,7 @@ namespace Newbe.ObjectVisitor.Tests.Validator
         [TestCase(3, 4, false)]
         public void Length(int min, int max, bool success)
         {
-            var builder = new ValidationRuleBuilder<TestModel>(new List<ValidationRule<TestModel>>());
+            var builder = new ValidationRuleGroupBuilder<TestModel>(new List<ValidationRuleGroup<TestModel>>());
             var validationRules = builder.GetBuilder()
                 .Property(x => x.String).Length(min, max)
                 .Property(x => x.Ints).Length(min, max)
@@ -172,7 +172,7 @@ namespace Newbe.ObjectVisitor.Tests.Validator
         [TestCase(NoFlagEnum.Autumn, 3, nameof(NoFlagEnum.Autumn), true)]
         public void NoFlagEnumTest(NoFlagEnum enumValue, byte byteValue, string stringValue, bool success)
         {
-            var builder = new ValidationRuleBuilder<TestModel>(new List<ValidationRule<TestModel>>());
+            var builder = new ValidationRuleGroupBuilder<TestModel>(new List<ValidationRuleGroup<TestModel>>());
             var validationRules = builder.GetBuilder()
                 .Property(x => x.NoFlagEnum).IsInEnum()
                 .Property(x => x.NoFlagEnumByte).IsInEnum(typeof(NoFlagEnum))
@@ -201,7 +201,7 @@ namespace Newbe.ObjectVisitor.Tests.Validator
         [TestCase(FlagsEnum.Afternoon | FlagsEnum.Evening, 3, nameof(FlagsEnum.Evening), true)]
         public void FlagsEnumTest(FlagsEnum enumValue, int intValue, string stringValue, bool success)
         {
-            var builder = new ValidationRuleBuilder<TestModel>(new List<ValidationRule<TestModel>>());
+            var builder = new ValidationRuleGroupBuilder<TestModel>(new List<ValidationRuleGroup<TestModel>>());
             var validationRules = builder.GetBuilder()
                 .Property(x => x.FlagsEnum).IsInEnum()
                 .Property(x => x.FlagsEnumInt).IsInEnum(typeof(FlagsEnum))
@@ -224,33 +224,33 @@ namespace Newbe.ObjectVisitor.Tests.Validator
                 }
             }
         }
-        //
-        // [Test]
-        // [TestCase((FlagsEnum) 0, 0, "0", false)]
-        // public void OrTest(int, bool success)
-        // {
-        //     var builder = new ValidationRuleBuilder<TestModel>(new List<ValidationRule<TestModel>>());
-        //     var validationRules = builder.GetBuilder()
-        //         .Property(x => x.Int).Or(x=>x.IsInRange(0,2),x=>x.)
-        //         .Property(x => x.FlagsEnumInt).IsInEnum(typeof(FlagsEnum))
-        //         .Property(x => x.FlagsEnumString).IsInEnum(typeof(FlagsEnum))
-        //         .GetRuleSet();
-        //     var validator = new Validator<TestModel>(validationRules);
-        //     var result = validator.Validate(new TestModel
-        //     {
-        //         FlagsEnum = enumValue,
-        //         FlagsEnumInt = intValue,
-        //         FlagsEnumString = stringValue
-        //     });
-        //     result.Success.Should().Be(success);
-        //     if (!success)
-        //     {
-        //         result.Errors.Length.Should().Be(3);
-        //         foreach (var error in result.Errors)
-        //         {
-        //             Console.WriteLine(error);
-        //         }
-        //     }
-        // }
+
+        [Test]
+        [TestCase(1, true)]
+        [TestCase(0, true)]
+        [TestCase(3, false)]
+        [TestCase(9, true)]
+        [TestCase(10, false)]
+        [TestCase(11, false)]
+        public void OrTest(int value, bool success)
+        {
+            var builder = new ValidationRuleGroupBuilder<TestModel>(new List<ValidationRuleGroup<TestModel>>());
+            var validationRules = builder.GetBuilder()
+                .Property(x => x.Int).Or(x => x.IsInRange(0, 2), x => x.IsInRange(9, 10))
+                .GetRuleSet();
+            var validator = new Validator<TestModel>(validationRules);
+            var result = validator.Validate(new TestModel
+            {
+                Int = value,
+            });
+            result.Success.Should().Be(success);
+            if (!success)
+            {
+                foreach (var error in result.Errors)
+                {
+                    Console.WriteLine(error);
+                }
+            }
+        }
     }
 }
