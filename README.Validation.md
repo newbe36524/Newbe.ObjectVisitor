@@ -6,7 +6,7 @@ using Newbe.ObjectVisitor.Validation;
 // 🚧create rule to validation
 var rule = ValidateRule<Yueluo>
     .GetBuilder()
-    .Property(x=>x.Name).Required().Length(2,10)
+    .Property(x=>x.Name).NotEmpty().Length(2,10)
     .Property(x=>x.Age).Range(0, int.MaxValue)
     .Property(x=>x.Password).Validate(value=>ValidatePassword(value))
     .Property(x=>x.Level).Validate(value=>value + 1 >= 0)
@@ -20,7 +20,7 @@ o.Validate(rule);
 // attribute-based enabled by default
 o.V().Validate(v=>
     v
-     .Property(x=>x.Name).Required().Length(2,10)
+     .Property(x=>x.Name).NotEmpty().Length(2,10)
      .Property(x=>x.Age).Range(0, int.MaxValue)
      .Property(x=>x.Password).Validate(value=>ValidatePassword(value))
      .Property(x=>x.Level).Validate(value=>value + 1 >= 0)
@@ -30,7 +30,7 @@ o.V().Validate(v=>
 o.V().SuppendAttributeValidation()
     .Validate(v=>
         v
-        .Property(x=>x.Name).Required().Length(2,10)
+        .Property(x=>x.Name).NotEmpty().Length(2,10)
         .Property(x=>x.Age).Range(0, int.MaxValue)
         .Property(x=>x.Password).Validate(value=>ValidatePassword(value))
         .Property(x=>x.Level).Validate(value=>value + 1 >= 0)
@@ -43,7 +43,7 @@ o.V().SuppendSubObject()
         v
         .Validate(x=>x.NewPassword == x.OldPassword)
         .Validate(x=>ValidateFormDb(x))
-        .Property(x=>x.Name).Required().Length(2,10)
+        .Property(x=>x.Name).NotEmpty().Length(2,10)
         .Property(x=>x.Age).Range(0, int.MaxValue)
         .Property(x=>x.Age).If(x=>x.Name == "123").Range(0, int.MaxValue)
         .Property(x=>x.Password).Validate(value=>ValidatePassword(value))

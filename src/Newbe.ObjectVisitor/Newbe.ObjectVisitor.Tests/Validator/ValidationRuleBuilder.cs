@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using FluentAssertions;
+using Newbe.ObjectVisitor.Validation;
 using Newbe.ObjectVisitor.Validator;
 using NUnit.Framework;
 
@@ -19,7 +20,7 @@ namespace Newbe.ObjectVisitor.Tests.Validator
                 .Validate(x => x.Age < 20)
                 .Property(x => x.Name).Validate(name => name == yueluoName)
                 .Property(x => x.Level).If((person, level, p) => person.Age < 20).Validate(level => level > 1000)
-                .GetRuleSet();
+                .Build();
             rules.Count.Should().Be(3);
         }
 
@@ -31,7 +32,7 @@ namespace Newbe.ObjectVisitor.Tests.Validator
             var yueluoName = "yueluo";
             var rules = builder.GetBuilder()
                 .Or(x => x.Validate(a => a.Name != yueluoName), x => x.Validate(a => a.Age < 20))
-                .GetRuleSet();
+                .Build();
             rules.Count.Should().Be(1);
             var g = rules.Single();
             g.RuleRelation.Should().Be(ValidationRuleRelation.Any);
