@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doc>
+    <assembly>
+        <name>Newbe.ObjectVisitor</name>
+    </assembly>
+    <members>
+        <member name="T:Newbe.ObjectVisitor.CacheExtensions">
+            <summary>
+            cache
+            </summary>
+        </member>
+        <member name="T:Newbe.ObjectVisitor.OvBuilderExtensions">
+            <summary>
+            core
+            </summary>
+        </member>
+        <member name="T:Newbe.ObjectVisitor.ForEachExtensions">
+            <summary>
+            for each
+            </summary>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.PropertyInfoFilters.GetAllInterfaces(System.Type)">
+            <summary>
+            Gets all the interfaces implemented or inherited by the current <paramref name="type"/>.
+            </summary>
+            <param name="type">The Type for which to retrieve the implemented interfaces.</param>
+            <returns>
+            An array of Types representing all the interfaces implemented or inherited by the current
+            <paramref name="type"/>, or an empty array if no interfaces are implemented or inherited.
+            </returns>
+        </member>
+        <member name="P:Newbe.ObjectVisitor.Validation.ValidationRule`1.IfExpression">
+            <summary>
+            Func{T,bool}
+            </summary>
+        </member>
+        <member name="P:Newbe.ObjectVisitor.Validation.ValidationRule`1.MustExpression">
+            <summary>
+            Func{T,bool}
+            </summary>
+        </member>
+        <member name="P:Newbe.ObjectVisitor.Validation.ValidationRule`1.ErrorMessageExpression">
+            <summary>
+            Func{T,string}
+            </summary>
+        </member>
+    </members>
+</doc>
