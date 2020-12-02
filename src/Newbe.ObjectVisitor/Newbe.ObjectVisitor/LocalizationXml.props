@@ -1,0 +1,27 @@
+<Project>
+    <ItemGroup>
+        <Content Include="$(SolutionDir)/Newbe.ObjectVisitor/Newbe.ObjectVisitor.XmlDocuments/zh-CN/Newbe.ObjectVisitor.xml" Link="Localization/net461/zh-CN/Newbe.ObjectVisitor.xml" Pack="true" PackagePath="lib/net461/zh-CN/Newbe.ObjectVisitor.xml">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+    </ItemGroup>
+    <ItemGroup>
+        <Content Include="$(SolutionDir)/Newbe.ObjectVisitor/Newbe.ObjectVisitor.XmlDocuments/zh-CN/Newbe.ObjectVisitor.xml" Link="Localization/netstandard1.4/zh-CN/Newbe.ObjectVisitor.xml" Pack="true" PackagePath="lib/netstandard1.4/zh-CN/Newbe.ObjectVisitor.xml">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+    </ItemGroup>
+    <ItemGroup>
+        <Content Include="$(SolutionDir)/Newbe.ObjectVisitor/Newbe.ObjectVisitor.XmlDocuments/zh-CN/Newbe.ObjectVisitor.xml" Link="Localization/netcoreapp2.1/zh-CN/Newbe.ObjectVisitor.xml" Pack="true" PackagePath="lib/netcoreapp2.1/zh-CN/Newbe.ObjectVisitor.xml">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+    </ItemGroup>
+    <ItemGroup>
+        <Content Include="$(SolutionDir)/Newbe.ObjectVisitor/Newbe.ObjectVisitor.XmlDocuments/zh-CN/Newbe.ObjectVisitor.xml" Link="Localization/netcoreapp3.1/zh-CN/Newbe.ObjectVisitor.xml" Pack="true" PackagePath="lib/netcoreapp3.1/zh-CN/Newbe.ObjectVisitor.xml">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+    </ItemGroup>
+    <ItemGroup>
+        <Content Include="$(SolutionDir)/Newbe.ObjectVisitor/Newbe.ObjectVisitor.XmlDocuments/zh-CN/Newbe.ObjectVisitor.xml" Link="Localization/net5.0/zh-CN/Newbe.ObjectVisitor.xml" Pack="true" PackagePath="lib/net5.0/zh-CN/Newbe.ObjectVisitor.xml">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+    </ItemGroup>
+</Project>

@@ -9,6 +9,24 @@
             cache
             </summary>
         </member>
+        <member name="T:Newbe.ObjectVisitor.ICachedObjectVisitor">
+            <summary>
+            Cached Object Visitor. It means the delegate of this visitor has been created and cached. It will be more faster than using a <see cref="T:Newbe.ObjectVisitor.IObjectVisitor"/>
+            </summary>
+        </member>
+        <member name="T:Newbe.ObjectVisitor.ICachedObjectVisitor`1">
+            <summary>
+            Cached Object Visitor. It means the delegate of this visitor has been created and cached. It will be more faster than using a <see cref="T:Newbe.ObjectVisitor.IObjectVisitor"/>
+            </summary>
+            <typeparam name="T">Type of Object Visitor target</typeparam>
+        </member>
+        <member name="T:Newbe.ObjectVisitor.ICachedObjectVisitor`2">
+            <summary>
+            Cached Object Visitor. It means the delegate of this visitor has been created and cached. It will be more faster than using a <see cref="T:Newbe.ObjectVisitor.IObjectVisitor"/>
+            </summary>
+            <typeparam name="T">Type of Object Visitor target</typeparam>
+            <typeparam name="TExtend"></typeparam>
+        </member>
         <member name="T:Newbe.ObjectVisitor.OvBuilderExtensions">
             <summary>
             core
