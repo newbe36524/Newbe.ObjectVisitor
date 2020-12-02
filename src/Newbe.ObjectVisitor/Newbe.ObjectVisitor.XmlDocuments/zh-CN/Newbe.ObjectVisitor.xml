@@ -21,12 +21,12 @@
         </member>
         <member name="M:Newbe.ObjectVisitor.PropertyInfoFilters.GetAllInterfaces(System.Type)">
             <summary>
-            Gets all the interfaces implemented or inherited by the current <paramref name="type"/>.
+            获取当前已实现或继承的所有接口 <paramref name="type"/>.
             </summary>
-            <param name="type">The Type for which to retrieve the implemented interfaces.</param>
+            <param name="type">要检索已实现的接口的类型。</param>
             <returns>
-            An array of Types representing all the interfaces implemented or inherited by the current
-            <paramref name="type"/>, or an empty array if no interfaces are implemented or inherited.
+            表示当前实现或继承的所有接口的类型数组
+            <paramref name="type"/>或者，如果没有实现或继承接口，那么为空数组。
             </returns>
         </member>
         <member name="P:Newbe.ObjectVisitor.Validation.ValidationRule`1.IfExpression">
