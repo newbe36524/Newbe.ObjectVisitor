@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
-using AgileObjects.ReadableExpressions;
 
 namespace Newbe.ObjectVisitor.Validation
 {
@@ -34,9 +33,6 @@ namespace Newbe.ObjectVisitor.Validation
             var errorExp = Expression.Variable(typeof(HashSet<string>), "errors");
             var block = Expression.Block(new[] {errorExp}, BlockItems());
             _bodyExp = Expression.Lambda<Func<T, IValidationResult<T>>>(block, inputExp);
-#if DEBUG
-            Console.WriteLine(_bodyExp.ToReadableString());
-#endif
             _func = _bodyExp.Compile();
 
             IEnumerable<Expression> BlockItems()

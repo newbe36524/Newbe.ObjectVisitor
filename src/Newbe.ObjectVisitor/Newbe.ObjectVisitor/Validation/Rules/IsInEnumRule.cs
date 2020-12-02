@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
-using AgileObjects.NetStandardPolyfills;
+using System.Reflection;
 
 namespace Newbe.ObjectVisitor.Validation
 {
@@ -12,8 +12,7 @@ namespace Newbe.ObjectVisitor.Validation
             Type enumType,
             bool? flagged = null)
         {
-            bool hasFlag;
-            hasFlag = flagged ?? enumType.HasAttribute<FlagsAttribute>();
+            var hasFlag = flagged ?? enumType.GetTypeInfo().CustomAttributes.Any(a=>a.AttributeType == typeof(FlagsAttribute));
 
             var values = Enum.GetValues(enumType)
                 .Cast<Enum>()
