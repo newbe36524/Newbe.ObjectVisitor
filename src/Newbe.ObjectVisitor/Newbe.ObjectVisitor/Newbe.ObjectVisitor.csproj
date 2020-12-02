@@ -8,4 +8,11 @@
     <PackageReference Include="AgileObjects.ReadableExpressions" Version="2.5.1"/>
   </ItemGroup>
 
+  <ItemGroup>
+    <Content Remove="zh-CN/Newbe.ObjectVisitor.xml"/>
+    <None Include="$(SolutionDir)/Newbe.ObjectVisitor/Newbe.ObjectVisitor.XmlDocuments/zh-CN/Newbe.ObjectVisitor.xml" Link="zh-CN/Newbe.ObjectVisitor.xml" Pack="true" PackagePath="lib/$(TargetFramework)/zh-CN/">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>

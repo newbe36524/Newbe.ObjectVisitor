@@ -61,7 +61,7 @@ Why do I need this?
     </Description>
   </PropertyGroup>
   <ItemGroup Condition=" '$(IsPackable)' != 'false' ">
-    <None Include="icon.png" Pack="true" PackagePath=""/>
+    <None Include="$(SolutionDir)/icon.png" Link="icon.png" Pack="true" PackagePath=""/>
   </ItemGroup>
   <ItemGroup Condition=" '$(IsUnitTest)' == 'true' ">
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.7.1"/>
