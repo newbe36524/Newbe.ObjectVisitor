@@ -6,6 +6,12 @@
 
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
+[![build](https://github.com/newbe36524/Newbe.ObjectVisitor/workflows/ObjectVisitor/badge.svg)](https://github.com/newbe36524/Newbe.ObjectVisitor/actions)
+[![Codecov](https://img.shields.io/codecov/c/github/newbe36524/Newbe.ObjectVisitor)](https://codecov.io/gh/newbe36524/Newbe.ObjectVisitor)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=newbe36524_Newbe.ObjectVisitor&metric=coverage)](https://sonarcloud.io/dashboard?id=newbe36524_Newbe.ObjectVisitor)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=newbe36524_Newbe.ObjectVisitor&metric=alert_status)](https://sonarcloud.io/dashboard?id=newbe36524_Newbe.ObjectVisitor)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/1fd0e7443364414ca0003dab27f9f9b8)](https://www.codacy.com/manual/472158246/Newbe.ObjectVisitor?utm_source=github.com&utm_medium=referral&utm_content=newbe36524/Newbe.ObjectVisitor&utm_campaign=Badge_Grade)
+
 - [简体中文](README_zh_Hans.md)
 - [English](README.md)
 
