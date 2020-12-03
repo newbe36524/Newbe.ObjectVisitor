@@ -2,6 +2,9 @@
 
 namespace Newbe.ObjectVisitor
 {
+    /// <summary>
+    /// Missing extend data object
+    /// </summary>
     public class MissingExtendObjectException : ObjectVisitorException
     {
         public MissingExtendObjectException()

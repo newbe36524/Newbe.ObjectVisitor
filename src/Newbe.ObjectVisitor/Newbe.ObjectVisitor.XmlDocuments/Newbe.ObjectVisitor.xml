@@ -6,31 +6,474 @@
     <members>
         <member name="T:Newbe.ObjectVisitor.CacheExtensions">
             <summary>
-            cache
+            Cache object visitor extensions
             </summary>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.CacheExtensions.Cache``1(Newbe.ObjectVisitor.OVBuilder{``0}.IOVBuilder_V)">
+            <summary>
+            Create cached object visitor
+            </summary>
+            <param name="builderContext">builder context of object visitor</param>
+            <typeparam name="T">Type of target type</typeparam>
+            <returns>Cached object visitor</returns>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.CacheExtensions.Cache``2(Newbe.ObjectVisitor.OVBuilderExt{``0,``1}.IOVBuilderExt_V)">
+            <summary>
+            Create cached object visitor
+            </summary>
+            <param name="builderContext">builder context of object visitor</param>
+            <typeparam name="T">Type of target type</typeparam>
+            <typeparam name="TExtend">Type of extend data.</typeparam>
+            <returns>Cached object visitor</returns>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.CacheExtensions.Run``1(Newbe.ObjectVisitor.ICachedObjectVisitor{``0},``0)">
+            <summary>
+            Run a cache object visitor
+            </summary>
+            <param name="visitor">visitor</param>
+            <param name="obj">Target object</param>
+            <typeparam name="T">Type of target type</typeparam>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.CacheExtensions.Run``2(Newbe.ObjectVisitor.ICachedObjectVisitor{``0,``1},``0,``1)">
+            <summary>
+            Run a cache object visitor
+            </summary>
+            <param name="visitor">visitor</param>
+            <param name="obj">Target object</param>
+            <param name="extendObj">Extend data to run visitor</param>
+            <typeparam name="T">Type of target type</typeparam>
+            <typeparam name="TExtend">Type of extend data.</typeparam>
         </member>
         <member name="T:Newbe.ObjectVisitor.ICachedObjectVisitor">
             <summary>
-            Cached Object Visitor. It means the delegate of this visitor has been created and cached. It will be more faster than using a <see cref="T:Newbe.ObjectVisitor.IObjectVisitor"/>
+            Cached Object Visitor. It means the delegate of this visitor has been created and cached. It will be more faster than using a <see cref="T:Newbe.ObjectVisitor.IObjectVisitor"/>.
             </summary>
         </member>
         <member name="T:Newbe.ObjectVisitor.ICachedObjectVisitor`1">
             <summary>
-            Cached Object Visitor. It means the delegate of this visitor has been created and cached. It will be more faster than using a <see cref="T:Newbe.ObjectVisitor.IObjectVisitor"/>
+            Cached Object Visitor. It means the delegate of this visitor has been created and cached. It will be more faster than using a <see cref="T:Newbe.ObjectVisitor.IObjectVisitor"/>.
             </summary>
             <typeparam name="T">Type of Object Visitor target</typeparam>
+        </member>
+        <member name="P:Newbe.ObjectVisitor.ICachedObjectVisitor`1.Action">
+            <summary>
+            Delegate of visitor
+            </summary>
         </member>
         <member name="T:Newbe.ObjectVisitor.ICachedObjectVisitor`2">
             <summary>
-            Cached Object Visitor. It means the delegate of this visitor has been created and cached. It will be more faster than using a <see cref="T:Newbe.ObjectVisitor.IObjectVisitor"/>
+            Cached Object Visitor. It means the delegate of this visitor has been created and cached. It will be more faster than using a <see cref="T:Newbe.ObjectVisitor.IObjectVisitor"/>.
             </summary>
-            <typeparam name="T">Type of Object Visitor target</typeparam>
-            <typeparam name="TExtend"></typeparam>
+            <typeparam name="T">Type of object visitor target</typeparam>
+            <typeparam name="TExtend">Type of extend data</typeparam>
+        </member>
+        <member name="P:Newbe.ObjectVisitor.ICachedObjectVisitor`2.Action">
+            <summary>
+            Delegate of visitor
+            </summary>
+        </member>
+        <member name="T:Newbe.ObjectVisitor.IObjectVisitor">
+            <summary>
+            Object visitor
+            </summary>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.IObjectVisitor.CreateExpression">
+            <summary>
+            Create expression of object visitor
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Newbe.ObjectVisitor.IObjectVisitor`1">
+            <summary>
+            Object visitor
+            </summary>
+            <typeparam name="T">Type of target type</typeparam>
+        </member>
+        <member name="T:Newbe.ObjectVisitor.IObjectVisitor`2">
+            <summary>
+            Object visitor
+            </summary>
+            <typeparam name="T">Type of target type</typeparam>
+            <typeparam name="TExtend">Type of extend data when running this visitor</typeparam>
+        </member>
+        <member name="T:Newbe.ObjectVisitor.IObjectVisitorContext`2">
+            <summary>
+            Context of visiting a property of target object
+            </summary>
+            <typeparam name="TSourceObject">Type of source object while visiting</typeparam>
+            <typeparam name="TValue">Type of value while visiting</typeparam>
+        </member>
+        <member name="P:Newbe.ObjectVisitor.IObjectVisitorContext`2.Name">
+            <summary>
+            Name of visiting property
+            </summary>
+        </member>
+        <member name="P:Newbe.ObjectVisitor.IObjectVisitorContext`2.Value">
+            <summary>
+            Value of visiting property
+            </summary>
+        </member>
+        <member name="P:Newbe.ObjectVisitor.IObjectVisitorContext`2.SourceObject">
+            <summary>
+            Source object
+            </summary>
+        </member>
+        <member name="P:Newbe.ObjectVisitor.IObjectVisitorContext`2.PropertyInfo">
+            <summary>
+            Property info of visiting property
+            </summary>
+        </member>
+        <member name="T:Newbe.ObjectVisitor.IObjectVisitorContext`3">
+            <summary>
+            Context of visiting a object
+            </summary>
+            <typeparam name="TSourceObject">Type of source object while visiting</typeparam>
+            <typeparam name="TExtend">Type of extend data while visiting</typeparam>
+            <typeparam name="TValue">Type of value while visiting</typeparam>
+        </member>
+        <member name="P:Newbe.ObjectVisitor.IObjectVisitorContext`3.Name">
+            <summary>
+            Name of visiting property
+            </summary>
+        </member>
+        <member name="P:Newbe.ObjectVisitor.IObjectVisitorContext`3.Value">
+            <summary>
+            Value of visiting property
+            </summary>
+        </member>
+        <member name="P:Newbe.ObjectVisitor.IObjectVisitorContext`3.ExtendObject">
+            <summary>
+            Extend data
+            </summary>
+        </member>
+        <member name="P:Newbe.ObjectVisitor.IObjectVisitorContext`3.SourceObject">
+            <summary>
+            Source object
+            </summary>
+        </member>
+        <member name="P:Newbe.ObjectVisitor.IObjectVisitorContext`3.PropertyInfo">
+            <summary>
+            Property info of visiting property
+            </summary>
+        </member>
+        <member name="T:Newbe.ObjectVisitor.IOvBuilderContext">
+            <summary>
+            Context of building a object visitor
+            </summary>
+        </member>
+        <member name="T:Newbe.ObjectVisitor.IOvBuilderContext`1">
+            <summary>
+            Context of building a object visitor
+            </summary>
+            <typeparam name="T">Type of target object</typeparam>
+        </member>
+        <member name="T:Newbe.ObjectVisitor.IOvBuilderContext`2">
+            <summary>
+            Context of building a object visitor
+            </summary>
+            <typeparam name="TSourceObject">Type of target object</typeparam>
+            <typeparam name="TExtendObject">Type of extend data</typeparam>
+        </member>
+        <member name="T:Newbe.ObjectVisitor.IOvBuilderContextItem">
+            <summary>
+            Item of object visitor context builder
+            </summary>
+        </member>
+        <member name="T:Newbe.ObjectVisitor.IOvFactory">
+            <summary>
+            Object visitor factory
+            </summary>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.IOvFactory.Create(Newbe.ObjectVisitor.IOvBuilderContext)">
+            <summary>
+            Create a object visitor from <paramref name="builderContext"/>
+            </summary>
+            <param name="builderContext">Context of object visitor</param>
+            <returns>Object visitor</returns>
         </member>
         <member name="T:Newbe.ObjectVisitor.OvBuilderExtensions">
             <summary>
-            core
+            Core extension methods of object visitor builder
             </summary>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.OvBuilderExtensions.CreateVisitor(Newbe.ObjectVisitor.IOvBuilderContext)">
+            <summary>
+            Create object visitor
+            </summary>
+            <param name="builderContext">Context of builder</param>
+            <returns>Object visitor</returns>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.OvBuilderExtensions.CreateVisitor``1(Newbe.ObjectVisitor.IOvBuilderContext{``0})">
+            <summary>
+            Create object visitor
+            </summary>
+            <param name="builderContext">Context of builder</param>
+            <typeparam name="T">Type of target object</typeparam>
+            <returns>Object visitor</returns>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.OvBuilderExtensions.CreateVisitor``2(Newbe.ObjectVisitor.IOvBuilderContext{``0,``1})">
+            <summary>
+            Create object visitor
+            </summary>
+            <param name="builderContext">Context of builder</param>
+            <typeparam name="T">Type of target object</typeparam>
+            <typeparam name="TExtend">Type of extend data</typeparam>
+            <returns>Object visitor</returns>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.OvBuilderExtensions.GetLambda``1(Newbe.ObjectVisitor.OVBuilder{``0}.IOVBuilder_V)">
+            <summary>
+            Build a lambda action from <paramref name="builderContext"/>
+            </summary>
+            <param name="builderContext">Context of builder</param>
+            <typeparam name="T">Type of target object</typeparam>
+            <returns>Lambda action</returns>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.OvBuilderExtensions.GetLambda``2(Newbe.ObjectVisitor.OVBuilderExt{``0,``1}.IOVBuilderExt_V)">
+            <summary>
+            Build a lambda action from <paramref name="builderContext"/>
+            </summary>
+            <param name="builderContext">Context of builder</param>
+            <typeparam name="T">Type of target object</typeparam>
+            <typeparam name="TExtend">Type of extend data</typeparam>
+            <returns>Lambda action</returns>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.OvBuilderExtensions.GetDebugInfo``2(Newbe.ObjectVisitor.OVBuilderExt{``0,``1}.IOVBuilderExt_V)">
+            <summary>
+            Get debug info from <paramref name="builderContext"/>. It is useful while debug expression.
+            </summary>
+            <param name="builderContext">Context of builder</param>
+            <typeparam name="T">Type of target object</typeparam>
+            <typeparam name="TExtend">Type of extend data</typeparam>
+            <returns>Debug info</returns>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.OvBuilderExtensions.GetDebugInfo``1(Newbe.ObjectVisitor.OVBuilder{``0}.IOVBuilder_V)">
+            <summary>
+            Get debug info from <paramref name="builderContext"/>. It is useful while debug expression.
+            </summary>
+            <param name="builderContext">Context of builder</param>
+            <typeparam name="T">Type of target object</typeparam>
+            <returns>Debug info</returns>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.OvBuilderExtensions.GetDebugInfo(Newbe.ObjectVisitor.IObjectVisitor)">
+            <summary>
+            Get debug info from <paramref name="visitor"/>. It is useful while debug expression.
+            </summary>
+            <param name="visitor">Object visitor</param>
+            <returns>Debug info</returns>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.OvBuilderExtensions.Run``1(Newbe.ObjectVisitor.IObjectVisitor{``0},``0)">
+            <summary>
+            Run a object visitor with target object
+            </summary>
+            <param name="visitor">Object visitor</param>
+            <param name="obj">Target object</param>
+            <typeparam name="T">Type of target object</typeparam>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.OvBuilderExtensions.Run``2(Newbe.ObjectVisitor.IObjectVisitor{``0,``1},``0,``1)">
+            <summary>
+            Run a object visitor with target object and extend data
+            </summary>
+            <param name="visitor">Object visitor</param>
+            <param name="obj">Target object</param>
+            <param name="extendObj">Extend data</param>
+            <typeparam name="T">Type of target object</typeparam>
+            <typeparam name="TExtend">Type of extend data</typeparam>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.OvBuilderExtensions.Run``1(Newbe.ObjectVisitor.OVBuilder{``0}.IOVBuilder_V)">
+            <summary>
+            Run a object visitor with target object which has been specified at start
+            </summary>
+            <param name="builderContext">Context of builder</param>
+            <typeparam name="T">Type of target object</typeparam>
+            <exception cref="T:Newbe.ObjectVisitor.MissingSourceObjectException">It throws if there is no source object specified at start. If throws, you should run this visitor with <see cref="M:Newbe.ObjectVisitor.OvBuilderExtensions.Run``1(Newbe.ObjectVisitor.OVBuilder{``0}.IOVBuilder_V,``0)"/></exception>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.OvBuilderExtensions.Run``1(Newbe.ObjectVisitor.OVBuilder{``0}.IOVBuilder_V,``0)">
+            <summary>
+            Run a object visitor with target object
+            </summary>
+            <param name="builderContext">Context of builder</param>
+            <param name="obj">Target object</param>
+            <typeparam name="T">Type of target object</typeparam>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.OvBuilderExtensions.Run``2(Newbe.ObjectVisitor.OVBuilderExt{``0,``1}.IOVBuilderExt_V)">
+            <summary>
+            Run a object visitor with target object and extend data those has been specified at start
+            </summary>
+            <param name="builderContext">Context of builder</param>
+            <typeparam name="T">Type of target object</typeparam>
+            <typeparam name="TExtend">Type of extend data</typeparam>
+            <exception cref="T:Newbe.ObjectVisitor.MissingSourceObjectException">It throws if there is no source object specified at start. If throws, you should run this visitor with <see cref="M:Newbe.ObjectVisitor.OvBuilderExtensions.Run``2(Newbe.ObjectVisitor.OVBuilderExt{``0,``1}.IOVBuilderExt_V,``0)"/></exception>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.OvBuilderExtensions.Run``2(Newbe.ObjectVisitor.OVBuilderExt{``0,``1}.IOVBuilderExt_V,``0)">
+            <summary>
+            Run a object visitor with target object and specified extend data when creating visitor
+            </summary>
+            <param name="builderContext">Context of builder</param>
+            <param name="obj">Target object</param>
+            <typeparam name="T">Type of target object</typeparam>
+            <typeparam name="TExtend">Type of extend data</typeparam>
+            <exception cref="T:Newbe.ObjectVisitor.MissingSourceObjectException">It throws if there is no extend data specified at start. If throws, you should run this visitor with <see cref="M:Newbe.ObjectVisitor.OvBuilderExtensions.Run``2(Newbe.ObjectVisitor.OVBuilderExt{``0,``1}.IOVBuilderExt_V,``0,``1)"/></exception>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.OvBuilderExtensions.Run``2(Newbe.ObjectVisitor.OVBuilderExt{``0,``1}.IOVBuilderExt_V,``0,``1)">
+            <summary>
+            Run a object visitor with target object and extend data
+            </summary>
+            <param name="builderContext">Context of builder</param>
+            <param name="obj">Target object</param>
+            <param name="extendObj">Extend data</param>
+            <typeparam name="T">Type of target object</typeparam>
+            <typeparam name="TExtend">Type of extend data</typeparam>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.OvBuilderExtensions.V``1(``0)">
+            <summary>
+            Get a object visitor builder to create a object visitor
+            </summary>
+            <param name="obj">Target object</param>
+            <typeparam name="T">Type of target object</typeparam>
+            <returns>Object visitor builder</returns>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.OvBuilderExtensions.WithExtendObject``2(Newbe.ObjectVisitor.OVBuilder{``0}.IOVBuilder_V)">
+            <summary>
+            Specify the object visitor should run with a extend data
+            </summary>
+            <param name="builderContext">Context of builder</param>
+            <typeparam name="T">Type of target object</typeparam>
+            <typeparam name="TExtend">Type of extend data</typeparam>
+            <returns>Object visitor builder</returns>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.OvBuilderExtensions.WithExtendObject``2(Newbe.ObjectVisitor.OVBuilder{``0}.IOVBuilder_V,``1)">
+            <summary>
+            Specify the object visitor should run with a extend data
+            </summary>
+            <param name="builderContext">Context of builder</param>
+            <param name="extendObj">Extend data</param>
+            <typeparam name="T">Type of target object</typeparam>
+            <typeparam name="TExtend">Type of extend data</typeparam>
+            <returns>Object visitor builder</returns>
+        </member>
+        <member name="T:Newbe.ObjectVisitor.ValueGetter">
+            <summary>
+            Helper class to generate a func to get value from a object property
+            </summary>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.ValueGetter.Create(System.Type,System.Type,System.Reflection.PropertyInfo)">
+            <summary>
+            Create a getter func to get value from a object property.
+            <example>
+            var stringLengthFunc = (Func&lt;string,int&gt;) ValueGetter.Create(typeof(string), typeof(int), typeof(string).GetProperty("Length"))
+            </example>
+            </summary>
+            <param name="objType">Type of target object</param>
+            <param name="valueType">Type of target property</param>
+            <param name="info">PropertyInfo of target property</param>
+            <returns>A Func as Func&lt;objType,valueType&gt;. </returns>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.ValueGetter.Create(System.Type,System.Reflection.PropertyInfo)">
+            <summary>
+            Create a getter func to get value from a object property.
+            <example>
+            var stringLengthFunc = (Func&lt;string,object&gt;) ValueGetter.Create(typeof(string), typeof(string).GetProperty("Length"))
+            </example>
+            </summary>
+            <param name="objType">Type of target object</param>
+            <param name="info">PropertyInfo of target property</param>
+            <returns>A Func as Func&lt;objType,object&gt;. </returns>
+        </member>
+        <member name="T:Newbe.ObjectVisitor.ValueGetter`3">
+            <summary>
+            Value getter in generic format.
+            </summary>
+            <typeparam name="TTargetObject">Type of target object</typeparam>
+            <typeparam name="TPropertyValue">Type of property</typeparam>
+            <typeparam name="TTargetValue">Type of target value. This is used as return value type of func, it can be different from <typeparamref name="TPropertyValue"/>. You must confirm that <typeparamref name="TPropertyValue"/> can be directly cast to <typeparam name="TTargetValue"/>, It will throw a exception otherwise.</typeparam>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.ValueGetter`3.GetGetter(System.Reflection.PropertyInfo)">
+            <summary>
+            Create a getter func to get property value from a object property.
+            <example>
+            Func&lt;string,int&gt; stringLengthFunc =  ValueGetter&lt;string, int, int&gt;.GetGetter(typeof(string).GetProperty("Length"))
+            </example>
+            </summary>
+            <param name="info">PropertyInfo of target property</param>
+            <returns>Func as a value getter</returns>
+        </member>
+        <member name="T:Newbe.ObjectVisitor.ValueGetter`1">
+            <summary>
+            Value getter in no-generic format.
+            </summary>
+            <typeparam name="TTargetObject">Type of target object</typeparam>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.ValueGetter`1.GetGetter(System.Reflection.PropertyInfo)">
+            <summary>
+            Create a getter func to get property value from a object property.
+            <example>
+            Func&lt;string,object&gt; stringLengthFunc =  ValueGetter&lt;string&gt;.GetGetter(typeof(string).GetProperty("Length"))
+            </example>
+            </summary>
+            <param name="info">PropertyInfo of target property</param>
+            <returns>Func as a value getter</returns>
+        </member>
+        <member name="T:Newbe.ObjectVisitor.ValueSetter">
+            <summary>
+            Helper class to generate a action to set value to a object property
+            </summary>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.ValueSetter.Create(System.Type,System.Type,System.Reflection.PropertyInfo)">
+            <summary>
+            Create a setter action to set value to a object property
+            <example>
+            var uriSetter = (Action&lt;HttpRequestMessage,Uri&gt;) ValueSetter.Create(typeof(HttpRequestMessage), typeof(Uri), typeof(HttpRequestMessage).GetProperty("RequestUri"))
+            </example>
+            </summary>
+            <param name="objType">Type of target object</param>
+            <param name="valueType">Type of target property</param>
+            <param name="info">PropertyInfo of target property</param>
+            <returns>A Action as Action&lt;objType,valueType&gt;. </returns>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.ValueSetter.Create(System.Type,System.Reflection.PropertyInfo)">
+            <summary>
+            Create a setter action to set value to a object property
+            <example>
+            var uriSetter = (Action&lt;HttpRequestMessage,object&gt;) ValueSetter.Create(typeof(HttpRequestMessage), typeof(HttpRequestMessage).GetProperty("RequestUri"))
+            </example>
+            </summary>
+            <param name="objType">Type of target object</param>
+            <param name="info">PropertyInfo of target property</param>
+            <returns>A Action as Action&lt;objType,object&gt;. </returns>
+        </member>
+        <member name="T:Newbe.ObjectVisitor.ValueSetter`3">
+            <summary>
+            Value setter in generic format.
+            </summary>
+            <typeparam name="TTargetObject">Type of target object</typeparam>
+            <typeparam name="TPropertyValue">Type of property</typeparam>
+            <typeparam name="TTargetValue">Type of target value. This is used as type of action input value, it can be different from <typeparamref name="TPropertyValue"/>. You must confirm that <typeparam name="TTargetValue"/> can be directly cast to <typeparamref name="TPropertyValue"/>, It will throw a exception otherwise.</typeparam>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.ValueSetter`3.GetSetter(System.Reflection.PropertyInfo)">
+            <summary>
+            Create a setter action to set property value to a object property.
+            <example>
+            Action&lt;HttpRequestMessage,Uri&gt; uriSetter = ValueSetter&lt;HttpRequestMessage, Uri, Uri&gt;.GetSetter(typeof(HttpRequestMessage).GetProperty("RequestUri"))
+            </example>
+            </summary>
+            <param name="info">PropertyInfo of target property</param>
+            <returns>Func as a value setter</returns>
+        </member>
+        <member name="T:Newbe.ObjectVisitor.ValueSetter`1">
+            <summary>
+            Value setter in no-generic format.
+            </summary>
+            <typeparam name="TTargetObject">Type of target object</typeparam>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.ValueSetter`1.GetSetter(System.Reflection.PropertyInfo)">
+            <summary>
+            Create a setter action to set property value to a object property.
+            <example>
+            Action&lt;HttpRequestMessage,object&gt; uriSetter = ValueSetter&lt;HttpRequestMessage&gt;.GetSetter(typeof(HttpRequestMessage).GetProperty("RequestUri"))
+            </example>
+            </summary>
+            <param name="info">PropertyInfo of target property</param>
+            <returns>Func as a value setter</returns>
         </member>
         <member name="T:Newbe.ObjectVisitor.ForEachExtensions">
             <summary>

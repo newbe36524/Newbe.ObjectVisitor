@@ -3,13 +3,17 @@ using System.Linq.Expressions;
 
 namespace Newbe.ObjectVisitor
 {
+    /// <summary>
+    /// Failed to convert expression type while creating visitor
+    /// </summary>
     public class FailedToConvertExpressionException : ObjectVisitorException
     {
         public Expression SourceExpression { get; }
         public Type Type { get; }
 
         public FailedToConvertExpressionException(Expression sourceExpression, Type type)
-            : this($"Failed to convert expression from {sourceExpression} to {type}. That should be a bug", sourceExpression, type)
+            : this($"Failed to convert expression from {sourceExpression} to {type}. That should be a bug",
+                sourceExpression, type)
         {
             SourceExpression = sourceExpression;
             Type = type;

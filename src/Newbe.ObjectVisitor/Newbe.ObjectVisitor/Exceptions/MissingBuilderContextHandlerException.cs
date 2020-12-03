@@ -2,6 +2,9 @@
 
 namespace Newbe.ObjectVisitor
 {
+    /// <summary>
+    /// Missing builder context handler
+    /// </summary>
     public class MissingBuilderContextHandlerException : ObjectVisitorException
     {
         public MissingBuilderContextHandlerException()

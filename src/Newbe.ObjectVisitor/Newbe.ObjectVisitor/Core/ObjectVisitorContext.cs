@@ -4,7 +4,7 @@ using System.Reflection;
 
 namespace Newbe.ObjectVisitor
 {
-    public class ObjectVisitorContext<TObj, TValue> : ObjectVisitorContextBase<TObj, TValue>,
+    internal class ObjectVisitorContext<TObj, TValue> : ObjectVisitorContextBase<TObj, TValue>,
         IObjectVisitorContext<TObj, TValue>
     {
         public ObjectVisitorContext(string name,
@@ -26,7 +26,7 @@ namespace Newbe.ObjectVisitor
         }
     }
 
-    public class ObjectVisitorContext<TObj, TExtend, TValue> : ObjectVisitorContextBase<TObj, TValue>,
+    internal class ObjectVisitorContext<TObj, TExtend, TValue> : ObjectVisitorContextBase<TObj, TValue>,
         IObjectVisitorContext<TObj, TExtend, TValue>
     {
         public ObjectVisitorContext(string name,
@@ -59,7 +59,7 @@ namespace Newbe.ObjectVisitor
     }
 
 
-    public static class ObjectVisitorContext
+    internal static class ObjectVisitorContext
     {
         public static MethodInfo GetCreateMethodInfo(Type inputType, Type valueType)
         {

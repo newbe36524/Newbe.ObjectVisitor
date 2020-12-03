@@ -1,6 +1,6 @@
 ﻿namespace Newbe.ObjectVisitor
 {
-    public enum ForEachActionContextExpressionType
+    internal enum ForEachActionContextExpressionType
     {
         ObjectVisitorContext = 1,
         NameAndValue = 2,

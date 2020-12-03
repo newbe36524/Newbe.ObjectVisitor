@@ -2,6 +2,9 @@
 
 namespace Newbe.ObjectVisitor
 {
+    /// <summary>
+    /// Base class of expression about object visitor
+    /// </summary>
     public abstract class ObjectVisitorException : Exception
     {
         protected ObjectVisitorException()

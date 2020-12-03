@@ -1,14 +1,28 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
 
 namespace Newbe.ObjectVisitor
 {
+    /// <summary>
+    /// Helper class to generate a action to set value to a object property
+    /// </summary>
     public static class ValueSetter
     {
-        public static object Get(Type objType, Type valueType, PropertyInfo info)
+        /// <summary>
+        /// Create a setter action to set value to a object property
+        /// <example>
+        /// var uriSetter = (Action&lt;HttpRequestMessage,Uri&gt;) ValueSetter.Create(typeof(HttpRequestMessage), typeof(Uri), typeof(HttpRequestMessage).GetProperty("RequestUri"))
+        /// </example>
+        /// </summary>
+        /// <param name="objType">Type of target object</param>
+        /// <param name="valueType">Type of target property</param>
+        /// <param name="info">PropertyInfo of target property</param>
+        /// <returns>A Action as Action&lt;objType,valueType&gt;. </returns>
+        public static object Create(Type objType, Type valueType, PropertyInfo info)
         {
             var bodyExp = Expression.Call(
                 typeof(ValueSetter<,,>).MakeGenericType(objType, info.PropertyType, valueType),
@@ -21,7 +35,16 @@ namespace Newbe.ObjectVisitor
             return re;
         }
 
-        public static object Get(Type objType, PropertyInfo info)
+        /// <summary>
+        /// Create a setter action to set value to a object property
+        /// <example>
+        /// var uriSetter = (Action&lt;HttpRequestMessage,object&gt;) ValueSetter.Create(typeof(HttpRequestMessage), typeof(HttpRequestMessage).GetProperty("RequestUri"))
+        /// </example>
+        /// </summary>
+        /// <param name="objType">Type of target object</param>
+        /// <param name="info">PropertyInfo of target property</param>
+        /// <returns>A Action as Action&lt;objType,object&gt;. </returns>
+        public static object Create(Type objType, PropertyInfo info)
         {
             var bodyExp = Expression.Call(typeof(ValueSetter<>).MakeGenericType(objType),
                 nameof(ValueSetter<object, object, object>.GetSetter),
@@ -65,6 +88,12 @@ namespace Newbe.ObjectVisitor
         }
     }
 
+    /// <summary>
+    /// Value setter in generic format.
+    /// </summary>
+    /// <typeparam name="TTargetObject">Type of target object</typeparam>
+    /// <typeparam name="TPropertyValue">Type of property</typeparam>
+    /// <typeparam name="TTargetValue">Type of target value. This is used as type of action input value, it can be different from <typeparamref name="TPropertyValue"/>. You must confirm that <typeparam name="TTargetValue"/> can be directly cast to <typeparamref name="TPropertyValue"/>, It will throw a exception otherwise.</typeparam>
     public static class ValueSetter<TTargetObject, TPropertyValue, TTargetValue>
     {
         private static readonly Func<PropertyInfo, Action<TTargetObject, TTargetValue>> Finder;
@@ -79,12 +108,24 @@ namespace Newbe.ObjectVisitor
                 ValueSetter.CreateSetterCase<TTargetObject, TTargetValue>);
         }
 
+        /// <summary>
+        /// Create a setter action to set property value to a object property.
+        /// <example>
+        /// Action&lt;HttpRequestMessage,Uri&gt; uriSetter = ValueSetter&lt;HttpRequestMessage, Uri, Uri&gt;.GetSetter(typeof(HttpRequestMessage).GetProperty("RequestUri"))
+        /// </example>
+        /// </summary>
+        /// <param name="info">PropertyInfo of target property</param>
+        /// <returns>Func as a value setter</returns>
         public static Action<TTargetObject, TTargetValue> GetSetter(PropertyInfo info)
         {
             return Finder.Invoke(info);
         }
     }
 
+    /// <summary>
+    /// Value setter in no-generic format.
+    /// </summary>
+    /// <typeparam name="TTargetObject">Type of target object</typeparam>
     public static class ValueSetter<TTargetObject>
     {
         private static readonly Func<PropertyInfo, Action<TTargetObject, object>> Finder;
@@ -98,6 +139,14 @@ namespace Newbe.ObjectVisitor
                 ValueSetter.CreateSetterCase<TTargetObject, object>);
         }
 
+        /// <summary>
+        /// Create a setter action to set property value to a object property.
+        /// <example>
+        /// Action&lt;HttpRequestMessage,object&gt; uriSetter = ValueSetter&lt;HttpRequestMessage&gt;.GetSetter(typeof(HttpRequestMessage).GetProperty("RequestUri"))
+        /// </example>
+        /// </summary>
+        /// <param name="info">PropertyInfo of target property</param>
+        /// <returns>Func as a value setter</returns>
         public static Action<TTargetObject, object> GetSetter(PropertyInfo info)
         {
             return Finder.Invoke(info);

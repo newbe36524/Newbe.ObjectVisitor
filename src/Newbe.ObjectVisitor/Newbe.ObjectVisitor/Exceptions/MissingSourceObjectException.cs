@@ -2,6 +2,9 @@
 
 namespace Newbe.ObjectVisitor
 {
+    /// <summary>
+    /// Missing source object
+    /// </summary>
     public class MissingSourceObjectException : ObjectVisitorException
     {
         public MissingSourceObjectException()

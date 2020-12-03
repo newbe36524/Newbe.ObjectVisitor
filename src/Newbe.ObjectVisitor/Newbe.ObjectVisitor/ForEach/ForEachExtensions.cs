@@ -5,7 +5,7 @@ using System.Reflection;
 namespace Newbe.ObjectVisitor
 {
     /// <summary>
-    /// for each
+    /// Extension about <see cref="OVBuilder{T}.IOVBuilder_V.ForEach"/>
     /// </summary>
     public static class ForEachExtensions
     {

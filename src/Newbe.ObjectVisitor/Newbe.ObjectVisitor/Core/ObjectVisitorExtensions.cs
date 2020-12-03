@@ -3,7 +3,7 @@ using System.Linq.Expressions;
 
 namespace Newbe.ObjectVisitor
 {
-    public static class ObjectVisitorExtensions
+    internal static class ObjectVisitorExtensions
     {
         private static bool TryCreateExpression<TExpression>(this IObjectVisitor objectVisitor,
             out TExpression ex)
