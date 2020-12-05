@@ -4,7 +4,7 @@ using System.Reflection;
 
 namespace Newbe.ObjectVisitor.Validation
 {
-    public class IsInRangeRule<T, TValue> : PropertyValidationRuleBase<T, TValue>
+    internal class IsInRangeRule<T, TValue> : PropertyValidationRuleBase<T, TValue>
     {
         public IsInRangeRule(
             TValue min,

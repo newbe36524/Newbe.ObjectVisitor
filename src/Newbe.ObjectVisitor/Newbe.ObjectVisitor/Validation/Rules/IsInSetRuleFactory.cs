@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Newbe.ObjectVisitor.Validation
 {
-    public static class IsInSetRuleFactory
+    internal static class IsInSetRuleFactory
     {
         public static IsInSetRule<T, TValue> Create<T, TValue>(IEnumerable<TValue> expectedSet)
             where TValue : IEquatable<TValue>

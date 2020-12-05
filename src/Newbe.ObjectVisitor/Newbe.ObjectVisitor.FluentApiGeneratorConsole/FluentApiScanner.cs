@@ -47,7 +47,7 @@ namespace Newbe.ObjectVisitor.FluentApiGeneratorConsole
             var design = parser.Parse(file.MarkdownContent);
             var generator = new FluentApiFileGenerator();
             var output = generator.Generate(design);
-            var codes = output.FluentApiFiles.AutoGenerate;
+            var codes = output.FluentApiFiles.Api;
             await File.WriteAllTextAsync(GetCsFilePath(), codes);
             await File.WriteAllTextAsync(file.MarkdownFileLockPath, markdownHash);
             _logger.LogInformation("End : {markdown}", file.FluentMarkdownFilePath);

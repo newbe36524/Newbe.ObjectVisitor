@@ -109,7 +109,7 @@ namespace Newbe.ObjectVisitor.Tests.Validator
                     ErrorMessageExpression = x => "Oh No2!"
                 }
             };
-            validationRuleGroup.RuleRelation = ValidationRuleRelation.Any;
+            validationRuleGroup.RuleRelation = ValidationRuleRelation.Or;
             var rules = new List<ValidationRuleGroup<Yueluo>>
             {
                 validationRuleGroup

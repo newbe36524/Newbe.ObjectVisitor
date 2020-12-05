@@ -3,8 +3,17 @@ using System.Text;
 
 namespace Newbe.ObjectVisitor
 {
+    /// <summary>
+    /// Extensions of formatting a object to string 
+    /// </summary>
     public static class FormatToStringExtensions
     {
+        /// <summary>
+        /// Format a object to string
+        /// </summary>
+        /// <param name="obj">Object to be format</param>
+        /// <typeparam name="T">Type of object</typeparam>
+        /// <returns></returns>
         public static string FormatToString<T>(this T obj)
         {
             var sb = new StringBuilder();

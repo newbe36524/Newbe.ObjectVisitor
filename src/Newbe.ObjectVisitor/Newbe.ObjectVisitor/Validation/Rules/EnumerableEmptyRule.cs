@@ -2,7 +2,7 @@
 
 namespace Newbe.ObjectVisitor.Validation
 {
-    public class EnumerableEmptyRule<T, TValue> : PropertyValidationRuleBase<T, TValue>
+    internal class EnumerableEmptyRule<T, TValue> : PropertyValidationRuleBase<T, TValue>
         where TValue : IEnumerable
     {
         public EnumerableEmptyRule()

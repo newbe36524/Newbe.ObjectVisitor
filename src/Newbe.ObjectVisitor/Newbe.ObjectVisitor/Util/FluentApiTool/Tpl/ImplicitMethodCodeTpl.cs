@@ -1,7 +1,7 @@
 ﻿#pragma warning disable 8618
 namespace Newbe.ObjectVisitor.Tpl
 {
-    public class ImplicitMethodCodeTpl : ICodeTpl
+    internal class ImplicitMethodCodeTpl : ICodeTpl
     {
         public string Returning { get; set; }
         public string InterfaceName { get; set; }

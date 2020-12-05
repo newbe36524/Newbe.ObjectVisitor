@@ -5,6 +5,10 @@ using System.Linq.Expressions;
 
 namespace Newbe.ObjectVisitor.Validation
 {
+    /// <summary>
+    /// Validation rule group builder
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
     public class ValidationRuleGroupBuilder<T> : Newbe.ObjectVisitor.IFluentApi
         , ValidationRuleGroupBuilder<T>.IValidationRuleGroupBuilder_S
     {
@@ -12,6 +16,10 @@ namespace Newbe.ObjectVisitor.Validation
         private readonly ValidationRuleGroup<T> _nowGroup;
         private ValidationRule<T> _nowRule;
 
+        /// <summary>
+        /// New ValidationRuleGroupBuilder
+        /// </summary>
+        /// <param name="context"></param>
         public ValidationRuleGroupBuilder(List<ValidationRuleGroup<T>> context)
         {
             _context = context;
@@ -21,7 +29,7 @@ namespace Newbe.ObjectVisitor.Validation
 
         #region UserImpl
 
-        private void Core_GetBuilder(ValidationRuleRelation relation = ValidationRuleRelation.All)
+        private void Core_GetBuilder(ValidationRuleRelation relation = ValidationRuleRelation.And)
         {
             _nowGroup.RuleRelation = relation;
         }
@@ -66,7 +74,12 @@ namespace Newbe.ObjectVisitor.Validation
 
         #region AutoGenerate
 
-        public IValidationRuleGroupBuilder_S GetBuilder(ValidationRuleRelation relation = ValidationRuleRelation.All)
+        /// <summary>
+        /// Create builder
+        /// </summary>
+        /// <param name="relation"></param>
+        /// <returns></returns>
+        public IValidationRuleGroupBuilder_S GetBuilder(ValidationRuleRelation relation = ValidationRuleRelation.And)
         {
             Core_GetBuilder(relation);
             return this;
@@ -107,20 +120,42 @@ namespace Newbe.ObjectVisitor.Validation
         }
 
 
+        /// <summary>
+        /// Validation rule group builder step
+        /// </summary>
         public interface IValidationRuleGroupBuilder_S
         {
+            /// <summary>
+            /// Add a func as validation func
+            /// </summary>
+            /// <param name="func"></param>
+            /// <returns></returns>
             IValidationRuleGroupBuilder_S Validate(Expression<Func<T, bool>> func);
 
-
+            /// <summary>
+            /// Specify error message func when validation failed
+            /// </summary>
+            /// <param name="func"></param>
+            /// <returns></returns>
             IValidationRuleGroupBuilder_S ErrorMessage(Expression<Func<T, string>> func);
 
-
+            /// <summary>
+            /// Specify condition that trigger validation
+            /// </summary>
+            /// <param name="func"></param>
+            /// <returns></returns>
             IValidationRuleGroupBuilder_S If(Expression<Func<T, bool>> func);
 
-
+            /// <summary>
+            /// End now and move to next building step
+            /// </summary>
+            /// <returns></returns>
             IValidationRuleGroupBuilder_S Next();
 
-
+            /// <summary>
+            /// Build validation rule group
+            /// </summary>
+            /// <returns></returns>
             List<ValidationRuleGroup<T>> Build();
         }
 

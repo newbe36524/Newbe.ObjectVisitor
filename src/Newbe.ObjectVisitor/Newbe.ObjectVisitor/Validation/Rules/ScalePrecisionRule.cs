@@ -1,6 +1,6 @@
 ﻿namespace Newbe.ObjectVisitor.Validation
 {
-    public class ScalePrecisionRule<T, TValue> : PropertyValidationRuleBase<T, TValue>
+    internal class ScalePrecisionRule<T, TValue> : PropertyValidationRuleBase<T, TValue>
     {
         public ScalePrecisionRule(
             int scale,

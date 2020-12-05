@@ -4,7 +4,7 @@ using System.Linq.Expressions;
 
 namespace Newbe.ObjectVisitor.Validation
 {
-    public static class IsInRangeRuleFactory
+    internal static class IsInRangeRuleFactory
     {
         public static IsInRangeRule<T, TValue> Create<T, TValue>(
             TValue min,

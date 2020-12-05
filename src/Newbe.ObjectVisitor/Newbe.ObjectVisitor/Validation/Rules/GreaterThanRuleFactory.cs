@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Newbe.ObjectVisitor.Validation
 {
-    public static class GreaterThanRuleFactory
+    internal static class GreaterThanRuleFactory
     {
         public static GreaterThanRule<T, TValue> Create<T, TValue>(TValue min)
             where TValue : IComparable<TValue>

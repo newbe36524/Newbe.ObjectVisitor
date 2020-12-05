@@ -111,7 +111,7 @@ namespace Newbe.ObjectVisitor
         public static string GetDebugInfo(this IObjectVisitor visitor)
         {
 #if DEBUG
-            return visitor.ToString();
+            return visitor!.ToString();
 #else
             var exp = visitor.CreateExpression();
             var propertyInfo =

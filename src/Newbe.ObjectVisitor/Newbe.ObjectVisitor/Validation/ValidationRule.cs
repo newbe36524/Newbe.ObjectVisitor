@@ -3,6 +3,10 @@ using System.Linq.Expressions;
 
 namespace Newbe.ObjectVisitor.Validation
 {
+    /// <summary>
+    /// Rule of validation
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
     public class ValidationRule<T>
     {
         /// <summary>

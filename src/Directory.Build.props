@@ -7,7 +7,7 @@
     <PackageProjectUrl>https://github.com/newbe36524/Newbe.ObjectVisitor</PackageProjectUrl>
     <RepositoryUrl>https://github.com/newbe36524/Newbe.ObjectVisitor</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
-    <NoWarn>1701;1702;1705;1591</NoWarn>
+    <NoWarn>1701;1702;1705;</NoWarn>
     <LangVersion>8.0</LangVersion>
     <Nullable>enable</Nullable>
     <PackageIcon>icon.png</PackageIcon>

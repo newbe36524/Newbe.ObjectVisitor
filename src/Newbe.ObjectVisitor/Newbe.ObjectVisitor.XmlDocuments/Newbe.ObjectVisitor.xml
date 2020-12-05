@@ -359,10 +359,10 @@
         <member name="M:Newbe.ObjectVisitor.ValueGetter.Create(System.Type,System.Type,System.Reflection.PropertyInfo)">
             <summary>
             Create a getter func to get value from a object property.
+            </summary>
             <example>
             var stringLengthFunc = (Func&lt;string,int&gt;) ValueGetter.Create(typeof(string), typeof(int), typeof(string).GetProperty("Length"))
             </example>
-            </summary>
             <param name="objType">Type of target object</param>
             <param name="valueType">Type of target property</param>
             <param name="info">PropertyInfo of target property</param>
@@ -371,10 +371,10 @@
         <member name="M:Newbe.ObjectVisitor.ValueGetter.Create(System.Type,System.Reflection.PropertyInfo)">
             <summary>
             Create a getter func to get value from a object property.
+            </summary>
             <example>
             var stringLengthFunc = (Func&lt;string,object&gt;) ValueGetter.Create(typeof(string), typeof(string).GetProperty("Length"))
             </example>
-            </summary>
             <param name="objType">Type of target object</param>
             <param name="info">PropertyInfo of target property</param>
             <returns>A Func as Func&lt;objType,object&gt;. </returns>
@@ -385,15 +385,15 @@
             </summary>
             <typeparam name="TTargetObject">Type of target object</typeparam>
             <typeparam name="TPropertyValue">Type of property</typeparam>
-            <typeparam name="TTargetValue">Type of target value. This is used as return value type of func, it can be different from <typeparamref name="TPropertyValue"/>. You must confirm that <typeparamref name="TPropertyValue"/> can be directly cast to <typeparam name="TTargetValue"/>, It will throw a exception otherwise.</typeparam>
+            <typeparam name="TTargetValue">Type of target value. This is used as return value type of func, it can be different from <typeparamref name="TPropertyValue"/>. You must confirm that <typeparamref name="TPropertyValue"/> can be directly cast to <typeparamref name="TTargetValue"/>, It will throw a exception otherwise.</typeparam>
         </member>
         <member name="M:Newbe.ObjectVisitor.ValueGetter`3.GetGetter(System.Reflection.PropertyInfo)">
             <summary>
             Create a getter func to get property value from a object property.
+            </summary>
             <example>
             Func&lt;string,int&gt; stringLengthFunc =  ValueGetter&lt;string, int, int&gt;.GetGetter(typeof(string).GetProperty("Length"))
             </example>
-            </summary>
             <param name="info">PropertyInfo of target property</param>
             <returns>Func as a value getter</returns>
         </member>
@@ -406,10 +406,10 @@
         <member name="M:Newbe.ObjectVisitor.ValueGetter`1.GetGetter(System.Reflection.PropertyInfo)">
             <summary>
             Create a getter func to get property value from a object property.
+            </summary>
             <example>
             Func&lt;string,object&gt; stringLengthFunc =  ValueGetter&lt;string&gt;.GetGetter(typeof(string).GetProperty("Length"))
             </example>
-            </summary>
             <param name="info">PropertyInfo of target property</param>
             <returns>Func as a value getter</returns>
         </member>
@@ -447,7 +447,7 @@
             </summary>
             <typeparam name="TTargetObject">Type of target object</typeparam>
             <typeparam name="TPropertyValue">Type of property</typeparam>
-            <typeparam name="TTargetValue">Type of target value. This is used as type of action input value, it can be different from <typeparamref name="TPropertyValue"/>. You must confirm that <typeparam name="TTargetValue"/> can be directly cast to <typeparamref name="TPropertyValue"/>, It will throw a exception otherwise.</typeparam>
+            <typeparam name="TTargetValue">Type of target value. This is used as type of action input value, it can be different from <typeparamref name="TPropertyValue"/>. You must confirm that <typeparamref name="TTargetValue"/> can be directly cast to <typeparamref name="TPropertyValue"/>, It will throw a exception otherwise.</typeparam>
         </member>
         <member name="M:Newbe.ObjectVisitor.ValueSetter`3.GetSetter(System.Reflection.PropertyInfo)">
             <summary>
@@ -475,20 +475,953 @@
             <param name="info">PropertyInfo of target property</param>
             <returns>Func as a value setter</returns>
         </member>
-        <member name="T:Newbe.ObjectVisitor.ForEachExtensions">
+        <member name="T:Newbe.ObjectVisitor.FailedToConvertExpressionException">
             <summary>
-            for each
+            Failed to convert expression type while creating visitor
             </summary>
         </member>
-        <member name="M:Newbe.ObjectVisitor.PropertyInfoFilters.GetAllInterfaces(System.Type)">
+        <member name="P:Newbe.ObjectVisitor.FailedToConvertExpressionException.SourceExpression">
             <summary>
-            Gets all the interfaces implemented or inherited by the current <paramref name="type" />.
+            Source Expression
             </summary>
-            <param name="type">The Type for which to retrieve the implemented interfaces.</param>
-            <returns>
-            An array of Types representing all the interfaces implemented or inherited by the current
-            <paramref name="type" />, or an empty array if no interfaces are implemented or inherited.
-            </returns>
+        </member>
+        <member name="P:Newbe.ObjectVisitor.FailedToConvertExpressionException.Type">
+            <summary>
+            Type of target type
+            </summary>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.FailedToConvertExpressionException.#ctor(System.Linq.Expressions.Expression,System.Type)">
+            <inheritdoc />
+        </member>
+        <member name="M:Newbe.ObjectVisitor.FailedToConvertExpressionException.#ctor(System.String,System.Linq.Expressions.Expression,System.Type)">
+            <inheritdoc />
+        </member>
+        <member name="M:Newbe.ObjectVisitor.FailedToConvertExpressionException.#ctor(System.String,System.Exception,System.Linq.Expressions.Expression,System.Type)">
+            <inheritdoc />
+        </member>
+        <member name="T:Newbe.ObjectVisitor.MissingBuilderContextHandlerException">
+            <summary>
+            Missing builder context handler
+            </summary>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.MissingBuilderContextHandlerException.#ctor">
+            <inheritdoc />
+        </member>
+        <member name="M:Newbe.ObjectVisitor.MissingBuilderContextHandlerException.#ctor(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:Newbe.ObjectVisitor.MissingBuilderContextHandlerException.#ctor(System.String,System.Exception)">
+            <inheritdoc />
+        </member>
+        <member name="T:Newbe.ObjectVisitor.MissingExtendObjectException">
+            <summary>
+            Missing extend data object
+            </summary>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.MissingExtendObjectException.#ctor">
+            <inheritdoc />
+        </member>
+        <member name="M:Newbe.ObjectVisitor.MissingExtendObjectException.#ctor(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:Newbe.ObjectVisitor.MissingExtendObjectException.#ctor(System.String,System.Exception)">
+            <inheritdoc />
+        </member>
+        <member name="T:Newbe.ObjectVisitor.MissingSourceObjectException">
+            <summary>
+            Missing source object
+            </summary>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.MissingSourceObjectException.#ctor">
+            <inheritdoc />
+        </member>
+        <member name="M:Newbe.ObjectVisitor.MissingSourceObjectException.#ctor(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:Newbe.ObjectVisitor.MissingSourceObjectException.#ctor(System.String,System.Exception)">
+            <inheritdoc />
+        </member>
+        <member name="T:Newbe.ObjectVisitor.ObjectVisitorException">
+            <summary>
+            Base class of expression about object visitor
+            </summary>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.ObjectVisitorException.#ctor">
+            <inheritdoc />
+        </member>
+        <member name="M:Newbe.ObjectVisitor.ObjectVisitorException.#ctor(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:Newbe.ObjectVisitor.ObjectVisitorException.#ctor(System.String,System.Exception)">
+            <inheritdoc />
+        </member>
+        <member name="T:Newbe.ObjectVisitor.ForEachExtensions">
+            <summary>
+            Extension about ForEach
+            </summary>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.ForEachExtensions.ForEach``1(Newbe.ObjectVisitor.OVBuilder{``0}.IOVBuilder_V,System.Linq.Expressions.Expression{System.Action{Newbe.ObjectVisitor.IObjectVisitorContext{``0,System.Object}}},System.Func{System.Reflection.PropertyInfo,System.Boolean})">
+            <summary>
+            Register object visiting operation
+            </summary>
+            <param name="builderContext">Context of object visitor builder</param>
+            <param name="foreachAction">Action of object visiting</param>
+            <param name="propertyInfoFilter">Filter properties of target object those should be visited</param>
+            <typeparam name="T">Type of target object</typeparam>
+            <returns>Object visitor builder</returns>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.ForEachExtensions.ForEach``1(Newbe.ObjectVisitor.OVBuilder{``0}.IOVBuilder_V,System.Linq.Expressions.Expression{System.Action{System.String,System.Object}},System.Func{System.Reflection.PropertyInfo,System.Boolean})">
+            <summary>
+            Register object visiting operation
+            </summary>
+            <param name="builderContext">Context of object visitor builder</param>
+            <param name="foreachAction">Action of object visiting</param>
+            <param name="propertyInfoFilter">Filter properties of target object those should be visited</param>
+            <typeparam name="T">Type of target object</typeparam>
+            <returns>Object visitor builder</returns>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.ForEachExtensions.ForEach``2(Newbe.ObjectVisitor.OVBuilderExt{``0,``1}.IOVBuilderExt_V,System.Linq.Expressions.Expression{System.Action{Newbe.ObjectVisitor.IObjectVisitorContext{``0,``1,System.Object}}},System.Func{System.Reflection.PropertyInfo,System.Boolean})">
+            <summary>
+            Register object visiting operation
+            </summary>
+            <param name="builderContext">Context of object visitor builder</param>
+            <param name="foreachAction">Action of object visiting</param>
+            <param name="propertyInfoFilter">Filter properties of target object those should be visited</param>
+            <typeparam name="T">Type of target object</typeparam>
+            <typeparam name="TExtend">Type of extend data</typeparam>
+            <returns>Object visitor builder</returns>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.ForEachExtensions.ForEach``2(Newbe.ObjectVisitor.OVBuilderExt{``0,``1}.IOVBuilderExt_V,System.Linq.Expressions.Expression{System.Action{System.String,System.Object,``1}},System.Func{System.Reflection.PropertyInfo,System.Boolean})">
+            <summary>
+            Register object visiting operation
+            </summary>
+            <param name="builderContext">Context of object visitor builder</param>
+            <param name="foreachAction">Action of object visiting</param>
+            <param name="propertyInfoFilter">Filter properties of target object those should be visited</param>
+            <typeparam name="T">Type of target object</typeparam>
+            <typeparam name="TExtend">Type of extend data</typeparam>
+            <returns>Object visitor builder</returns>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.ForEachExtensions.ForEach``2(Newbe.ObjectVisitor.OVBuilder{``0}.IOVBuilder_V,System.Linq.Expressions.Expression{System.Action{Newbe.ObjectVisitor.IObjectVisitorContext{``0,``1}}},System.Func{System.Reflection.PropertyInfo,System.Boolean})">
+            <summary>
+            Register object visiting operation
+            </summary>
+            <param name="builderContext">Context of object visitor builder</param>
+            <param name="foreachAction">Action of object visiting</param>
+            <param name="propertyInfoFilter">Filter properties of target object those should be visited</param>
+            <typeparam name="T">Type of target object</typeparam>
+            <typeparam name="TValue">Type of property</typeparam>
+            <returns>Object visitor builder</returns>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.ForEachExtensions.ForEach``2(Newbe.ObjectVisitor.OVBuilder{``0}.IOVBuilder_V,System.Linq.Expressions.Expression{System.Action{System.String,``1}},System.Func{System.Reflection.PropertyInfo,System.Boolean})">
+            <summary>
+            Register object visiting operation
+            </summary>
+            <param name="builderContext">Context of object visitor builder</param>
+            <param name="foreachAction">Action of object visiting</param>
+            <param name="propertyInfoFilter">Filter properties of target object those should be visited</param>
+            <typeparam name="T">Type of target object</typeparam>
+            <typeparam name="TValue">Type of property</typeparam>
+            <returns>Object visitor builder</returns>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.ForEachExtensions.ForEach``3(Newbe.ObjectVisitor.OVBuilderExt{``0,``1}.IOVBuilderExt_V,System.Linq.Expressions.Expression{System.Action{Newbe.ObjectVisitor.IObjectVisitorContext{``0,``1,``2}}},System.Func{System.Reflection.PropertyInfo,System.Boolean})">
+            <summary>
+            Register object visiting operation
+            </summary>
+            <param name="builderContext">Context of object visitor builder</param>
+            <param name="foreachAction">Action of object visiting</param>
+            <param name="propertyInfoFilter">Filter properties of target object those should be visited</param>
+            <typeparam name="T">Type of target object</typeparam>
+            <typeparam name="TValue">Type of property</typeparam>
+            <typeparam name="TExtend">Type of extend data</typeparam>
+            <returns>Object visitor builder</returns>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.ForEachExtensions.ForEach``3(Newbe.ObjectVisitor.OVBuilderExt{``0,``1}.IOVBuilderExt_V,System.Linq.Expressions.Expression{System.Action{System.String,``2,``1}},System.Func{System.Reflection.PropertyInfo,System.Boolean})">
+            <summary>
+            Register object visiting operation
+            </summary>
+            <param name="builderContext">Context of object visitor builder</param>
+            <param name="foreachAction">Action of object visiting</param>
+            <param name="propertyInfoFilter">Filter properties of target object those should be visited</param>
+            <typeparam name="T">Type of target object</typeparam>
+            <typeparam name="TValue">Type of property</typeparam>
+            <typeparam name="TExtend">Type of extend data</typeparam>
+            <returns>Object visitor builder</returns>
+        </member>
+        <member name="T:Newbe.ObjectVisitor.OVBuilder`1">
+            <summary>
+            Object visitor builder
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.OVBuilder`1.#ctor(Newbe.ObjectVisitor.IOvBuilderContext{`0})">
+            <summary>
+            Create a object visitor builder
+            </summary>
+            <param name="context"></param>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.OVBuilder`1.GetBuilder">
+            <summary>
+            Get object visitor builder
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Newbe.ObjectVisitor.OVBuilder`1.IOVBuilder_V">
+            <summary>
+            Object visitor builder step
+            </summary>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.OVBuilder`1.IOVBuilder_V.ForEach(System.Linq.Expressions.Expression{System.Action{Newbe.ObjectVisitor.IObjectVisitorContext{`0,System.Object}}})">
+            <summary>
+            Add a action to visit properties
+            </summary>
+            <param name="foreachAction"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.OVBuilder`1.IOVBuilder_V.ForEach(System.Linq.Expressions.Expression{System.Action{System.String,System.Object}})">
+            <summary>
+            Add a action to visit properties
+            </summary>
+            <param name="foreachAction"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.OVBuilder`1.IOVBuilder_V.ForEach``1(System.Linq.Expressions.Expression{System.Action{Newbe.ObjectVisitor.IObjectVisitorContext{`0,``0}}})">
+            <summary>
+            Add a action to visit properties
+            </summary>
+            <param name="foreachAction"></param>
+            <typeparam name="TValue"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.OVBuilder`1.IOVBuilder_V.ForEach``1(System.Linq.Expressions.Expression{System.Action{System.String,``0}})">
+            <summary>
+            Add a action to visit properties
+            </summary>
+            <param name="foreachAction"></param>
+            <typeparam name="TValue"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.OVBuilder`1.IOVBuilder_V.FilterProperty(System.Func{System.Reflection.PropertyInfo,System.Boolean})">
+            <summary>
+            Filter properties to visit
+            </summary>
+            <param name="propertyInfoFilter"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.OVBuilder`1.IOVBuilder_V.CreateVisitor">
+            <summary>
+            Create visitor
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.OVBuilder`1.IOVBuilder_V.GetContext">
+            <summary>
+            Get context
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Newbe.ObjectVisitor.OVBuilder`1.IOVBuilder_VP">
+            <summary>
+            Object visitor builder step
+            </summary>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.OVBuilder`1.IOVBuilder_VP.ForEach(System.Linq.Expressions.Expression{System.Action{Newbe.ObjectVisitor.IObjectVisitorContext{`0,System.Object}}})">
+            <summary>
+            Add a action to visit properties
+            </summary>
+            <param name="foreachAction"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.OVBuilder`1.IOVBuilder_VP.ForEach(System.Linq.Expressions.Expression{System.Action{System.String,System.Object}})">
+            <summary>
+            Add a action to visit properties
+            </summary>
+            <param name="foreachAction"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.OVBuilder`1.IOVBuilder_VP.ForEach``1(System.Linq.Expressions.Expression{System.Action{Newbe.ObjectVisitor.IObjectVisitorContext{`0,``0}}})">
+            <summary>
+            Add a action to visit properties
+            </summary>
+            <param name="foreachAction"></param>
+            <typeparam name="TValue"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.OVBuilder`1.IOVBuilder_VP.ForEach``1(System.Linq.Expressions.Expression{System.Action{System.String,``0}})">
+            <summary>
+            Add a action to visit properties
+            </summary>
+            <param name="foreachAction"></param>
+            <typeparam name="TValue"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="T:Newbe.ObjectVisitor.OVBuilderExt`2">
+            <summary>
+            Object visitor with extend data
+            </summary>
+            <typeparam name="T"></typeparam>
+            <typeparam name="TExtend"></typeparam>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.OVBuilderExt`2.#ctor(Newbe.ObjectVisitor.IOvBuilderContext{`0,`1})">
+            <summary>
+            Create a object visitor
+            </summary>
+            <param name="context"></param>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.OVBuilderExt`2.GetBuilder">
+            <summary>
+            Create object visitor builder
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Newbe.ObjectVisitor.OVBuilderExt`2.IOVBuilderExt_V">
+            <summary>
+            Object visitor builder step
+            </summary>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.OVBuilderExt`2.IOVBuilderExt_V.ForEach(System.Linq.Expressions.Expression{System.Action{Newbe.ObjectVisitor.IObjectVisitorContext{`0,`1,System.Object}}})">
+            <summary>
+            Add a action to visit properties
+            </summary>
+            <param name="foreachAction"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.OVBuilderExt`2.IOVBuilderExt_V.ForEach(System.Linq.Expressions.Expression{System.Action{System.String,System.Object,`1}})">
+            <summary>
+            Add a action to visit properties
+            </summary>
+            <param name="foreachAction"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.OVBuilderExt`2.IOVBuilderExt_V.ForEach``1(System.Linq.Expressions.Expression{System.Action{Newbe.ObjectVisitor.IObjectVisitorContext{`0,`1,``0}}})">
+            <summary>
+            Add a action to visit properties
+            </summary>
+            <param name="foreachAction"></param>
+            <typeparam name="TValue"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.OVBuilderExt`2.IOVBuilderExt_V.ForEach``1(System.Linq.Expressions.Expression{System.Action{System.String,``0,`1}})">
+            <summary>
+            Add a action to visit properties
+            </summary>
+            <param name="foreachAction"></param>
+            <typeparam name="TValue"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.OVBuilderExt`2.IOVBuilderExt_V.FilterProperty(System.Func{System.Reflection.PropertyInfo,System.Boolean})">
+            <summary>
+            Filter properties to visit
+            </summary>
+            <param name="propertyInfoFilter"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.OVBuilderExt`2.IOVBuilderExt_V.CreateVisitor">
+            <summary>
+            Create visitor
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.OVBuilderExt`2.IOVBuilderExt_V.GetContext">
+            <summary>
+            Get context 
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Newbe.ObjectVisitor.OVBuilderExt`2.IOVBuilderExt_VP">
+            <summary>
+            Object visitor builder step
+            </summary>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.OVBuilderExt`2.IOVBuilderExt_VP.ForEach(System.Linq.Expressions.Expression{System.Action{Newbe.ObjectVisitor.IObjectVisitorContext{`0,`1,System.Object}}})">
+            <summary>
+            Add a action to visit properties
+            </summary>
+            <param name="foreachAction"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.OVBuilderExt`2.IOVBuilderExt_VP.ForEach(System.Linq.Expressions.Expression{System.Action{System.String,System.Object,`1}})">
+            <summary>
+            Add a action to visit properties
+            </summary>
+            <param name="foreachAction"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.OVBuilderExt`2.IOVBuilderExt_VP.ForEach``1(System.Linq.Expressions.Expression{System.Action{Newbe.ObjectVisitor.IObjectVisitorContext{`0,`1,``0}}})">
+            <summary>
+            Add a action to visit properties
+            </summary>
+            <param name="foreachAction"></param>
+            <typeparam name="TValue"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.OVBuilderExt`2.IOVBuilderExt_VP.ForEach``1(System.Linq.Expressions.Expression{System.Action{System.String,``0,`1}})">
+            <summary>
+            Add a action to visit properties
+            </summary>
+            <param name="foreachAction"></param>
+            <typeparam name="TValue"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="T:Newbe.ObjectVisitor.PropertyInfoFilters">
+            <summary>
+            Extend method for creating PropertyInfo filter
+            </summary>
+        </member>
+        <member name="F:Newbe.ObjectVisitor.PropertyInfoFilters.AllPropertyInfo">
+            <summary>
+            All properties ok
+            </summary>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.PropertyInfoFilters.IsOrImplOf``1(System.Reflection.PropertyInfo)">
+            <summary>
+            Check the type of property 'is' or 'implement' the specified <typeparamref name="TInterface"/>
+            </summary>
+            <param name="info">PropertyInfo to be checked</param>
+            <typeparam name="TInterface"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.PropertyInfoFilters.IsOrImplOf``1(System.Type)">
+            <summary>
+            Check the type 'is' or 'implement' the specified <typeparamref name="TInterface"/>
+            </summary>
+            <param name="type">Type to be checked</param>
+            <typeparam name="TInterface">Type of target interface</typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.PropertyInfoFilters.IsOrImplOf(System.Type,System.Type)">
+            <summary>
+            Check the type 'is' or 'implement' the specified <paramref name="interfaceType"/>
+            </summary>
+            <param name="type">Type to be checked</param>
+            <param name="interfaceType">Type of target interface</param>
+            <returns></returns>
+        </member>
+        <member name="T:Newbe.ObjectVisitor.GlobalFactories">
+            <summary>
+            Global factories
+            </summary>
+        </member>
+        <member name="T:Newbe.ObjectVisitor.GlobalFactories.Validation">
+            <summary>
+            Factories for Validation scope
+            </summary>
+        </member>
+        <member name="P:Newbe.ObjectVisitor.GlobalFactories.Validation.RegexFactory">
+            <summary>
+            Regex factory
+            </summary>
+        </member>
+        <member name="T:Newbe.ObjectVisitor.ExpressionHelper">
+            <summary>
+            Helper about <see cref="T:System.Linq.Expressions.Expression"/>
+            </summary>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.ExpressionHelper.GetPropertyInfo``2(System.Linq.Expressions.Expression{System.Func{``0,``1}})">
+            <summary>
+            Get <see cref="T:System.Reflection.PropertyInfo"/> of a expression body
+            </summary>
+            <param name="exp">Expression to be checked</param>
+            <typeparam name="T"></typeparam>
+            <typeparam name="TValue"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.ExpressionHelper.AndAlso``1(System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}},System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})">
+            <summary>
+            Join <paramref name="exp1"/> and <paramref name="exp2"/> into a new expression with &amp;&amp;
+            </summary>
+            <example>
+            <code>
+            Expression&lt;int,bool&gt; exp1 = x =&gt; x &gt; 2; 
+            Expression&lt;int,bool&gt; exp2 = x =&gt; x &lt; 10;
+            var exp3 = exp1.AndAlso(exp1);
+            // exp3 should be as x =&gt; x &gt; 2 &amp;&amp; x &lt; 10
+            </code>
+            </example>
+            <param name="exp1">First expression</param>
+            <param name="exp2">Second expression</param>
+            <typeparam name="T">Type a expression func input</typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.ExpressionHelper.Unwrap(System.Linq.Expressions.LambdaExpression,System.Linq.Expressions.Expression[])">
+            <summary>
+            Unwrap a <see cref="T:System.Linq.Expressions.LambdaExpression"/> into a <see cref="T:System.Linq.Expressions.Expression"/> by replacing parameters
+            </summary>
+            <example>
+            <code>
+            Expression&lt;int,bool&gt; exp1 = x =&gt; x &gt; 2;
+            var bodyExp1 = exp1.Unwrap(Expression.Constant(1));
+            // bodyExp1 should be a new Expression like 1 &gt; 2
+            // please notice, the new expression is not a lambda.
+            </code>
+            </example>
+            <example>
+            <code>
+            Expression&lt;int,bool&gt; exp1 = x =&gt; x &gt; 2;
+            var stringExp = Expression.Parameter(typeof(string), "str");
+            var stringLengthExp = Expression.Property(stringExp, nameof(string.Length));
+            var bodyExp1 = exp1.Unwrap(stringLengthExp);
+            var stringLengthCompareExp = Expression.Lambda&lt;Func&lt;string, bool&gt;&gt;(bodyExp1, stringExp);
+            // stringLengthCompareExp should be a new expression like str=&gt;str.Length > 2
+            </code>
+            </example>
+            <param name="lambdaExpression">lambda expression to be unwrapped</param>
+            <param name="parameterExpression">replacement expressions to parameters of <paramref name="lambdaExpression"/></param>
+            <returns></returns>
+        </member>
+        <member name="T:Newbe.ObjectVisitor.ApiStep">
+            <summary>
+            Definition of API step
+            </summary>
+        </member>
+        <member name="P:Newbe.ObjectVisitor.ApiStep.SourceContent">
+            <summary>
+            Source design content
+            </summary>
+        </member>
+        <member name="P:Newbe.ObjectVisitor.ApiStep.From">
+            <summary>
+            State name of action beginning
+            </summary>
+        </member>
+        <member name="P:Newbe.ObjectVisitor.ApiStep.To">
+            <summary>
+            State name of action ending
+            </summary>
+        </member>
+        <member name="P:Newbe.ObjectVisitor.ApiStep.Action">
+            <summary>
+            State moving action name
+            </summary>
+        </member>
+        <member name="P:Newbe.ObjectVisitor.ApiStep.Share">
+            <summary>
+            Indicate that <see cref="P:Newbe.ObjectVisitor.ApiStep.Action"/> share a logic as <see cref="P:Newbe.ObjectVisitor.ApiStep.Share"/>
+            </summary>
+            <example>
+            <code>
+            e.g. 1
+            A --&gt; B : C()
+            there will be a action named C generated.
+            A --&gt; B : C() :shared D()
+            there will be a action named C generated. It is not user custom function, and it invoke D in it`s block and function D is a user custom function
+            </code>
+            </example>
+        </member>
+        <member name="P:Newbe.ObjectVisitor.ApiStep.Return">
+            <summary>
+            Indicate that the returning type of this action. It is often used in final action.
+            </summary>
+        </member>
+        <member name="P:Newbe.ObjectVisitor.ApiStep.IsStart">
+            <summary>
+            This action is a beginning action
+            </summary>
+        </member>
+        <member name="P:Newbe.ObjectVisitor.ApiStep.IsEnd">
+            <summary>
+            This action is a final action
+            </summary>
+        </member>
+        <member name="P:Newbe.ObjectVisitor.ApiStep.ContainsShare">
+            <summary>
+            Is this action contains share block or not
+            </summary>
+        </member>
+        <member name="P:Newbe.ObjectVisitor.ApiStep.ContainsReturn">
+            <summary>
+            Is this action contains return block or not
+            </summary>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.ApiStep.ToString">
+            <summary>
+            ToString
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Newbe.ObjectVisitor.FluentApiDesign">
+            <summary>
+            Fluent API design
+            </summary>
+        </member>
+        <member name="P:Newbe.ObjectVisitor.FluentApiDesign.SourceDesignContent">
+            <summary>
+            Source design content
+            </summary>
+        </member>
+        <member name="P:Newbe.ObjectVisitor.FluentApiDesign.StateDiagramBlock">
+            <summary>
+            Content block of state diagram
+            </summary>
+        </member>
+        <member name="P:Newbe.ObjectVisitor.FluentApiDesign.ParametersBlock">
+            <summary>
+            Content block of parameters
+            </summary>
+        </member>
+        <member name="P:Newbe.ObjectVisitor.FluentApiDesign.BuilderContextType">
+            <summary>
+            Target builder context type of fluent api
+            </summary>
+        </member>
+        <member name="P:Newbe.ObjectVisitor.FluentApiDesign.Namespace">
+            <summary>
+            Namespace of fluent API
+            </summary>
+        </member>
+        <member name="P:Newbe.ObjectVisitor.FluentApiDesign.BuilderTypeName">
+            <summary>
+            Type of generated builder fluent API
+            </summary>
+        </member>
+        <member name="P:Newbe.ObjectVisitor.FluentApiDesign.ActionMapping">
+            <summary>
+            Mapping parsed from <see cref="P:Newbe.ObjectVisitor.FluentApiDesign.ParametersBlock"/>. It indicate the relationship between short name and full name of action. Key: short name, Value: full name
+            </summary>
+        </member>
+        <member name="P:Newbe.ObjectVisitor.FluentApiDesign.ApiSteps">
+            <summary>
+            API step design of API
+            </summary>
+        </member>
+        <member name="T:Newbe.ObjectVisitor.FluentApiDesignParser">
+            <summary>
+            FluentApiDesignParser
+            </summary>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.FluentApiDesignParser.Parse(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="T:Newbe.ObjectVisitor.FluentApiFileGenerator">
+            <inheritdoc />
+        </member>
+        <member name="F:Newbe.ObjectVisitor.FluentApiFileGenerator.EdgeNodeName">
+            <summary>
+            Node name of beginning node and end node
+            </summary>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.FluentApiFileGenerator.Generate(Newbe.ObjectVisitor.FluentApiDesign)">
+            <inheritdoc />
+        </member>
+        <member name="T:Newbe.ObjectVisitor.FluentApiFiles">
+            <summary>
+            Generated fluent API files
+            </summary>
+        </member>
+        <member name="P:Newbe.ObjectVisitor.FluentApiFiles.Api">
+            <summary>
+            Code of API
+            </summary>
+        </member>
+        <member name="T:Newbe.ObjectVisitor.FluentApiOutput">
+            <summary>
+            Output of a fluent API generation
+            </summary>
+        </member>
+        <member name="P:Newbe.ObjectVisitor.FluentApiOutput.FluentApiFiles">
+            <summary>
+            File content
+            </summary>
+        </member>
+        <member name="P:Newbe.ObjectVisitor.FluentApiOutput.FluentApiDesign">
+            <summary>
+            Source design of API
+            </summary>
+        </member>
+        <member name="T:Newbe.ObjectVisitor.IFluentApi">
+            <summary>
+            Interface for indicate that this API is a fluent api
+            </summary>
+        </member>
+        <member name="T:Newbe.ObjectVisitor.IFluentApiDesignParser">
+            <summary>
+            Fluent API design parser
+            </summary>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.IFluentApiDesignParser.Parse(System.String)">
+            <summary>
+            Parse a design content to <see cref="T:Newbe.ObjectVisitor.FluentApiDesign"/>
+            </summary>
+            <param name="designContent">Content of API design</param>
+            <returns></returns>
+        </member>
+        <member name="T:Newbe.ObjectVisitor.IFluentApiFileGenerator">
+            <summary>
+            Fluent API file generator
+            </summary>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.IFluentApiFileGenerator.Generate(Newbe.ObjectVisitor.FluentApiDesign)">
+            <summary>
+            Generate fluent API
+            </summary>
+            <param name="design">API design</param>
+            <returns></returns>
+        </member>
+        <member name="T:Newbe.ObjectVisitor.FormatToStringExtensions">
+            <summary>
+            Extensions of formatting a object to string 
+            </summary>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.FormatToStringExtensions.FormatToString``1(``0)">
+            <summary>
+            Format a object to string
+            </summary>
+            <param name="obj">Object to be format</param>
+            <typeparam name="T">Type of object</typeparam>
+            <returns></returns>
+        </member>
+        <member name="T:Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilderExtensions">
+            <summary>
+            Extension of property validation fluent API
+            </summary>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilderExtensions.Validate``2(Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder{``0,``1}.IPropertyValidationRuleBuilder_S,System.Linq.Expressions.Expression{System.Func{``1,System.Boolean}})">
+            <summary>
+            Add a new validation rule
+            </summary>
+            <param name="step"></param>
+            <param name="func">New validation func</param>
+            <typeparam name="T"></typeparam>
+            <typeparam name="TValue"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilderExtensions.Property``2(Newbe.ObjectVisitor.Validation.ValidationRuleGroupBuilder{``0}.IValidationRuleGroupBuilder_S,System.Linq.Expressions.Expression{System.Func{``0,``1}})">
+            <summary>
+            Switch to a new property to validate it
+            </summary>
+            <param name="source"></param>
+            <param name="propertyExpression"></param>
+            <typeparam name="T"></typeparam>
+            <typeparam name="TValue"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilderExtensions.Validate``2(Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder{``0,``1}.IPropertyValidationRuleBuilder_S,Newbe.ObjectVisitor.Validation.IPropertyValidationRule{``0,``1})">
+            <summary>
+            Add a new validation rule
+            </summary>
+            <param name="step"></param>
+            <param name="rule">New validation rule</param>
+            <typeparam name="T"></typeparam>
+            <typeparam name="TValue"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="T:Newbe.ObjectVisitor.Validation.ValidationRuleGroupBuilderExtensions">
+            <summary>
+            Extensions of validation rule group building
+            </summary>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.Validation.ValidationRuleGroupBuilderExtensions.Validate``1(Newbe.ObjectVisitor.Validation.ValidationRuleGroupBuilder{``0}.IValidationRuleGroupBuilder_S,System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})">
+            <summary>
+            Add a new validation rule
+            </summary>
+            <param name="source"></param>
+            <param name="func">New validation func</param>
+            <typeparam name="T"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.Validation.ValidationRuleGroupBuilderExtensions.Or``1(Newbe.ObjectVisitor.Validation.ValidationRuleGroupBuilder{``0}.IValidationRuleGroupBuilder_S,System.Func{Newbe.ObjectVisitor.Validation.ValidationRuleGroupBuilder{``0}.IValidationRuleGroupBuilder_S,Newbe.ObjectVisitor.Validation.ValidationRuleGroupBuilder{``0}.IValidationRuleGroupBuilder_S}[])">
+            <summary>
+            Create a new validation group with <see cref="F:Newbe.ObjectVisitor.Validation.ValidationRuleRelation.Or"/> relation
+            </summary>
+            <param name="source"></param>
+            <param name="orFunc">Func to create inner rules in this group</param>
+            <typeparam name="T"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.Validation.ValidationRuleGroupBuilderExtensions.Not``1(Newbe.ObjectVisitor.Validation.ValidationRuleGroupBuilder{``0}.IValidationRuleGroupBuilder_S,System.Func{Newbe.ObjectVisitor.Validation.ValidationRuleGroupBuilder{``0}.IValidationRuleGroupBuilder_S,Newbe.ObjectVisitor.Validation.ValidationRuleGroupBuilder{``0}.IValidationRuleGroupBuilder_S})">
+            <summary>
+            Create a new validation group with <see cref="F:Newbe.ObjectVisitor.Validation.ValidationRuleRelation.Not"/> relation
+            </summary>
+            <param name="source"></param>
+            <param name="notFunc">Func to create inner rule in this group</param>
+            <typeparam name="T"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="T:Newbe.ObjectVisitor.Validation.IValidationResult`1">
+            <summary>
+            Validation result
+            </summary>
+            <typeparam name="T">Type of source object</typeparam>
+        </member>
+        <member name="P:Newbe.ObjectVisitor.Validation.IValidationResult`1.Source">
+            <summary>
+            Source object
+            </summary>
+        </member>
+        <member name="P:Newbe.ObjectVisitor.Validation.IValidationResult`1.Errors">
+            <summary>
+            Error messages
+            </summary>
+        </member>
+        <member name="P:Newbe.ObjectVisitor.Validation.IValidationResult`1.Success">
+            <summary>
+            Validation success
+            </summary>
+        </member>
+        <member name="T:Newbe.ObjectVisitor.Validation.IValidator`1">
+            <summary>
+            Object validator
+            </summary>
+            <typeparam name="T">Type of object to be validated</typeparam>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.Validation.IValidator`1.Validate(`0)">
+            <summary>
+            Validate a value
+            </summary>
+            <param name="value">Value to be validated</param>
+            <returns></returns>
+        </member>
+        <member name="T:Newbe.ObjectVisitor.Validation.OvBuilderExtensions">
+            <summary>
+            Extensions of validator
+            </summary>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.Validation.OvBuilderExtensions.Validate``1(Newbe.ObjectVisitor.OVBuilder{``0}.IOVBuilder_V,System.Collections.Generic.List{Newbe.ObjectVisitor.Validation.ValidationRuleGroup{``0}})">
+            <summary>
+            Create a validator from object visitor builder
+            </summary>
+            <param name="ovBuilder">Object visitor builder</param>
+            <param name="groups">Validation rule groups</param>
+            <typeparam name="T">Type of value to be validated</typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.Validation.OvBuilderExtensions.Validate``1(Newbe.ObjectVisitor.OVBuilder{``0}.IOVBuilder_V,System.Action{Newbe.ObjectVisitor.Validation.ValidationRuleGroupBuilder{``0}.IValidationRuleGroupBuilder_S})">
+            <summary>
+            Create a validator from object visitor builder
+            </summary>
+            <param name="ovBuilder">Object visitor builder</param>
+            <param name="buildRuleAction">Action for building validation rule group created by fluent API</param>
+            <typeparam name="T">Type of value to be validated</typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.Validation.OvBuilderExtensions.Run``1(Newbe.ObjectVisitor.Validation.IValidator{``0},``0)">
+            <summary>
+            Run a validator with specified value
+            </summary>
+            <param name="validator">Object validator</param>
+            <param name="value">Value to be validated</param>
+            <typeparam name="T">Type of <paramref name="value"/></typeparam>
+            <returns></returns>
+        </member>
+        <member name="T:Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder`2">
+            <summary>
+            Property validation rule builder
+            </summary>
+            <typeparam name="T"></typeparam>
+            <typeparam name="TValue"></typeparam>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder`2.#ctor(Newbe.ObjectVisitor.Validation.ValidationRuleGroupBuilder{`0}.IValidationRuleGroupBuilder_S)">
+            <summary>
+            Create PropertyValidationRuleBuilder 
+            </summary>
+            <param name="context"></param>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder`2.GetBuilder(System.Linq.Expressions.Expression{System.Func{`0,`1}})">
+            <summary>
+            Create builder
+            </summary>
+            <param name="propertyExpression"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder`2.IPropertyValidationRuleBuilder_S">
+            <summary>
+            Property validation builder step
+            </summary>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder`2.IPropertyValidationRuleBuilder_S.Validate(System.Linq.Expressions.Expression{System.Func{`0,`1,System.Reflection.PropertyInfo,System.Boolean}})">
+            <summary>
+            Add validation func
+            </summary>
+            <param name="func"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder`2.IPropertyValidationRuleBuilder_S.ErrorMessage(System.Linq.Expressions.Expression{System.Func{`0,`1,System.Reflection.PropertyInfo,System.String}})">
+            <summary>
+            Specify error message if validation failed
+            </summary>
+            <param name="func"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder`2.IPropertyValidationRuleBuilder_S.If(System.Linq.Expressions.Expression{System.Func{`0,`1,System.Reflection.PropertyInfo,System.Boolean}})">
+            <summary>
+            Add condition to trigger validation
+            </summary>
+            <param name="func"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder`2.IPropertyValidationRuleBuilder_S.Next">
+            <summary>
+            Move to next validation rule creation step
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder`2.IPropertyValidationRuleBuilder_S.Property``1(System.Linq.Expressions.Expression{System.Func{`0,``0}})">
+            <summary>
+            Switch to new property to create validation rule
+            </summary>
+            <param name="propertyExpression"></param>
+            <typeparam name="TNewValue"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder`2.IPropertyValidationRuleBuilder_S.Build">
+            <summary>
+            Build validation rule group
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder`2.IPropertyValidationRuleBuilder_S.GetPropertyExpression">
+            <summary>
+            Get property expression
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Newbe.ObjectVisitor.Validation.IPropertyValidationRule`2">
+            <summary>
+            Rule for a specified property
+            </summary>
+            <typeparam name="T">Type of validation target</typeparam>
+            <typeparam name="TValue">Type of validation property</typeparam>
+        </member>
+        <member name="P:Newbe.ObjectVisitor.Validation.IPropertyValidationRule`2.MustExpression">
+            <summary>
+            Validation expression, true for success, false for validation failed
+            </summary>
+        </member>
+        <member name="P:Newbe.ObjectVisitor.Validation.IPropertyValidationRule`2.ErrorMessageExpression">
+            <summary>
+            Error message factory expression, it will be invoke if validation failed
+            </summary>
+        </member>
+        <member name="T:Newbe.ObjectVisitor.Validation.ValidateRule`1">
+            <summary>
+            Helper class to create <see cref="T:Newbe.ObjectVisitor.Validation.ValidationRule`1"/>
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.Validation.ValidateRule`1.GetBuilder">
+            <summary>
+            Create a builder
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Newbe.ObjectVisitor.Validation.ValidateRule">
+            <summary>
+            Helper class to create <see cref="T:Newbe.ObjectVisitor.Validation.ValidationRule`1"/>
+            </summary>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.Validation.ValidateRule.GetBuilder``1(``0)">
+            <summary>
+            Create a builder
+            </summary>
+            <param name="obj"></param>
+            <typeparam name="T"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="T:Newbe.ObjectVisitor.Validation.ValidationRule`1">
+            <summary>
+            Rule of validation
+            </summary>
+            <typeparam name="T"></typeparam>
         </member>
         <member name="P:Newbe.ObjectVisitor.Validation.ValidationRule`1.IfExpression">
             <summary>
@@ -504,6 +1437,476 @@
             <summary>
             Func{T,string}
             </summary>
+        </member>
+        <member name="T:Newbe.ObjectVisitor.Validation.ValidationRuleGroup`1">
+            <summary>
+            A group of <see cref="T:Newbe.ObjectVisitor.Validation.ValidateRule`1"/>
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="P:Newbe.ObjectVisitor.Validation.ValidationRuleGroup`1.RuleRelation">
+            <summary>
+            Relation of rules in the group
+            </summary>
+        </member>
+        <member name="T:Newbe.ObjectVisitor.Validation.ValidationRuleGroupBuilder`1">
+            <summary>
+            Validation rule group builder
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.Validation.ValidationRuleGroupBuilder`1.#ctor(System.Collections.Generic.List{Newbe.ObjectVisitor.Validation.ValidationRuleGroup{`0}})">
+            <summary>
+            New ValidationRuleGroupBuilder
+            </summary>
+            <param name="context"></param>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.Validation.ValidationRuleGroupBuilder`1.GetBuilder(Newbe.ObjectVisitor.Validation.ValidationRuleRelation)">
+            <summary>
+            Create builder
+            </summary>
+            <param name="relation"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Newbe.ObjectVisitor.Validation.ValidationRuleGroupBuilder`1.IValidationRuleGroupBuilder_S">
+            <summary>
+            Validation rule group builder step
+            </summary>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.Validation.ValidationRuleGroupBuilder`1.IValidationRuleGroupBuilder_S.Validate(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+            <summary>
+            Add a func as validation func
+            </summary>
+            <param name="func"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.Validation.ValidationRuleGroupBuilder`1.IValidationRuleGroupBuilder_S.ErrorMessage(System.Linq.Expressions.Expression{System.Func{`0,System.String}})">
+            <summary>
+            Specify error message func when validation failed
+            </summary>
+            <param name="func"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.Validation.ValidationRuleGroupBuilder`1.IValidationRuleGroupBuilder_S.If(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+            <summary>
+            Specify condition that trigger validation
+            </summary>
+            <param name="func"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.Validation.ValidationRuleGroupBuilder`1.IValidationRuleGroupBuilder_S.Next">
+            <summary>
+            End now and move to next building step
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.Validation.ValidationRuleGroupBuilder`1.IValidationRuleGroupBuilder_S.Build">
+            <summary>
+            Build validation rule group
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Newbe.ObjectVisitor.Validation.ValidationRuleRelation">
+            <summary>
+            Relation of validation rules
+            </summary>
+        </member>
+        <member name="F:Newbe.ObjectVisitor.Validation.ValidationRuleRelation.And">
+            <summary>
+            All success. It is as All() in linq.
+            </summary>
+        </member>
+        <member name="F:Newbe.ObjectVisitor.Validation.ValidationRuleRelation.Or">
+            <summary>
+            Any success. It is as Any() in linq.
+            </summary>
+        </member>
+        <member name="F:Newbe.ObjectVisitor.Validation.ValidationRuleRelation.Not">
+            <summary>
+            Negation of rules
+            </summary>
+        </member>
+        <member name="T:Newbe.ObjectVisitor.Validator.PropertyValidationExtensions">
+            <summary>
+            Extensions for property validation
+            </summary>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.Validator.PropertyValidationExtensions.Equal``2(Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder{``0,``1}.IPropertyValidationRuleBuilder_S,``1)">
+            <summary>
+            Value should equals to <paramref name="expected"/>
+            </summary>
+            <param name="step"></param>
+            <param name="expected">Value of expected</param>
+            <typeparam name="T"></typeparam>
+            <typeparam name="TValue"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.Validator.PropertyValidationExtensions.Equal``2(Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder{``0,``1}.IPropertyValidationRuleBuilder_S,``1,System.Collections.Generic.IEqualityComparer{``1})">
+            <summary>
+            Value should equals to <paramref name="expected"/>
+            </summary>
+            <param name="step"></param>
+            <param name="expected">Value of expected</param>
+            <param name="comparer">Value comparer</param>
+            <typeparam name="T"></typeparam>
+            <typeparam name="TValue"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.Validator.PropertyValidationExtensions.NotEqual``2(Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder{``0,``1}.IPropertyValidationRuleBuilder_S,``1)">
+            <summary>
+            Value should not equal to <paramref name="expected"/>
+            </summary>
+            <param name="step"></param>
+            <param name="expected">Value of expected</param>
+            <typeparam name="T"></typeparam>
+            <typeparam name="TValue"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.Validator.PropertyValidationExtensions.NotEqual``2(Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder{``0,``1}.IPropertyValidationRuleBuilder_S,``1,System.Collections.Generic.IEqualityComparer{``1})">
+            <summary>
+            Value should not equal to <paramref name="expected"/>
+            </summary>
+            <param name="step"></param>
+            <param name="expected">Value of expected</param>
+            <param name="comparer">Value comparer</param>
+            <typeparam name="T"></typeparam>
+            <typeparam name="TValue"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.Validator.PropertyValidationExtensions.LessThan``2(Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder{``0,``1}.IPropertyValidationRuleBuilder_S,``1)">
+            <summary>
+            Value should be less than <paramref name="max"/>
+            </summary>
+            <param name="step"></param>
+            <param name="max">Max value</param>
+            <typeparam name="T"></typeparam>
+            <typeparam name="TValue"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.Validator.PropertyValidationExtensions.LessThan``2(Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder{``0,``1}.IPropertyValidationRuleBuilder_S,``1,System.Collections.Generic.IComparer{``1})">
+            <summary>
+            Value should be less than <paramref name="max"/>
+            </summary>
+            <param name="step"></param>
+            <param name="max">Max value</param>
+            <param name="comparer">Value comparer</param>
+            <typeparam name="T"></typeparam>
+            <typeparam name="TValue"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.Validator.PropertyValidationExtensions.LessThanOrEqual``2(Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder{``0,``1}.IPropertyValidationRuleBuilder_S,``1)">
+            <summary>
+            Value should be less than or equal <paramref name="max"/>
+            </summary>
+            <param name="step"></param>
+            <param name="max">Max value</param>
+            <typeparam name="T"></typeparam>
+            <typeparam name="TValue"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.Validator.PropertyValidationExtensions.LessThanOrEqual``2(Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder{``0,``1}.IPropertyValidationRuleBuilder_S,``1,System.Collections.Generic.IComparer{``1})">
+            <summary>
+            Value should be less than or equal <paramref name="max"/>
+            </summary>
+            <param name="step"></param>
+            <param name="max">Max value</param>
+            <param name="comparer">Value comparer</param>
+            <typeparam name="T"></typeparam>
+            <typeparam name="TValue"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.Validator.PropertyValidationExtensions.GreaterThan``2(Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder{``0,``1}.IPropertyValidationRuleBuilder_S,``1)">
+            <summary>
+            Value should be greater than <paramref name="min"/>
+            </summary>
+            <param name="step"></param>
+            <param name="min">Min value</param>
+            <typeparam name="T"></typeparam>
+            <typeparam name="TValue"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.Validator.PropertyValidationExtensions.GreaterThan``2(Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder{``0,``1}.IPropertyValidationRuleBuilder_S,``1,System.Collections.Generic.IComparer{``1})">
+            <summary>
+            Value should be greater than <paramref name="min"/>
+            </summary>
+            <param name="step"></param>
+            <param name="min">Min value</param>
+            <param name="comparer">Value comparer</param>
+            <typeparam name="T"></typeparam>
+            <typeparam name="TValue"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.Validator.PropertyValidationExtensions.GreaterThanOrEqual``2(Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder{``0,``1}.IPropertyValidationRuleBuilder_S,``1)">
+            <summary>
+            Value should be greater than or equal to <paramref name="min"/>
+            </summary>
+            <param name="step"></param>
+            <param name="min">Min value</param>
+            <typeparam name="T"></typeparam>
+            <typeparam name="TValue"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.Validator.PropertyValidationExtensions.GreaterThanOrEqual``2(Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder{``0,``1}.IPropertyValidationRuleBuilder_S,``1,System.Collections.Generic.IComparer{``1})">
+            <summary>
+            Value should be greater than or equal to <paramref name="min"/>
+            </summary>
+            <param name="step"></param>
+            <param name="min">Min value</param>
+            <param name="comparer">Value comparer</param>
+            <typeparam name="T"></typeparam>
+            <typeparam name="TValue"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.Validator.PropertyValidationExtensions.IsInRange``2(Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder{``0,``1}.IPropertyValidationRuleBuilder_S,``1,``1,System.Boolean,System.Boolean)">
+            <summary>
+            Value should be between <paramref name="min"/> and <paramref name="max"/>.
+            You can specify <paramref name="excludeMin"/> and <paramref name="excludeMax"/> to include min and max or not. Default range is [min,max).
+            </summary>
+            <param name="step"></param>
+            <param name="min">Min value</param>
+            <param name="max">Max value</param>
+            <param name="excludeMin">Exclude min value</param>
+            <param name="excludeMax">Exclude max value</param>
+            <typeparam name="T"></typeparam>
+            <typeparam name="TValue"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.Validator.PropertyValidationExtensions.IsInRange``2(Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder{``0,``1}.IPropertyValidationRuleBuilder_S,``1,``1,System.Collections.Generic.IComparer{``1},System.Boolean,System.Boolean)">
+            <summary>
+            Value should be between <paramref name="min"/> and <paramref name="max"/>.
+            You can specify <paramref name="excludeMin"/> and <paramref name="excludeMax"/> to include min and max or not. Default range is [min,max).
+            </summary>
+            <param name="step"></param>
+            <param name="min">Min value</param>
+            <param name="max">Max value</param>
+            <param name="comparer">Value comparer</param>
+            <param name="excludeMin">Exclude min value</param>
+            <param name="excludeMax">Exclude max value</param>
+            <typeparam name="T"></typeparam>
+            <typeparam name="TValue"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.Validator.PropertyValidationExtensions.IsInSet``2(Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder{``0,``1}.IPropertyValidationRuleBuilder_S,System.Collections.Generic.IEnumerable{``1})">
+            <summary>
+            Value should be in a range specified in <paramref name="expectedSet"/>
+            </summary>
+            <param name="step"></param>
+            <param name="expectedSet"></param>
+            <typeparam name="T"></typeparam>
+            <typeparam name="TValue"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.Validator.PropertyValidationExtensions.IsInSet``2(Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder{``0,``1}.IPropertyValidationRuleBuilder_S,System.Collections.Generic.IEnumerable{``1},System.Collections.Generic.IEqualityComparer{``1})">
+            <summary>
+            Value should be in a range specified in <paramref name="expectedSet"/>
+            </summary>
+            <param name="step"></param>
+            <param name="expectedSet"></param>
+            <param name="comparer">Value comparer</param>
+            <typeparam name="T"></typeparam>
+            <typeparam name="TValue"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.Validator.PropertyValidationExtensions.IsNotInSet``2(Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder{``0,``1}.IPropertyValidationRuleBuilder_S,System.Collections.Generic.IEnumerable{``1})">
+            <summary>
+            Value should not be in a range specified in <paramref name="expectedSet"/>. It is like a negation of <see cref="M:Newbe.ObjectVisitor.Validator.PropertyValidationExtensions.IsInSet``2(Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder{``0,``1}.IPropertyValidationRuleBuilder_S,System.Collections.Generic.IEnumerable{``1})"/>
+            </summary>
+            <param name="step"></param>
+            <param name="expectedSet"></param>
+            <typeparam name="T"></typeparam>
+            <typeparam name="TValue"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.Validator.PropertyValidationExtensions.IsNotInSet``2(Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder{``0,``1}.IPropertyValidationRuleBuilder_S,System.Collections.Generic.IEnumerable{``1},System.Collections.Generic.IEqualityComparer{``1})">
+            <summary>
+            Value should not be in a range specified in <paramref name="expectedSet"/>. It is like a negation of <see cref="M:Newbe.ObjectVisitor.Validator.PropertyValidationExtensions.IsInSet``2(Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder{``0,``1}.IPropertyValidationRuleBuilder_S,System.Collections.Generic.IEnumerable{``1})"/>
+            </summary>
+            <param name="step"></param>
+            <param name="expectedSet"></param>
+            <param name="comparer">Value comparer</param>
+            <typeparam name="T"></typeparam>
+            <typeparam name="TValue"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.Validator.PropertyValidationExtensions.Null``2(Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder{``0,``1}.IPropertyValidationRuleBuilder_S)">
+            <summary>
+            Value should be null
+            </summary>
+            <param name="step"></param>
+            <typeparam name="T"></typeparam>
+            <typeparam name="TValue"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.Validator.PropertyValidationExtensions.NotNull``2(Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder{``0,``1}.IPropertyValidationRuleBuilder_S)">
+            <summary>
+            Value should not be null
+            </summary>
+            <param name="step"></param>
+            <typeparam name="T"></typeparam>
+            <typeparam name="TValue"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.Validator.PropertyValidationExtensions.NotEmpty``1(Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder{``0,System.String}.IPropertyValidationRuleBuilder_S)">
+            <summary>
+            Value should not be null or white space
+            </summary>
+            <param name="step"></param>
+            <typeparam name="T"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.Validator.PropertyValidationExtensions.Empty``1(Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder{``0,System.String}.IPropertyValidationRuleBuilder_S)">
+            <summary>
+            Value should be null or white space
+            </summary>
+            <param name="step"></param>
+            <typeparam name="T"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.Validator.PropertyValidationExtensions.NotEmpty``2(Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder{``0,``1}.IPropertyValidationRuleBuilder_S)">
+            <summary>
+            Value should contains one element at least.
+            </summary>
+            <param name="step"></param>
+            <typeparam name="T"></typeparam>
+            <typeparam name="TValue"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.Validator.PropertyValidationExtensions.Empty``2(Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder{``0,``1}.IPropertyValidationRuleBuilder_S)">
+            <summary>
+            Value should contains no element.
+            </summary>
+            <param name="step"></param>
+            <typeparam name="T"></typeparam>
+            <typeparam name="TValue"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.Validator.PropertyValidationExtensions.MatchRegex``1(Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder{``0,System.String}.IPropertyValidationRuleBuilder_S,System.String)">
+            <summary>
+            Value should match regex success.
+            </summary>
+            <param name="step"></param>
+            <param name="pattern">Pattern of regex. It will create a new regex with this pattern by <see cref="P:Newbe.ObjectVisitor.GlobalFactories.Validation.RegexFactory"/></param>
+            <typeparam name="T"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.Validator.PropertyValidationExtensions.MatchRegex``1(Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder{``0,System.String}.IPropertyValidationRuleBuilder_S,System.Text.RegularExpressions.Regex)">
+            <summary>
+            Value should match regex success
+            </summary>
+            <param name="step"></param>
+            <param name="regex"></param>
+            <typeparam name="T"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.Validator.PropertyValidationExtensions.NotMatchRegex``1(Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder{``0,System.String}.IPropertyValidationRuleBuilder_S,System.String)">
+            <summary>
+            Value should not match regex success
+            </summary>
+            <param name="step"></param>
+            <param name="pattern">Pattern of regex. It will create a new regex with this pattern by <see cref="P:Newbe.ObjectVisitor.GlobalFactories.Validation.RegexFactory"/></param>
+            <typeparam name="T"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.Validator.PropertyValidationExtensions.NotMatchRegex``1(Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder{``0,System.String}.IPropertyValidationRuleBuilder_S,System.Text.RegularExpressions.Regex)">
+            <summary>
+            Value should not match regex success
+            </summary>
+            <param name="step"></param>
+            <param name="regex"></param>
+            <typeparam name="T"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.Validator.PropertyValidationExtensions.Length``2(Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder{``0,``1}.IPropertyValidationRuleBuilder_S,System.Int32,System.Int32)">
+            <summary>
+            Count of element in value should be in range [min,max]
+            </summary>
+            <param name="step"></param>
+            <param name="min"></param>
+            <param name="max"></param>
+            <typeparam name="T"></typeparam>
+            <typeparam name="TValue"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.Validator.PropertyValidationExtensions.MinLength``2(Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder{``0,``1}.IPropertyValidationRuleBuilder_S,System.Int32)">
+            <summary>
+            Count of element in value should be greater than or equal to <paramref name="min"/>
+            </summary>
+            <param name="step"></param>
+            <param name="min"></param>
+            <typeparam name="T"></typeparam>
+            <typeparam name="TValue"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.Validator.PropertyValidationExtensions.MaxLength``2(Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder{``0,``1}.IPropertyValidationRuleBuilder_S,System.Int32)">
+            <summary>
+            Count of element in value should be less than or equal to <paramref name="max"/>
+            </summary>
+            <param name="step"></param>
+            <param name="max"></param>
+            <typeparam name="T"></typeparam>
+            <typeparam name="TValue"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.Validator.PropertyValidationExtensions.IsInEnum``2(Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder{``0,``1}.IPropertyValidationRuleBuilder_S,System.Type,System.Nullable{System.Boolean})">
+            <summary>
+            Value should be in range of <paramref name="enumType"/> definition. 
+            </summary>
+            <param name="step"></param>
+            <param name="enumType"></param>
+            <param name="flagged"></param>
+            <typeparam name="T"></typeparam>
+            <typeparam name="TValue"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.Validator.PropertyValidationExtensions.IsInEnum``2(Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder{``0,``1}.IPropertyValidationRuleBuilder_S,System.Nullable{System.Boolean})">
+            <summary>
+            Value should be in range of <typeparamref name="TValue"/> definition. 
+            </summary>
+            <param name="step"></param>
+            <param name="flagged"></param>
+            <typeparam name="T"></typeparam>
+            <typeparam name="TValue"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.Validator.PropertyValidationExtensions.IsInEnumName``1(Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder{``0,System.String}.IPropertyValidationRuleBuilder_S,System.Type)">
+            <summary>
+            Value should be in range of <paramref name="enumType"/> definition. 
+            </summary>
+            <param name="step"></param>
+            <param name="enumType"></param>
+            <typeparam name="T"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.Validator.PropertyValidationExtensions.ScalePrecision``2(Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder{``0,``1}.IPropertyValidationRuleBuilder_S,System.Int32,System.Int32)">
+            <summary>
+            Value should be less than <paramref name="precision"/> digits in total with allowance for <paramref name="scale"/>} decimals 
+            </summary>
+            <param name="step"></param>
+            <param name="scale"></param>
+            <param name="precision"></param>
+            <typeparam name="T"></typeparam>
+            <typeparam name="TValue"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.Validator.PropertyValidationExtensions.Or``2(Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder{``0,``1}.IPropertyValidationRuleBuilder_S,System.Func{Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder{``0,``1}.IPropertyValidationRuleBuilder_S,Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder{``0,``1}.IPropertyValidationRuleBuilder_S}[])">
+            <summary>
+            Create a new validation group which contains one or move rules. Validation success if any of rule success in this group.
+            </summary>
+            <param name="step"></param>
+            <param name="ruleFactories"></param>
+            <typeparam name="T"></typeparam>
+            <typeparam name="TValue"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.Validator.PropertyValidationExtensions.Not``2(Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder{``0,``1}.IPropertyValidationRuleBuilder_S,System.Func{Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder{``0,``1}.IPropertyValidationRuleBuilder_S,Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder{``0,``1}.IPropertyValidationRuleBuilder_S})">
+            <summary>
+            Create a negation of inner validation rule
+            </summary>
+            <param name="step"></param>
+            <param name="notFunc"></param>
+            <typeparam name="T"></typeparam>
+            <typeparam name="TValue"></typeparam>
+            <returns></returns>
         </member>
     </members>
 </doc>

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Newbe.ObjectVisitor.Validation
 {
-    public static class EqualRuleFactory
+    internal static class EqualRuleFactory
     {
         public static EqualRule<T, TValue> Create<T, TValue>(TValue expected)
             where TValue : IEquatable<TValue>

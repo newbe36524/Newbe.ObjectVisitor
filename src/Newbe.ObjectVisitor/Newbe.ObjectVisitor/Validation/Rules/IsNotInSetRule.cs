@@ -5,7 +5,7 @@ using System.Reflection;
 
 namespace Newbe.ObjectVisitor.Validation
 {
-    public class IsNotInSetRule<T, TValue> : IPropertyValidationRule<T, TValue>
+    internal class IsNotInSetRule<T, TValue> : IPropertyValidationRule<T, TValue>
     {
         public IsNotInSetRule(
             ICollection<TValue> expectedSet)

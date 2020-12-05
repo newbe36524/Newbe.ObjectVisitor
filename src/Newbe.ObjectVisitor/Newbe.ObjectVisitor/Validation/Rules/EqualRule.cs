@@ -3,7 +3,7 @@ using System.Linq.Expressions;
 
 namespace Newbe.ObjectVisitor.Validation
 {
-    public class EqualRule<T, TValue> : PropertyValidationRuleBase<T, TValue>
+    internal class EqualRule<T, TValue> : PropertyValidationRuleBase<T, TValue>
     {
         public EqualRule(TValue expected,
             Expression<Func<TValue, bool>> must)

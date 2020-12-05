@@ -2,9 +2,9 @@
 
 namespace Newbe.ObjectVisitor.Validation
 {
-    public class CreateValidationBlockInput : ICreateValidationBlockInput
+    internal class CreateValidationBlockInput : ICreateValidationBlockInput
     {
-        public ParameterExpression InputExpression { get; set; }
-        public ParameterExpression ErrorExpression { get; set; }
+        public ParameterExpression InputExpression { get; set; } = null!;
+        public ParameterExpression ErrorExpression { get; set; } = null!;
     }
 }

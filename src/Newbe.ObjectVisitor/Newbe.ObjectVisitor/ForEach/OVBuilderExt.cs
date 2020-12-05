@@ -4,6 +4,11 @@ using System.Reflection;
 
 namespace Newbe.ObjectVisitor
 {
+    /// <summary>
+    /// Object visitor with extend data
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    /// <typeparam name="TExtend"></typeparam>
     public class OVBuilderExt<T, TExtend> : Newbe.ObjectVisitor.IFluentApi
         , OVBuilderExt<T, TExtend>.IOVBuilderExt_V
         , OVBuilderExt<T, TExtend>.IOVBuilderExt_VP
@@ -11,6 +16,10 @@ namespace Newbe.ObjectVisitor
         private readonly IOvBuilderContext<T, TExtend> _context;
         private Func<PropertyInfo, bool>? _propertyInfoFilter;
 
+        /// <summary>
+        /// Create a object visitor
+        /// </summary>
+        /// <param name="context"></param>
         public OVBuilderExt(IOvBuilderContext<T, TExtend> context)
         {
             _context = context;
@@ -99,6 +108,10 @@ namespace Newbe.ObjectVisitor
 
         #region AutoGenerate
 
+        /// <summary>
+        /// Create object visitor builder
+        /// </summary>
+        /// <returns></returns>
         public IOVBuilderExt_V GetBuilder()
         {
             Core_GetBuilder();
@@ -185,43 +198,102 @@ namespace Newbe.ObjectVisitor
         }
 
 
+        /// <summary>
+        /// Object visitor builder step
+        /// </summary>
         public interface IOVBuilderExt_V
         {
+            /// <summary>
+            /// Add a action to visit properties
+            /// </summary>
+            /// <param name="foreachAction"></param>
+            /// <returns></returns>
             IOVBuilderExt_V ForEach(Expression<Action<IObjectVisitorContext<T, TExtend, object>>> foreachAction);
 
 
+            /// <summary>
+            /// Add a action to visit properties
+            /// </summary>
+            /// <param name="foreachAction"></param>
+            /// <returns></returns>
             IOVBuilderExt_V ForEach(Expression<Action<string, object, TExtend>> foreachAction);
 
 
+            /// <summary>
+            /// Add a action to visit properties
+            /// </summary>
+            /// <param name="foreachAction"></param>
+            /// <typeparam name="TValue"></typeparam>
+            /// <returns></returns>
             IOVBuilderExt_V
                 ForEach<TValue>(Expression<Action<IObjectVisitorContext<T, TExtend, TValue>>> foreachAction);
 
 
+            /// <summary>
+            /// Add a action to visit properties
+            /// </summary>
+            /// <param name="foreachAction"></param>
+            /// <typeparam name="TValue"></typeparam>
+            /// <returns></returns>
             IOVBuilderExt_V ForEach<TValue>(Expression<Action<string, TValue, TExtend>> foreachAction);
 
 
+            /// <summary>
+            /// Filter properties to visit
+            /// </summary>
+            /// <param name="propertyInfoFilter"></param>
+            /// <returns></returns>
             IOVBuilderExt_VP FilterProperty(Func<PropertyInfo, bool>? propertyInfoFilter);
 
 
+            /// <summary>
+            /// Create visitor
+            /// </summary>
+            /// <returns></returns>
             IObjectVisitor<T, TExtend> CreateVisitor();
 
-
+            /// <summary>
+            /// Get context 
+            /// </summary>
+            /// <returns></returns>
             IOvBuilderContext GetContext();
         }
 
 
+        /// <summary>
+        /// Object visitor builder step
+        /// </summary>
         public interface IOVBuilderExt_VP
         {
+            /// <summary>
+            /// Add a action to visit properties
+            /// </summary>
+            /// <param name="foreachAction"></param>
+            /// <returns></returns>
             IOVBuilderExt_V ForEach(Expression<Action<IObjectVisitorContext<T, TExtend, object>>> foreachAction);
 
-
+            /// <summary>
+            /// Add a action to visit properties
+            /// </summary>
+            /// <param name="foreachAction"></param>
+            /// <returns></returns>
             IOVBuilderExt_V ForEach(Expression<Action<string, object, TExtend>> foreachAction);
 
-
+            /// <summary>
+            /// Add a action to visit properties
+            /// </summary>
+            /// <param name="foreachAction"></param>
+            /// <typeparam name="TValue"></typeparam>
+            /// <returns></returns>
             IOVBuilderExt_V
                 ForEach<TValue>(Expression<Action<IObjectVisitorContext<T, TExtend, TValue>>> foreachAction);
 
-
+            /// <summary>
+            /// Add a action to visit properties
+            /// </summary>
+            /// <param name="foreachAction"></param>
+            /// <typeparam name="TValue"></typeparam>
+            /// <returns></returns>
             IOVBuilderExt_V ForEach<TValue>(Expression<Action<string, TValue, TExtend>> foreachAction);
         }
 

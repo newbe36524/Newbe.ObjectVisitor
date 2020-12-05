@@ -52,7 +52,7 @@ namespace Newbe.ObjectVisitor
 #if !DEBUG
             return base.ToString();
 #else
-            return _objectVisitor.ToString();
+            return _objectVisitor!.ToString();
 #endif
         }
     }
@@ -77,7 +77,7 @@ namespace Newbe.ObjectVisitor
 #if !DEBUG
             return base.ToString();
 #else
-            return _objectVisitor.ToString();
+            return _objectVisitor!.ToString();
 #endif
         }
     }

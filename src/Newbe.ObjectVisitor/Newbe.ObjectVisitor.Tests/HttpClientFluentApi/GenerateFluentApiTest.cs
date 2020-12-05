@@ -23,7 +23,7 @@ namespace Newbe.ObjectVisitor.Tests.HttpClientFluentApi
 
             var nodesCs = Path.Combine(AppDomain.CurrentDomain.BaseDirectory!, "../../../", "HttpClientFluentApi",
                 "HttpRequestMessageBuilder.cs");
-            File.WriteAllText(nodesCs, output.FluentApiFiles.AutoGenerate);
+            File.WriteAllText(nodesCs, output.FluentApiFiles.Api);
         }
     }
 }

@@ -13,10 +13,10 @@ namespace Newbe.ObjectVisitor
     {
         /// <summary>
         /// Create a getter func to get value from a object property.
+        /// </summary>
         /// <example>
         /// var stringLengthFunc = (Func&lt;string,int&gt;) ValueGetter.Create(typeof(string), typeof(int), typeof(string).GetProperty("Length"))
         /// </example>
-        /// </summary>
         /// <param name="objType">Type of target object</param>
         /// <param name="valueType">Type of target property</param>
         /// <param name="info">PropertyInfo of target property</param>
@@ -36,10 +36,10 @@ namespace Newbe.ObjectVisitor
 
         /// <summary>
         /// Create a getter func to get value from a object property.
+        /// </summary>
         /// <example>
         /// var stringLengthFunc = (Func&lt;string,object&gt;) ValueGetter.Create(typeof(string), typeof(string).GetProperty("Length"))
         /// </example>
-        /// </summary>
         /// <param name="objType">Type of target object</param>
         /// <param name="info">PropertyInfo of target property</param>
         /// <returns>A Func as Func&lt;objType,object&gt;. </returns>
@@ -91,7 +91,7 @@ namespace Newbe.ObjectVisitor
     /// </summary>
     /// <typeparam name="TTargetObject">Type of target object</typeparam>
     /// <typeparam name="TPropertyValue">Type of property</typeparam>
-    /// <typeparam name="TTargetValue">Type of target value. This is used as return value type of func, it can be different from <typeparamref name="TPropertyValue"/>. You must confirm that <typeparamref name="TPropertyValue"/> can be directly cast to <typeparam name="TTargetValue"/>, It will throw a exception otherwise.</typeparam>
+    /// <typeparam name="TTargetValue">Type of target value. This is used as return value type of func, it can be different from <typeparamref name="TPropertyValue"/>. You must confirm that <typeparamref name="TPropertyValue"/> can be directly cast to <typeparamref name="TTargetValue"/>, It will throw a exception otherwise.</typeparam>
     public static class ValueGetter<TTargetObject, TPropertyValue, TTargetValue>
     {
         private static readonly Func<PropertyInfo, Func<TTargetObject, TTargetValue>> Finder;
@@ -108,10 +108,10 @@ namespace Newbe.ObjectVisitor
 
         /// <summary>
         /// Create a getter func to get property value from a object property.
+        /// </summary>
         /// <example>
         /// Func&lt;string,int&gt; stringLengthFunc =  ValueGetter&lt;string, int, int&gt;.GetGetter(typeof(string).GetProperty("Length"))
         /// </example>
-        /// </summary>
         /// <param name="info">PropertyInfo of target property</param>
         /// <returns>Func as a value getter</returns>
         public static Func<TTargetObject, TTargetValue> GetGetter(PropertyInfo info)
@@ -139,10 +139,10 @@ namespace Newbe.ObjectVisitor
 
         /// <summary>
         /// Create a getter func to get property value from a object property.
+        /// </summary>
         /// <example>
         /// Func&lt;string,object&gt; stringLengthFunc =  ValueGetter&lt;string&gt;.GetGetter(typeof(string).GetProperty("Length"))
         /// </example>
-        /// </summary>
         /// <param name="info">PropertyInfo of target property</param>
         /// <returns>Func as a value getter</returns>
         public static Func<TTargetObject, object> GetGetter(PropertyInfo info)

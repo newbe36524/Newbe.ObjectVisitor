@@ -93,7 +93,7 @@ namespace Newbe.ObjectVisitor
     /// </summary>
     /// <typeparam name="TTargetObject">Type of target object</typeparam>
     /// <typeparam name="TPropertyValue">Type of property</typeparam>
-    /// <typeparam name="TTargetValue">Type of target value. This is used as type of action input value, it can be different from <typeparamref name="TPropertyValue"/>. You must confirm that <typeparam name="TTargetValue"/> can be directly cast to <typeparamref name="TPropertyValue"/>, It will throw a exception otherwise.</typeparam>
+    /// <typeparam name="TTargetValue">Type of target value. This is used as type of action input value, it can be different from <typeparamref name="TPropertyValue"/>. You must confirm that <typeparamref name="TTargetValue"/> can be directly cast to <typeparamref name="TPropertyValue"/>, It will throw a exception otherwise.</typeparam>
     public static class ValueSetter<TTargetObject, TPropertyValue, TTargetValue>
     {
         private static readonly Func<PropertyInfo, Action<TTargetObject, TTargetValue>> Finder;

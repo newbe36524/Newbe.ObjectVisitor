@@ -2,9 +2,15 @@ using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Reflection;
+// ReSharper disable InconsistentNaming
 
 namespace Newbe.ObjectVisitor.Validation
 {
+    /// <summary>
+    /// Property validation rule builder
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    /// <typeparam name="TValue"></typeparam>
     public class PropertyValidationRuleBuilder<T, TValue> : Newbe.ObjectVisitor.IFluentApi
         , PropertyValidationRuleBuilder<T, TValue>.IPropertyValidationRuleBuilder_S
     {
@@ -12,6 +18,10 @@ namespace Newbe.ObjectVisitor.Validation
         private PropertyInfo _propertyInfo = null!;
         private ValidationRuleGroupBuilder<T>.IValidationRuleGroupBuilder_S _context;
 
+        /// <summary>
+        /// Create PropertyValidationRuleBuilder 
+        /// </summary>
+        /// <param name="context"></param>
         public PropertyValidationRuleBuilder(ValidationRuleGroupBuilder<T>.IValidationRuleGroupBuilder_S context)
         {
             _context = context;
@@ -90,6 +100,11 @@ namespace Newbe.ObjectVisitor.Validation
 
         #region AutoGenerate
 
+        /// <summary>
+        /// Create builder
+        /// </summary>
+        /// <param name="propertyExpression"></param>
+        /// <returns></returns>
         public IPropertyValidationRuleBuilder_S GetBuilder(Expression<Func<T, TValue>> propertyExpression)
         {
             Core_GetBuilder(propertyExpression);
@@ -147,27 +162,62 @@ namespace Newbe.ObjectVisitor.Validation
         }
 
 
+        /// <summary>
+        /// Property validation builder step
+        /// </summary>
         public interface IPropertyValidationRuleBuilder_S
         {
+            /// <summary>
+            /// Add validation func
+            /// </summary>
+            /// <param name="func"></param>
+            /// <returns></returns>
             IPropertyValidationRuleBuilder_S Validate(Expression<Func<T, TValue, PropertyInfo, bool>> func);
 
-
+            /// <summary>
+            /// Specify error message if validation failed
+            /// </summary>
+            /// <param name="func"></param>
+            /// <returns></returns>
             IPropertyValidationRuleBuilder_S ErrorMessage(Expression<Func<T, TValue, PropertyInfo, string>> func);
 
 
+            /// <summary>
+            /// Add condition to trigger validation
+            /// </summary>
+            /// <param name="func"></param>
+            /// <returns></returns>
             IPropertyValidationRuleBuilder_S If(Expression<Func<T, TValue, PropertyInfo, bool>> func);
 
 
+            /// <summary>
+            /// Move to next validation rule creation step
+            /// </summary>
+            /// <returns></returns>
             IPropertyValidationRuleBuilder_S Next();
 
 
+            /// <summary>
+            /// Switch to new property to create validation rule
+            /// </summary>
+            /// <param name="propertyExpression"></param>
+            /// <typeparam name="TNewValue"></typeparam>
+            /// <returns></returns>
             PropertyValidationRuleBuilder<T, TNewValue>.IPropertyValidationRuleBuilder_S Property<TNewValue>(
                 Expression<Func<T, TNewValue>> propertyExpression);
 
 
+            /// <summary>
+            /// Build validation rule group
+            /// </summary>
+            /// <returns></returns>
             List<ValidationRuleGroup<T>> Build();
 
 
+            /// <summary>
+            /// Get property expression
+            /// </summary>
+            /// <returns></returns>
             Expression<Func<T, TValue>> GetPropertyExpression();
         }
 

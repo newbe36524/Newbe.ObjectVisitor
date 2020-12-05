@@ -2,14 +2,14 @@
 
 namespace Newbe.ObjectVisitor.Validation
 {
-    public class ValidationBlockExpressionFactory : IValidationBlockExpressionFactory
+    internal class ValidationBlockExpressionFactory : IValidationBlockExpressionFactory
     {
         public IValidationBlockExpressionFactoryHandler Create<T>(ValidationRuleGroup<T> ruleGroup)
         {
             return ruleGroup.RuleRelation switch
             {
-                ValidationRuleRelation.All => new AndValidationBlockExpressionFactoryHandler<T>(ruleGroup),
-                ValidationRuleRelation.Any => new OrValidationBlockExpressionFactoryHandler<T>(ruleGroup),
+                ValidationRuleRelation.And => new AndValidationBlockExpressionFactoryHandler<T>(ruleGroup),
+                ValidationRuleRelation.Or => new OrValidationBlockExpressionFactoryHandler<T>(ruleGroup),
                 ValidationRuleRelation.Not =>
                     // TODO message
                     new NotValidationBlockExpressionFactoryHandler<T>(ruleGroup.Single(), x => "Error"),

@@ -1,6 +1,6 @@
 ﻿namespace Newbe.ObjectVisitor.Tpl
 {
-    public interface ICodeTpl
+    internal interface ICodeTpl
     {
         string Template { get; }
         string Format();

@@ -1,6 +1,6 @@
 ﻿namespace Newbe.ObjectVisitor.Validation
 {
-    public class StringNotEmptyRule<T> : PropertyValidationRuleBase<T, string>
+    internal class StringNotEmptyRule<T> : PropertyValidationRuleBase<T, string>
     {
         public StringNotEmptyRule()
         {

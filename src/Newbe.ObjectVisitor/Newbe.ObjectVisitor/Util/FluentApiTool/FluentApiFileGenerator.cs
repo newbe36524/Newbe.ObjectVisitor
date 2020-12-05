@@ -5,10 +5,15 @@ using Newbe.ObjectVisitor.Tpl;
 
 namespace Newbe.ObjectVisitor
 {
+    /// <inheritdoc />
     public class FluentApiFileGenerator : IFluentApiFileGenerator
     {
+        /// <summary>
+        /// Node name of beginning node and end node
+        /// </summary>
         public const string EdgeNodeName = "[*]";
 
+        /// <inheritdoc />
         public FluentApiOutput Generate(FluentApiDesign design)
         {
             var steps = ReplaceWithMapping(design.ApiSteps, design.ActionMapping);
@@ -167,7 +172,7 @@ namespace Newbe.ObjectVisitor
                 FluentApiDesign = design,
                 FluentApiFiles = new FluentApiFiles
                 {
-                    AutoGenerate = builderImplCodeTemplate.Format(),
+                    Api = builderImplCodeTemplate.Format(),
                 }
             };
             return re;
@@ -288,8 +293,13 @@ namespace Newbe.ObjectVisitor
             return action.Substring(0, index);
         }
 
-        static string GetSharedMethodName(string action)
+        static string GetSharedMethodName(string? action)
         {
+            if (action == null)
+            {
+                return string.Empty;
+            }
+
             return $"Shared_{GetMethodName(action)}";
         }
 
@@ -305,10 +315,10 @@ namespace Newbe.ObjectVisitor
             return re;
         }
 
-        public class Node
+        internal class Node
         {
-            public string Name { get; set; }
-            public List<ApiStep> Steps { get; set; }
+            public string Name { get; set; } = null!;
+            public List<ApiStep> Steps { get; set; } = new List<ApiStep>();
         }
     }
 }

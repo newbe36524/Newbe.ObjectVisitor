@@ -2,7 +2,7 @@
 
 namespace Newbe.ObjectVisitor.Validation
 {
-    public class MatchRegexRule<T> : PropertyValidationRuleBase<T, string>
+    internal class MatchRegexRule<T> : PropertyValidationRuleBase<T, string>
     {
         public MatchRegexRule(Regex regex)
         {

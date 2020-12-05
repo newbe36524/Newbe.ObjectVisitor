@@ -4,7 +4,7 @@ using System.Reflection;
 
 namespace Newbe.ObjectVisitor.Validation
 {
-    public abstract class PropertyValidationRuleBase<T, TValue> : IPropertyValidationRule<T, TValue>
+    internal abstract class PropertyValidationRuleBase<T, TValue> : IPropertyValidationRule<T, TValue>
     {
         public Expression<Func<TValue, bool>> MustExpression { get; protected set; } = null!;
         public Expression<Func<T, TValue, PropertyInfo, string>> ErrorMessageExpression { get; protected set; } = null!;

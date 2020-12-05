@@ -35,7 +35,7 @@ namespace Newbe.ObjectVisitor.Tests.Validator
                 .Build();
             rules.Count.Should().Be(1);
             var g = rules.Single();
-            g.RuleRelation.Should().Be(ValidationRuleRelation.Any);
+            g.RuleRelation.Should().Be(ValidationRuleRelation.Or);
         }
     }
 }

@@ -5,52 +5,56 @@ using System.Reflection;
 
 namespace Newbe.ObjectVisitor
 {
+    /// <summary>
+    /// Extend method for creating PropertyInfo filter
+    /// </summary>
     public static class PropertyInfoFilters
     {
+        /// <summary>
+        /// All properties ok
+        /// </summary>
         public static readonly Func<PropertyInfo, bool> AllPropertyInfo = x => true;
 
+        /// <summary>
+        /// Check the type of property 'is' or 'implement' the specified <typeparamref name="TInterface"/>
+        /// </summary>
+        /// <param name="info">PropertyInfo to be checked</param>
+        /// <typeparam name="TInterface"></typeparam>
+        /// <returns></returns>
         public static bool IsOrImplOf<TInterface>(this PropertyInfo info)
         {
             return info.PropertyType.IsOrImplOf<TInterface>();
         }
 
+        /// <summary>
+        /// Check the type 'is' or 'implement' the specified <typeparamref name="TInterface"/>
+        /// </summary>
+        /// <param name="type">Type to be checked</param>
+        /// <typeparam name="TInterface">Type of target interface</typeparam>
+        /// <returns></returns>
         public static bool IsOrImplOf<TInterface>(this Type type)
         {
             return type.IsOrImplOf(typeof(TInterface));
         }
-        
-        
-        public static bool IsOrImplOf(this Type type,Type interfaceType)
+
+        /// <summary>
+        /// Check the type 'is' or 'implement' the specified <paramref name="interfaceType"/>
+        /// </summary>
+        /// <param name="type">Type to be checked</param>
+        /// <param name="interfaceType">Type of target interface</param>
+        /// <returns></returns>
+        public static bool IsOrImplOf(this Type type, Type interfaceType)
         {
             return GetAll().Contains(interfaceType);
 
             IEnumerable<Type> GetAll()
             {
                 yield return type;
-                foreach (var t in GetAllInterfaces(type))
+                foreach (var t in type.GetAllInterfaces())
                 {
                     yield return t;
                 }
             }
-        }
-
-        /// <summary>
-        /// Gets all the interfaces implemented or inherited by the current <paramref name="type" />.
-        /// </summary>
-        /// <param name="type">The Type for which to retrieve the implemented interfaces.</param>
-        /// <returns>
-        /// An array of Types representing all the interfaces implemented or inherited by the current
-        /// <paramref name="type" />, or an empty array if no interfaces are implemented or inherited.
-        /// </returns>
-        public static Type[] GetAllInterfaces(this Type type)
-        {
-            var source = new List<Type>();
-            for (; (object) type != null; type = type.GetTypeInfo().BaseType)
-            {
-                source.AddRange(type.GetTypeInfo().ImplementedInterfaces);
-            }
-
-            return source.Distinct().ToArray();
         }
     }
 }

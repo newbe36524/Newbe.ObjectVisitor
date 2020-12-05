@@ -1,6 +1,6 @@
 ﻿namespace Newbe.ObjectVisitor.Validation
 {
-    public class ClassNotNullRule<T, TValue> : PropertyValidationRuleBase<T, TValue>
+    internal class ClassNotNullRule<T, TValue> : PropertyValidationRuleBase<T, TValue>
         where TValue : class
     {
         public ClassNotNullRule()

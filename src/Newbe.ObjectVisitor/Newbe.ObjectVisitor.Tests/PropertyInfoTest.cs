@@ -75,10 +75,10 @@ namespace Newbe.ObjectVisitor.Tests
 
         public class TestModel
         {
-            public string? Name { get; set; }
-            public string? NickName { get; set; }
-            public int? Age { get; set; }
-            public string? Type { get; set; }
+            public string Name { get; set; }
+            public string NickName { get; set; }
+            public int Age { get; set; }
+            public string Type { get; set; }
         }
     }
 }

@@ -4,7 +4,7 @@ using System.Linq.Expressions;
 
 namespace Newbe.ObjectVisitor.Validation
 {
-    public static class RuleExpressionHelper
+    internal static class RuleExpressionHelper
     {
         public static Expression<Func<TValue, bool>> Equal<TValue>(TValue expected)
             where TValue : IEquatable<TValue>

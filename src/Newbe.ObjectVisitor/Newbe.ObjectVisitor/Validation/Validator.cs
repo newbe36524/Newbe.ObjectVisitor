@@ -6,29 +6,22 @@ using System.Reflection;
 
 namespace Newbe.ObjectVisitor.Validation
 {
-    public class Validator<T> : IValidator<T>
+    internal class Validator<T> : IValidator<T>
     {
-        private IEnumerable<IValidationBlockExpressionFactoryHandler> _factories;
-        private Expression<Func<T, IValidationResult<T>>> _bodyExp;
-        private Func<T, IValidationResult<T>> _func;
+        private readonly IEnumerable<IValidationBlockExpressionFactoryHandler> _factories;
+        private Expression<Func<T, IValidationResult<T>>> _bodyExp = null!;
+        private Func<T, IValidationResult<T>> _func = null!;
 
         public Validator(
-            List<ValidationRuleGroup<T>> ruleGroups)
+            IEnumerable<ValidationRuleGroup<T>> ruleGroups)
         {
             IValidationBlockExpressionFactory factory = new ValidationBlockExpressionFactory();
-            var handlers = ruleGroups.Select(x => factory.Create(x));
-            InitValidator(handlers);
+            _factories = ruleGroups.Select(x => factory.Create(x));
+            InitValidator();
         }
 
-        public Validator(
-            IEnumerable<IValidationBlockExpressionFactoryHandler> factories)
+        private void InitValidator()
         {
-            InitValidator(factories);
-        }
-
-        private void InitValidator(IEnumerable<IValidationBlockExpressionFactoryHandler> factories)
-        {
-            _factories = factories;
             var inputExp = Expression.Parameter(typeof(T), "input");
             var errorExp = Expression.Variable(typeof(HashSet<string>), "errors");
             var block = Expression.Block(new[] {errorExp}, BlockItems());
