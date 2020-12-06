@@ -1115,79 +1115,79 @@
         </member>
         <member name="T:Newbe.ObjectVisitor.FluentApiOutput">
             <summary>
-            Output of a fluent API generation
+            输出 Fluent API 生成代码
             </summary>
         </member>
         <member name="P:Newbe.ObjectVisitor.FluentApiOutput.FluentApiFiles">
             <summary>
-            File content
+            文件内容
             </summary>
         </member>
         <member name="P:Newbe.ObjectVisitor.FluentApiOutput.FluentApiDesign">
             <summary>
-            Source design of API
+            原始设计内容
             </summary>
         </member>
         <member name="T:Newbe.ObjectVisitor.IFluentApi">
             <summary>
-            Interface for indicate that this API is a fluent api
+            用于指示此 API 是 Fluent API 的接口
             </summary>
         </member>
         <member name="T:Newbe.ObjectVisitor.IFluentApiDesignParser">
             <summary>
-            Fluent API design parser
+            Fluent API 设计解析器
             </summary>
         </member>
         <member name="M:Newbe.ObjectVisitor.IFluentApiDesignParser.Parse(System.String)">
             <summary>
-            Parse a design content to <see cref="T:Newbe.ObjectVisitor.FluentApiDesign"/>
+            将设计内容解析为 <see cref="T:Newbe.ObjectVisitor.FluentApiDesign"/>
             </summary>
-            <param name="designContent">Content of API design</param>
+            <param name="designContent">API 设计的内容</param>
             <returns/>
         </member>
         <member name="T:Newbe.ObjectVisitor.IFluentApiFileGenerator">
             <summary>
-            Fluent API file generator
+            Fluent API 文件生成器
             </summary>
         </member>
         <member name="M:Newbe.ObjectVisitor.IFluentApiFileGenerator.Generate(Newbe.ObjectVisitor.FluentApiDesign)">
             <summary>
-            Generate fluent API
+            生成的 Fluent API
             </summary>
-            <param name="design">API design</param>
+            <param name="design">API 设计</param>
             <returns/>
         </member>
         <member name="T:Newbe.ObjectVisitor.FormatToStringExtensions">
             <summary>
-            Extensions of formatting a object to string 
+            将对象格式化为字符串的扩展 
             </summary>
         </member>
         <member name="M:Newbe.ObjectVisitor.FormatToStringExtensions.FormatToString``1(``0)">
             <summary>
-            Format a object to string
+            将对象格式化为字符串
             </summary>
-            <param name="obj">Object to be format</param>
-            <typeparam name="T">Type of object</typeparam>
+            <param name="obj">要格式化的对象</param>
+            <typeparam name="T">对象类型</typeparam>
             <returns/>
         </member>
         <member name="T:Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilderExtensions">
             <summary>
-            Extension of property validation fluent API
+            属性验证 Fluent API
             </summary>
         </member>
         <member name="M:Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilderExtensions.Validate``2(Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder{``0,``1}.IPropertyValidationRuleBuilder_S,System.Linq.Expressions.Expression{System.Func{``1,System.Boolean}})">
             <summary>
-            Add a new validation rule
+            添加新的验证规则
             </summary>
             <param name="step"/>
-            <param name="func">New validation func</param>
+            <param name="func">新验证 func</param>
             <typeparam name="T"/>
             <typeparam name="TValue"/>
             <returns/>
         </member>
         <member name="M:Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilderExtensions.Property``2(Newbe.ObjectVisitor.Validation.ValidationRuleGroupBuilder{``0}.IValidationRuleGroupBuilder_S,System.Linq.Expressions.Expression{System.Func{``0,``1}})">
             <summary>
-            Switch to a new property to validate it
+            切换到新属性以进行验证
             </summary>
             <param name="source"/>
             <param name="propertyExpression"/>
@@ -1197,167 +1197,167 @@
         </member>
         <member name="M:Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilderExtensions.Validate``2(Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder{``0,``1}.IPropertyValidationRuleBuilder_S,Newbe.ObjectVisitor.Validation.IPropertyValidationRule{``0,``1})">
             <summary>
-            Add a new validation rule
+            添加新的验证规则
             </summary>
             <param name="step"/>
-            <param name="rule">New validation rule</param>
+            <param name="rule">新的验证规则</param>
             <typeparam name="T"/>
             <typeparam name="TValue"/>
             <returns/>
         </member>
         <member name="T:Newbe.ObjectVisitor.Validation.ValidationRuleGroupBuilderExtensions">
             <summary>
-            Extensions of validation rule group building
+            验证规则组构建的扩展
             </summary>
         </member>
         <member name="M:Newbe.ObjectVisitor.Validation.ValidationRuleGroupBuilderExtensions.Validate``1(Newbe.ObjectVisitor.Validation.ValidationRuleGroupBuilder{``0}.IValidationRuleGroupBuilder_S,System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})">
             <summary>
-            Add a new validation rule
+            添加新的验证规则
             </summary>
             <param name="source"/>
-            <param name="func">New validation func</param>
+            <param name="func">新验证 func</param>
             <typeparam name="T"/>
             <returns/>
         </member>
         <member name="M:Newbe.ObjectVisitor.Validation.ValidationRuleGroupBuilderExtensions.Or``1(Newbe.ObjectVisitor.Validation.ValidationRuleGroupBuilder{``0}.IValidationRuleGroupBuilder_S,System.Func{Newbe.ObjectVisitor.Validation.ValidationRuleGroupBuilder{``0}.IValidationRuleGroupBuilder_S,Newbe.ObjectVisitor.Validation.ValidationRuleGroupBuilder{``0}.IValidationRuleGroupBuilder_S}[])">
             <summary>
-            Create a new validation group with <see cref="F:Newbe.ObjectVisitor.Validation.ValidationRuleRelation.Or"/> relation
+            创建新的验证组，组内关系为 <see cref="F:Newbe.ObjectVisitor.Validation.ValidationRuleRelation.Or"/> 关系
             </summary>
             <param name="source"/>
-            <param name="orFunc">Func to create inner rules in this group</param>
+            <param name="orFunc">在此组中创建内部规则的 func</param>
             <typeparam name="T"/>
             <returns/>
         </member>
         <member name="M:Newbe.ObjectVisitor.Validation.ValidationRuleGroupBuilderExtensions.Not``1(Newbe.ObjectVisitor.Validation.ValidationRuleGroupBuilder{``0}.IValidationRuleGroupBuilder_S,System.Func{Newbe.ObjectVisitor.Validation.ValidationRuleGroupBuilder{``0}.IValidationRuleGroupBuilder_S,Newbe.ObjectVisitor.Validation.ValidationRuleGroupBuilder{``0}.IValidationRuleGroupBuilder_S})">
             <summary>
-            Create a new validation group with <see cref="F:Newbe.ObjectVisitor.Validation.ValidationRuleRelation.Not"/> relation
+            创建新的验证组，组内关系为 <see cref="F:Newbe.ObjectVisitor.Validation.ValidationRuleRelation.Not"/> 关系
             </summary>
             <param name="source"/>
-            <param name="notFunc">Func to create inner rule in this group</param>
+            <param name="notFunc">在此组中创建内部规则的 func</param>
             <typeparam name="T"/>
             <returns/>
         </member>
         <member name="T:Newbe.ObjectVisitor.Validation.IValidationResult`1">
             <summary>
-            Validation result
+            验证结果
             </summary>
-            <typeparam name="T">Type of source object</typeparam>
+            <typeparam name="T">目标对象的类型</typeparam>
         </member>
         <member name="P:Newbe.ObjectVisitor.Validation.IValidationResult`1.Source">
             <summary>
-            Source object
+            原始对象
             </summary>
         </member>
         <member name="P:Newbe.ObjectVisitor.Validation.IValidationResult`1.Errors">
             <summary>
-            Error messages
+            错误消息
             </summary>
         </member>
         <member name="P:Newbe.ObjectVisitor.Validation.IValidationResult`1.Success">
             <summary>
-            Validation success
+            验证成功
             </summary>
         </member>
         <member name="T:Newbe.ObjectVisitor.Validation.IValidator`1">
             <summary>
-            Object validator
+            对象验证器
             </summary>
-            <typeparam name="T">Type of object to be validated</typeparam>
+            <typeparam name="T">要验证的对象类型</typeparam>
         </member>
         <member name="M:Newbe.ObjectVisitor.Validation.IValidator`1.Validate(`0)">
             <summary>
-            Validate a value
+            验证一个值
             </summary>
-            <param name="value">Value to be validated</param>
+            <param name="value">要验证的值</param>
             <returns/>
         </member>
         <member name="T:Newbe.ObjectVisitor.Validation.OvBuilderExtensions">
             <summary>
-            Extensions of validator
+            验证器的扩展
             </summary>
         </member>
         <member name="M:Newbe.ObjectVisitor.Validation.OvBuilderExtensions.Validate``1(Newbe.ObjectVisitor.OVBuilder{``0}.IOVBuilder_V,System.Collections.Generic.List{Newbe.ObjectVisitor.Validation.ValidationRuleGroup{``0}})">
             <summary>
-            Create a validator from object visitor builder
+            从 object visitor 构建器创建验证器
             </summary>
-            <param name="ovBuilder">Object visitor builder</param>
-            <param name="groups">Validation rule groups</param>
-            <typeparam name="T">Type of value to be validated</typeparam>
+            <param name="ovBuilder">Object visitor 创建者</param>
+            <param name="groups">验证规则组</param>
+            <typeparam name="T">要验证的对象类型</typeparam>
             <returns/>
         </member>
         <member name="M:Newbe.ObjectVisitor.Validation.OvBuilderExtensions.Validate``1(Newbe.ObjectVisitor.OVBuilder{``0}.IOVBuilder_V,System.Action{Newbe.ObjectVisitor.Validation.ValidationRuleGroupBuilder{``0}.IValidationRuleGroupBuilder_S})">
             <summary>
-            Create a validator from object visitor builder
+            从 object visitor 构建器创建验证器
             </summary>
-            <param name="ovBuilder">Object visitor builder</param>
-            <param name="buildRuleAction">Action for building validation rule group created by fluent API</param>
-            <typeparam name="T">Type of value to be validated</typeparam>
+            <param name="ovBuilder">Object visitor 创建者</param>
+            <param name="buildRuleAction">使用 Fluent API 创建验证规则组的操作</param>
+            <typeparam name="T">要验证的对象类型</typeparam>
             <returns/>
         </member>
         <member name="M:Newbe.ObjectVisitor.Validation.OvBuilderExtensions.Run``1(Newbe.ObjectVisitor.Validation.IValidator{``0},``0)">
             <summary>
-            Run a validator with specified value
+            运行一个指定值的验证器
             </summary>
-            <param name="validator">Object validator</param>
-            <param name="value">Value to be validated</param>
-            <typeparam name="T">Type of <paramref name="value"/></typeparam>
+            <param name="validator">对象验证器</param>
+            <param name="value">要验证的值</param>
+            <typeparam name="T">类型关于 <paramref name="value"/></typeparam>
             <returns/>
         </member>
         <member name="T:Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder`2">
             <summary>
-            Property validation rule builder
+            属性验证规则构建器
             </summary>
             <typeparam name="T"/>
             <typeparam name="TValue"/>
         </member>
         <member name="M:Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder`2.#ctor(Newbe.ObjectVisitor.Validation.ValidationRuleGroupBuilder{`0}.IValidationRuleGroupBuilder_S)">
             <summary>
-            Create PropertyValidationRuleBuilder 
+            创建 PropertyValidationRuleBuilder 
             </summary>
             <param name="context"/>
         </member>
         <member name="M:Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder`2.GetBuilder(System.Linq.Expressions.Expression{System.Func{`0,`1}})">
             <summary>
-            Create builder
+            创建构建器
             </summary>
             <param name="propertyExpression"/>
             <returns/>
         </member>
         <member name="T:Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder`2.IPropertyValidationRuleBuilder_S">
             <summary>
-            Property validation builder step
+            " 属性验证 " 构建器步骤
             </summary>
         </member>
         <member name="M:Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder`2.IPropertyValidationRuleBuilder_S.Validate(System.Linq.Expressions.Expression{System.Func{`0,`1,System.Reflection.PropertyInfo,System.Boolean}})">
             <summary>
-            Add validation func
+            添加验证 func
             </summary>
             <param name="func"/>
             <returns/>
         </member>
         <member name="M:Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder`2.IPropertyValidationRuleBuilder_S.ErrorMessage(System.Linq.Expressions.Expression{System.Func{`0,`1,System.Reflection.PropertyInfo,System.String}})">
             <summary>
-            Specify error message if validation failed
+            如果验证失败，指定错误消息
             </summary>
             <param name="func"/>
             <returns/>
         </member>
         <member name="M:Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder`2.IPropertyValidationRuleBuilder_S.If(System.Linq.Expressions.Expression{System.Func{`0,`1,System.Reflection.PropertyInfo,System.Boolean}})">
             <summary>
-            Add condition to trigger validation
+            添加条件以触发验证
             </summary>
             <param name="func"/>
             <returns/>
         </member>
         <member name="M:Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder`2.IPropertyValidationRuleBuilder_S.Next">
             <summary>
-            Move to next validation rule creation step
+            移至下一个验证规则创建步骤
             </summary>
             <returns/>
         </member>
         <member name="M:Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder`2.IPropertyValidationRuleBuilder_S.Property``1(System.Linq.Expressions.Expression{System.Func{`0,``0}})">
             <summary>
-            Switch to new property to create validation rule
+            切换至新属性以创建验证规则
             </summary>
             <param name="propertyExpression"/>
             <typeparam name="TNewValue"/>
@@ -1365,36 +1365,36 @@
         </member>
         <member name="M:Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder`2.IPropertyValidationRuleBuilder_S.Build">
             <summary>
-            Build validation rule group
+            构建验证规则组
             </summary>
             <returns/>
         </member>
         <member name="M:Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder`2.IPropertyValidationRuleBuilder_S.GetPropertyExpression">
             <summary>
-            Get property expression
+            获取属性表达式
             </summary>
             <returns/>
         </member>
         <member name="T:Newbe.ObjectVisitor.Validation.IPropertyValidationRule`2">
             <summary>
-            Rule for a specified property
+            指定属性的规则
             </summary>
-            <typeparam name="T">Type of validation target</typeparam>
-            <typeparam name="TValue">Type of validation property</typeparam>
+            <typeparam name="T">验证目标的类型</typeparam>
+            <typeparam name="TValue">目标属性的类型</typeparam>
         </member>
         <member name="P:Newbe.ObjectVisitor.Validation.IPropertyValidationRule`2.MustExpression">
             <summary>
-            Validation expression, true for success, false for validation failed
+            验证表达式， true 表示成功， false 表示验证失败
             </summary>
         </member>
         <member name="P:Newbe.ObjectVisitor.Validation.IPropertyValidationRule`2.ErrorMessageExpression">
             <summary>
-            Error message factory expression, it will be invoke if validation failed
+            错误消息工厂表达式，如果验证失败，将调用它
             </summary>
         </member>
         <member name="T:Newbe.ObjectVisitor.Validation.ValidationRule`1">
             <summary>
-            Rule of validation
+            验证规则
             </summary>
             <typeparam name="T"/>
         </member>
@@ -1415,24 +1415,24 @@
         </member>
         <member name="T:Newbe.ObjectVisitor.Validation.ValidationRuleBuilder`1">
             <summary>
-            Helper class to create <see cref="T:Newbe.ObjectVisitor.Validation.ValidationRule`1"/>
+            帮助类，用于创建 <see cref="T:Newbe.ObjectVisitor.Validation.ValidationRule`1"/>
             </summary>
             <typeparam name="T"/>
         </member>
         <member name="M:Newbe.ObjectVisitor.Validation.ValidationRuleBuilder`1.GetBuilder">
             <summary>
-            Create a builder
+            创建构建器
             </summary>
             <returns/>
         </member>
         <member name="T:Newbe.ObjectVisitor.Validation.ValidationRuleBuilder">
             <summary>
-            Helper class to create <see cref="T:Newbe.ObjectVisitor.Validation.ValidationRule`1"/>
+            帮助类，用于创建 <see cref="T:Newbe.ObjectVisitor.Validation.ValidationRule`1"/>
             </summary>
         </member>
         <member name="M:Newbe.ObjectVisitor.Validation.ValidationRuleBuilder.GetBuilder``1(``0)">
             <summary>
-            Create a builder
+            创建构建器
             </summary>
             <param name="obj"/>
             <typeparam name="T"/>
@@ -1440,329 +1440,329 @@
         </member>
         <member name="T:Newbe.ObjectVisitor.Validation.ValidationRuleGroup`1">
             <summary>
-            A group of <see cref="T:Newbe.ObjectVisitor.Validation.ValidationRuleBuilder`1"/>
+            一组 <see cref="T:Newbe.ObjectVisitor.Validation.ValidationRuleBuilder`1"/>
             </summary>
             <typeparam name="T"/>
         </member>
         <member name="P:Newbe.ObjectVisitor.Validation.ValidationRuleGroup`1.RuleRelation">
             <summary>
-            Relation of rules in the group
+            组中规则的关系
             </summary>
         </member>
         <member name="T:Newbe.ObjectVisitor.Validation.ValidationRuleGroupBuilder`1">
             <summary>
-            Validation rule group builder
+            验证规则组构建器
             </summary>
             <typeparam name="T"/>
         </member>
         <member name="M:Newbe.ObjectVisitor.Validation.ValidationRuleGroupBuilder`1.#ctor(System.Collections.Generic.List{Newbe.ObjectVisitor.Validation.ValidationRuleGroup{`0}})">
             <summary>
-            New ValidationRuleGroupBuilder
+            新建 ValidationRuleGroupBuilder
             </summary>
             <param name="context"/>
         </member>
         <member name="M:Newbe.ObjectVisitor.Validation.ValidationRuleGroupBuilder`1.GetBuilder(Newbe.ObjectVisitor.Validation.ValidationRuleRelation)">
             <summary>
-            Create builder
+            创建构建器
             </summary>
             <param name="relation"/>
             <returns/>
         </member>
         <member name="T:Newbe.ObjectVisitor.Validation.ValidationRuleGroupBuilder`1.IValidationRuleGroupBuilder_S">
             <summary>
-            Validation rule group builder step
+            验证规则组构建器步骤
             </summary>
         </member>
         <member name="M:Newbe.ObjectVisitor.Validation.ValidationRuleGroupBuilder`1.IValidationRuleGroupBuilder_S.Validate(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
             <summary>
-            Add a func as validation func
+            将 func 添加为验证 func
             </summary>
             <param name="func"/>
             <returns/>
         </member>
         <member name="M:Newbe.ObjectVisitor.Validation.ValidationRuleGroupBuilder`1.IValidationRuleGroupBuilder_S.ErrorMessage(System.Linq.Expressions.Expression{System.Func{`0,System.String}})">
             <summary>
-            Specify error message func when validation failed
+            如果验证失败，指定错误消息
             </summary>
             <param name="func"/>
             <returns/>
         </member>
         <member name="M:Newbe.ObjectVisitor.Validation.ValidationRuleGroupBuilder`1.IValidationRuleGroupBuilder_S.If(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
             <summary>
-            Specify condition that trigger validation
+            添加条件以触发验证
             </summary>
             <param name="func"/>
             <returns/>
         </member>
         <member name="M:Newbe.ObjectVisitor.Validation.ValidationRuleGroupBuilder`1.IValidationRuleGroupBuilder_S.Next">
             <summary>
-            End now and move to next building step
+            立即结束并移至下一个构建步骤
             </summary>
             <returns/>
         </member>
         <member name="M:Newbe.ObjectVisitor.Validation.ValidationRuleGroupBuilder`1.IValidationRuleGroupBuilder_S.Build">
             <summary>
-            Build validation rule group
+            构建验证规则组
             </summary>
             <returns/>
         </member>
         <member name="T:Newbe.ObjectVisitor.Validation.ValidationRuleRelation">
             <summary>
-            Relation of validation rules
+            验证规则之间的关系
             </summary>
         </member>
         <member name="F:Newbe.ObjectVisitor.Validation.ValidationRuleRelation.And">
             <summary>
-            All success. It is as All() in linq.
+            全部成功。 它就像 linq 中的 All() 一样。
             </summary>
         </member>
         <member name="F:Newbe.ObjectVisitor.Validation.ValidationRuleRelation.Or">
             <summary>
-            Any success. It is as Any() in linq.
+            任何一个成功。 它就像 linq 中的 Any() 一样。
             </summary>
         </member>
         <member name="F:Newbe.ObjectVisitor.Validation.ValidationRuleRelation.Not">
             <summary>
-            Negation of rules
+            规则的否定。
             </summary>
         </member>
         <member name="T:Newbe.ObjectVisitor.Validator.PropertyValidationExtensions">
             <summary>
-            Extensions for property validation
+            属性验证扩展
             </summary>
         </member>
         <member name="M:Newbe.ObjectVisitor.Validator.PropertyValidationExtensions.Equal``2(Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder{``0,``1}.IPropertyValidationRuleBuilder_S,``1)">
             <summary>
-            Value should equals to <paramref name="expected"/>
+            值应该等于 <paramref name="expected"/>
             </summary>
             <param name="step"/>
-            <param name="expected">Value of expected</param>
+            <param name="expected">预期值</param>
             <typeparam name="T"/>
             <typeparam name="TValue"/>
             <returns/>
         </member>
         <member name="M:Newbe.ObjectVisitor.Validator.PropertyValidationExtensions.Equal``2(Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder{``0,System.Nullable{``1}}.IPropertyValidationRuleBuilder_S,System.Nullable{``1})">
             <summary>
-            Value should equals to <paramref name="expected"/>
+            值应该等于 <paramref name="expected"/>
             </summary>
             <param name="step"/>
-            <param name="expected">Value of expected</param>
+            <param name="expected">预期值</param>
             <typeparam name="T"/>
             <typeparam name="TValue"/>
             <returns/>
         </member>
         <member name="M:Newbe.ObjectVisitor.Validator.PropertyValidationExtensions.Equal``2(Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder{``0,``1}.IPropertyValidationRuleBuilder_S,``1,System.Collections.Generic.IEqualityComparer{``1})">
             <summary>
-            Value should equals to <paramref name="expected"/>
+            值应该等于 <paramref name="expected"/>
             </summary>
             <param name="step"/>
-            <param name="expected">Value of expected</param>
-            <param name="comparer">Value comparer</param>
+            <param name="expected">预期值</param>
+            <param name="comparer">值比较器</param>
             <typeparam name="T"/>
             <typeparam name="TValue"/>
             <returns/>
         </member>
         <member name="M:Newbe.ObjectVisitor.Validator.PropertyValidationExtensions.NotEqual``2(Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder{``0,``1}.IPropertyValidationRuleBuilder_S,``1)">
             <summary>
-            Value should not equal to <paramref name="expected"/>
+            值不应等于 <paramref name="expected"/>
             </summary>
             <param name="step"/>
-            <param name="expected">Value of expected</param>
+            <param name="expected">预期值</param>
             <typeparam name="T"/>
             <typeparam name="TValue"/>
             <returns/>
         </member>
         <member name="M:Newbe.ObjectVisitor.Validator.PropertyValidationExtensions.NotEqual``2(Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder{``0,System.Nullable{``1}}.IPropertyValidationRuleBuilder_S,System.Nullable{``1})">
             <summary>
-            Value should not equal to <paramref name="expected"/>
+            值不应等于 <paramref name="expected"/>
             </summary>
             <param name="step"/>
-            <param name="expected">Value of expected</param>
+            <param name="expected">预期值</param>
             <typeparam name="T"/>
             <typeparam name="TValue"/>
             <returns/>
         </member>
         <member name="M:Newbe.ObjectVisitor.Validator.PropertyValidationExtensions.NotEqual``2(Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder{``0,``1}.IPropertyValidationRuleBuilder_S,``1,System.Collections.Generic.IEqualityComparer{``1})">
             <summary>
-            Value should not equal to <paramref name="expected"/>
+            值不应等于 <paramref name="expected"/>
             </summary>
             <param name="step"/>
-            <param name="expected">Value of expected</param>
-            <param name="comparer">Value comparer</param>
+            <param name="expected">预期值</param>
+            <param name="comparer">值比较器</param>
             <typeparam name="T"/>
             <typeparam name="TValue"/>
             <returns/>
         </member>
         <member name="M:Newbe.ObjectVisitor.Validator.PropertyValidationExtensions.LessThan``2(Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder{``0,``1}.IPropertyValidationRuleBuilder_S,``1)">
             <summary>
-            Value should be less than <paramref name="max"/>
+            数值应该小于 <paramref name="max"/>
             </summary>
             <param name="step"/>
-            <param name="max">Max value</param>
+            <param name="max">最大值</param>
             <typeparam name="T"/>
             <typeparam name="TValue"/>
             <returns/>
         </member>
         <member name="M:Newbe.ObjectVisitor.Validator.PropertyValidationExtensions.LessThan``2(Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder{``0,System.Nullable{``1}}.IPropertyValidationRuleBuilder_S,``1)">
             <summary>
-            Value should be less than <paramref name="max"/>
+            数值应该小于 <paramref name="max"/>
             </summary>
             <param name="step"/>
-            <param name="max">Max value</param>
+            <param name="max">最大值</param>
             <typeparam name="T"/>
             <typeparam name="TValue"/>
             <returns/>
         </member>
         <member name="M:Newbe.ObjectVisitor.Validator.PropertyValidationExtensions.LessThan``2(Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder{``0,``1}.IPropertyValidationRuleBuilder_S,``1,System.Collections.Generic.IComparer{``1})">
             <summary>
-            Value should be less than <paramref name="max"/>
+            数值应该小于 <paramref name="max"/>
             </summary>
             <param name="step"/>
-            <param name="max">Max value</param>
-            <param name="comparer">Value comparer</param>
+            <param name="max">最大值</param>
+            <param name="comparer">值比较器</param>
             <typeparam name="T"/>
             <typeparam name="TValue"/>
             <returns/>
         </member>
         <member name="M:Newbe.ObjectVisitor.Validator.PropertyValidationExtensions.LessThanOrEqual``2(Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder{``0,``1}.IPropertyValidationRuleBuilder_S,``1)">
             <summary>
-            Value should be less than or equal <paramref name="max"/>
+            值应小于或等于 <paramref name="max"/>
             </summary>
             <param name="step"/>
-            <param name="max">Max value</param>
+            <param name="max">最大值</param>
             <typeparam name="T"/>
             <typeparam name="TValue"/>
             <returns/>
         </member>
         <member name="M:Newbe.ObjectVisitor.Validator.PropertyValidationExtensions.LessThanOrEqual``2(Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder{``0,System.Nullable{``1}}.IPropertyValidationRuleBuilder_S,``1)">
             <summary>
-            Value should be less than or equal <paramref name="max"/>
+            值应小于或等于 <paramref name="max"/>
             </summary>
             <param name="step"/>
-            <param name="max">Max value</param>
+            <param name="max">最大值</param>
             <typeparam name="T"/>
             <typeparam name="TValue"/>
             <returns/>
         </member>
         <member name="M:Newbe.ObjectVisitor.Validator.PropertyValidationExtensions.LessThanOrEqual``2(Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder{``0,``1}.IPropertyValidationRuleBuilder_S,``1,System.Collections.Generic.IComparer{``1})">
             <summary>
-            Value should be less than or equal <paramref name="max"/>
+            值应小于或等于 <paramref name="max"/>
             </summary>
             <param name="step"/>
-            <param name="max">Max value</param>
-            <param name="comparer">Value comparer</param>
+            <param name="max">最大值</param>
+            <param name="comparer">值比较器</param>
             <typeparam name="T"/>
             <typeparam name="TValue"/>
             <returns/>
         </member>
         <member name="M:Newbe.ObjectVisitor.Validator.PropertyValidationExtensions.GreaterThan``2(Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder{``0,``1}.IPropertyValidationRuleBuilder_S,``1)">
             <summary>
-            Value should be greater than <paramref name="min"/>
+            值应该大于 <paramref name="min"/>
             </summary>
             <param name="step"/>
-            <param name="min">Min value</param>
+            <param name="min">最小值</param>
             <typeparam name="T"/>
             <typeparam name="TValue"/>
             <returns/>
         </member>
         <member name="M:Newbe.ObjectVisitor.Validator.PropertyValidationExtensions.GreaterThan``2(Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder{``0,System.Nullable{``1}}.IPropertyValidationRuleBuilder_S,``1)">
             <summary>
-            Value should be greater than <paramref name="min"/>
+            值应该大于 <paramref name="min"/>
             </summary>
             <param name="step"/>
-            <param name="min">Min value</param>
+            <param name="min">最小值</param>
             <typeparam name="T"/>
             <typeparam name="TValue"/>
             <returns/>
         </member>
         <member name="M:Newbe.ObjectVisitor.Validator.PropertyValidationExtensions.GreaterThan``2(Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder{``0,``1}.IPropertyValidationRuleBuilder_S,``1,System.Collections.Generic.IComparer{``1})">
             <summary>
-            Value should be greater than <paramref name="min"/>
+            值应该大于 <paramref name="min"/>
             </summary>
             <param name="step"/>
-            <param name="min">Min value</param>
-            <param name="comparer">Value comparer</param>
+            <param name="min">最小值</param>
+            <param name="comparer">值比较器</param>
             <typeparam name="T"/>
             <typeparam name="TValue"/>
             <returns/>
         </member>
         <member name="M:Newbe.ObjectVisitor.Validator.PropertyValidationExtensions.GreaterThanOrEqual``2(Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder{``0,``1}.IPropertyValidationRuleBuilder_S,``1)">
             <summary>
-            Value should be greater than or equal to <paramref name="min"/>
+            应大于或等于 <paramref name="min"/>
             </summary>
             <param name="step"/>
-            <param name="min">Min value</param>
+            <param name="min">最小值</param>
             <typeparam name="T"/>
             <typeparam name="TValue"/>
             <returns/>
         </member>
         <member name="M:Newbe.ObjectVisitor.Validator.PropertyValidationExtensions.GreaterThanOrEqual``2(Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder{``0,System.Nullable{``1}}.IPropertyValidationRuleBuilder_S,``1)">
             <summary>
-            Value should be greater than or equal to <paramref name="min"/>
+            应大于或等于 <paramref name="min"/>
             </summary>
             <param name="step"/>
-            <param name="min">Min value</param>
+            <param name="min">最小值</param>
             <typeparam name="T"/>
             <typeparam name="TValue"/>
             <returns/>
         </member>
         <member name="M:Newbe.ObjectVisitor.Validator.PropertyValidationExtensions.GreaterThanOrEqual``2(Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder{``0,``1}.IPropertyValidationRuleBuilder_S,``1,System.Collections.Generic.IComparer{``1})">
             <summary>
-            Value should be greater than or equal to <paramref name="min"/>
+            应大于或等于 <paramref name="min"/>
             </summary>
             <param name="step"/>
-            <param name="min">Min value</param>
-            <param name="comparer">Value comparer</param>
+            <param name="min">最小值</param>
+            <param name="comparer">值比较器</param>
             <typeparam name="T"/>
             <typeparam name="TValue"/>
             <returns/>
         </member>
         <member name="M:Newbe.ObjectVisitor.Validator.PropertyValidationExtensions.IsInRange``2(Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder{``0,``1}.IPropertyValidationRuleBuilder_S,``1,``1,System.Boolean,System.Boolean)">
             <summary>
-            Value should be between <paramref name="min"/> and <paramref name="max"/>.
-            You can specify <paramref name="excludeMin"/> and <paramref name="excludeMax"/> to include min and max or not. Default range is [min,max).
+            值应该介于 <paramref name="min"/> 和 <paramref name="max"/>.
+            你可以指定 <paramref name="excludeMin"/> 和 <paramref name="excludeMax"/> 包含最小值和最大值或不包含。 默认范围是 [min,max)，即左闭右开。
             </summary>
             <param name="step"/>
-            <param name="min">Min value</param>
-            <param name="max">Max value</param>
-            <param name="excludeMin">Exclude min value</param>
-            <param name="excludeMax">Exclude max value</param>
+            <param name="min">最小值</param>
+            <param name="max">最大值</param>
+            <param name="excludeMin">排除最小值</param>
+            <param name="excludeMax">排除最大值</param>
             <typeparam name="T"/>
             <typeparam name="TValue"/>
             <returns/>
         </member>
         <member name="M:Newbe.ObjectVisitor.Validator.PropertyValidationExtensions.IsInRange``2(Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder{``0,System.Nullable{``1}}.IPropertyValidationRuleBuilder_S,``1,``1,System.Boolean,System.Boolean)">
             <summary>
-            Value should be between <paramref name="min"/> and <paramref name="max"/>.
-            You can specify <paramref name="excludeMin"/> and <paramref name="excludeMax"/> to include min and max or not. Default range is [min,max).
+            值应该介于 <paramref name="min"/> 和 <paramref name="max"/>.
+            你可以指定 <paramref name="excludeMin"/> 和 <paramref name="excludeMax"/> 包含最小值和最大值或不包含。 默认范围是 [min,max)，即左闭右开。
             </summary>
             <param name="step"/>
-            <param name="min">Min value</param>
-            <param name="max">Max value</param>
-            <param name="excludeMin">Exclude min value</param>
-            <param name="excludeMax">Exclude max value</param>
+            <param name="min">最小值</param>
+            <param name="max">最大值</param>
+            <param name="excludeMin">排除最小值</param>
+            <param name="excludeMax">排除最大值</param>
             <typeparam name="T"/>
             <typeparam name="TValue"/>
             <returns/>
         </member>
         <member name="M:Newbe.ObjectVisitor.Validator.PropertyValidationExtensions.IsInRange``2(Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder{``0,``1}.IPropertyValidationRuleBuilder_S,``1,``1,System.Collections.Generic.IComparer{``1},System.Boolean,System.Boolean)">
             <summary>
-            Value should be between <paramref name="min"/> and <paramref name="max"/>.
-            You can specify <paramref name="excludeMin"/> and <paramref name="excludeMax"/> to include min and max or not. Default range is [min,max).
+            值应该介于 <paramref name="min"/> 和 <paramref name="max"/>.
+            你可以指定 <paramref name="excludeMin"/> 和 <paramref name="excludeMax"/> 包含最小值和最大值或不包含。 默认范围是 [min,max)，即左闭右开。
             </summary>
             <param name="step"/>
-            <param name="min">Min value</param>
-            <param name="max">Max value</param>
-            <param name="comparer">Value comparer</param>
-            <param name="excludeMin">Exclude min value</param>
-            <param name="excludeMax">Exclude max value</param>
+            <param name="min">最小值</param>
+            <param name="max">最大值</param>
+            <param name="comparer">值比较器</param>
+            <param name="excludeMin">排除最小值</param>
+            <param name="excludeMax">排除最大值</param>
             <typeparam name="T"/>
             <typeparam name="TValue"/>
             <returns/>
         </member>
         <member name="M:Newbe.ObjectVisitor.Validator.PropertyValidationExtensions.IsInSet``2(Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder{``0,``1}.IPropertyValidationRuleBuilder_S,System.Collections.Generic.IEnumerable{``1})">
             <summary>
-            Value should be in a range specified in <paramref name="expectedSet"/>
+            值应该在指定的范围内 <paramref name="expectedSet"/>
             </summary>
             <param name="step"/>
             <param name="expectedSet"/>
@@ -1772,7 +1772,7 @@
         </member>
         <member name="M:Newbe.ObjectVisitor.Validator.PropertyValidationExtensions.IsInSet``2(Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder{``0,System.Nullable{``1}}.IPropertyValidationRuleBuilder_S,System.Collections.Generic.IEnumerable{System.Nullable{``1}})">
             <summary>
-            Value should be in a range specified in <paramref name="expectedSet"/>
+            值应该在指定的范围内 <paramref name="expectedSet"/>
             </summary>
             <param name="step"/>
             <param name="expectedSet"/>
@@ -1782,18 +1782,18 @@
         </member>
         <member name="M:Newbe.ObjectVisitor.Validator.PropertyValidationExtensions.IsInSet``2(Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder{``0,``1}.IPropertyValidationRuleBuilder_S,System.Collections.Generic.IEnumerable{``1},System.Collections.Generic.IEqualityComparer{``1})">
             <summary>
-            Value should be in a range specified in <paramref name="expectedSet"/>
+            值应该在指定的范围内 <paramref name="expectedSet"/>
             </summary>
             <param name="step"/>
             <param name="expectedSet"/>
-            <param name="comparer">Value comparer</param>
+            <param name="comparer">值比较器</param>
             <typeparam name="T"/>
             <typeparam name="TValue"/>
             <returns/>
         </member>
         <member name="M:Newbe.ObjectVisitor.Validator.PropertyValidationExtensions.IsNotInSet``2(Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder{``0,``1}.IPropertyValidationRuleBuilder_S,System.Collections.Generic.IEnumerable{``1})">
             <summary>
-            Value should not be in a range specified in <paramref name="expectedSet"/>. It is like a negation of <see cref="M:Newbe.ObjectVisitor.Validator.PropertyValidationExtensions.IsInSet``2(Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder{``0,``1}.IPropertyValidationRuleBuilder_S,System.Collections.Generic.IEnumerable{``1})"/>
+            值不应在指定的范围内 <paramref name="expectedSet"/>. 它就像否定的 <see cref="M:Newbe.ObjectVisitor.Validator.PropertyValidationExtensions.IsInSet``2(Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder{``0,``1}.IPropertyValidationRuleBuilder_S,System.Collections.Generic.IEnumerable{``1})"/>
             </summary>
             <param name="step"/>
             <param name="expectedSet"/>
@@ -1803,7 +1803,7 @@
         </member>
         <member name="M:Newbe.ObjectVisitor.Validator.PropertyValidationExtensions.IsNotInSet``2(Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder{``0,System.Nullable{``1}}.IPropertyValidationRuleBuilder_S,System.Collections.Generic.IEnumerable{System.Nullable{``1}})">
             <summary>
-            Value should not be in a range specified in <paramref name="expectedSet"/>. It is like a negation of <see cref="M:Newbe.ObjectVisitor.Validator.PropertyValidationExtensions.IsInSet``2(Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder{``0,``1}.IPropertyValidationRuleBuilder_S,System.Collections.Generic.IEnumerable{``1})"/>
+            值不应在指定的范围内 <paramref name="expectedSet"/>. 它就像否定的 <see cref="M:Newbe.ObjectVisitor.Validator.PropertyValidationExtensions.IsInSet``2(Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder{``0,``1}.IPropertyValidationRuleBuilder_S,System.Collections.Generic.IEnumerable{``1})"/>
             </summary>
             <param name="step"/>
             <param name="expectedSet"/>
@@ -1813,18 +1813,18 @@
         </member>
         <member name="M:Newbe.ObjectVisitor.Validator.PropertyValidationExtensions.IsNotInSet``2(Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder{``0,``1}.IPropertyValidationRuleBuilder_S,System.Collections.Generic.IEnumerable{``1},System.Collections.Generic.IEqualityComparer{``1})">
             <summary>
-            Value should not be in a range specified in <paramref name="expectedSet"/>. It is like a negation of <see cref="M:Newbe.ObjectVisitor.Validator.PropertyValidationExtensions.IsInSet``2(Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder{``0,``1}.IPropertyValidationRuleBuilder_S,System.Collections.Generic.IEnumerable{``1})"/>
+            值不应在指定的范围内 <paramref name="expectedSet"/>. 它就像否定的 <see cref="M:Newbe.ObjectVisitor.Validator.PropertyValidationExtensions.IsInSet``2(Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder{``0,``1}.IPropertyValidationRuleBuilder_S,System.Collections.Generic.IEnumerable{``1})"/>
             </summary>
             <param name="step"/>
             <param name="expectedSet"/>
-            <param name="comparer">Value comparer</param>
+            <param name="comparer">值比较器</param>
             <typeparam name="T"/>
             <typeparam name="TValue"/>
             <returns/>
         </member>
         <member name="M:Newbe.ObjectVisitor.Validator.PropertyValidationExtensions.Null``2(Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder{``0,``1}.IPropertyValidationRuleBuilder_S)">
             <summary>
-            Value should be null
+            值应为空
             </summary>
             <param name="step"/>
             <typeparam name="T"/>
@@ -1833,7 +1833,7 @@
         </member>
         <member name="M:Newbe.ObjectVisitor.Validator.PropertyValidationExtensions.Null``2(Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder{``0,System.Nullable{``1}}.IPropertyValidationRuleBuilder_S)">
             <summary>
-            Value should be null
+            值应为空
             </summary>
             <param name="step"/>
             <typeparam name="T"/>
@@ -1842,7 +1842,7 @@
         </member>
         <member name="M:Newbe.ObjectVisitor.Validator.PropertyValidationExtensions.NotNull``2(Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder{``0,``1}.IPropertyValidationRuleBuilder_S)">
             <summary>
-            Value should not be null
+            值不应为空
             </summary>
             <param name="step"/>
             <typeparam name="T"/>
@@ -1851,7 +1851,7 @@
         </member>
         <member name="M:Newbe.ObjectVisitor.Validator.PropertyValidationExtensions.NotNull``2(Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder{``0,System.Nullable{``1}}.IPropertyValidationRuleBuilder_S)">
             <summary>
-            Value should not be null
+            值不应为空
             </summary>
             <param name="step"/>
             <typeparam name="T"/>
@@ -1860,7 +1860,7 @@
         </member>
         <member name="M:Newbe.ObjectVisitor.Validator.PropertyValidationExtensions.NotEmpty``1(Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder{``0,System.String}.IPropertyValidationRuleBuilder_S)">
             <summary>
-            Value should not be null or white space
+            值不应为空或空白
             </summary>
             <param name="step"/>
             <typeparam name="T"/>
@@ -1868,7 +1868,7 @@
         </member>
         <member name="M:Newbe.ObjectVisitor.Validator.PropertyValidationExtensions.NotEmpty``2(Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder{``0,``1}.IPropertyValidationRuleBuilder_S)">
             <summary>
-            Value should contains one element at least.
+            值至少应包含一个元素。
             </summary>
             <param name="step"/>
             <typeparam name="T"/>
@@ -1877,7 +1877,7 @@
         </member>
         <member name="M:Newbe.ObjectVisitor.Validator.PropertyValidationExtensions.Empty``1(Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder{``0,System.String}.IPropertyValidationRuleBuilder_S)">
             <summary>
-            Value should be null or white space
+            值应为空或空白
             </summary>
             <param name="step"/>
             <typeparam name="T"/>
@@ -1885,7 +1885,7 @@
         </member>
         <member name="M:Newbe.ObjectVisitor.Validator.PropertyValidationExtensions.Empty``2(Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder{``0,``1}.IPropertyValidationRuleBuilder_S)">
             <summary>
-            Value should contains no element.
+            值不应包含元素。
             </summary>
             <param name="step"/>
             <typeparam name="T"/>
@@ -1894,16 +1894,16 @@
         </member>
         <member name="M:Newbe.ObjectVisitor.Validator.PropertyValidationExtensions.MatchRegex``1(Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder{``0,System.String}.IPropertyValidationRuleBuilder_S,System.String)">
             <summary>
-            Value should match regex success.
+            值应该匹配 regex 成功。
             </summary>
             <param name="step"/>
-            <param name="pattern">Pattern of regex. It will create a new regex with this pattern by <see cref="P:Newbe.ObjectVisitor.GlobalFactories.Validation.RegexFactory"/></param>
+            <param name="pattern">正则表达式模式。 它将以此模式创建一个新的正则表达式，通过 <see cref="P:Newbe.ObjectVisitor.GlobalFactories.Validation.RegexFactory"/></param>
             <typeparam name="T"/>
             <returns/>
         </member>
         <member name="M:Newbe.ObjectVisitor.Validator.PropertyValidationExtensions.MatchRegex``1(Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder{``0,System.String}.IPropertyValidationRuleBuilder_S,System.Text.RegularExpressions.Regex)">
             <summary>
-            Value should match regex success
+            值应该匹配 regex 成功。
             </summary>
             <param name="step"/>
             <param name="regex"/>
@@ -1912,16 +1912,16 @@
         </member>
         <member name="M:Newbe.ObjectVisitor.Validator.PropertyValidationExtensions.NotMatchRegex``1(Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder{``0,System.String}.IPropertyValidationRuleBuilder_S,System.String)">
             <summary>
-            Value should not match regex success
+            值不应匹配 regex 成功
             </summary>
             <param name="step"/>
-            <param name="pattern">Pattern of regex. It will create a new regex with this pattern by <see cref="P:Newbe.ObjectVisitor.GlobalFactories.Validation.RegexFactory"/></param>
+            <param name="pattern">正则表达式模式。 它将以此模式创建一个新的正则表达式，通过 <see cref="P:Newbe.ObjectVisitor.GlobalFactories.Validation.RegexFactory"/></param>
             <typeparam name="T"/>
             <returns/>
         </member>
         <member name="M:Newbe.ObjectVisitor.Validator.PropertyValidationExtensions.NotMatchRegex``1(Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder{``0,System.String}.IPropertyValidationRuleBuilder_S,System.Text.RegularExpressions.Regex)">
             <summary>
-            Value should not match regex success
+            值不应匹配 regex 成功
             </summary>
             <param name="step"/>
             <param name="regex"/>
@@ -1930,7 +1930,7 @@
         </member>
         <member name="M:Newbe.ObjectVisitor.Validator.PropertyValidationExtensions.Length``2(Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder{``0,``1}.IPropertyValidationRuleBuilder_S,System.Int32,System.Int32)">
             <summary>
-            Count of element in value should be in range [min,max]
+            值中的元素计数应该在范围 [min，max] 中
             </summary>
             <param name="step"/>
             <param name="min"/>
@@ -1941,7 +1941,7 @@
         </member>
         <member name="M:Newbe.ObjectVisitor.Validator.PropertyValidationExtensions.MinLength``2(Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder{``0,``1}.IPropertyValidationRuleBuilder_S,System.Int32)">
             <summary>
-            Count of element in value should be greater than or equal to <paramref name="min"/>
+            值中元素的数量应该大于或等于 <paramref name="min"/>
             </summary>
             <param name="step"/>
             <param name="min"/>
@@ -1951,7 +1951,7 @@
         </member>
         <member name="M:Newbe.ObjectVisitor.Validator.PropertyValidationExtensions.MaxLength``2(Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder{``0,``1}.IPropertyValidationRuleBuilder_S,System.Int32)">
             <summary>
-            Count of element in value should be less than or equal to <paramref name="max"/>
+            值中元素的数量应该小于或等于 <paramref name="max"/>
             </summary>
             <param name="step"/>
             <param name="max"/>
@@ -1961,7 +1961,7 @@
         </member>
         <member name="M:Newbe.ObjectVisitor.Validator.PropertyValidationExtensions.IsInEnum``2(Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder{``0,``1}.IPropertyValidationRuleBuilder_S,System.Type,System.Nullable{System.Boolean})">
             <summary>
-            Value should be in range of <paramref name="enumType"/> definition. 
+            值应该在 <paramref name="enumType"/> 定义中 
             </summary>
             <param name="step"/>
             <param name="enumType"/>
@@ -1972,7 +1972,7 @@
         </member>
         <member name="M:Newbe.ObjectVisitor.Validator.PropertyValidationExtensions.IsInEnum``2(Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder{``0,``1}.IPropertyValidationRuleBuilder_S,System.Nullable{System.Boolean})">
             <summary>
-            Value should be in range of <typeparamref name="TValue"/> definition. 
+            值应该在 <typeparamref name="TValue"/> 定义中 
             </summary>
             <param name="step"/>
             <param name="flagged"/>
@@ -1982,7 +1982,7 @@
         </member>
         <member name="M:Newbe.ObjectVisitor.Validator.PropertyValidationExtensions.IsInEnumName``1(Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder{``0,System.String}.IPropertyValidationRuleBuilder_S,System.Type)">
             <summary>
-            Value should be in range of <paramref name="enumType"/> definition. 
+            值应该在 <paramref name="enumType"/> 定义中 
             </summary>
             <param name="step"/>
             <param name="enumType"/>
@@ -1991,7 +1991,7 @@
         </member>
         <member name="M:Newbe.ObjectVisitor.Validator.PropertyValidationExtensions.ScalePrecision``2(Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder{``0,``1}.IPropertyValidationRuleBuilder_S,System.Int32,System.Int32)">
             <summary>
-            Value should be less than <paramref name="precision"/> digits in total with allowance for <paramref name="scale"/>} decimals 
+            数值应该小于 <paramref name="precision"/> 总位数，允许： <paramref name="scale"/>个小数位数 
             </summary>
             <param name="step"/>
             <param name="scale"/>
@@ -2002,7 +2002,7 @@
         </member>
         <member name="M:Newbe.ObjectVisitor.Validator.PropertyValidationExtensions.Or``2(Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder{``0,``1}.IPropertyValidationRuleBuilder_S,System.Func{Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder{``0,``1}.IPropertyValidationRuleBuilder_S,Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder{``0,``1}.IPropertyValidationRuleBuilder_S}[])">
             <summary>
-            Create a new validation group which contains one or move rules. Validation success if any of rule success in this group.
+            创建包含一个或多个规则的新验证组。 如果此组中的任何规则成功，那么验证成功。
             </summary>
             <param name="step"/>
             <param name="ruleFactories"/>
@@ -2012,7 +2012,7 @@
         </member>
         <member name="M:Newbe.ObjectVisitor.Validator.PropertyValidationExtensions.Not``2(Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder{``0,``1}.IPropertyValidationRuleBuilder_S,System.Func{Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder{``0,``1}.IPropertyValidationRuleBuilder_S,Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder{``0,``1}.IPropertyValidationRuleBuilder_S})">
             <summary>
-            Create a negation of inner validation rule
+            创建内部验证规则的否定
             </summary>
             <param name="step"/>
             <param name="notFunc"/>
