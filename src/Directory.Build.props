@@ -15,49 +15,18 @@
     <PackageReleaseNotes>
     </PackageReleaseNotes>
     <LangVersion>8.0</LangVersion>
-    <Description>You can visit all properties about your class or struct by this lib with high performance as you visit properties in hard coding way.
-
-      For example, here is object in your code.
-
-```cs
-var order = new OrderInfo();
-```
-
-And, you want to print all properties of the order.
-
-```cs
-for(var pInfo in typeof(OrderInfo).GetProperties())
-{
-    Console.Writeline($"{pInfo.Name}: {pInfo.GetValue(order)}");
-}
-```
-
-By using this lib, you can handle it in this way:
-
-```cs
-// call .V what is a static extension method
-// you get a visitor object for order
-var visitor = order.V();
-
-visitor.ForEach(context=>{
-    var name = context.Name;
-    var value = context.Value;
-    Console.Writeline($"{name}: {value}");
-}).Run();
-
-// you can also make it into one line
-order.V().ForEach(c=> Console.Writeline($"{c.Name}: {c.Value}")).Run();
-
-// or using quick style
-order.FormatToString();
-```
-
+    <Description>
 Why do I need this?
 
 - It is faster. This lib is impletmented with [Expression Trees](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/expression-trees/) that cost 1/10 time as in Reflection way.
 - It is readable. This lib can generate a lambda func to handle the code flow you create that just as your hard coding without reflection.
 - It is extendable. If you can visit all properties of a object in easy way, you can validate them as you wish, change some value if there are something sensitive, creare a mapper like automapper, and etc.
-      Github: https://github.com/newbe36524/Newbe.ObjectVisitor
+Github: https://github.com/newbe36524/Newbe.ObjectVisitor
+
+Please check out the latest full API documents in site below:
+
+- http://ov.newbe.pro
+- http://cn.ov.newbe.pro
     </Description>
   </PropertyGroup>
   <ItemGroup Condition=" '$(IsPackable)' != 'false' ">
