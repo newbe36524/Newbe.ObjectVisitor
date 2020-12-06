@@ -7,8 +7,8 @@
             int precision)
         {
             MustExpression = value =>
-                GetScale((decimal) (object) value!) > scale ||
-                GetPrecision((decimal) (object) value!) - GetScale((decimal) (object) value!) > precision - scale;
+                GetScale((decimal) (object) value!) <= scale &&
+                GetPrecision((decimal) (object) value!) - GetScale((decimal) (object) value!) <= precision - scale;
             ErrorMessageExpression = (input, value, p) =>
                 $"Value of {p.Name} must not be more than {precision} digits in total, with allowance for {scale} decimals. {GetPrecision((decimal) (object) value!)} digits and {GetScale((decimal) (object) value!)} decimals were found";
         }

@@ -8,12 +8,19 @@ namespace Newbe.ObjectVisitor.Validation
         public static GreaterThanOrEqualRule<T, TValue> Create<T, TValue>(TValue min)
             where TValue : IComparable<TValue>
         {
-            return new GreaterThanOrEqualRule<T, TValue>(min, RuleExpressionHelper.Greater(min, true));
+            return new GreaterThanOrEqualRule<T, TValue>(min, RuleExpressionHelper.Greater(min, false));
         }
+
+        public static GreaterThanOrEqualRule<T, TValue?> CreateNullable<T, TValue>(TValue min)
+            where TValue : struct, IComparable<TValue>
+        {
+            return new GreaterThanOrEqualRule<T, TValue?>(min, RuleExpressionHelper.GreaterNullable(min, false));
+        }
+
 
         public static GreaterThanOrEqualRule<T, TValue> Create<T, TValue>(TValue min, IComparer<TValue> comparer)
         {
-            return new GreaterThanOrEqualRule<T, TValue>(min, RuleExpressionHelper.Greater(min, true, comparer));
+            return new GreaterThanOrEqualRule<T, TValue>(min, RuleExpressionHelper.Greater(min, false, comparer));
         }
     }
 }

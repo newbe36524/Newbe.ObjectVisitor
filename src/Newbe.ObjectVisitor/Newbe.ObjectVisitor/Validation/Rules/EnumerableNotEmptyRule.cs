@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Linq;
 
 namespace Newbe.ObjectVisitor.Validation
 {
@@ -7,7 +8,7 @@ namespace Newbe.ObjectVisitor.Validation
     {
         public EnumerableNotEmptyRule()
         {
-            MustExpression = value => value.GetEnumerator().MoveNext();
+            MustExpression = value => value != null && value.Cast<object>().Any();
             ErrorMessageExpression = (input, value, p) => $"Value of {p.Name} must not be empty, but found empty";
         }
     }

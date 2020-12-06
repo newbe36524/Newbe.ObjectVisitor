@@ -17,6 +17,18 @@ namespace Newbe.ObjectVisitor.Validation
             return new IsInSetRule<T, TValue>(set);
         }
 
+        public static IsInSetRule<T, TValue?> CreateNullable<T, TValue>(IEnumerable<TValue?> expectedSet)
+            where TValue : struct, IEquatable<TValue>
+        {
+            var set = new HashSet<TValue?>();
+            foreach (var item in expectedSet)
+            {
+                set.Add(item);
+            }
+
+            return new IsInSetRule<T, TValue?>(set);
+        }
+
         public static IsInSetRule<T, TValue> Create<T, TValue>(IEnumerable<TValue> expectedSet,
             IEqualityComparer<TValue> comparer)
         {

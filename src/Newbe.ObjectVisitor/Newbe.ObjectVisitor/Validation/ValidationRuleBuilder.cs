@@ -6,7 +6,7 @@ namespace Newbe.ObjectVisitor.Validation
     /// Helper class to create <see cref="ValidationRule{T}"/>
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public static class ValidateRule<T>
+    public static class ValidationRuleBuilder<T>
     {
         /// <summary>
         /// Create a builder
@@ -21,7 +21,7 @@ namespace Newbe.ObjectVisitor.Validation
     /// <summary>
     /// Helper class to create <see cref="ValidationRule{T}"/>
     /// </summary>
-    public static class ValidateRule
+    public static class ValidationRuleBuilder
     {
         /// <summary>
         /// Create a builder

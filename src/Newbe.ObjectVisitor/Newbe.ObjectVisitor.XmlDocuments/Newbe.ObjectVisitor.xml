@@ -1392,31 +1392,6 @@
             Error message factory expression, it will be invoke if validation failed
             </summary>
         </member>
-        <member name="T:Newbe.ObjectVisitor.Validation.ValidateRule`1">
-            <summary>
-            Helper class to create <see cref="T:Newbe.ObjectVisitor.Validation.ValidationRule`1"/>
-            </summary>
-            <typeparam name="T"></typeparam>
-        </member>
-        <member name="M:Newbe.ObjectVisitor.Validation.ValidateRule`1.GetBuilder">
-            <summary>
-            Create a builder
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="T:Newbe.ObjectVisitor.Validation.ValidateRule">
-            <summary>
-            Helper class to create <see cref="T:Newbe.ObjectVisitor.Validation.ValidationRule`1"/>
-            </summary>
-        </member>
-        <member name="M:Newbe.ObjectVisitor.Validation.ValidateRule.GetBuilder``1(``0)">
-            <summary>
-            Create a builder
-            </summary>
-            <param name="obj"></param>
-            <typeparam name="T"></typeparam>
-            <returns></returns>
-        </member>
         <member name="T:Newbe.ObjectVisitor.Validation.ValidationRule`1">
             <summary>
             Rule of validation
@@ -1438,9 +1413,34 @@
             Func{T,string}
             </summary>
         </member>
+        <member name="T:Newbe.ObjectVisitor.Validation.ValidationRuleBuilder`1">
+            <summary>
+            Helper class to create <see cref="T:Newbe.ObjectVisitor.Validation.ValidationRule`1"/>
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.Validation.ValidationRuleBuilder`1.GetBuilder">
+            <summary>
+            Create a builder
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Newbe.ObjectVisitor.Validation.ValidationRuleBuilder">
+            <summary>
+            Helper class to create <see cref="T:Newbe.ObjectVisitor.Validation.ValidationRule`1"/>
+            </summary>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.Validation.ValidationRuleBuilder.GetBuilder``1(``0)">
+            <summary>
+            Create a builder
+            </summary>
+            <param name="obj"></param>
+            <typeparam name="T"></typeparam>
+            <returns></returns>
+        </member>
         <member name="T:Newbe.ObjectVisitor.Validation.ValidationRuleGroup`1">
             <summary>
-            A group of <see cref="T:Newbe.ObjectVisitor.Validation.ValidateRule`1"/>
+            A group of <see cref="T:Newbe.ObjectVisitor.Validation.ValidationRuleBuilder`1"/>
             </summary>
             <typeparam name="T"></typeparam>
         </member>
@@ -1541,6 +1541,16 @@
             <typeparam name="TValue"></typeparam>
             <returns></returns>
         </member>
+        <member name="M:Newbe.ObjectVisitor.Validator.PropertyValidationExtensions.Equal``2(Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder{``0,System.Nullable{``1}}.IPropertyValidationRuleBuilder_S,System.Nullable{``1})">
+            <summary>
+            Value should equals to <paramref name="expected"/>
+            </summary>
+            <param name="step"></param>
+            <param name="expected">Value of expected</param>
+            <typeparam name="T"></typeparam>
+            <typeparam name="TValue"></typeparam>
+            <returns></returns>
+        </member>
         <member name="M:Newbe.ObjectVisitor.Validator.PropertyValidationExtensions.Equal``2(Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder{``0,``1}.IPropertyValidationRuleBuilder_S,``1,System.Collections.Generic.IEqualityComparer{``1})">
             <summary>
             Value should equals to <paramref name="expected"/>
@@ -1553,6 +1563,16 @@
             <returns></returns>
         </member>
         <member name="M:Newbe.ObjectVisitor.Validator.PropertyValidationExtensions.NotEqual``2(Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder{``0,``1}.IPropertyValidationRuleBuilder_S,``1)">
+            <summary>
+            Value should not equal to <paramref name="expected"/>
+            </summary>
+            <param name="step"></param>
+            <param name="expected">Value of expected</param>
+            <typeparam name="T"></typeparam>
+            <typeparam name="TValue"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.Validator.PropertyValidationExtensions.NotEqual``2(Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder{``0,System.Nullable{``1}}.IPropertyValidationRuleBuilder_S,System.Nullable{``1})">
             <summary>
             Value should not equal to <paramref name="expected"/>
             </summary>
@@ -1583,6 +1603,16 @@
             <typeparam name="TValue"></typeparam>
             <returns></returns>
         </member>
+        <member name="M:Newbe.ObjectVisitor.Validator.PropertyValidationExtensions.LessThan``2(Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder{``0,System.Nullable{``1}}.IPropertyValidationRuleBuilder_S,``1)">
+            <summary>
+            Value should be less than <paramref name="max"/>
+            </summary>
+            <param name="step"></param>
+            <param name="max">Max value</param>
+            <typeparam name="T"></typeparam>
+            <typeparam name="TValue"></typeparam>
+            <returns></returns>
+        </member>
         <member name="M:Newbe.ObjectVisitor.Validator.PropertyValidationExtensions.LessThan``2(Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder{``0,``1}.IPropertyValidationRuleBuilder_S,``1,System.Collections.Generic.IComparer{``1})">
             <summary>
             Value should be less than <paramref name="max"/>
@@ -1595,6 +1625,16 @@
             <returns></returns>
         </member>
         <member name="M:Newbe.ObjectVisitor.Validator.PropertyValidationExtensions.LessThanOrEqual``2(Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder{``0,``1}.IPropertyValidationRuleBuilder_S,``1)">
+            <summary>
+            Value should be less than or equal <paramref name="max"/>
+            </summary>
+            <param name="step"></param>
+            <param name="max">Max value</param>
+            <typeparam name="T"></typeparam>
+            <typeparam name="TValue"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.Validator.PropertyValidationExtensions.LessThanOrEqual``2(Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder{``0,System.Nullable{``1}}.IPropertyValidationRuleBuilder_S,``1)">
             <summary>
             Value should be less than or equal <paramref name="max"/>
             </summary>
@@ -1625,6 +1665,16 @@
             <typeparam name="TValue"></typeparam>
             <returns></returns>
         </member>
+        <member name="M:Newbe.ObjectVisitor.Validator.PropertyValidationExtensions.GreaterThan``2(Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder{``0,System.Nullable{``1}}.IPropertyValidationRuleBuilder_S,``1)">
+            <summary>
+            Value should be greater than <paramref name="min"/>
+            </summary>
+            <param name="step"></param>
+            <param name="min">Min value</param>
+            <typeparam name="T"></typeparam>
+            <typeparam name="TValue"></typeparam>
+            <returns></returns>
+        </member>
         <member name="M:Newbe.ObjectVisitor.Validator.PropertyValidationExtensions.GreaterThan``2(Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder{``0,``1}.IPropertyValidationRuleBuilder_S,``1,System.Collections.Generic.IComparer{``1})">
             <summary>
             Value should be greater than <paramref name="min"/>
@@ -1646,6 +1696,16 @@
             <typeparam name="TValue"></typeparam>
             <returns></returns>
         </member>
+        <member name="M:Newbe.ObjectVisitor.Validator.PropertyValidationExtensions.GreaterThanOrEqual``2(Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder{``0,System.Nullable{``1}}.IPropertyValidationRuleBuilder_S,``1)">
+            <summary>
+            Value should be greater than or equal to <paramref name="min"/>
+            </summary>
+            <param name="step"></param>
+            <param name="min">Min value</param>
+            <typeparam name="T"></typeparam>
+            <typeparam name="TValue"></typeparam>
+            <returns></returns>
+        </member>
         <member name="M:Newbe.ObjectVisitor.Validator.PropertyValidationExtensions.GreaterThanOrEqual``2(Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder{``0,``1}.IPropertyValidationRuleBuilder_S,``1,System.Collections.Generic.IComparer{``1})">
             <summary>
             Value should be greater than or equal to <paramref name="min"/>
@@ -1658,6 +1718,20 @@
             <returns></returns>
         </member>
         <member name="M:Newbe.ObjectVisitor.Validator.PropertyValidationExtensions.IsInRange``2(Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder{``0,``1}.IPropertyValidationRuleBuilder_S,``1,``1,System.Boolean,System.Boolean)">
+            <summary>
+            Value should be between <paramref name="min"/> and <paramref name="max"/>.
+            You can specify <paramref name="excludeMin"/> and <paramref name="excludeMax"/> to include min and max or not. Default range is [min,max).
+            </summary>
+            <param name="step"></param>
+            <param name="min">Min value</param>
+            <param name="max">Max value</param>
+            <param name="excludeMin">Exclude min value</param>
+            <param name="excludeMax">Exclude max value</param>
+            <typeparam name="T"></typeparam>
+            <typeparam name="TValue"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.Validator.PropertyValidationExtensions.IsInRange``2(Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder{``0,System.Nullable{``1}}.IPropertyValidationRuleBuilder_S,``1,``1,System.Boolean,System.Boolean)">
             <summary>
             Value should be between <paramref name="min"/> and <paramref name="max"/>.
             You can specify <paramref name="excludeMin"/> and <paramref name="excludeMax"/> to include min and max or not. Default range is [min,max).
@@ -1696,6 +1770,16 @@
             <typeparam name="TValue"></typeparam>
             <returns></returns>
         </member>
+        <member name="M:Newbe.ObjectVisitor.Validator.PropertyValidationExtensions.IsInSet``2(Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder{``0,System.Nullable{``1}}.IPropertyValidationRuleBuilder_S,System.Collections.Generic.IEnumerable{System.Nullable{``1}})">
+            <summary>
+            Value should be in a range specified in <paramref name="expectedSet"/>
+            </summary>
+            <param name="step"></param>
+            <param name="expectedSet"></param>
+            <typeparam name="T"></typeparam>
+            <typeparam name="TValue"></typeparam>
+            <returns></returns>
+        </member>
         <member name="M:Newbe.ObjectVisitor.Validator.PropertyValidationExtensions.IsInSet``2(Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder{``0,``1}.IPropertyValidationRuleBuilder_S,System.Collections.Generic.IEnumerable{``1},System.Collections.Generic.IEqualityComparer{``1})">
             <summary>
             Value should be in a range specified in <paramref name="expectedSet"/>
@@ -1708,6 +1792,16 @@
             <returns></returns>
         </member>
         <member name="M:Newbe.ObjectVisitor.Validator.PropertyValidationExtensions.IsNotInSet``2(Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder{``0,``1}.IPropertyValidationRuleBuilder_S,System.Collections.Generic.IEnumerable{``1})">
+            <summary>
+            Value should not be in a range specified in <paramref name="expectedSet"/>. It is like a negation of <see cref="M:Newbe.ObjectVisitor.Validator.PropertyValidationExtensions.IsInSet``2(Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder{``0,``1}.IPropertyValidationRuleBuilder_S,System.Collections.Generic.IEnumerable{``1})"/>
+            </summary>
+            <param name="step"></param>
+            <param name="expectedSet"></param>
+            <typeparam name="T"></typeparam>
+            <typeparam name="TValue"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.Validator.PropertyValidationExtensions.IsNotInSet``2(Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder{``0,System.Nullable{``1}}.IPropertyValidationRuleBuilder_S,System.Collections.Generic.IEnumerable{System.Nullable{``1}})">
             <summary>
             Value should not be in a range specified in <paramref name="expectedSet"/>. It is like a negation of <see cref="M:Newbe.ObjectVisitor.Validator.PropertyValidationExtensions.IsInSet``2(Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder{``0,``1}.IPropertyValidationRuleBuilder_S,System.Collections.Generic.IEnumerable{``1})"/>
             </summary>
@@ -1737,7 +1831,25 @@
             <typeparam name="TValue"></typeparam>
             <returns></returns>
         </member>
+        <member name="M:Newbe.ObjectVisitor.Validator.PropertyValidationExtensions.Null``2(Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder{``0,System.Nullable{``1}}.IPropertyValidationRuleBuilder_S)">
+            <summary>
+            Value should be null
+            </summary>
+            <param name="step"></param>
+            <typeparam name="T"></typeparam>
+            <typeparam name="TValue"></typeparam>
+            <returns></returns>
+        </member>
         <member name="M:Newbe.ObjectVisitor.Validator.PropertyValidationExtensions.NotNull``2(Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder{``0,``1}.IPropertyValidationRuleBuilder_S)">
+            <summary>
+            Value should not be null
+            </summary>
+            <param name="step"></param>
+            <typeparam name="T"></typeparam>
+            <typeparam name="TValue"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.Validator.PropertyValidationExtensions.NotNull``2(Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder{``0,System.Nullable{``1}}.IPropertyValidationRuleBuilder_S)">
             <summary>
             Value should not be null
             </summary>
@@ -1754,14 +1866,6 @@
             <typeparam name="T"></typeparam>
             <returns></returns>
         </member>
-        <member name="M:Newbe.ObjectVisitor.Validator.PropertyValidationExtensions.Empty``1(Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder{``0,System.String}.IPropertyValidationRuleBuilder_S)">
-            <summary>
-            Value should be null or white space
-            </summary>
-            <param name="step"></param>
-            <typeparam name="T"></typeparam>
-            <returns></returns>
-        </member>
         <member name="M:Newbe.ObjectVisitor.Validator.PropertyValidationExtensions.NotEmpty``2(Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder{``0,``1}.IPropertyValidationRuleBuilder_S)">
             <summary>
             Value should contains one element at least.
@@ -1769,6 +1873,14 @@
             <param name="step"></param>
             <typeparam name="T"></typeparam>
             <typeparam name="TValue"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.Validator.PropertyValidationExtensions.Empty``1(Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder{``0,System.String}.IPropertyValidationRuleBuilder_S)">
+            <summary>
+            Value should be null or white space
+            </summary>
+            <param name="step"></param>
+            <typeparam name="T"></typeparam>
             <returns></returns>
         </member>
         <member name="M:Newbe.ObjectVisitor.Validator.PropertyValidationExtensions.Empty``2(Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder{``0,``1}.IPropertyValidationRuleBuilder_S)">

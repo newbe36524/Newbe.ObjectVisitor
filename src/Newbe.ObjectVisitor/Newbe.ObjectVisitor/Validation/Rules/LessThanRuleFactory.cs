@@ -8,12 +8,18 @@ namespace Newbe.ObjectVisitor.Validation
         public static LessThanRule<T, TValue> Create<T, TValue>(TValue max)
             where TValue : IComparable<TValue>
         {
-            return new LessThanRule<T, TValue>(max, RuleExpressionHelper.Greater(max, false));
+            return new LessThanRule<T, TValue>(max, RuleExpressionHelper.Less(max, true));
+        }
+
+        public static LessThanRule<T, TValue?> CreateNullable<T, TValue>(TValue max)
+            where TValue : struct, IComparable<TValue>
+        {
+            return new LessThanRule<T, TValue?>(max, RuleExpressionHelper.LessNullable(max, true));
         }
 
         public static LessThanRule<T, TValue> Create<T, TValue>(TValue max, IComparer<TValue> comparer)
         {
-            return new LessThanRule<T, TValue>(max, RuleExpressionHelper.Greater(max, false, comparer));
+            return new LessThanRule<T, TValue>(max, RuleExpressionHelper.Less(max, true, comparer));
         }
     }
 }

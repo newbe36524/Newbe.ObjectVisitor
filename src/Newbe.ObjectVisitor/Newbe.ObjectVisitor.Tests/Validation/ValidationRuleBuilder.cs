@@ -2,10 +2,9 @@
 using System.Linq;
 using FluentAssertions;
 using Newbe.ObjectVisitor.Validation;
-using Newbe.ObjectVisitor.Validator;
 using NUnit.Framework;
 
-namespace Newbe.ObjectVisitor.Tests.Validator
+namespace Newbe.ObjectVisitor.Tests.Validation
 {
     public class ValidationRuleBuilderTest
     {

@@ -31,7 +31,7 @@ namespace Newbe.ObjectVisitor.Validation
         public static IValidator<T> Validate<T>(this OVBuilder<T>.IOVBuilder_V ovBuilder,
             Action<ValidationRuleGroupBuilder<T>.IValidationRuleGroupBuilder_S> buildRuleAction)
         {
-            var builder = ValidateRule<T>.GetBuilder();
+            var builder = ValidationRuleBuilder<T>.GetBuilder();
             buildRuleAction(builder);
             var rules = builder.Build();
             return ovBuilder.Validate(rules);

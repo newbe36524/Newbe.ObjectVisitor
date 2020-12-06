@@ -9,7 +9,14 @@ namespace Newbe.ObjectVisitor.Validation
         public static Expression<Func<TValue, bool>> Equal<TValue>(TValue expected)
             where TValue : IEquatable<TValue>
         {
-            Expression<Func<TValue, bool>> re = value => value.Equals(expected);
+            Expression<Func<TValue, bool>> re = value => expected.Equals(value);
+            return re;
+        }
+
+        public static Expression<Func<TValue?, bool>> Equal<TValue>(TValue? expected)
+            where TValue : struct, IEquatable<TValue>
+        {
+            Expression<Func<TValue?, bool>> re = value => expected.Equals(value);
             return re;
         }
 
@@ -20,17 +27,41 @@ namespace Newbe.ObjectVisitor.Validation
             return re;
         }
 
+        public static Expression<Func<TValue?, bool>> Equal<TValue>(TValue? expected,
+            IEqualityComparer<TValue?> comparer)
+            where TValue : struct
+        {
+            Expression<Func<TValue?, bool>> re = value => comparer.Equals(value, expected);
+            return re;
+        }
+
         public static Expression<Func<TValue, bool>> NotEqual<TValue>(TValue expected)
             where TValue : IEquatable<TValue>
         {
-            Expression<Func<TValue, bool>> re = value => !value.Equals(expected);
+            Expression<Func<TValue, bool>> re = value => !expected.Equals(value);
             return re;
         }
+
+        public static Expression<Func<TValue?, bool>> NotEqual<TValue>(TValue? expected)
+            where TValue : struct, IEquatable<TValue>
+        {
+            Expression<Func<TValue?, bool>> re = value => !expected.Equals(value);
+            return re;
+        }
+
 
         public static Expression<Func<TValue, bool>> NotEqual<TValue>(TValue expected,
             IEqualityComparer<TValue> comparer)
         {
             Expression<Func<TValue, bool>> re = value => !comparer.Equals(value, expected);
+            return re;
+        }
+
+        public static Expression<Func<TValue?, bool>> NotEqual<TValue>(TValue? expected,
+            IEqualityComparer<TValue?> comparer)
+            where TValue : struct
+        {
+            Expression<Func<TValue?, bool>> re = value => !comparer.Equals(value, expected);
             return re;
         }
 
@@ -40,11 +71,27 @@ namespace Newbe.ObjectVisitor.Validation
             Expression<Func<TValue, bool>> re;
             if (excludeMin)
             {
-                re = x => x.CompareTo(min) > 0;
+                re = x => min.CompareTo(x) < 0;
             }
             else
             {
-                re = x => x.CompareTo(min) >= 0;
+                re = x => min.CompareTo(x) <= 0;
+            }
+
+            return re;
+        }
+
+        public static Expression<Func<TValue?, bool>> GreaterNullable<TValue>(TValue min, bool excludeMin)
+            where TValue : struct, IComparable<TValue>
+        {
+            Expression<Func<TValue?, bool>> re;
+            if (excludeMin)
+            {
+                re = x => x.HasValue && min.CompareTo(x.Value) < 0;
+            }
+            else
+            {
+                re = x => x.HasValue && min.CompareTo(x.Value) <= 0;
             }
 
             return re;
@@ -74,11 +121,27 @@ namespace Newbe.ObjectVisitor.Validation
             Expression<Func<TValue, bool>> re;
             if (excludeMax)
             {
-                re = x => x.CompareTo(max) < 0;
+                re = x => max.CompareTo(x) > 0;
             }
             else
             {
-                re = x => x.CompareTo(max) <= 0;
+                re = x => max.CompareTo(x) >= 0;
+            }
+
+            return re;
+        }
+
+        public static Expression<Func<TValue?, bool>> LessNullable<TValue>(TValue max, bool excludeMax)
+            where TValue : struct, IComparable<TValue>
+        {
+            Expression<Func<TValue?, bool>> re;
+            if (excludeMax)
+            {
+                re = x => x.HasValue && max.CompareTo(x.Value) > 0;
+            }
+            else
+            {
+                re = x => x.HasValue && max.CompareTo(x.Value) >= 0;
             }
 
             return re;
