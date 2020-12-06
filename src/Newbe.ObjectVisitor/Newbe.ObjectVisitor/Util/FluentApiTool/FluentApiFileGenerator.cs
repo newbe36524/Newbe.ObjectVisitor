@@ -5,10 +5,15 @@ using Newbe.ObjectVisitor.Tpl;
 
 namespace Newbe.ObjectVisitor
 {
+    /// <inheritdoc />
     public class FluentApiFileGenerator : IFluentApiFileGenerator
     {
+        /// <summary>
+        /// Node name of beginning node and end node
+        /// </summary>
         public const string EdgeNodeName = "[*]";
 
+        /// <inheritdoc />
         public FluentApiOutput Generate(FluentApiDesign design)
         {
             var steps = ReplaceWithMapping(design.ApiSteps, design.ActionMapping);
@@ -68,7 +73,7 @@ namespace Newbe.ObjectVisitor
                 {
                     Returning = x.ContainsReturn ? x.Return : "void",
                     ArgsList = GetArgsList(x.Action),
-                    MethodName = GetSharedMethodName(x.Action),
+                    MethodName = GetSharedMethodName(x.Share),
                     Impl = "throw new NotImplementedException();"
                 })
                 .Select(x => x.Format())
@@ -106,10 +111,9 @@ namespace Newbe.ObjectVisitor
                             ArgsList = GetArgsList(x.Action),
                             Impl = new StepInterfaceImplMiddleTpl
                             {
-                                Returning = bodyReturning,
                                 Args = GetArgs(x.Action),
                                 MethodName = x.ContainsShare
-                                    ? GetSharedMethodName(x.Action)
+                                    ? GetSharedMethodName(x.Share)
                                     : GetNotSharedMethodName(x.Action)
                             }.Format()
                         };
@@ -124,15 +128,14 @@ namespace Newbe.ObjectVisitor
                                 Returning = bodyReturning,
                                 Args = GetArgs(x.Action),
                                 MethodName = x.ContainsShare
-                                    ? GetSharedMethodName(x.Action)
+                                    ? GetSharedMethodName(x.Share)
                                     : GetNotSharedMethodName(x.Action)
                             }.Format()
                             : new StepInterfaceImplMiddleTpl
                             {
-                                Returning = bodyReturning,
                                 Args = GetArgs(x.Action),
                                 MethodName = x.ContainsShare
-                                    ? GetSharedMethodName(x.Action)
+                                    ? GetSharedMethodName(x.Share)
                                     : GetNotSharedMethodName(x.Action)
                             }.Format();
                     return (ICodeTpl) new ImplicitMethodCodeTpl
@@ -169,7 +172,7 @@ namespace Newbe.ObjectVisitor
                 FluentApiDesign = design,
                 FluentApiFiles = new FluentApiFiles
                 {
-                    AutoGenerate = builderImplCodeTemplate.Format(),
+                    Api = builderImplCodeTemplate.Format(),
                 }
             };
             return re;
@@ -180,8 +183,9 @@ namespace Newbe.ObjectVisitor
             var visitor = default(ApiStep)!
                 .V()
                 .WithExtendObject(mapping)
-                .ForEach<ApiStep, Dictionary<string, string>, string>(c => ReplaceValueWithMapping(c),
-                    info => info.PropertyType == typeof(string) && info.Name != nameof(ApiStep.SourceContent))
+                .FilterProperty(info =>
+                    info.PropertyType == typeof(string) && info.Name != nameof(ApiStep.SourceContent))
+                .ForEach<string>(c => ReplaceValueWithMapping(c))
                 .CreateVisitor();
 
             var re = steps.Select(x =>
@@ -289,8 +293,13 @@ namespace Newbe.ObjectVisitor
             return action.Substring(0, index);
         }
 
-        static string GetSharedMethodName(string action)
+        static string GetSharedMethodName(string? action)
         {
+            if (action == null)
+            {
+                return string.Empty;
+            }
+
             return $"Shared_{GetMethodName(action)}";
         }
 
@@ -306,10 +315,10 @@ namespace Newbe.ObjectVisitor
             return re;
         }
 
-        public class Node
+        internal class Node
         {
-            public string Name { get; set; }
-            public List<ApiStep> Steps { get; set; }
+            public string Name { get; set; } = null!;
+            public List<ApiStep> Steps { get; set; } = new List<ApiStep>();
         }
     }
 }

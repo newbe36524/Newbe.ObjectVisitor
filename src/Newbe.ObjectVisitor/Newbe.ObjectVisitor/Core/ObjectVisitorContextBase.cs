@@ -3,7 +3,7 @@ using System.Reflection;
 
 namespace Newbe.ObjectVisitor
 {
-    public abstract class ObjectVisitorContextBase<TObj, TValue>
+    internal abstract class ObjectVisitorContextBase<TObj, TValue>
     {
         private readonly Func<TObj, TValue> _getter;
         private readonly Action<TObj, TValue> _setter;

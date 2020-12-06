@@ -20,7 +20,7 @@ namespace Newbe.ObjectVisitor.Tests.SumBuilderFluentApi
 
             var nodesCs = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "../../../", "SumBuilderFluentApi",
                 "SumBuilder.cs");
-            File.WriteAllText(nodesCs, output.FluentApiFiles.AutoGenerate);
+            File.WriteAllText(nodesCs, output.FluentApiFiles.Api);
         }
 
         [Test]
@@ -35,7 +35,7 @@ namespace Newbe.ObjectVisitor.Tests.SumBuilderFluentApi
 
             var nodesCs = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "../../../", "SumBuilderFluentApi",
                 "MultipleSumBuilder.cs");
-            File.WriteAllText(nodesCs, output.FluentApiFiles.AutoGenerate);
+            File.WriteAllText(nodesCs, output.FluentApiFiles.Api);
         }
     }
 }

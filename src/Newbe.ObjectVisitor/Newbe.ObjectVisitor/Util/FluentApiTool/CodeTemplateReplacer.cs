@@ -4,13 +4,13 @@ using Newbe.ObjectVisitor.Tpl;
 
 namespace Newbe.ObjectVisitor
 {
-    public static class CodeTemplateReplacer<T>
+    internal static class CodeTemplateReplacer<T>
         where T : ICodeTpl
     {
         private static readonly ICachedObjectVisitor<T, CodeInput> Visitor = default(T)!.V()
             .WithExtendObject<T, CodeInput>()
-            .ForEach<T, CodeInput, string>(context => Replace(context))
-            .ForEach<T, CodeInput, string[]>(context => ReplaceArray(context))
+            .ForEach<string>(context => Replace(context))
+            .ForEach<string[]>(context => ReplaceArray(context))
             .Cache();
 
         private static void ReplaceArray(IObjectVisitorContext<T, CodeInput, string[]> c)
@@ -40,8 +40,8 @@ namespace Newbe.ObjectVisitor
 
         private class CodeInput
         {
-            public string Template { get; set; }
-            public string Result { get; set; }
+            public string Template { get; set; } = null!;
+            public string Result { get; set; } = null!;
         }
 
         public static string GetContent(T tpl)

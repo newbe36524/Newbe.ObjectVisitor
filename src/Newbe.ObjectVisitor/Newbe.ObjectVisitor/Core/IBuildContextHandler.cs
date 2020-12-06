@@ -2,7 +2,7 @@
 
 namespace Newbe.ObjectVisitor
 {
-    public interface IBuildContextHandler
+    internal interface IBuildContextHandler
     {
         Expression? CreateExpression(IOvBuilderContext builderContext);
     }

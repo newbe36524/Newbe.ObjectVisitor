@@ -6,7 +6,7 @@ using System.Reflection;
 
 namespace Newbe.ObjectVisitor
 {
-    public class ForEachActionBuildContextHandler : BuildContextHandlerBase<ForEachActionContextItem>
+    internal class ForEachActionBuildContextHandler : BuildContextHandlerBase<ForEachActionContextItem>
     {
         public override Expression CreateCore(Type inputType, Type? extendType, ForEachActionContextItem contextItem)
         {
@@ -26,7 +26,8 @@ namespace Newbe.ObjectVisitor
                         throw new ArgumentOutOfRangeException();
                 }
 
-                var final = Expression.Block(blockItems);
+                var items = blockItems.ToArray();
+                var final = items.Any() ? (Expression) Expression.Block(items) : Expression.Empty();
                 var actionType = Expression.GetActionType(inputType);
                 var re = Expression.Lambda(actionType, final, inputExp);
                 return re;
@@ -48,7 +49,8 @@ namespace Newbe.ObjectVisitor
                         throw new ArgumentOutOfRangeException();
                 }
 
-                var final = Expression.Block(blockItems);
+                var items = blockItems.ToArray();
+                var final = items.Any() ? (Expression) Expression.Block(items) : Expression.Empty();
                 var actionType = Expression.GetActionType(inputType, extendType);
                 var re = Expression.Lambda(actionType, final, inputExp, extendP);
                 return re;
@@ -70,12 +72,12 @@ namespace Newbe.ObjectVisitor
                 var methodInfo = ObjectVisitorContext.GetCreateMethodInfo(inputType, valueType);
                 var getter =
                     isValueTypeNotSpecified
-                        ? ValueGetter.Get(inputType, propertyInfo)
-                        : ValueGetter.Get(inputType, valueType, propertyInfo);
+                        ? ValueGetter.Create(inputType, propertyInfo)
+                        : ValueGetter.Create(inputType, valueType, propertyInfo);
                 var setter =
                     isValueTypeNotSpecified
-                        ? ValueSetter.Get(inputType, propertyInfo)
-                        : ValueSetter.Get(inputType, valueType, propertyInfo);
+                        ? ValueSetter.Create(inputType, propertyInfo)
+                        : ValueSetter.Create(inputType, valueType, propertyInfo);
                 var newExpression = Expression.Call(methodInfo,
                     Expression.Constant(propertyInfo.Name),
                     inputExp,
@@ -103,12 +105,12 @@ namespace Newbe.ObjectVisitor
                 var methodInfo = ObjectVisitorContext.GetCreateMethodInfo(inputType, extendType, valueType);
                 var getter =
                     isValueTypeNotSpecified
-                        ? ValueGetter.Get(inputType, propertyInfo)
-                        : ValueGetter.Get(inputType, valueType, propertyInfo);
+                        ? ValueGetter.Create(inputType, propertyInfo)
+                        : ValueGetter.Create(inputType, valueType, propertyInfo);
                 var setter =
                     isValueTypeNotSpecified
-                        ? ValueSetter.Get(inputType, propertyInfo)
-                        : ValueSetter.Get(inputType, valueType, propertyInfo);
+                        ? ValueSetter.Create(inputType, propertyInfo)
+                        : ValueSetter.Create(inputType, valueType, propertyInfo);
                 var newExpression = Expression.Call(methodInfo,
                     Expression.Constant(propertyInfo.Name),
                     inputExp,

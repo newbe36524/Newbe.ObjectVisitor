@@ -1,0 +1,5 @@
+files:
+  - source: /src/Newbe.ObjectVisitor/Newbe.ObjectVisitor.XmlDocuments/*.xml
+    translation: >-
+      /src/Newbe.ObjectVisitor/Newbe.ObjectVisitor.XmlDocuments/%locale%/%original_file_name%
+    translate_attributes: 0

@@ -1,0 +1,2024 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doc>
+    <assembly>
+        <name>Newbe.ObjectVisitor</name>
+    </assembly>
+    <members>
+        <member name="T:Newbe.ObjectVisitor.CacheExtensions">
+            <summary>
+            缓存 object visitor 相关的扩展方法
+            </summary>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.CacheExtensions.Cache``1(Newbe.ObjectVisitor.OVBuilder{``0}.IOVBuilder_V)">
+            <summary>
+            创建缓存的 object visitor
+            </summary>
+            <param name="builderContext">object visitor 的构建器上下文</param>
+            <typeparam name="T">目标类型</typeparam>
+            <returns>缓存的 object visitor</returns>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.CacheExtensions.Cache``2(Newbe.ObjectVisitor.OVBuilderExt{``0,``1}.IOVBuilderExt_V)">
+            <summary>
+            创建缓存的 object visitor
+            </summary>
+            <param name="builderContext">object visitor 的构建器上下文</param>
+            <typeparam name="T">目标类型</typeparam>
+            <typeparam name="TExtend">扩展数据的类型。</typeparam>
+            <returns>缓存的 object visitor</returns>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.CacheExtensions.Run``1(Newbe.ObjectVisitor.ICachedObjectVisitor{``0},``0)">
+            <summary>
+            运行一个缓存的 object visitor
+            </summary>
+            <param name="visitor">visitor</param>
+            <param name="obj">目标对象</param>
+            <typeparam name="T">目标类型</typeparam>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.CacheExtensions.Run``2(Newbe.ObjectVisitor.ICachedObjectVisitor{``0,``1},``0,``1)">
+            <summary>
+            运行一个缓存的 object visitor
+            </summary>
+            <param name="visitor">visitor</param>
+            <param name="obj">目标对象</param>
+            <param name="extendObj">运行 visitor 的扩展数据</param>
+            <typeparam name="T">目标类型</typeparam>
+            <typeparam name="TExtend">扩展数据的类型。</typeparam>
+        </member>
+        <member name="T:Newbe.ObjectVisitor.ICachedObjectVisitor">
+            <summary>
+            缓存的 object visitor. 这意味着此 object visitor 已被创建并缓存。 它的运行速度要快于 <see cref="T:Newbe.ObjectVisitor.IObjectVisitor"/>.
+            </summary>
+        </member>
+        <member name="T:Newbe.ObjectVisitor.ICachedObjectVisitor`1">
+            <summary>
+            缓存的 object visitor. 这意味着此 object visitor 已被创建并缓存。 它的运行速度要快于 <see cref="T:Newbe.ObjectVisitor.IObjectVisitor"/>.
+            </summary>
+            <typeparam name="T">Object visitor 访问的目标类型</typeparam>
+        </member>
+        <member name="P:Newbe.ObjectVisitor.ICachedObjectVisitor`1.Action">
+            <summary>
+            Object Visitor 对应的委托
+            </summary>
+        </member>
+        <member name="T:Newbe.ObjectVisitor.ICachedObjectVisitor`2">
+            <summary>
+            缓存的 object visitor. 这意味着此 object visitor 已被创建并缓存。 它的运行速度要快于 <see cref="T:Newbe.ObjectVisitor.IObjectVisitor"/>.
+            </summary>
+            <typeparam name="T">Object visitor 访问的目标类型</typeparam>
+            <typeparam name="TExtend">扩展数据的类型。</typeparam>
+        </member>
+        <member name="P:Newbe.ObjectVisitor.ICachedObjectVisitor`2.Action">
+            <summary>
+            Object Visitor 对应的委托
+            </summary>
+        </member>
+        <member name="T:Newbe.ObjectVisitor.IObjectVisitor">
+            <summary>
+            Object visitor
+            </summary>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.IObjectVisitor.CreateExpression">
+            <summary>
+            创建一个 object visitor 对一个的表达式
+            </summary>
+            <returns/>
+        </member>
+        <member name="T:Newbe.ObjectVisitor.IObjectVisitor`1">
+            <summary>
+            Object visitor
+            </summary>
+            <typeparam name="T">目标类型</typeparam>
+        </member>
+        <member name="T:Newbe.ObjectVisitor.IObjectVisitor`2">
+            <summary>
+            Object visitor
+            </summary>
+            <typeparam name="T">目标类型</typeparam>
+            <typeparam name="TExtend">运行 Object Visitor 时的扩展数据的类型</typeparam>
+        </member>
+        <member name="T:Newbe.ObjectVisitor.IObjectVisitorContext`2">
+            <summary>
+            正在访问的属性对应的上下文
+            </summary>
+            <typeparam name="TSourceObject">正在访问的原始对象的类型</typeparam>
+            <typeparam name="TValue">正在访问的属性值的类型</typeparam>
+        </member>
+        <member name="P:Newbe.ObjectVisitor.IObjectVisitorContext`2.Name">
+            <summary>
+            正在访问的属性的名称
+            </summary>
+        </member>
+        <member name="P:Newbe.ObjectVisitor.IObjectVisitorContext`2.Value">
+            <summary>
+            正在访问的属性的值
+            </summary>
+        </member>
+        <member name="P:Newbe.ObjectVisitor.IObjectVisitorContext`2.SourceObject">
+            <summary>
+            原始对象
+            </summary>
+        </member>
+        <member name="P:Newbe.ObjectVisitor.IObjectVisitorContext`2.PropertyInfo">
+            <summary>
+            正在访问的属性的 PropertyInfo
+            </summary>
+        </member>
+        <member name="T:Newbe.ObjectVisitor.IObjectVisitorContext`3">
+            <summary>
+            访问一个对象时的上下文
+            </summary>
+            <typeparam name="TSourceObject">正在访问的原始对象的类型</typeparam>
+            <typeparam name="TExtend">访问时扩展数据的类型</typeparam>
+            <typeparam name="TValue">正在访问的属性值的类型</typeparam>
+        </member>
+        <member name="P:Newbe.ObjectVisitor.IObjectVisitorContext`3.Name">
+            <summary>
+            正在访问的属性的名称
+            </summary>
+        </member>
+        <member name="P:Newbe.ObjectVisitor.IObjectVisitorContext`3.Value">
+            <summary>
+            正在访问的属性的值
+            </summary>
+        </member>
+        <member name="P:Newbe.ObjectVisitor.IObjectVisitorContext`3.ExtendObject">
+            <summary>
+            扩展数据
+            </summary>
+        </member>
+        <member name="P:Newbe.ObjectVisitor.IObjectVisitorContext`3.SourceObject">
+            <summary>
+            原始对象
+            </summary>
+        </member>
+        <member name="P:Newbe.ObjectVisitor.IObjectVisitorContext`3.PropertyInfo">
+            <summary>
+            正在访问的属性的 PropertyInfo
+            </summary>
+        </member>
+        <member name="T:Newbe.ObjectVisitor.IOvBuilderContext">
+            <summary>
+            构建一个 object visitor 的创建者上下文
+            </summary>
+        </member>
+        <member name="T:Newbe.ObjectVisitor.IOvBuilderContext`1">
+            <summary>
+            构建一个 object visitor 的创建者上下文
+            </summary>
+            <typeparam name="T">目标对象的类型</typeparam>
+        </member>
+        <member name="T:Newbe.ObjectVisitor.IOvBuilderContext`2">
+            <summary>
+            构建一个 object visitor 的创建者上下文
+            </summary>
+            <typeparam name="TSourceObject">目标对象的类型</typeparam>
+            <typeparam name="TExtendObject">扩展数据的类型。</typeparam>
+        </member>
+        <member name="T:Newbe.ObjectVisitor.IOvBuilderContextItem">
+            <summary>
+            Object visitor 创建者上下文中的项
+            </summary>
+        </member>
+        <member name="T:Newbe.ObjectVisitor.IOvFactory">
+            <summary>
+            Object visitor 工厂
+            </summary>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.IOvFactory.Create(Newbe.ObjectVisitor.IOvBuilderContext)">
+            <summary>
+            创建 object visitor ，通过 <paramref name="builderContext"/>
+            </summary>
+            <param name="builderContext">Object visitor 的构建器上下文</param>
+            <returns>Object visitor</returns>
+        </member>
+        <member name="T:Newbe.ObjectVisitor.OvBuilderExtensions">
+            <summary>
+            Object visitor builder 的核心扩展方法
+            </summary>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.OvBuilderExtensions.CreateVisitor(Newbe.ObjectVisitor.IOvBuilderContext)">
+            <summary>
+            创建 object visitor
+            </summary>
+            <param name="builderContext">构建器的上下文</param>
+            <returns>Object visitor</returns>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.OvBuilderExtensions.CreateVisitor``1(Newbe.ObjectVisitor.IOvBuilderContext{``0})">
+            <summary>
+            创建 object visitor
+            </summary>
+            <param name="builderContext">构建器的上下文</param>
+            <typeparam name="T">目标对象的类型</typeparam>
+            <returns>Object visitor</returns>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.OvBuilderExtensions.CreateVisitor``2(Newbe.ObjectVisitor.IOvBuilderContext{``0,``1})">
+            <summary>
+            创建 object visitor
+            </summary>
+            <param name="builderContext">构建器的上下文</param>
+            <typeparam name="T">目标对象的类型</typeparam>
+            <typeparam name="TExtend">扩展数据的类型。</typeparam>
+            <returns>Object visitor</returns>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.OvBuilderExtensions.GetLambda``1(Newbe.ObjectVisitor.OVBuilder{``0}.IOVBuilder_V)">
+            <summary>
+            构建 lambda action，通过 <paramref name="builderContext"/>
+            </summary>
+            <param name="builderContext">构建器的上下文</param>
+            <typeparam name="T">目标对象的类型</typeparam>
+            <returns>Lambda action</returns>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.OvBuilderExtensions.GetLambda``2(Newbe.ObjectVisitor.OVBuilderExt{``0,``1}.IOVBuilderExt_V)">
+            <summary>
+            构建 lambda action，通过 <paramref name="builderContext"/>
+            </summary>
+            <param name="builderContext">构建器的上下文</param>
+            <typeparam name="T">目标对象的类型</typeparam>
+            <typeparam name="TExtend">扩展数据的类型。</typeparam>
+            <returns>Lambda action</returns>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.OvBuilderExtensions.GetDebugInfo``2(Newbe.ObjectVisitor.OVBuilderExt{``0,``1}.IOVBuilderExt_V)">
+            <summary>
+            获取调试信息，通过 <paramref name="builderContext"/>. 它在调试表达式时很有用。
+            </summary>
+            <param name="builderContext">构建器的上下文</param>
+            <typeparam name="T">目标对象的类型</typeparam>
+            <typeparam name="TExtend">扩展数据的类型。</typeparam>
+            <returns>调试信息</returns>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.OvBuilderExtensions.GetDebugInfo``1(Newbe.ObjectVisitor.OVBuilder{``0}.IOVBuilder_V)">
+            <summary>
+            获取调试信息，通过 <paramref name="builderContext"/>. 它在调试表达式时很有用。
+            </summary>
+            <param name="builderContext">构建器的上下文</param>
+            <typeparam name="T">目标对象的类型</typeparam>
+            <returns>调试信息</returns>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.OvBuilderExtensions.GetDebugInfo(Newbe.ObjectVisitor.IObjectVisitor)">
+            <summary>
+            获取调试信息，通过 <paramref name="visitor"/>. 它在调试表达式时很有用。
+            </summary>
+            <param name="visitor">Object visitor</param>
+            <returns>调试信息</returns>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.OvBuilderExtensions.Run``1(Newbe.ObjectVisitor.IObjectVisitor{``0},``0)">
+            <summary>
+            使用目标对象运行 object visitor
+            </summary>
+            <param name="visitor">Object visitor</param>
+            <param name="obj">目标对象</param>
+            <typeparam name="T">目标对象的类型</typeparam>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.OvBuilderExtensions.Run``2(Newbe.ObjectVisitor.IObjectVisitor{``0,``1},``0,``1)">
+            <summary>
+            使用目标对象和扩展数据运行 object visitor
+            </summary>
+            <param name="visitor">Object visitor</param>
+            <param name="obj">目标对象</param>
+            <param name="extendObj">扩展数据</param>
+            <typeparam name="T">目标对象的类型</typeparam>
+            <typeparam name="TExtend">扩展数据的类型。</typeparam>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.OvBuilderExtensions.Run``1(Newbe.ObjectVisitor.OVBuilder{``0}.IOVBuilder_V)">
+            <summary>
+            使用在开始时指定的目标对象运行 object visitor
+            </summary>
+            <param name="builderContext">构建器的上下文</param>
+            <typeparam name="T">目标对象的类型</typeparam>
+            <exception cref="T:Newbe.ObjectVisitor.MissingSourceObjectException">如果开始时未指定源对象，那么它将抛出。 如果抛出，您应该运行此 object visitor 的另一个重载 <see cref="M:Newbe.ObjectVisitor.OvBuilderExtensions.Run``1(Newbe.ObjectVisitor.OVBuilder{``0}.IOVBuilder_V,``0)"/></exception>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.OvBuilderExtensions.Run``1(Newbe.ObjectVisitor.OVBuilder{``0}.IOVBuilder_V,``0)">
+            <summary>
+            使用目标对象运行 object visitor
+            </summary>
+            <param name="builderContext">构建器的上下文</param>
+            <param name="obj">目标对象</param>
+            <typeparam name="T">目标对象的类型</typeparam>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.OvBuilderExtensions.Run``2(Newbe.ObjectVisitor.OVBuilderExt{``0,``1}.IOVBuilderExt_V)">
+            <summary>
+            使用在开始时指定的目标对象和扩展数据运行 object visitor
+            </summary>
+            <param name="builderContext">构建器的上下文</param>
+            <typeparam name="T">目标对象的类型</typeparam>
+            <typeparam name="TExtend">扩展数据的类型。</typeparam>
+            <exception cref="T:Newbe.ObjectVisitor.MissingSourceObjectException">如果开始时未指定源对象，那么它将抛出。 如果抛出，您应该运行此 object visitor 的另一个重载 <see cref="M:Newbe.ObjectVisitor.OvBuilderExtensions.Run``2(Newbe.ObjectVisitor.OVBuilderExt{``0,``1}.IOVBuilderExt_V,``0)"/></exception>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.OvBuilderExtensions.Run``2(Newbe.ObjectVisitor.OVBuilderExt{``0,``1}.IOVBuilderExt_V,``0)">
+            <summary>
+            使用在开始时指定的目标对象和扩展数据运行 object visitor
+            </summary>
+            <param name="builderContext">构建器的上下文</param>
+            <param name="obj">目标对象</param>
+            <typeparam name="T">目标对象的类型</typeparam>
+            <typeparam name="TExtend">扩展数据的类型。</typeparam>
+            <exception cref="T:Newbe.ObjectVisitor.MissingSourceObjectException">如果开始时未指定扩展数据对象，那么它将抛出。 如果抛出，您应该运行此 object visitor 的另一个重载 <see cref="M:Newbe.ObjectVisitor.OvBuilderExtensions.Run``2(Newbe.ObjectVisitor.OVBuilderExt{``0,``1}.IOVBuilderExt_V,``0,``1)"/></exception>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.OvBuilderExtensions.Run``2(Newbe.ObjectVisitor.OVBuilderExt{``0,``1}.IOVBuilderExt_V,``0,``1)">
+            <summary>
+            使用目标对象和扩展数据运行 object visitor
+            </summary>
+            <param name="builderContext">构建器的上下文</param>
+            <param name="obj">目标对象</param>
+            <param name="extendObj">扩展数据</param>
+            <typeparam name="T">目标对象的类型</typeparam>
+            <typeparam name="TExtend">扩展数据的类型。</typeparam>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.OvBuilderExtensions.V``1(``0)">
+            <summary>
+            获取一个 object visitor 创建者来创建 object visitor
+            </summary>
+            <param name="obj">目标对象</param>
+            <typeparam name="T">目标对象的类型</typeparam>
+            <returns>Object visitor 创建者</returns>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.OvBuilderExtensions.WithExtendObject``2(Newbe.ObjectVisitor.OVBuilder{``0}.IOVBuilder_V)">
+            <summary>
+            指定 object visitor 应使用扩展数据运行
+            </summary>
+            <param name="builderContext">构建器的上下文</param>
+            <typeparam name="T">目标对象的类型</typeparam>
+            <typeparam name="TExtend">扩展数据的类型。</typeparam>
+            <returns>Object visitor 创建者</returns>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.OvBuilderExtensions.WithExtendObject``2(Newbe.ObjectVisitor.OVBuilder{``0}.IOVBuilder_V,``1)">
+            <summary>
+            指定 object visitor 应使用扩展数据运行
+            </summary>
+            <param name="builderContext">构建器的上下文</param>
+            <param name="extendObj">扩展数据</param>
+            <typeparam name="T">目标对象的类型</typeparam>
+            <typeparam name="TExtend">扩展数据的类型。</typeparam>
+            <returns>Object visitor 创建者</returns>
+        </member>
+        <member name="T:Newbe.ObjectVisitor.ValueGetter">
+            <summary>
+            帮助类，用于生成 func 以从对象属性获取值
+            </summary>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.ValueGetter.Create(System.Type,System.Type,System.Reflection.PropertyInfo)">
+            <summary>
+            创建 getter func 以从对象属性获取值。
+            </summary>
+            <example>
+            var stringLengthFunc = (Func&lt;string,int&gt;) ValueGetter.Create(typeof(string), typeof(int), typeof(string).GetProperty("Length"))
+            </example>
+            <param name="objType">目标对象的类型</param>
+            <param name="valueType">目标属性的类型</param>
+            <param name="info">目标属性的属性信息</param>
+            <returns>形如 Func&lt;objType,valueType&gt; 的 Func </returns>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.ValueGetter.Create(System.Type,System.Reflection.PropertyInfo)">
+            <summary>
+            创建 getter func 以从对象属性获取值。
+            </summary>
+            <example>
+            var stringLengthFunc = (Func&lt;string,object&gt;) ValueGetter.Create(typeof(string), typeof(string).GetProperty("Length"))
+            </example>
+            <param name="objType">目标对象的类型</param>
+            <param name="info">目标属性的属性信息</param>
+            <returns>形如 Func&lt;objType,object&gt; 的 Func </returns>
+        </member>
+        <member name="T:Newbe.ObjectVisitor.ValueGetter`3">
+            <summary>
+            Value getter 的泛型方法
+            </summary>
+            <typeparam name="TTargetObject">目标对象的类型</typeparam>
+            <typeparam name="TPropertyValue">属性类型</typeparam>
+            <typeparam name="TTargetValue">目标值的类型。 此值用为 func 的返回值类型，它可以与 <typeparamref name="TPropertyValue"/>不同。 你必须确保 <typeparamref name="TPropertyValue"/> 可以直接强制转换为 <typeparamref name="TTargetValue"/>，否则会抛出异常。</typeparam>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.ValueGetter`3.GetGetter(System.Reflection.PropertyInfo)">
+            <summary>
+            创建 getter func 以从对象属性获取值。
+            </summary>
+            <example>
+            Func&lt;string,int&gt; stringLengthFunc =  ValueGetter&lt;string, int, int&gt;.GetGetter(typeof(string).GetProperty("Length"))
+            </example>
+            <param name="info">目标属性的属性信息</param>
+            <returns>一个作为 value getter 的 Func</returns>
+        </member>
+        <member name="T:Newbe.ObjectVisitor.ValueGetter`1">
+            <summary>
+            Value getter 的非泛型方法
+            </summary>
+            <typeparam name="TTargetObject">目标对象的类型</typeparam>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.ValueGetter`1.GetGetter(System.Reflection.PropertyInfo)">
+            <summary>
+            创建 getter func 以从对象属性获取值。
+            </summary>
+            <example>
+            Func&lt;string,object&gt; stringLengthFunc =  ValueGetter&lt;string&gt;.GetGetter(typeof(string).GetProperty("Length"))
+            </example>
+            <param name="info">目标属性的属性信息</param>
+            <returns>一个作为 value getter 的 Func</returns>
+        </member>
+        <member name="T:Newbe.ObjectVisitor.ValueSetter">
+            <summary>
+            帮助类，用于生成 action 以从设置对象的属性
+            </summary>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.ValueSetter.Create(System.Type,System.Type,System.Reflection.PropertyInfo)">
+            <summary>
+            创建 setter action 以对对象属性赋值。
+            <example>
+            var uriSetter = (Action&lt;HttpRequestMessage,Uri&gt;) ValueSetter.Create(typeof(HttpRequestMessage), typeof(Uri), typeof(HttpRequestMessage).GetProperty("RequestUri"))
+            </example>
+            </summary>
+            <param name="objType">目标对象的类型</param>
+            <param name="valueType">目标属性的类型</param>
+            <param name="info">目标属性的属性信息</param>
+            <returns>形如 Action&lt;objType,valueType&gt; 的 Action </returns>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.ValueSetter.Create(System.Type,System.Reflection.PropertyInfo)">
+            <summary>
+            创建 setter action 以对对象属性赋值。
+            <example>
+            var uriSetter = (Action&lt;HttpRequestMessage,object&gt;) ValueSetter.Create(typeof(HttpRequestMessage), typeof(HttpRequestMessage).GetProperty("RequestUri"))
+            </example>
+            </summary>
+            <param name="objType">目标对象的类型</param>
+            <param name="info">目标属性的属性信息</param>
+            <returns>形如 Action&lt;objType,object&gt; 的 Action </returns>
+        </member>
+        <member name="T:Newbe.ObjectVisitor.ValueSetter`3">
+            <summary>
+            Value setter 的泛型方法
+            </summary>
+            <typeparam name="TTargetObject">目标对象的类型</typeparam>
+            <typeparam name="TPropertyValue">属性类型</typeparam>
+            <typeparam name="TTargetValue">目标值的类型。 这用作 Action 输入值的类型，它可以不同于 <typeparamref name="TPropertyValue"/>. 你必须确保 <typeparamref name="TTargetValue"/> 可以直接强制转换为 <typeparamref name="TPropertyValue"/>，否则会抛出异常。</typeparam>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.ValueSetter`3.GetSetter(System.Reflection.PropertyInfo)">
+            <summary>
+            创建 setter action 以对对象属性赋值。
+            <example>
+            Action&lt;HttpRequestMessage,Uri&gt; uriSetter = ValueSetter&lt;HttpRequestMessage, Uri, Uri&gt;.GetSetter(typeof(HttpRequestMessage).GetProperty("RequestUri"))
+            </example>
+            </summary>
+            <param name="info">目标属性的属性信息</param>
+            <returns>一个作为 value setter 的 Action</returns>
+        </member>
+        <member name="T:Newbe.ObjectVisitor.ValueSetter`1">
+            <summary>
+            Value setter 的非泛型方法
+            </summary>
+            <typeparam name="TTargetObject">目标对象的类型</typeparam>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.ValueSetter`1.GetSetter(System.Reflection.PropertyInfo)">
+            <summary>
+            创建 setter action 以对对象属性赋值。
+            <example>
+            Action&lt;HttpRequestMessage,object&gt; uriSetter = ValueSetter&lt;HttpRequestMessage&gt;.GetSetter(typeof(HttpRequestMessage).GetProperty("RequestUri"))
+            </example>
+            </summary>
+            <param name="info">目标属性的属性信息</param>
+            <returns>一个作为 value setter 的 Action</returns>
+        </member>
+        <member name="T:Newbe.ObjectVisitor.FailedToConvertExpressionException">
+            <summary>
+            创建 object visitor 时未能转换表达式类型
+            </summary>
+        </member>
+        <member name="P:Newbe.ObjectVisitor.FailedToConvertExpressionException.SourceExpression">
+            <summary>
+            源表达式
+            </summary>
+        </member>
+        <member name="P:Newbe.ObjectVisitor.FailedToConvertExpressionException.Type">
+            <summary>
+            目标类型
+            </summary>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.FailedToConvertExpressionException.#ctor(System.Linq.Expressions.Expression,System.Type)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.FailedToConvertExpressionException.#ctor(System.String,System.Linq.Expressions.Expression,System.Type)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.FailedToConvertExpressionException.#ctor(System.String,System.Exception,System.Linq.Expressions.Expression,System.Type)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Newbe.ObjectVisitor.MissingBuilderContextHandlerException">
+            <summary>
+            缺少构建器上下文处理程序
+            </summary>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.MissingBuilderContextHandlerException.#ctor">
+            <inheritdoc/>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.MissingBuilderContextHandlerException.#ctor(System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.MissingBuilderContextHandlerException.#ctor(System.String,System.Exception)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Newbe.ObjectVisitor.MissingExtendObjectException">
+            <summary>
+            缺少扩展数据对象
+            </summary>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.MissingExtendObjectException.#ctor">
+            <inheritdoc/>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.MissingExtendObjectException.#ctor(System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.MissingExtendObjectException.#ctor(System.String,System.Exception)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Newbe.ObjectVisitor.MissingSourceObjectException">
+            <summary>
+            缺少目标对象
+            </summary>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.MissingSourceObjectException.#ctor">
+            <inheritdoc/>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.MissingSourceObjectException.#ctor(System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.MissingSourceObjectException.#ctor(System.String,System.Exception)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Newbe.ObjectVisitor.ObjectVisitorException">
+            <summary>
+            Object visitor 相关的异常基类
+            </summary>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.ObjectVisitorException.#ctor">
+            <inheritdoc/>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.ObjectVisitorException.#ctor(System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.ObjectVisitorException.#ctor(System.String,System.Exception)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Newbe.ObjectVisitor.ForEachExtensions">
+            <summary>
+            ForEach 的扩展
+            </summary>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.ForEachExtensions.ForEach``1(Newbe.ObjectVisitor.OVBuilder{``0}.IOVBuilder_V,System.Linq.Expressions.Expression{System.Action{Newbe.ObjectVisitor.IObjectVisitorContext{``0,System.Object}}},System.Func{System.Reflection.PropertyInfo,System.Boolean})">
+            <summary>
+            注册对象访问操作
+            </summary>
+            <param name="builderContext">Object visitor 的构建器上下文</param>
+            <param name="foreachAction">对象访问操作</param>
+            <param name="propertyInfoFilter">筛选要访问的目标对象的属性</param>
+            <typeparam name="T">目标对象的类型</typeparam>
+            <returns>Object visitor 创建者</returns>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.ForEachExtensions.ForEach``1(Newbe.ObjectVisitor.OVBuilder{``0}.IOVBuilder_V,System.Linq.Expressions.Expression{System.Action{System.String,System.Object}},System.Func{System.Reflection.PropertyInfo,System.Boolean})">
+            <summary>
+            注册对象访问操作
+            </summary>
+            <param name="builderContext">Object visitor 的构建器上下文</param>
+            <param name="foreachAction">对象访问操作</param>
+            <param name="propertyInfoFilter">筛选要访问的目标对象的属性</param>
+            <typeparam name="T">目标对象的类型</typeparam>
+            <returns>Object visitor 创建者</returns>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.ForEachExtensions.ForEach``2(Newbe.ObjectVisitor.OVBuilderExt{``0,``1}.IOVBuilderExt_V,System.Linq.Expressions.Expression{System.Action{Newbe.ObjectVisitor.IObjectVisitorContext{``0,``1,System.Object}}},System.Func{System.Reflection.PropertyInfo,System.Boolean})">
+            <summary>
+            注册对象访问操作
+            </summary>
+            <param name="builderContext">Object visitor 的构建器上下文</param>
+            <param name="foreachAction">对象访问操作</param>
+            <param name="propertyInfoFilter">筛选要访问的目标对象的属性</param>
+            <typeparam name="T">目标对象的类型</typeparam>
+            <typeparam name="TExtend">扩展数据的类型。</typeparam>
+            <returns>Object visitor 创建者</returns>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.ForEachExtensions.ForEach``2(Newbe.ObjectVisitor.OVBuilderExt{``0,``1}.IOVBuilderExt_V,System.Linq.Expressions.Expression{System.Action{System.String,System.Object,``1}},System.Func{System.Reflection.PropertyInfo,System.Boolean})">
+            <summary>
+            注册对象访问操作
+            </summary>
+            <param name="builderContext">Object visitor 的构建器上下文</param>
+            <param name="foreachAction">对象访问操作</param>
+            <param name="propertyInfoFilter">筛选要访问的目标对象的属性</param>
+            <typeparam name="T">目标对象的类型</typeparam>
+            <typeparam name="TExtend">扩展数据的类型。</typeparam>
+            <returns>Object visitor 创建者</returns>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.ForEachExtensions.ForEach``2(Newbe.ObjectVisitor.OVBuilder{``0}.IOVBuilder_V,System.Linq.Expressions.Expression{System.Action{Newbe.ObjectVisitor.IObjectVisitorContext{``0,``1}}},System.Func{System.Reflection.PropertyInfo,System.Boolean})">
+            <summary>
+            注册对象访问操作
+            </summary>
+            <param name="builderContext">Object visitor 的构建器上下文</param>
+            <param name="foreachAction">对象访问操作</param>
+            <param name="propertyInfoFilter">筛选要访问的目标对象的属性</param>
+            <typeparam name="T">目标对象的类型</typeparam>
+            <typeparam name="TValue">属性类型</typeparam>
+            <returns>Object visitor 创建者</returns>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.ForEachExtensions.ForEach``2(Newbe.ObjectVisitor.OVBuilder{``0}.IOVBuilder_V,System.Linq.Expressions.Expression{System.Action{System.String,``1}},System.Func{System.Reflection.PropertyInfo,System.Boolean})">
+            <summary>
+            注册对象访问操作
+            </summary>
+            <param name="builderContext">Object visitor 的构建器上下文</param>
+            <param name="foreachAction">对象访问操作</param>
+            <param name="propertyInfoFilter">筛选要访问的目标对象的属性</param>
+            <typeparam name="T">目标对象的类型</typeparam>
+            <typeparam name="TValue">属性类型</typeparam>
+            <returns>Object visitor 创建者</returns>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.ForEachExtensions.ForEach``3(Newbe.ObjectVisitor.OVBuilderExt{``0,``1}.IOVBuilderExt_V,System.Linq.Expressions.Expression{System.Action{Newbe.ObjectVisitor.IObjectVisitorContext{``0,``1,``2}}},System.Func{System.Reflection.PropertyInfo,System.Boolean})">
+            <summary>
+            注册对象访问操作
+            </summary>
+            <param name="builderContext">Object visitor 的构建器上下文</param>
+            <param name="foreachAction">对象访问操作</param>
+            <param name="propertyInfoFilter">筛选要访问的目标对象的属性</param>
+            <typeparam name="T">目标对象的类型</typeparam>
+            <typeparam name="TValue">属性类型</typeparam>
+            <typeparam name="TExtend">扩展数据的类型。</typeparam>
+            <returns>Object visitor 创建者</returns>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.ForEachExtensions.ForEach``3(Newbe.ObjectVisitor.OVBuilderExt{``0,``1}.IOVBuilderExt_V,System.Linq.Expressions.Expression{System.Action{System.String,``2,``1}},System.Func{System.Reflection.PropertyInfo,System.Boolean})">
+            <summary>
+            注册对象访问操作
+            </summary>
+            <param name="builderContext">Object visitor 的构建器上下文</param>
+            <param name="foreachAction">对象访问操作</param>
+            <param name="propertyInfoFilter">筛选要访问的目标对象的属性</param>
+            <typeparam name="T">目标对象的类型</typeparam>
+            <typeparam name="TValue">属性类型</typeparam>
+            <typeparam name="TExtend">扩展数据的类型。</typeparam>
+            <returns>Object visitor 创建者</returns>
+        </member>
+        <member name="T:Newbe.ObjectVisitor.OVBuilder`1">
+            <summary>
+            Object visitor 创建者
+            </summary>
+            <typeparam name="T"/>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.OVBuilder`1.#ctor(Newbe.ObjectVisitor.IOvBuilderContext{`0})">
+            <summary>
+            创建 Object visitor 的构建器
+            </summary>
+            <param name="context"/>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.OVBuilder`1.GetBuilder">
+            <summary>
+            获得一个 Object visitor 创建者
+            </summary>
+            <returns/>
+        </member>
+        <member name="T:Newbe.ObjectVisitor.OVBuilder`1.IOVBuilder_V">
+            <summary>
+            " object visitor " 构建器步骤
+            </summary>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.OVBuilder`1.IOVBuilder_V.ForEach(System.Linq.Expressions.Expression{System.Action{Newbe.ObjectVisitor.IObjectVisitorContext{`0,System.Object}}})">
+            <summary>
+            添加访问属性的操作
+            </summary>
+            <param name="foreachAction"/>
+            <returns/>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.OVBuilder`1.IOVBuilder_V.ForEach(System.Linq.Expressions.Expression{System.Action{System.String,System.Object}})">
+            <summary>
+            添加访问属性的操作
+            </summary>
+            <param name="foreachAction"/>
+            <returns/>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.OVBuilder`1.IOVBuilder_V.ForEach``1(System.Linq.Expressions.Expression{System.Action{Newbe.ObjectVisitor.IObjectVisitorContext{`0,``0}}})">
+            <summary>
+            添加访问属性的操作
+            </summary>
+            <param name="foreachAction"/>
+            <typeparam name="TValue"/>
+            <returns/>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.OVBuilder`1.IOVBuilder_V.ForEach``1(System.Linq.Expressions.Expression{System.Action{System.String,``0}})">
+            <summary>
+            添加访问属性的操作
+            </summary>
+            <param name="foreachAction"/>
+            <typeparam name="TValue"/>
+            <returns/>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.OVBuilder`1.IOVBuilder_V.FilterProperty(System.Func{System.Reflection.PropertyInfo,System.Boolean})">
+            <summary>
+            筛选要访问的属性
+            </summary>
+            <param name="propertyInfoFilter"/>
+            <returns/>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.OVBuilder`1.IOVBuilder_V.CreateVisitor">
+            <summary>
+            创建 object visitor
+            </summary>
+            <returns/>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.OVBuilder`1.IOVBuilder_V.GetContext">
+            <summary>
+            获取上下文
+            </summary>
+            <returns/>
+        </member>
+        <member name="T:Newbe.ObjectVisitor.OVBuilder`1.IOVBuilder_VP">
+            <summary>
+            " object visitor " 构建器步骤
+            </summary>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.OVBuilder`1.IOVBuilder_VP.ForEach(System.Linq.Expressions.Expression{System.Action{Newbe.ObjectVisitor.IObjectVisitorContext{`0,System.Object}}})">
+            <summary>
+            添加访问属性的操作
+            </summary>
+            <param name="foreachAction"/>
+            <returns/>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.OVBuilder`1.IOVBuilder_VP.ForEach(System.Linq.Expressions.Expression{System.Action{System.String,System.Object}})">
+            <summary>
+            添加访问属性的操作
+            </summary>
+            <param name="foreachAction"/>
+            <returns/>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.OVBuilder`1.IOVBuilder_VP.ForEach``1(System.Linq.Expressions.Expression{System.Action{Newbe.ObjectVisitor.IObjectVisitorContext{`0,``0}}})">
+            <summary>
+            添加访问属性的操作
+            </summary>
+            <param name="foreachAction"/>
+            <typeparam name="TValue"/>
+            <returns/>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.OVBuilder`1.IOVBuilder_VP.ForEach``1(System.Linq.Expressions.Expression{System.Action{System.String,``0}})">
+            <summary>
+            添加访问属性的操作
+            </summary>
+            <param name="foreachAction"/>
+            <typeparam name="TValue"/>
+            <returns/>
+        </member>
+        <member name="T:Newbe.ObjectVisitor.OVBuilderExt`2">
+            <summary>
+            具有扩展数据的 object visitor
+            </summary>
+            <typeparam name="T"/>
+            <typeparam name="TExtend"/>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.OVBuilderExt`2.#ctor(Newbe.ObjectVisitor.IOvBuilderContext{`0,`1})">
+            <summary>
+            创建 object visitor
+            </summary>
+            <param name="context"/>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.OVBuilderExt`2.GetBuilder">
+            <summary>
+            创建 Object visitor 的构建器
+            </summary>
+            <returns/>
+        </member>
+        <member name="T:Newbe.ObjectVisitor.OVBuilderExt`2.IOVBuilderExt_V">
+            <summary>
+            " object visitor " 构建器步骤
+            </summary>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.OVBuilderExt`2.IOVBuilderExt_V.ForEach(System.Linq.Expressions.Expression{System.Action{Newbe.ObjectVisitor.IObjectVisitorContext{`0,`1,System.Object}}})">
+            <summary>
+            添加访问属性的操作
+            </summary>
+            <param name="foreachAction"/>
+            <returns/>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.OVBuilderExt`2.IOVBuilderExt_V.ForEach(System.Linq.Expressions.Expression{System.Action{System.String,System.Object,`1}})">
+            <summary>
+            添加访问属性的操作
+            </summary>
+            <param name="foreachAction"/>
+            <returns/>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.OVBuilderExt`2.IOVBuilderExt_V.ForEach``1(System.Linq.Expressions.Expression{System.Action{Newbe.ObjectVisitor.IObjectVisitorContext{`0,`1,``0}}})">
+            <summary>
+            添加访问属性的操作
+            </summary>
+            <param name="foreachAction"/>
+            <typeparam name="TValue"/>
+            <returns/>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.OVBuilderExt`2.IOVBuilderExt_V.ForEach``1(System.Linq.Expressions.Expression{System.Action{System.String,``0,`1}})">
+            <summary>
+            添加访问属性的操作
+            </summary>
+            <param name="foreachAction"/>
+            <typeparam name="TValue"/>
+            <returns/>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.OVBuilderExt`2.IOVBuilderExt_V.FilterProperty(System.Func{System.Reflection.PropertyInfo,System.Boolean})">
+            <summary>
+            筛选要访问的属性
+            </summary>
+            <param name="propertyInfoFilter"/>
+            <returns/>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.OVBuilderExt`2.IOVBuilderExt_V.CreateVisitor">
+            <summary>
+            创建 object visitor
+            </summary>
+            <returns/>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.OVBuilderExt`2.IOVBuilderExt_V.GetContext">
+            <summary>
+            获取上下文 
+            </summary>
+            <returns/>
+        </member>
+        <member name="T:Newbe.ObjectVisitor.OVBuilderExt`2.IOVBuilderExt_VP">
+            <summary>
+            " object visitor " 构建器步骤
+            </summary>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.OVBuilderExt`2.IOVBuilderExt_VP.ForEach(System.Linq.Expressions.Expression{System.Action{Newbe.ObjectVisitor.IObjectVisitorContext{`0,`1,System.Object}}})">
+            <summary>
+            添加访问属性的操作
+            </summary>
+            <param name="foreachAction"/>
+            <returns/>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.OVBuilderExt`2.IOVBuilderExt_VP.ForEach(System.Linq.Expressions.Expression{System.Action{System.String,System.Object,`1}})">
+            <summary>
+            添加访问属性的操作
+            </summary>
+            <param name="foreachAction"/>
+            <returns/>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.OVBuilderExt`2.IOVBuilderExt_VP.ForEach``1(System.Linq.Expressions.Expression{System.Action{Newbe.ObjectVisitor.IObjectVisitorContext{`0,`1,``0}}})">
+            <summary>
+            添加访问属性的操作
+            </summary>
+            <param name="foreachAction"/>
+            <typeparam name="TValue"/>
+            <returns/>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.OVBuilderExt`2.IOVBuilderExt_VP.ForEach``1(System.Linq.Expressions.Expression{System.Action{System.String,``0,`1}})">
+            <summary>
+            添加访问属性的操作
+            </summary>
+            <param name="foreachAction"/>
+            <typeparam name="TValue"/>
+            <returns/>
+        </member>
+        <member name="T:Newbe.ObjectVisitor.PropertyInfoFilters">
+            <summary>
+            用于创建 PropertyInfo 过滤器的扩展方法
+            </summary>
+        </member>
+        <member name="F:Newbe.ObjectVisitor.PropertyInfoFilters.AllPropertyInfo">
+            <summary>
+            所有属性
+            </summary>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.PropertyInfoFilters.IsOrImplOf``1(System.Reflection.PropertyInfo)">
+            <summary>
+            检查属性的类型为“是”或“实现”指定的 <typeparamref name="TInterface"/>
+            </summary>
+            <param name="info">要检查的 propertyInfo</param>
+            <typeparam name="TInterface"/>
+            <returns/>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.PropertyInfoFilters.IsOrImplOf``1(System.Type)">
+            <summary>
+            检查属性的类型为“是”或“实现”指定的 <typeparamref name="TInterface"/>
+            </summary>
+            <param name="type">要检查的类型</param>
+            <typeparam name="TInterface">目标接口类型</typeparam>
+            <returns/>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.PropertyInfoFilters.IsOrImplOf(System.Type,System.Type)">
+            <summary>
+            检查属性的类型为“是”或“实现”指定的 <paramref name="interfaceType"/>
+            </summary>
+            <param name="type">要检查的类型</param>
+            <param name="interfaceType">目标接口类型</param>
+            <returns/>
+        </member>
+        <member name="T:Newbe.ObjectVisitor.GlobalFactories">
+            <summary>
+            全局工厂：
+            </summary>
+        </member>
+        <member name="T:Newbe.ObjectVisitor.GlobalFactories.Validation">
+            <summary>
+            验证相关的工厂
+            </summary>
+        </member>
+        <member name="P:Newbe.ObjectVisitor.GlobalFactories.Validation.RegexFactory">
+            <summary>
+            正则表达式厂
+            </summary>
+        </member>
+        <member name="T:Newbe.ObjectVisitor.ExpressionHelper">
+            <summary>
+            帮助类关于 <see cref="T:System.Linq.Expressions.Expression"/>
+            </summary>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.ExpressionHelper.GetPropertyInfo``2(System.Linq.Expressions.Expression{System.Func{``0,``1}})">
+            <summary>
+            获取 <see cref="T:System.Reflection.PropertyInfo"/> , 它是表达式正文正文的最外层属性
+            </summary>
+            <param name="exp">要检查的表达式</param>
+            <typeparam name="T"/>
+            <typeparam name="TValue"/>
+            <returns/>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.ExpressionHelper.AndAlso``1(System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}},System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})">
+            <summary>
+            连接 <paramref name="exp1"/> 和 <paramref name="exp2"/> 转换为一个使用 &amp;&amp; 连接的新表达式
+            </summary>
+            <example>
+            <code>
+            Expression&lt;int,bool&gt; exp1 = x =&gt; x &gt; 2; 
+            Expression&lt;int,bool&gt; exp2 = x =&gt; x &lt; 10;
+            var exp3 = exp1.AndAlso(exp1);
+            // exp3 should be as x =&gt; x &gt; 2 &amp;&amp; x &lt; 10
+            </code>
+            </example>
+            <param name="exp1">第一个表达式</param>
+            <param name="exp2">第二个表达式</param>
+            <typeparam name="T">输入表达式 func 输入</typeparam>
+            <returns/>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.ExpressionHelper.Unwrap(System.Linq.Expressions.LambdaExpression,System.Linq.Expressions.Expression[])">
+            <summary>
+            解包一个 <see cref="T:System.Linq.Expressions.LambdaExpression"/> 成一个 <see cref="T:System.Linq.Expressions.Expression"/> 通过替换其中的参数
+            </summary>
+            <example>
+            <code>
+            Expression&lt;int,bool&gt; exp1 = x =&gt; x &gt; 2;
+            var bodyExp1 = exp1.Unwrap(Expression.Constant(1));
+            // bodyExp1 should be a new Expression like 1 &gt; 2
+            // please notice, the new expression is not a lambda.
+            </code>
+            </example>
+            <example>
+            <code>
+            Expression&lt;int,bool&gt; exp1 = x =&gt; x &gt; 2;
+            var stringExp = Expression.Parameter(typeof(string), "str");
+            var stringLengthExp = Expression.Property(stringExp, nameof(string.Length));
+            var bodyExp1 = exp1.Unwrap(stringLengthExp);
+            var stringLengthCompareExp = Expression.Lambda&lt;Func&lt;string, bool&gt;&gt;(bodyExp1, stringExp);
+            // stringLengthCompareExp should be a new expression like str=&gt;str.Length > 2
+            </code>
+            </example>
+            <param name="lambdaExpression">要解包的 lambda 表达式</param>
+            <param name="parameterExpression">用于替换的参数表达式列表 <paramref name="lambdaExpression"/></param>
+            <returns/>
+        </member>
+        <member name="T:Newbe.ObjectVisitor.ApiStep">
+            <summary>
+            API 步骤的定义
+            </summary>
+        </member>
+        <member name="P:Newbe.ObjectVisitor.ApiStep.SourceContent">
+            <summary>
+            原始设计内容
+            </summary>
+        </member>
+        <member name="P:Newbe.ObjectVisitor.ApiStep.From">
+            <summary>
+            开始状态名称
+            </summary>
+        </member>
+        <member name="P:Newbe.ObjectVisitor.ApiStep.To">
+            <summary>
+            结束状态的名称
+            </summary>
+        </member>
+        <member name="P:Newbe.ObjectVisitor.ApiStep.Action">
+            <summary>
+            状态转移动作名称
+            </summary>
+        </member>
+        <member name="P:Newbe.ObjectVisitor.ApiStep.Share">
+            <summary>
+            表明 <see cref="P:Newbe.ObjectVisitor.ApiStep.Action"/> 共享逻辑 <see cref="P:Newbe.ObjectVisitor.ApiStep.Share"/>
+            </summary>
+            <example>
+            <code>
+            例如 1
+            A -&gt; B : C()
+            将生成名为 C 的操作。
+            A -&gt; B : C() :shared D()
+            将生成名为 C 的操作。 它不是用户定制函数，它将调用 D，函数 D 是用户定制函数
+            </code>
+            </example>
+        </member>
+        <member name="P:Newbe.ObjectVisitor.ApiStep.Return">
+            <summary>
+            指示此操作的返回类型。 它经常被用在最后的方法中。
+            </summary>
+        </member>
+        <member name="P:Newbe.ObjectVisitor.ApiStep.IsStart">
+            <summary>
+            此操作是一个起始动作
+            </summary>
+        </member>
+        <member name="P:Newbe.ObjectVisitor.ApiStep.IsEnd">
+            <summary>
+            此操作是最终操作
+            </summary>
+        </member>
+        <member name="P:Newbe.ObjectVisitor.ApiStep.ContainsShare">
+            <summary>
+            此操作是否包含共享块
+            </summary>
+        </member>
+        <member name="P:Newbe.ObjectVisitor.ApiStep.ContainsReturn">
+            <summary>
+            此操作是否包含返回块
+            </summary>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.ApiStep.ToString">
+            <summary>
+            ToString
+            </summary>
+            <returns/>
+        </member>
+        <member name="T:Newbe.ObjectVisitor.FluentApiDesign">
+            <summary>
+            Fluent API 设计
+            </summary>
+        </member>
+        <member name="P:Newbe.ObjectVisitor.FluentApiDesign.SourceDesignContent">
+            <summary>
+            原始设计内容
+            </summary>
+        </member>
+        <member name="P:Newbe.ObjectVisitor.FluentApiDesign.StateDiagramBlock">
+            <summary>
+            状态图的内容块
+            </summary>
+        </member>
+        <member name="P:Newbe.ObjectVisitor.FluentApiDesign.ParametersBlock">
+            <summary>
+            参数的内容块
+            </summary>
+        </member>
+        <member name="P:Newbe.ObjectVisitor.FluentApiDesign.BuilderContextType">
+            <summary>
+            Fluent Api 的目标构建器上下文类型
+            </summary>
+        </member>
+        <member name="P:Newbe.ObjectVisitor.FluentApiDesign.Namespace">
+            <summary>
+            Fluent API 的名称空间
+            </summary>
+        </member>
+        <member name="P:Newbe.ObjectVisitor.FluentApiDesign.BuilderTypeName">
+            <summary>
+            生成的Fluent API 构建器的类型
+            </summary>
+        </member>
+        <member name="P:Newbe.ObjectVisitor.FluentApiDesign.ActionMapping">
+            <summary>
+            映射关系，导入自 <see cref="P:Newbe.ObjectVisitor.FluentApiDesign.ParametersBlock"/>. 它指示短名称与完整操作名称之间的关系。 键: 短名称，值: 全名
+            </summary>
+        </member>
+        <member name="P:Newbe.ObjectVisitor.FluentApiDesign.ApiSteps">
+            <summary>
+            API 的 API 步骤设计
+            </summary>
+        </member>
+        <member name="T:Newbe.ObjectVisitor.FluentApiDesignParser">
+            <summary>
+            FluentApiDesignParser
+            </summary>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.FluentApiDesignParser.Parse(System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Newbe.ObjectVisitor.FluentApiFileGenerator">
+            <inheritdoc/>
+        </member>
+        <member name="F:Newbe.ObjectVisitor.FluentApiFileGenerator.EdgeNodeName">
+            <summary>
+            开始节点和结束节点的节点名
+            </summary>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.FluentApiFileGenerator.Generate(Newbe.ObjectVisitor.FluentApiDesign)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Newbe.ObjectVisitor.FluentApiFiles">
+            <summary>
+            生成的 Fluent API 文件
+            </summary>
+        </member>
+        <member name="P:Newbe.ObjectVisitor.FluentApiFiles.Api">
+            <summary>
+            API 代码
+            </summary>
+        </member>
+        <member name="T:Newbe.ObjectVisitor.FluentApiOutput">
+            <summary>
+            输出 Fluent API 生成代码
+            </summary>
+        </member>
+        <member name="P:Newbe.ObjectVisitor.FluentApiOutput.FluentApiFiles">
+            <summary>
+            文件内容
+            </summary>
+        </member>
+        <member name="P:Newbe.ObjectVisitor.FluentApiOutput.FluentApiDesign">
+            <summary>
+            原始设计内容
+            </summary>
+        </member>
+        <member name="T:Newbe.ObjectVisitor.IFluentApi">
+            <summary>
+            用于指示此 API 是 Fluent API 的接口
+            </summary>
+        </member>
+        <member name="T:Newbe.ObjectVisitor.IFluentApiDesignParser">
+            <summary>
+            Fluent API 设计解析器
+            </summary>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.IFluentApiDesignParser.Parse(System.String)">
+            <summary>
+            将设计内容解析为 <see cref="T:Newbe.ObjectVisitor.FluentApiDesign"/>
+            </summary>
+            <param name="designContent">API 设计的内容</param>
+            <returns/>
+        </member>
+        <member name="T:Newbe.ObjectVisitor.IFluentApiFileGenerator">
+            <summary>
+            Fluent API 文件生成器
+            </summary>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.IFluentApiFileGenerator.Generate(Newbe.ObjectVisitor.FluentApiDesign)">
+            <summary>
+            生成的 Fluent API
+            </summary>
+            <param name="design">API 设计</param>
+            <returns/>
+        </member>
+        <member name="T:Newbe.ObjectVisitor.FormatToStringExtensions">
+            <summary>
+            将对象格式化为字符串的扩展 
+            </summary>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.FormatToStringExtensions.FormatToString``1(``0)">
+            <summary>
+            将对象格式化为字符串
+            </summary>
+            <param name="obj">要格式化的对象</param>
+            <typeparam name="T">对象类型</typeparam>
+            <returns/>
+        </member>
+        <member name="T:Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilderExtensions">
+            <summary>
+            属性验证 Fluent API
+            </summary>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilderExtensions.Validate``2(Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder{``0,``1}.IPropertyValidationRuleBuilder_S,System.Linq.Expressions.Expression{System.Func{``1,System.Boolean}})">
+            <summary>
+            添加新的验证规则
+            </summary>
+            <param name="step"/>
+            <param name="func">新验证 func</param>
+            <typeparam name="T"/>
+            <typeparam name="TValue"/>
+            <returns/>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilderExtensions.Property``2(Newbe.ObjectVisitor.Validation.ValidationRuleGroupBuilder{``0}.IValidationRuleGroupBuilder_S,System.Linq.Expressions.Expression{System.Func{``0,``1}})">
+            <summary>
+            切换到新属性以进行验证
+            </summary>
+            <param name="source"/>
+            <param name="propertyExpression"/>
+            <typeparam name="T"/>
+            <typeparam name="TValue"/>
+            <returns/>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilderExtensions.Validate``2(Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder{``0,``1}.IPropertyValidationRuleBuilder_S,Newbe.ObjectVisitor.Validation.IPropertyValidationRule{``0,``1})">
+            <summary>
+            添加新的验证规则
+            </summary>
+            <param name="step"/>
+            <param name="rule">新的验证规则</param>
+            <typeparam name="T"/>
+            <typeparam name="TValue"/>
+            <returns/>
+        </member>
+        <member name="T:Newbe.ObjectVisitor.Validation.ValidationRuleGroupBuilderExtensions">
+            <summary>
+            验证规则组构建的扩展
+            </summary>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.Validation.ValidationRuleGroupBuilderExtensions.Validate``1(Newbe.ObjectVisitor.Validation.ValidationRuleGroupBuilder{``0}.IValidationRuleGroupBuilder_S,System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})">
+            <summary>
+            添加新的验证规则
+            </summary>
+            <param name="source"/>
+            <param name="func">新验证 func</param>
+            <typeparam name="T"/>
+            <returns/>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.Validation.ValidationRuleGroupBuilderExtensions.Or``1(Newbe.ObjectVisitor.Validation.ValidationRuleGroupBuilder{``0}.IValidationRuleGroupBuilder_S,System.Func{Newbe.ObjectVisitor.Validation.ValidationRuleGroupBuilder{``0}.IValidationRuleGroupBuilder_S,Newbe.ObjectVisitor.Validation.ValidationRuleGroupBuilder{``0}.IValidationRuleGroupBuilder_S}[])">
+            <summary>
+            创建新的验证组，组内关系为 <see cref="F:Newbe.ObjectVisitor.Validation.ValidationRuleRelation.Or"/> 关系
+            </summary>
+            <param name="source"/>
+            <param name="orFunc">在此组中创建内部规则的 func</param>
+            <typeparam name="T"/>
+            <returns/>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.Validation.ValidationRuleGroupBuilderExtensions.Not``1(Newbe.ObjectVisitor.Validation.ValidationRuleGroupBuilder{``0}.IValidationRuleGroupBuilder_S,System.Func{Newbe.ObjectVisitor.Validation.ValidationRuleGroupBuilder{``0}.IValidationRuleGroupBuilder_S,Newbe.ObjectVisitor.Validation.ValidationRuleGroupBuilder{``0}.IValidationRuleGroupBuilder_S})">
+            <summary>
+            创建新的验证组，组内关系为 <see cref="F:Newbe.ObjectVisitor.Validation.ValidationRuleRelation.Not"/> 关系
+            </summary>
+            <param name="source"/>
+            <param name="notFunc">在此组中创建内部规则的 func</param>
+            <typeparam name="T"/>
+            <returns/>
+        </member>
+        <member name="T:Newbe.ObjectVisitor.Validation.IValidationResult`1">
+            <summary>
+            验证结果
+            </summary>
+            <typeparam name="T">目标对象的类型</typeparam>
+        </member>
+        <member name="P:Newbe.ObjectVisitor.Validation.IValidationResult`1.Source">
+            <summary>
+            原始对象
+            </summary>
+        </member>
+        <member name="P:Newbe.ObjectVisitor.Validation.IValidationResult`1.Errors">
+            <summary>
+            错误消息
+            </summary>
+        </member>
+        <member name="P:Newbe.ObjectVisitor.Validation.IValidationResult`1.Success">
+            <summary>
+            验证成功
+            </summary>
+        </member>
+        <member name="T:Newbe.ObjectVisitor.Validation.IValidator`1">
+            <summary>
+            对象验证器
+            </summary>
+            <typeparam name="T">要验证的对象类型</typeparam>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.Validation.IValidator`1.Validate(`0)">
+            <summary>
+            验证一个值
+            </summary>
+            <param name="value">要验证的值</param>
+            <returns/>
+        </member>
+        <member name="T:Newbe.ObjectVisitor.Validation.OvBuilderExtensions">
+            <summary>
+            验证器的扩展
+            </summary>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.Validation.OvBuilderExtensions.Validate``1(Newbe.ObjectVisitor.OVBuilder{``0}.IOVBuilder_V,System.Collections.Generic.List{Newbe.ObjectVisitor.Validation.ValidationRuleGroup{``0}})">
+            <summary>
+            从 object visitor 构建器创建验证器
+            </summary>
+            <param name="ovBuilder">Object visitor 创建者</param>
+            <param name="groups">验证规则组</param>
+            <typeparam name="T">要验证的对象类型</typeparam>
+            <returns/>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.Validation.OvBuilderExtensions.Validate``1(Newbe.ObjectVisitor.OVBuilder{``0}.IOVBuilder_V,System.Action{Newbe.ObjectVisitor.Validation.ValidationRuleGroupBuilder{``0}.IValidationRuleGroupBuilder_S})">
+            <summary>
+            从 object visitor 构建器创建验证器
+            </summary>
+            <param name="ovBuilder">Object visitor 创建者</param>
+            <param name="buildRuleAction">使用 Fluent API 创建验证规则组的操作</param>
+            <typeparam name="T">要验证的对象类型</typeparam>
+            <returns/>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.Validation.OvBuilderExtensions.Run``1(Newbe.ObjectVisitor.Validation.IValidator{``0},``0)">
+            <summary>
+            运行一个指定值的验证器
+            </summary>
+            <param name="validator">对象验证器</param>
+            <param name="value">要验证的值</param>
+            <typeparam name="T">类型关于 <paramref name="value"/></typeparam>
+            <returns/>
+        </member>
+        <member name="T:Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder`2">
+            <summary>
+            属性验证规则构建器
+            </summary>
+            <typeparam name="T"/>
+            <typeparam name="TValue"/>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder`2.#ctor(Newbe.ObjectVisitor.Validation.ValidationRuleGroupBuilder{`0}.IValidationRuleGroupBuilder_S)">
+            <summary>
+            创建 PropertyValidationRuleBuilder 
+            </summary>
+            <param name="context"/>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder`2.GetBuilder(System.Linq.Expressions.Expression{System.Func{`0,`1}})">
+            <summary>
+            创建构建器
+            </summary>
+            <param name="propertyExpression"/>
+            <returns/>
+        </member>
+        <member name="T:Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder`2.IPropertyValidationRuleBuilder_S">
+            <summary>
+            " 属性验证 " 构建器步骤
+            </summary>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder`2.IPropertyValidationRuleBuilder_S.Validate(System.Linq.Expressions.Expression{System.Func{`0,`1,System.Reflection.PropertyInfo,System.Boolean}})">
+            <summary>
+            添加验证 func
+            </summary>
+            <param name="func"/>
+            <returns/>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder`2.IPropertyValidationRuleBuilder_S.ErrorMessage(System.Linq.Expressions.Expression{System.Func{`0,`1,System.Reflection.PropertyInfo,System.String}})">
+            <summary>
+            如果验证失败，指定错误消息
+            </summary>
+            <param name="func"/>
+            <returns/>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder`2.IPropertyValidationRuleBuilder_S.If(System.Linq.Expressions.Expression{System.Func{`0,`1,System.Reflection.PropertyInfo,System.Boolean}})">
+            <summary>
+            添加条件以触发验证
+            </summary>
+            <param name="func"/>
+            <returns/>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder`2.IPropertyValidationRuleBuilder_S.Next">
+            <summary>
+            移至下一个验证规则创建步骤
+            </summary>
+            <returns/>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder`2.IPropertyValidationRuleBuilder_S.Property``1(System.Linq.Expressions.Expression{System.Func{`0,``0}})">
+            <summary>
+            切换至新属性以创建验证规则
+            </summary>
+            <param name="propertyExpression"/>
+            <typeparam name="TNewValue"/>
+            <returns/>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder`2.IPropertyValidationRuleBuilder_S.Build">
+            <summary>
+            构建验证规则组
+            </summary>
+            <returns/>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder`2.IPropertyValidationRuleBuilder_S.GetPropertyExpression">
+            <summary>
+            获取属性表达式
+            </summary>
+            <returns/>
+        </member>
+        <member name="T:Newbe.ObjectVisitor.Validation.IPropertyValidationRule`2">
+            <summary>
+            指定属性的规则
+            </summary>
+            <typeparam name="T">验证目标的类型</typeparam>
+            <typeparam name="TValue">目标属性的类型</typeparam>
+        </member>
+        <member name="P:Newbe.ObjectVisitor.Validation.IPropertyValidationRule`2.MustExpression">
+            <summary>
+            验证表达式， true 表示成功， false 表示验证失败
+            </summary>
+        </member>
+        <member name="P:Newbe.ObjectVisitor.Validation.IPropertyValidationRule`2.ErrorMessageExpression">
+            <summary>
+            错误消息工厂表达式，如果验证失败，将调用它
+            </summary>
+        </member>
+        <member name="T:Newbe.ObjectVisitor.Validation.ValidationRule`1">
+            <summary>
+            验证规则
+            </summary>
+            <typeparam name="T"/>
+        </member>
+        <member name="P:Newbe.ObjectVisitor.Validation.ValidationRule`1.IfExpression">
+            <summary>
+            Func{T,bool}
+            </summary>
+        </member>
+        <member name="P:Newbe.ObjectVisitor.Validation.ValidationRule`1.MustExpression">
+            <summary>
+            Func{T,bool}
+            </summary>
+        </member>
+        <member name="P:Newbe.ObjectVisitor.Validation.ValidationRule`1.ErrorMessageExpression">
+            <summary>
+            Func{T,string}
+            </summary>
+        </member>
+        <member name="T:Newbe.ObjectVisitor.Validation.ValidationRuleBuilder`1">
+            <summary>
+            帮助类，用于创建 <see cref="T:Newbe.ObjectVisitor.Validation.ValidationRule`1"/>
+            </summary>
+            <typeparam name="T"/>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.Validation.ValidationRuleBuilder`1.GetBuilder">
+            <summary>
+            创建构建器
+            </summary>
+            <returns/>
+        </member>
+        <member name="T:Newbe.ObjectVisitor.Validation.ValidationRuleBuilder">
+            <summary>
+            帮助类，用于创建 <see cref="T:Newbe.ObjectVisitor.Validation.ValidationRule`1"/>
+            </summary>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.Validation.ValidationRuleBuilder.GetBuilder``1(``0)">
+            <summary>
+            创建构建器
+            </summary>
+            <param name="obj"/>
+            <typeparam name="T"/>
+            <returns/>
+        </member>
+        <member name="T:Newbe.ObjectVisitor.Validation.ValidationRuleGroup`1">
+            <summary>
+            一组 <see cref="T:Newbe.ObjectVisitor.Validation.ValidationRuleBuilder`1"/>
+            </summary>
+            <typeparam name="T"/>
+        </member>
+        <member name="P:Newbe.ObjectVisitor.Validation.ValidationRuleGroup`1.RuleRelation">
+            <summary>
+            组中规则的关系
+            </summary>
+        </member>
+        <member name="T:Newbe.ObjectVisitor.Validation.ValidationRuleGroupBuilder`1">
+            <summary>
+            验证规则组构建器
+            </summary>
+            <typeparam name="T"/>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.Validation.ValidationRuleGroupBuilder`1.#ctor(System.Collections.Generic.List{Newbe.ObjectVisitor.Validation.ValidationRuleGroup{`0}})">
+            <summary>
+            新建 ValidationRuleGroupBuilder
+            </summary>
+            <param name="context"/>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.Validation.ValidationRuleGroupBuilder`1.GetBuilder(Newbe.ObjectVisitor.Validation.ValidationRuleRelation)">
+            <summary>
+            创建构建器
+            </summary>
+            <param name="relation"/>
+            <returns/>
+        </member>
+        <member name="T:Newbe.ObjectVisitor.Validation.ValidationRuleGroupBuilder`1.IValidationRuleGroupBuilder_S">
+            <summary>
+            验证规则组构建器步骤
+            </summary>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.Validation.ValidationRuleGroupBuilder`1.IValidationRuleGroupBuilder_S.Validate(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+            <summary>
+            将 func 添加为验证 func
+            </summary>
+            <param name="func"/>
+            <returns/>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.Validation.ValidationRuleGroupBuilder`1.IValidationRuleGroupBuilder_S.ErrorMessage(System.Linq.Expressions.Expression{System.Func{`0,System.String}})">
+            <summary>
+            如果验证失败，指定错误消息
+            </summary>
+            <param name="func"/>
+            <returns/>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.Validation.ValidationRuleGroupBuilder`1.IValidationRuleGroupBuilder_S.If(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+            <summary>
+            添加条件以触发验证
+            </summary>
+            <param name="func"/>
+            <returns/>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.Validation.ValidationRuleGroupBuilder`1.IValidationRuleGroupBuilder_S.Next">
+            <summary>
+            立即结束并移至下一个构建步骤
+            </summary>
+            <returns/>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.Validation.ValidationRuleGroupBuilder`1.IValidationRuleGroupBuilder_S.Build">
+            <summary>
+            构建验证规则组
+            </summary>
+            <returns/>
+        </member>
+        <member name="T:Newbe.ObjectVisitor.Validation.ValidationRuleRelation">
+            <summary>
+            验证规则之间的关系
+            </summary>
+        </member>
+        <member name="F:Newbe.ObjectVisitor.Validation.ValidationRuleRelation.And">
+            <summary>
+            全部成功。 它就像 linq 中的 All() 一样。
+            </summary>
+        </member>
+        <member name="F:Newbe.ObjectVisitor.Validation.ValidationRuleRelation.Or">
+            <summary>
+            任何一个成功。 它就像 linq 中的 Any() 一样。
+            </summary>
+        </member>
+        <member name="F:Newbe.ObjectVisitor.Validation.ValidationRuleRelation.Not">
+            <summary>
+            规则的否定。
+            </summary>
+        </member>
+        <member name="T:Newbe.ObjectVisitor.Validator.PropertyValidationExtensions">
+            <summary>
+            属性验证扩展
+            </summary>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.Validator.PropertyValidationExtensions.Equal``2(Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder{``0,``1}.IPropertyValidationRuleBuilder_S,``1)">
+            <summary>
+            值应该等于 <paramref name="expected"/>
+            </summary>
+            <param name="step"/>
+            <param name="expected">预期值</param>
+            <typeparam name="T"/>
+            <typeparam name="TValue"/>
+            <returns/>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.Validator.PropertyValidationExtensions.Equal``2(Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder{``0,System.Nullable{``1}}.IPropertyValidationRuleBuilder_S,System.Nullable{``1})">
+            <summary>
+            值应该等于 <paramref name="expected"/>
+            </summary>
+            <param name="step"/>
+            <param name="expected">预期值</param>
+            <typeparam name="T"/>
+            <typeparam name="TValue"/>
+            <returns/>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.Validator.PropertyValidationExtensions.Equal``2(Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder{``0,``1}.IPropertyValidationRuleBuilder_S,``1,System.Collections.Generic.IEqualityComparer{``1})">
+            <summary>
+            值应该等于 <paramref name="expected"/>
+            </summary>
+            <param name="step"/>
+            <param name="expected">预期值</param>
+            <param name="comparer">值比较器</param>
+            <typeparam name="T"/>
+            <typeparam name="TValue"/>
+            <returns/>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.Validator.PropertyValidationExtensions.NotEqual``2(Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder{``0,``1}.IPropertyValidationRuleBuilder_S,``1)">
+            <summary>
+            值不应等于 <paramref name="expected"/>
+            </summary>
+            <param name="step"/>
+            <param name="expected">预期值</param>
+            <typeparam name="T"/>
+            <typeparam name="TValue"/>
+            <returns/>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.Validator.PropertyValidationExtensions.NotEqual``2(Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder{``0,System.Nullable{``1}}.IPropertyValidationRuleBuilder_S,System.Nullable{``1})">
+            <summary>
+            值不应等于 <paramref name="expected"/>
+            </summary>
+            <param name="step"/>
+            <param name="expected">预期值</param>
+            <typeparam name="T"/>
+            <typeparam name="TValue"/>
+            <returns/>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.Validator.PropertyValidationExtensions.NotEqual``2(Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder{``0,``1}.IPropertyValidationRuleBuilder_S,``1,System.Collections.Generic.IEqualityComparer{``1})">
+            <summary>
+            值不应等于 <paramref name="expected"/>
+            </summary>
+            <param name="step"/>
+            <param name="expected">预期值</param>
+            <param name="comparer">值比较器</param>
+            <typeparam name="T"/>
+            <typeparam name="TValue"/>
+            <returns/>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.Validator.PropertyValidationExtensions.LessThan``2(Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder{``0,``1}.IPropertyValidationRuleBuilder_S,``1)">
+            <summary>
+            数值应该小于 <paramref name="max"/>
+            </summary>
+            <param name="step"/>
+            <param name="max">最大值</param>
+            <typeparam name="T"/>
+            <typeparam name="TValue"/>
+            <returns/>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.Validator.PropertyValidationExtensions.LessThan``2(Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder{``0,System.Nullable{``1}}.IPropertyValidationRuleBuilder_S,``1)">
+            <summary>
+            数值应该小于 <paramref name="max"/>
+            </summary>
+            <param name="step"/>
+            <param name="max">最大值</param>
+            <typeparam name="T"/>
+            <typeparam name="TValue"/>
+            <returns/>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.Validator.PropertyValidationExtensions.LessThan``2(Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder{``0,``1}.IPropertyValidationRuleBuilder_S,``1,System.Collections.Generic.IComparer{``1})">
+            <summary>
+            数值应该小于 <paramref name="max"/>
+            </summary>
+            <param name="step"/>
+            <param name="max">最大值</param>
+            <param name="comparer">值比较器</param>
+            <typeparam name="T"/>
+            <typeparam name="TValue"/>
+            <returns/>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.Validator.PropertyValidationExtensions.LessThanOrEqual``2(Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder{``0,``1}.IPropertyValidationRuleBuilder_S,``1)">
+            <summary>
+            值应小于或等于 <paramref name="max"/>
+            </summary>
+            <param name="step"/>
+            <param name="max">最大值</param>
+            <typeparam name="T"/>
+            <typeparam name="TValue"/>
+            <returns/>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.Validator.PropertyValidationExtensions.LessThanOrEqual``2(Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder{``0,System.Nullable{``1}}.IPropertyValidationRuleBuilder_S,``1)">
+            <summary>
+            值应小于或等于 <paramref name="max"/>
+            </summary>
+            <param name="step"/>
+            <param name="max">最大值</param>
+            <typeparam name="T"/>
+            <typeparam name="TValue"/>
+            <returns/>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.Validator.PropertyValidationExtensions.LessThanOrEqual``2(Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder{``0,``1}.IPropertyValidationRuleBuilder_S,``1,System.Collections.Generic.IComparer{``1})">
+            <summary>
+            值应小于或等于 <paramref name="max"/>
+            </summary>
+            <param name="step"/>
+            <param name="max">最大值</param>
+            <param name="comparer">值比较器</param>
+            <typeparam name="T"/>
+            <typeparam name="TValue"/>
+            <returns/>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.Validator.PropertyValidationExtensions.GreaterThan``2(Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder{``0,``1}.IPropertyValidationRuleBuilder_S,``1)">
+            <summary>
+            值应该大于 <paramref name="min"/>
+            </summary>
+            <param name="step"/>
+            <param name="min">最小值</param>
+            <typeparam name="T"/>
+            <typeparam name="TValue"/>
+            <returns/>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.Validator.PropertyValidationExtensions.GreaterThan``2(Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder{``0,System.Nullable{``1}}.IPropertyValidationRuleBuilder_S,``1)">
+            <summary>
+            值应该大于 <paramref name="min"/>
+            </summary>
+            <param name="step"/>
+            <param name="min">最小值</param>
+            <typeparam name="T"/>
+            <typeparam name="TValue"/>
+            <returns/>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.Validator.PropertyValidationExtensions.GreaterThan``2(Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder{``0,``1}.IPropertyValidationRuleBuilder_S,``1,System.Collections.Generic.IComparer{``1})">
+            <summary>
+            值应该大于 <paramref name="min"/>
+            </summary>
+            <param name="step"/>
+            <param name="min">最小值</param>
+            <param name="comparer">值比较器</param>
+            <typeparam name="T"/>
+            <typeparam name="TValue"/>
+            <returns/>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.Validator.PropertyValidationExtensions.GreaterThanOrEqual``2(Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder{``0,``1}.IPropertyValidationRuleBuilder_S,``1)">
+            <summary>
+            应大于或等于 <paramref name="min"/>
+            </summary>
+            <param name="step"/>
+            <param name="min">最小值</param>
+            <typeparam name="T"/>
+            <typeparam name="TValue"/>
+            <returns/>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.Validator.PropertyValidationExtensions.GreaterThanOrEqual``2(Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder{``0,System.Nullable{``1}}.IPropertyValidationRuleBuilder_S,``1)">
+            <summary>
+            应大于或等于 <paramref name="min"/>
+            </summary>
+            <param name="step"/>
+            <param name="min">最小值</param>
+            <typeparam name="T"/>
+            <typeparam name="TValue"/>
+            <returns/>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.Validator.PropertyValidationExtensions.GreaterThanOrEqual``2(Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder{``0,``1}.IPropertyValidationRuleBuilder_S,``1,System.Collections.Generic.IComparer{``1})">
+            <summary>
+            应大于或等于 <paramref name="min"/>
+            </summary>
+            <param name="step"/>
+            <param name="min">最小值</param>
+            <param name="comparer">值比较器</param>
+            <typeparam name="T"/>
+            <typeparam name="TValue"/>
+            <returns/>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.Validator.PropertyValidationExtensions.IsInRange``2(Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder{``0,``1}.IPropertyValidationRuleBuilder_S,``1,``1,System.Boolean,System.Boolean)">
+            <summary>
+            值应该介于 <paramref name="min"/> 和 <paramref name="max"/>.
+            你可以指定 <paramref name="excludeMin"/> 和 <paramref name="excludeMax"/> 包含最小值和最大值或不包含。 默认范围是 [min,max)，即左闭右开。
+            </summary>
+            <param name="step"/>
+            <param name="min">最小值</param>
+            <param name="max">最大值</param>
+            <param name="excludeMin">排除最小值</param>
+            <param name="excludeMax">排除最大值</param>
+            <typeparam name="T"/>
+            <typeparam name="TValue"/>
+            <returns/>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.Validator.PropertyValidationExtensions.IsInRange``2(Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder{``0,System.Nullable{``1}}.IPropertyValidationRuleBuilder_S,``1,``1,System.Boolean,System.Boolean)">
+            <summary>
+            值应该介于 <paramref name="min"/> 和 <paramref name="max"/>.
+            你可以指定 <paramref name="excludeMin"/> 和 <paramref name="excludeMax"/> 包含最小值和最大值或不包含。 默认范围是 [min,max)，即左闭右开。
+            </summary>
+            <param name="step"/>
+            <param name="min">最小值</param>
+            <param name="max">最大值</param>
+            <param name="excludeMin">排除最小值</param>
+            <param name="excludeMax">排除最大值</param>
+            <typeparam name="T"/>
+            <typeparam name="TValue"/>
+            <returns/>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.Validator.PropertyValidationExtensions.IsInRange``2(Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder{``0,``1}.IPropertyValidationRuleBuilder_S,``1,``1,System.Collections.Generic.IComparer{``1},System.Boolean,System.Boolean)">
+            <summary>
+            值应该介于 <paramref name="min"/> 和 <paramref name="max"/>.
+            你可以指定 <paramref name="excludeMin"/> 和 <paramref name="excludeMax"/> 包含最小值和最大值或不包含。 默认范围是 [min,max)，即左闭右开。
+            </summary>
+            <param name="step"/>
+            <param name="min">最小值</param>
+            <param name="max">最大值</param>
+            <param name="comparer">值比较器</param>
+            <param name="excludeMin">排除最小值</param>
+            <param name="excludeMax">排除最大值</param>
+            <typeparam name="T"/>
+            <typeparam name="TValue"/>
+            <returns/>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.Validator.PropertyValidationExtensions.IsInSet``2(Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder{``0,``1}.IPropertyValidationRuleBuilder_S,System.Collections.Generic.IEnumerable{``1})">
+            <summary>
+            值应该在指定的范围内 <paramref name="expectedSet"/>
+            </summary>
+            <param name="step"/>
+            <param name="expectedSet"/>
+            <typeparam name="T"/>
+            <typeparam name="TValue"/>
+            <returns/>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.Validator.PropertyValidationExtensions.IsInSet``2(Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder{``0,System.Nullable{``1}}.IPropertyValidationRuleBuilder_S,System.Collections.Generic.IEnumerable{System.Nullable{``1}})">
+            <summary>
+            值应该在指定的范围内 <paramref name="expectedSet"/>
+            </summary>
+            <param name="step"/>
+            <param name="expectedSet"/>
+            <typeparam name="T"/>
+            <typeparam name="TValue"/>
+            <returns/>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.Validator.PropertyValidationExtensions.IsInSet``2(Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder{``0,``1}.IPropertyValidationRuleBuilder_S,System.Collections.Generic.IEnumerable{``1},System.Collections.Generic.IEqualityComparer{``1})">
+            <summary>
+            值应该在指定的范围内 <paramref name="expectedSet"/>
+            </summary>
+            <param name="step"/>
+            <param name="expectedSet"/>
+            <param name="comparer">值比较器</param>
+            <typeparam name="T"/>
+            <typeparam name="TValue"/>
+            <returns/>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.Validator.PropertyValidationExtensions.IsNotInSet``2(Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder{``0,``1}.IPropertyValidationRuleBuilder_S,System.Collections.Generic.IEnumerable{``1})">
+            <summary>
+            值不应在指定的范围内 <paramref name="expectedSet"/>. 它就像否定的 <see cref="M:Newbe.ObjectVisitor.Validator.PropertyValidationExtensions.IsInSet``2(Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder{``0,``1}.IPropertyValidationRuleBuilder_S,System.Collections.Generic.IEnumerable{``1})"/>
+            </summary>
+            <param name="step"/>
+            <param name="expectedSet"/>
+            <typeparam name="T"/>
+            <typeparam name="TValue"/>
+            <returns/>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.Validator.PropertyValidationExtensions.IsNotInSet``2(Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder{``0,System.Nullable{``1}}.IPropertyValidationRuleBuilder_S,System.Collections.Generic.IEnumerable{System.Nullable{``1}})">
+            <summary>
+            值不应在指定的范围内 <paramref name="expectedSet"/>. 它就像否定的 <see cref="M:Newbe.ObjectVisitor.Validator.PropertyValidationExtensions.IsInSet``2(Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder{``0,``1}.IPropertyValidationRuleBuilder_S,System.Collections.Generic.IEnumerable{``1})"/>
+            </summary>
+            <param name="step"/>
+            <param name="expectedSet"/>
+            <typeparam name="T"/>
+            <typeparam name="TValue"/>
+            <returns/>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.Validator.PropertyValidationExtensions.IsNotInSet``2(Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder{``0,``1}.IPropertyValidationRuleBuilder_S,System.Collections.Generic.IEnumerable{``1},System.Collections.Generic.IEqualityComparer{``1})">
+            <summary>
+            值不应在指定的范围内 <paramref name="expectedSet"/>. 它就像否定的 <see cref="M:Newbe.ObjectVisitor.Validator.PropertyValidationExtensions.IsInSet``2(Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder{``0,``1}.IPropertyValidationRuleBuilder_S,System.Collections.Generic.IEnumerable{``1})"/>
+            </summary>
+            <param name="step"/>
+            <param name="expectedSet"/>
+            <param name="comparer">值比较器</param>
+            <typeparam name="T"/>
+            <typeparam name="TValue"/>
+            <returns/>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.Validator.PropertyValidationExtensions.Null``2(Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder{``0,``1}.IPropertyValidationRuleBuilder_S)">
+            <summary>
+            值应为空
+            </summary>
+            <param name="step"/>
+            <typeparam name="T"/>
+            <typeparam name="TValue"/>
+            <returns/>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.Validator.PropertyValidationExtensions.Null``2(Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder{``0,System.Nullable{``1}}.IPropertyValidationRuleBuilder_S)">
+            <summary>
+            值应为空
+            </summary>
+            <param name="step"/>
+            <typeparam name="T"/>
+            <typeparam name="TValue"/>
+            <returns/>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.Validator.PropertyValidationExtensions.NotNull``2(Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder{``0,``1}.IPropertyValidationRuleBuilder_S)">
+            <summary>
+            值不应为空
+            </summary>
+            <param name="step"/>
+            <typeparam name="T"/>
+            <typeparam name="TValue"/>
+            <returns/>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.Validator.PropertyValidationExtensions.NotNull``2(Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder{``0,System.Nullable{``1}}.IPropertyValidationRuleBuilder_S)">
+            <summary>
+            值不应为空
+            </summary>
+            <param name="step"/>
+            <typeparam name="T"/>
+            <typeparam name="TValue"/>
+            <returns/>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.Validator.PropertyValidationExtensions.NotEmpty``1(Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder{``0,System.String}.IPropertyValidationRuleBuilder_S)">
+            <summary>
+            值不应为空或空白
+            </summary>
+            <param name="step"/>
+            <typeparam name="T"/>
+            <returns/>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.Validator.PropertyValidationExtensions.NotEmpty``2(Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder{``0,``1}.IPropertyValidationRuleBuilder_S)">
+            <summary>
+            值至少应包含一个元素。
+            </summary>
+            <param name="step"/>
+            <typeparam name="T"/>
+            <typeparam name="TValue"/>
+            <returns/>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.Validator.PropertyValidationExtensions.Empty``1(Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder{``0,System.String}.IPropertyValidationRuleBuilder_S)">
+            <summary>
+            值应为空或空白
+            </summary>
+            <param name="step"/>
+            <typeparam name="T"/>
+            <returns/>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.Validator.PropertyValidationExtensions.Empty``2(Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder{``0,``1}.IPropertyValidationRuleBuilder_S)">
+            <summary>
+            值不应包含元素。
+            </summary>
+            <param name="step"/>
+            <typeparam name="T"/>
+            <typeparam name="TValue"/>
+            <returns/>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.Validator.PropertyValidationExtensions.MatchRegex``1(Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder{``0,System.String}.IPropertyValidationRuleBuilder_S,System.String)">
+            <summary>
+            值应该匹配 regex 成功。
+            </summary>
+            <param name="step"/>
+            <param name="pattern">正则表达式模式。 它将以此模式创建一个新的正则表达式，通过 <see cref="P:Newbe.ObjectVisitor.GlobalFactories.Validation.RegexFactory"/></param>
+            <typeparam name="T"/>
+            <returns/>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.Validator.PropertyValidationExtensions.MatchRegex``1(Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder{``0,System.String}.IPropertyValidationRuleBuilder_S,System.Text.RegularExpressions.Regex)">
+            <summary>
+            值应该匹配 regex 成功。
+            </summary>
+            <param name="step"/>
+            <param name="regex"/>
+            <typeparam name="T"/>
+            <returns/>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.Validator.PropertyValidationExtensions.NotMatchRegex``1(Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder{``0,System.String}.IPropertyValidationRuleBuilder_S,System.String)">
+            <summary>
+            值不应匹配 regex 成功
+            </summary>
+            <param name="step"/>
+            <param name="pattern">正则表达式模式。 它将以此模式创建一个新的正则表达式，通过 <see cref="P:Newbe.ObjectVisitor.GlobalFactories.Validation.RegexFactory"/></param>
+            <typeparam name="T"/>
+            <returns/>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.Validator.PropertyValidationExtensions.NotMatchRegex``1(Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder{``0,System.String}.IPropertyValidationRuleBuilder_S,System.Text.RegularExpressions.Regex)">
+            <summary>
+            值不应匹配 regex 成功
+            </summary>
+            <param name="step"/>
+            <param name="regex"/>
+            <typeparam name="T"/>
+            <returns/>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.Validator.PropertyValidationExtensions.Length``2(Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder{``0,``1}.IPropertyValidationRuleBuilder_S,System.Int32,System.Int32)">
+            <summary>
+            值中的元素计数应该在范围 [min，max] 中
+            </summary>
+            <param name="step"/>
+            <param name="min"/>
+            <param name="max"/>
+            <typeparam name="T"/>
+            <typeparam name="TValue"/>
+            <returns/>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.Validator.PropertyValidationExtensions.MinLength``2(Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder{``0,``1}.IPropertyValidationRuleBuilder_S,System.Int32)">
+            <summary>
+            值中元素的数量应该大于或等于 <paramref name="min"/>
+            </summary>
+            <param name="step"/>
+            <param name="min"/>
+            <typeparam name="T"/>
+            <typeparam name="TValue"/>
+            <returns/>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.Validator.PropertyValidationExtensions.MaxLength``2(Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder{``0,``1}.IPropertyValidationRuleBuilder_S,System.Int32)">
+            <summary>
+            值中元素的数量应该小于或等于 <paramref name="max"/>
+            </summary>
+            <param name="step"/>
+            <param name="max"/>
+            <typeparam name="T"/>
+            <typeparam name="TValue"/>
+            <returns/>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.Validator.PropertyValidationExtensions.IsInEnum``2(Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder{``0,``1}.IPropertyValidationRuleBuilder_S,System.Type,System.Nullable{System.Boolean})">
+            <summary>
+            值应该在 <paramref name="enumType"/> 定义中 
+            </summary>
+            <param name="step"/>
+            <param name="enumType"/>
+            <param name="flagged"/>
+            <typeparam name="T"/>
+            <typeparam name="TValue"/>
+            <returns/>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.Validator.PropertyValidationExtensions.IsInEnum``2(Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder{``0,``1}.IPropertyValidationRuleBuilder_S,System.Nullable{System.Boolean})">
+            <summary>
+            值应该在 <typeparamref name="TValue"/> 定义中 
+            </summary>
+            <param name="step"/>
+            <param name="flagged"/>
+            <typeparam name="T"/>
+            <typeparam name="TValue"/>
+            <returns/>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.Validator.PropertyValidationExtensions.IsInEnumName``1(Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder{``0,System.String}.IPropertyValidationRuleBuilder_S,System.Type)">
+            <summary>
+            值应该在 <paramref name="enumType"/> 定义中 
+            </summary>
+            <param name="step"/>
+            <param name="enumType"/>
+            <typeparam name="T"/>
+            <returns/>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.Validator.PropertyValidationExtensions.ScalePrecision``2(Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder{``0,``1}.IPropertyValidationRuleBuilder_S,System.Int32,System.Int32)">
+            <summary>
+            数值应该小于 <paramref name="precision"/> 总位数，允许： <paramref name="scale"/>个小数位数 
+            </summary>
+            <param name="step"/>
+            <param name="scale"/>
+            <param name="precision"/>
+            <typeparam name="T"/>
+            <typeparam name="TValue"/>
+            <returns/>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.Validator.PropertyValidationExtensions.Or``2(Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder{``0,``1}.IPropertyValidationRuleBuilder_S,System.Func{Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder{``0,``1}.IPropertyValidationRuleBuilder_S,Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder{``0,``1}.IPropertyValidationRuleBuilder_S}[])">
+            <summary>
+            创建包含一个或多个规则的新验证组。 如果此组中的任何规则成功，那么验证成功。
+            </summary>
+            <param name="step"/>
+            <param name="ruleFactories"/>
+            <typeparam name="T"/>
+            <typeparam name="TValue"/>
+            <returns/>
+        </member>
+        <member name="M:Newbe.ObjectVisitor.Validator.PropertyValidationExtensions.Not``2(Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder{``0,``1}.IPropertyValidationRuleBuilder_S,System.Func{Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder{``0,``1}.IPropertyValidationRuleBuilder_S,Newbe.ObjectVisitor.Validation.PropertyValidationRuleBuilder{``0,``1}.IPropertyValidationRuleBuilder_S})">
+            <summary>
+            创建内部验证规则的否定
+            </summary>
+            <param name="step"/>
+            <param name="notFunc"/>
+            <typeparam name="T"/>
+            <typeparam name="TValue"/>
+            <returns/>
+        </member>
+    </members>
+</doc>

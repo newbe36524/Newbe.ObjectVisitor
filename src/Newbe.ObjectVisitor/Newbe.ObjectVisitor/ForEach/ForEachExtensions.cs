@@ -5,135 +5,166 @@ using System.Reflection;
 namespace Newbe.ObjectVisitor
 {
     /// <summary>
-    /// for each
+    /// Extension about ForEach
     /// </summary>
     public static class ForEachExtensions
     {
         #region NoValueExpectedType
 
-        public static IOvBuilderContext<T> ForEach<T>(this IOvBuilderContext<T> builderContext,
+        /// <summary>
+        /// Register object visiting operation
+        /// </summary>
+        /// <param name="builderContext">Context of object visitor builder</param>
+        /// <param name="foreachAction">Action of object visiting</param>
+        /// <param name="propertyInfoFilter">Filter properties of target object those should be visited</param>
+        /// <typeparam name="T">Type of target object</typeparam>
+        /// <returns>Object visitor builder</returns>
+        public static OVBuilder<T>.IOVBuilder_V ForEach<T>(
+            this OVBuilder<T>.IOVBuilder_V builderContext,
             Expression<Action<IObjectVisitorContext<T, object>>> foreachAction,
             Func<PropertyInfo, bool>? propertyInfoFilter = null)
         {
-            var filter = propertyInfoFilter ?? PropertyInfoFilters.AllPropertyInfo;
-            builderContext.Add(new ForEachActionContextItem
-            {
-                PropertyInfoFilter = filter,
-                ForEachAction = foreachAction,
-                ExpressionType = ForEachActionContextExpressionType.ObjectVisitorContext
-            });
-            return builderContext;
+            return builderContext
+                .FilterProperty(propertyInfoFilter)
+                .ForEach(foreachAction);
         }
 
-        public static IOvBuilderContext<T> ForEach<T>(this IOvBuilderContext<T> builderContext,
+        /// <summary>
+        /// Register object visiting operation
+        /// </summary>
+        /// <param name="builderContext">Context of object visitor builder</param>
+        /// <param name="foreachAction">Action of object visiting</param>
+        /// <param name="propertyInfoFilter">Filter properties of target object those should be visited</param>
+        /// <typeparam name="T">Type of target object</typeparam>
+        /// <returns>Object visitor builder</returns>
+        public static OVBuilder<T>.IOVBuilder_V ForEach<T>(
+            this OVBuilder<T>.IOVBuilder_V builderContext,
             Expression<Action<string, object>> foreachAction,
             Func<PropertyInfo, bool>? propertyInfoFilter = null)
         {
-            var filter = propertyInfoFilter ?? PropertyInfoFilters.AllPropertyInfo;
-            builderContext.Add(new ForEachActionContextItem
-            {
-                PropertyInfoFilter = filter,
-                ForEachAction = foreachAction,
-                ExpressionType = ForEachActionContextExpressionType.NameAndValue
-            });
-            return builderContext;
+            return builderContext
+                .FilterProperty(propertyInfoFilter)
+                .ForEach(foreachAction);
         }
 
-        public static IOvBuilderContext<T, TExtend> ForEach<T, TExtend>(
-            this IOvBuilderContext<T, TExtend> builderContext,
+        /// <summary>
+        /// Register object visiting operation
+        /// </summary>
+        /// <param name="builderContext">Context of object visitor builder</param>
+        /// <param name="foreachAction">Action of object visiting</param>
+        /// <param name="propertyInfoFilter">Filter properties of target object those should be visited</param>
+        /// <typeparam name="T">Type of target object</typeparam>
+        /// <typeparam name="TExtend">Type of extend data</typeparam>
+        /// <returns>Object visitor builder</returns>
+        public static OVBuilderExt<T, TExtend>.IOVBuilderExt_V ForEach<T, TExtend>(
+            this OVBuilderExt<T, TExtend>.IOVBuilderExt_V builderContext,
             Expression<Action<IObjectVisitorContext<T, TExtend, object>>> foreachAction,
             Func<PropertyInfo, bool>? propertyInfoFilter = null)
         {
-            var filter = propertyInfoFilter ?? PropertyInfoFilters.AllPropertyInfo;
-            builderContext.Add(new ForEachActionContextItem
-            {
-                PropertyInfoFilter = filter,
-                ForEachAction = foreachAction,
-                ExpressionType = ForEachActionContextExpressionType.ObjectVisitorContextWithExtend
-            });
-            return builderContext;
+            return builderContext
+                .FilterProperty(propertyInfoFilter)
+                .ForEach(foreachAction);
         }
 
-        public static IOvBuilderContext<T, TExtend> ForEach<T, TExtend>(
-            this IOvBuilderContext<T, TExtend> builderContext,
+        /// <summary>
+        /// Register object visiting operation
+        /// </summary>
+        /// <param name="builderContext">Context of object visitor builder</param>
+        /// <param name="foreachAction">Action of object visiting</param>
+        /// <param name="propertyInfoFilter">Filter properties of target object those should be visited</param>
+        /// <typeparam name="T">Type of target object</typeparam>
+        /// <typeparam name="TExtend">Type of extend data</typeparam>
+        /// <returns>Object visitor builder</returns>
+        public static OVBuilderExt<T, TExtend>.IOVBuilderExt_V ForEach<T, TExtend>(
+            this OVBuilderExt<T, TExtend>.IOVBuilderExt_V builderContext,
             Expression<Action<string, object, TExtend>> foreachAction,
             Func<PropertyInfo, bool>? propertyInfoFilter = null)
         {
-            var filter = propertyInfoFilter ?? PropertyInfoFilters.AllPropertyInfo;
-            builderContext.Add(new ForEachActionContextItem
-            {
-                PropertyInfoFilter = filter,
-                ForEachAction = foreachAction,
-                ExpressionType = ForEachActionContextExpressionType.NameAndValueWithExtend
-            });
-            return builderContext;
+            return builderContext
+                .FilterProperty(propertyInfoFilter)
+                .ForEach(foreachAction);
         }
 
         #endregion
 
         #region ValueExpectedType
 
-        public static IOvBuilderContext<T> ForEach<T, TValue>(this IOvBuilderContext<T> builderContext,
+        /// <summary>
+        /// Register object visiting operation
+        /// </summary>
+        /// <param name="builderContext">Context of object visitor builder</param>
+        /// <param name="foreachAction">Action of object visiting</param>
+        /// <param name="propertyInfoFilter">Filter properties of target object those should be visited</param>
+        /// <typeparam name="T">Type of target object</typeparam>
+        /// <typeparam name="TValue">Type of property</typeparam>
+        /// <returns>Object visitor builder</returns>
+        public static OVBuilder<T>.IOVBuilder_V ForEach<T, TValue>(
+            this OVBuilder<T>.IOVBuilder_V builderContext,
             Expression<Action<IObjectVisitorContext<T, TValue>>> foreachAction,
             Func<PropertyInfo, bool>? propertyInfoFilter = null)
         {
-            var filter = propertyInfoFilter ?? (x => x.PropertyType == typeof(TValue));
-            builderContext.Add(new ForEachActionContextItem
-            {
-                ValueExpectedType = typeof(TValue),
-                PropertyInfoFilter = filter,
-                ForEachAction = foreachAction,
-                ExpressionType = ForEachActionContextExpressionType.ObjectVisitorContext
-            });
-            return builderContext;
+            return builderContext
+                .FilterProperty(propertyInfoFilter)
+                .ForEach(foreachAction);
         }
 
-
-        public static IOvBuilderContext<T> ForEach<T, TValue>(this IOvBuilderContext<T> builderContext,
+        /// <summary>
+        /// Register object visiting operation
+        /// </summary>
+        /// <param name="builderContext">Context of object visitor builder</param>
+        /// <param name="foreachAction">Action of object visiting</param>
+        /// <param name="propertyInfoFilter">Filter properties of target object those should be visited</param>
+        /// <typeparam name="T">Type of target object</typeparam>
+        /// <typeparam name="TValue">Type of property</typeparam>
+        /// <returns>Object visitor builder</returns>
+        public static OVBuilder<T>.IOVBuilder_V ForEach<T, TValue>(
+            this OVBuilder<T>.IOVBuilder_V builderContext,
             Expression<Action<string, TValue>> foreachAction,
             Func<PropertyInfo, bool>? propertyInfoFilter = null)
         {
-            var filter = propertyInfoFilter ?? (x => x.PropertyType == typeof(TValue));
-            builderContext.Add(new ForEachActionContextItem
-            {
-                ValueExpectedType = typeof(TValue),
-                PropertyInfoFilter = filter,
-                ForEachAction = foreachAction,
-                ExpressionType = ForEachActionContextExpressionType.NameAndValue
-            });
-            return builderContext;
+            return builderContext
+                .FilterProperty(propertyInfoFilter)
+                .ForEach(foreachAction);
         }
 
-        public static IOvBuilderContext<T, TExtend> ForEach<T, TExtend, TValue>(
-            this IOvBuilderContext<T, TExtend> builderContext,
+        /// <summary>
+        /// Register object visiting operation
+        /// </summary>
+        /// <param name="builderContext">Context of object visitor builder</param>
+        /// <param name="foreachAction">Action of object visiting</param>
+        /// <param name="propertyInfoFilter">Filter properties of target object those should be visited</param>
+        /// <typeparam name="T">Type of target object</typeparam>
+        /// <typeparam name="TValue">Type of property</typeparam>
+        /// <typeparam name="TExtend">Type of extend data</typeparam>
+        /// <returns>Object visitor builder</returns>
+        public static OVBuilderExt<T, TExtend>.IOVBuilderExt_V ForEach<T, TExtend, TValue>(
+            this OVBuilderExt<T, TExtend>.IOVBuilderExt_V builderContext,
             Expression<Action<IObjectVisitorContext<T, TExtend, TValue>>> foreachAction,
             Func<PropertyInfo, bool>? propertyInfoFilter = null)
         {
-            var filter = propertyInfoFilter ?? (x => x.PropertyType == typeof(TValue));
-            builderContext.Add(new ForEachActionContextItem
-            {
-                ValueExpectedType = typeof(TValue),
-                PropertyInfoFilter = filter,
-                ForEachAction = foreachAction,
-                ExpressionType = ForEachActionContextExpressionType.ObjectVisitorContextWithExtend
-            });
-            return builderContext;
+            return builderContext
+                .FilterProperty(propertyInfoFilter)
+                .ForEach(foreachAction);
         }
 
-        public static IOvBuilderContext<T, TExtend> ForEach<T, TExtend, TValue>(
-            this IOvBuilderContext<T, TExtend> builderContext,
+        /// <summary>
+        /// Register object visiting operation
+        /// </summary>
+        /// <param name="builderContext">Context of object visitor builder</param>
+        /// <param name="foreachAction">Action of object visiting</param>
+        /// <param name="propertyInfoFilter">Filter properties of target object those should be visited</param>
+        /// <typeparam name="T">Type of target object</typeparam>
+        /// <typeparam name="TValue">Type of property</typeparam>
+        /// <typeparam name="TExtend">Type of extend data</typeparam>
+        /// <returns>Object visitor builder</returns>
+        public static OVBuilderExt<T, TExtend>.IOVBuilderExt_V ForEach<T, TExtend, TValue>(
+            this OVBuilderExt<T, TExtend>.IOVBuilderExt_V builderContext,
             Expression<Action<string, TValue, TExtend>> foreachAction,
             Func<PropertyInfo, bool>? propertyInfoFilter = null)
         {
-            var filter = propertyInfoFilter ?? (x => x.PropertyType == typeof(TValue));
-            builderContext.Add(new ForEachActionContextItem
-            {
-                ValueExpectedType = typeof(TValue),
-                PropertyInfoFilter = filter,
-                ForEachAction = foreachAction,
-                ExpressionType = ForEachActionContextExpressionType.NameAndValueWithExtend
-            });
-            return builderContext;
+            return builderContext
+                .FilterProperty(propertyInfoFilter)
+                .ForEach(foreachAction);
         }
 
         #endregion

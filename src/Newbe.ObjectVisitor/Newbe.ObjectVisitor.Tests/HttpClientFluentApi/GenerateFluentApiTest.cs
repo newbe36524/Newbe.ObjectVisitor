@@ -21,9 +21,9 @@ namespace Newbe.ObjectVisitor.Tests.HttpClientFluentApi
             var generator = new FluentApiFileGenerator();
             var output = generator.Generate(re);
 
-            var nodesCs = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "../../../", "HttpClientFluentApi",
+            var nodesCs = Path.Combine(AppDomain.CurrentDomain.BaseDirectory!, "../../../", "HttpClientFluentApi",
                 "HttpRequestMessageBuilder.cs");
-            File.WriteAllText(nodesCs, output.FluentApiFiles.AutoGenerate);
+            File.WriteAllText(nodesCs, output.FluentApiFiles.Api);
         }
     }
 }

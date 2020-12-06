@@ -1,6 +1,7 @@
-﻿namespace Newbe.ObjectVisitor.Tpl
+﻿#pragma warning disable 8618
+namespace Newbe.ObjectVisitor.Tpl
 {
-    public class BuilderImplCodeTpl : ICodeTpl
+    internal class BuilderImplCodeTpl : ICodeTpl
     {
         public string ImplClassName { get; set; }
         public string ImplClassConstructorName { get; set; }

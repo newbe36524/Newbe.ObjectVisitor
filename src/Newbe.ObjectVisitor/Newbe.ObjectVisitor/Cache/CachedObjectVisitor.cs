@@ -3,7 +3,7 @@ using System.Linq.Expressions;
 
 namespace Newbe.ObjectVisitor
 {
-    public class CachedObjectVisitor<T> : ICachedObjectVisitor<T>
+    internal class CachedObjectVisitor<T> : ICachedObjectVisitor<T>
     {
         private readonly IObjectVisitor _objectVisitor;
 
@@ -34,7 +34,7 @@ namespace Newbe.ObjectVisitor
         public Action<T> Action => _lazy.Value;
     }
 
-    public class CachedObjectVisitor<T, TExtend> : ICachedObjectVisitor<T, TExtend>
+    internal class CachedObjectVisitor<T, TExtend> : ICachedObjectVisitor<T, TExtend>
     {
         private readonly IObjectVisitor _objectVisitor;
 

@@ -8,7 +8,8 @@ on:
 jobs:
   build:
     runs-on: windows-latest
-
+    env:
+      ACTIONS_ALLOW_UNSECURE_COMMANDS: true
     steps:
       - uses: actions/checkout@v2
         with:
@@ -17,9 +18,9 @@ jobs:
       - name: Setup .NET Core
         uses: actions/setup-dotnet@v1
         with:
-          dotnet-version: 5.0.100-rc.2.20479.15
+          dotnet-version: 5.0.100
 
-      - uses: aarnott/nbgv@v0.3
+      - uses: aarnott/nbgv@master
         with:
           setAllVars: true
 

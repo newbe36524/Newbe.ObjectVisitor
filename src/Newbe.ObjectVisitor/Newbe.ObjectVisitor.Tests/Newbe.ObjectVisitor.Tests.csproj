@@ -4,6 +4,7 @@
     <IsUnitTest>true</IsUnitTest>
     <TargetFrameworks>net461;netcoreapp2.1;netcoreapp3.1;</TargetFrameworks>
     <IsPackable>false</IsPackable>
+    <nullable>disable</nullable>
   </PropertyGroup>
 
   <ItemGroup>

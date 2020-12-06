@@ -1,6 +1,7 @@
-﻿namespace Newbe.ObjectVisitor.Tpl
+﻿#pragma warning disable 8618
+namespace Newbe.ObjectVisitor.Tpl
 {
-    public class StepInterfaceMethodCodeTpl : ICodeTpl
+    internal class StepInterfaceMethodCodeTpl : ICodeTpl
     {
         public string Returning { get; set; }
         public string MethodName { get; set; }

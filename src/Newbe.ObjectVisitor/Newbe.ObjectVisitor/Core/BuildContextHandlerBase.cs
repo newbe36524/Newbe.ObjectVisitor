@@ -5,7 +5,7 @@ using System.Linq.Expressions;
 
 namespace Newbe.ObjectVisitor
 {
-    public abstract class BuildContextHandlerBase<T> : IBuildContextHandler
+    internal abstract class BuildContextHandlerBase<T> : IBuildContextHandler
         where T : IOvBuilderContextItem
     {
         public Expression? CreateExpression(IOvBuilderContext builderContext)

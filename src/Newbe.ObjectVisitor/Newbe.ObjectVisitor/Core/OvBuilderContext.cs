@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Newbe.ObjectVisitor
 {
-    public class OvBuilderContext<T> : IOvBuilderContext<T>
+    internal class OvBuilderContext<T> : IOvBuilderContext<T>
     {
         private readonly IOvBuilderContext _context;
 
@@ -53,7 +53,7 @@ namespace Newbe.ObjectVisitor
         }
     }
 
-    public class OvBuilderContext : IOvBuilderContext
+    internal class OvBuilderContext : IOvBuilderContext
     {
         private readonly List<IOvBuilderContextItem> _list;
 
@@ -103,7 +103,7 @@ namespace Newbe.ObjectVisitor
         }
     }
 
-    public class OvBuilderContext<TSourceObject, TExtendObject> : IOvBuilderContext<TSourceObject, TExtendObject>
+    internal class OvBuilderContext<TSourceObject, TExtendObject> : IOvBuilderContext<TSourceObject, TExtendObject>
     {
         private readonly IOvBuilderContext _context;
 

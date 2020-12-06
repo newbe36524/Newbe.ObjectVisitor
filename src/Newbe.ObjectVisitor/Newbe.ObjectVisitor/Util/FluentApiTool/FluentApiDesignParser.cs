@@ -6,8 +6,12 @@ using System.Linq;
 
 namespace Newbe.ObjectVisitor
 {
+    /// <summary>
+    /// FluentApiDesignParser
+    /// </summary>
     public class FluentApiDesignParser : IFluentApiDesignParser
     {
+        /// <inheritdoc />
         public FluentApiDesign Parse(string designContent)
         {
             var re = new FluentApiDesign {SourceDesignContent = designContent};
@@ -17,7 +21,7 @@ namespace Newbe.ObjectVisitor
             return re;
         }
 
-        public void ParseActionBlock(FluentApiDesign re)
+        private void ParseActionBlock(FluentApiDesign re)
         {
             if (string.IsNullOrEmpty(re.StateDiagramBlock))
             {
@@ -67,7 +71,7 @@ namespace Newbe.ObjectVisitor
             }
         }
 
-        public void ParseParametersBlock(FluentApiDesign re)
+        internal void ParseParametersBlock(FluentApiDesign re)
         {
             if (string.IsNullOrEmpty(re.ParametersBlock))
             {
@@ -104,7 +108,7 @@ namespace Newbe.ObjectVisitor
             }
         }
 
-        public void ParseBlock(string designContent, FluentApiDesign re)
+        internal void ParseBlock(string designContent, FluentApiDesign re)
         {
             using var sr = new StringReader(designContent);
             string? nowLine;
@@ -113,9 +117,8 @@ namespace Newbe.ObjectVisitor
             do
             {
                 nowLine = sr.ReadLine();
-                if (!string.IsNullOrEmpty(nowLine))
+                if (nowLine != null && !string.IsNullOrEmpty(nowLine))
                 {
-                    Debug.Assert(nowLine != null, nameof(nowLine) + " != null");
                     if (nowLine.Contains("```mermaid"))
                     {
                         stateBlock.Add(nowLine);
