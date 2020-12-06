@@ -395,99 +395,99 @@
             Func&lt;string,int&gt; stringLengthFunc =  ValueGetter&lt;string, int, int&gt;.GetGetter(typeof(string).GetProperty("Length"))
             </example>
             <param name="info">目标属性的属性信息</param>
-            <returns>Func as a value getter</returns>
+            <returns>一个作为 value getter 的 Func</returns>
         </member>
         <member name="T:Newbe.ObjectVisitor.ValueGetter`1">
             <summary>
-            Value getter in no-generic format.
+            Value getter 的非泛型方法
             </summary>
-            <typeparam name="TTargetObject">Type of target object</typeparam>
+            <typeparam name="TTargetObject">目标对象的类型</typeparam>
         </member>
         <member name="M:Newbe.ObjectVisitor.ValueGetter`1.GetGetter(System.Reflection.PropertyInfo)">
             <summary>
-            Create a getter func to get property value from a object property.
+            创建 getter func 以从对象属性获取值。
             </summary>
             <example>
             Func&lt;string,object&gt; stringLengthFunc =  ValueGetter&lt;string&gt;.GetGetter(typeof(string).GetProperty("Length"))
             </example>
-            <param name="info">PropertyInfo of target property</param>
-            <returns>Func as a value getter</returns>
+            <param name="info">目标属性的属性信息</param>
+            <returns>一个作为 value getter 的 Func</returns>
         </member>
         <member name="T:Newbe.ObjectVisitor.ValueSetter">
             <summary>
-            Helper class to generate a action to set value to a object property
+            帮助类，用于生成 action 以从设置对象的属性
             </summary>
         </member>
         <member name="M:Newbe.ObjectVisitor.ValueSetter.Create(System.Type,System.Type,System.Reflection.PropertyInfo)">
             <summary>
-            Create a setter action to set value to a object property
+            创建 setter action 以对对象属性赋值。
             <example>
             var uriSetter = (Action&lt;HttpRequestMessage,Uri&gt;) ValueSetter.Create(typeof(HttpRequestMessage), typeof(Uri), typeof(HttpRequestMessage).GetProperty("RequestUri"))
             </example>
             </summary>
-            <param name="objType">Type of target object</param>
-            <param name="valueType">Type of target property</param>
-            <param name="info">PropertyInfo of target property</param>
-            <returns>A Action as Action&lt;objType,valueType&gt;. </returns>
+            <param name="objType">目标对象的类型</param>
+            <param name="valueType">目标属性的类型</param>
+            <param name="info">目标属性的属性信息</param>
+            <returns>形如 Action&lt;objType,valueType&gt; 的 Action </returns>
         </member>
         <member name="M:Newbe.ObjectVisitor.ValueSetter.Create(System.Type,System.Reflection.PropertyInfo)">
             <summary>
-            Create a setter action to set value to a object property
+            创建 setter action 以对对象属性赋值。
             <example>
             var uriSetter = (Action&lt;HttpRequestMessage,object&gt;) ValueSetter.Create(typeof(HttpRequestMessage), typeof(HttpRequestMessage).GetProperty("RequestUri"))
             </example>
             </summary>
-            <param name="objType">Type of target object</param>
-            <param name="info">PropertyInfo of target property</param>
-            <returns>A Action as Action&lt;objType,object&gt;. </returns>
+            <param name="objType">目标对象的类型</param>
+            <param name="info">目标属性的属性信息</param>
+            <returns>形如 Action&lt;objType,object&gt; 的 Action </returns>
         </member>
         <member name="T:Newbe.ObjectVisitor.ValueSetter`3">
             <summary>
-            Value setter in generic format.
+            Value setter 的泛型方法
             </summary>
-            <typeparam name="TTargetObject">Type of target object</typeparam>
-            <typeparam name="TPropertyValue">Type of property</typeparam>
-            <typeparam name="TTargetValue">Type of target value. This is used as type of action input value, it can be different from <typeparamref name="TPropertyValue"/>. You must confirm that <typeparamref name="TTargetValue"/> can be directly cast to <typeparamref name="TPropertyValue"/>, It will throw a exception otherwise.</typeparam>
+            <typeparam name="TTargetObject">目标对象的类型</typeparam>
+            <typeparam name="TPropertyValue">属性类型</typeparam>
+            <typeparam name="TTargetValue">目标值的类型。 这用作 Action 输入值的类型，它可以不同于 <typeparamref name="TPropertyValue"/>. 你必须确保 <typeparamref name="TTargetValue"/> 可以直接强制转换为 <typeparamref name="TPropertyValue"/>，否则会抛出异常。</typeparam>
         </member>
         <member name="M:Newbe.ObjectVisitor.ValueSetter`3.GetSetter(System.Reflection.PropertyInfo)">
             <summary>
-            Create a setter action to set property value to a object property.
+            创建 setter action 以对对象属性赋值。
             <example>
             Action&lt;HttpRequestMessage,Uri&gt; uriSetter = ValueSetter&lt;HttpRequestMessage, Uri, Uri&gt;.GetSetter(typeof(HttpRequestMessage).GetProperty("RequestUri"))
             </example>
             </summary>
-            <param name="info">PropertyInfo of target property</param>
-            <returns>Func as a value setter</returns>
+            <param name="info">目标属性的属性信息</param>
+            <returns>一个作为 value setter 的 Action</returns>
         </member>
         <member name="T:Newbe.ObjectVisitor.ValueSetter`1">
             <summary>
-            Value setter in no-generic format.
+            Value setter 的非泛型方法
             </summary>
-            <typeparam name="TTargetObject">Type of target object</typeparam>
+            <typeparam name="TTargetObject">目标对象的类型</typeparam>
         </member>
         <member name="M:Newbe.ObjectVisitor.ValueSetter`1.GetSetter(System.Reflection.PropertyInfo)">
             <summary>
-            Create a setter action to set property value to a object property.
+            创建 setter action 以对对象属性赋值。
             <example>
             Action&lt;HttpRequestMessage,object&gt; uriSetter = ValueSetter&lt;HttpRequestMessage&gt;.GetSetter(typeof(HttpRequestMessage).GetProperty("RequestUri"))
             </example>
             </summary>
-            <param name="info">PropertyInfo of target property</param>
-            <returns>Func as a value setter</returns>
+            <param name="info">目标属性的属性信息</param>
+            <returns>一个作为 value setter 的 Action</returns>
         </member>
         <member name="T:Newbe.ObjectVisitor.FailedToConvertExpressionException">
             <summary>
-            Failed to convert expression type while creating visitor
+            创建 object visitor 时未能转换表达式类型
             </summary>
         </member>
         <member name="P:Newbe.ObjectVisitor.FailedToConvertExpressionException.SourceExpression">
             <summary>
-            Source Expression
+            源表达式
             </summary>
         </member>
         <member name="P:Newbe.ObjectVisitor.FailedToConvertExpressionException.Type">
             <summary>
-            Type of target type
+            目标类型
             </summary>
         </member>
         <member name="M:Newbe.ObjectVisitor.FailedToConvertExpressionException.#ctor(System.Linq.Expressions.Expression,System.Type)">
@@ -501,7 +501,7 @@
         </member>
         <member name="T:Newbe.ObjectVisitor.MissingBuilderContextHandlerException">
             <summary>
-            Missing builder context handler
+            缺少构建器上下文处理程序
             </summary>
         </member>
         <member name="M:Newbe.ObjectVisitor.MissingBuilderContextHandlerException.#ctor">
@@ -515,7 +515,7 @@
         </member>
         <member name="T:Newbe.ObjectVisitor.MissingExtendObjectException">
             <summary>
-            Missing extend data object
+            缺少扩展数据对象
             </summary>
         </member>
         <member name="M:Newbe.ObjectVisitor.MissingExtendObjectException.#ctor">
@@ -529,7 +529,7 @@
         </member>
         <member name="T:Newbe.ObjectVisitor.MissingSourceObjectException">
             <summary>
-            Missing source object
+            缺少目标对象
             </summary>
         </member>
         <member name="M:Newbe.ObjectVisitor.MissingSourceObjectException.#ctor">
@@ -543,7 +543,7 @@
         </member>
         <member name="T:Newbe.ObjectVisitor.ObjectVisitorException">
             <summary>
-            Base class of expression about object visitor
+            Object visitor 相关的异常基类
             </summary>
         </member>
         <member name="M:Newbe.ObjectVisitor.ObjectVisitorException.#ctor">
@@ -557,137 +557,137 @@
         </member>
         <member name="T:Newbe.ObjectVisitor.ForEachExtensions">
             <summary>
-            Extension about ForEach
+            ForEach 的扩展
             </summary>
         </member>
         <member name="M:Newbe.ObjectVisitor.ForEachExtensions.ForEach``1(Newbe.ObjectVisitor.OVBuilder{``0}.IOVBuilder_V,System.Linq.Expressions.Expression{System.Action{Newbe.ObjectVisitor.IObjectVisitorContext{``0,System.Object}}},System.Func{System.Reflection.PropertyInfo,System.Boolean})">
             <summary>
-            Register object visiting operation
+            注册对象访问操作
             </summary>
-            <param name="builderContext">Context of object visitor builder</param>
-            <param name="foreachAction">Action of object visiting</param>
-            <param name="propertyInfoFilter">Filter properties of target object those should be visited</param>
-            <typeparam name="T">Type of target object</typeparam>
-            <returns>Object visitor builder</returns>
+            <param name="builderContext">Object visitor 的构建器上下文</param>
+            <param name="foreachAction">对象访问操作</param>
+            <param name="propertyInfoFilter">筛选要访问的目标对象的属性</param>
+            <typeparam name="T">目标对象的类型</typeparam>
+            <returns>Object visitor 创建者</returns>
         </member>
         <member name="M:Newbe.ObjectVisitor.ForEachExtensions.ForEach``1(Newbe.ObjectVisitor.OVBuilder{``0}.IOVBuilder_V,System.Linq.Expressions.Expression{System.Action{System.String,System.Object}},System.Func{System.Reflection.PropertyInfo,System.Boolean})">
             <summary>
-            Register object visiting operation
+            注册对象访问操作
             </summary>
-            <param name="builderContext">Context of object visitor builder</param>
-            <param name="foreachAction">Action of object visiting</param>
-            <param name="propertyInfoFilter">Filter properties of target object those should be visited</param>
-            <typeparam name="T">Type of target object</typeparam>
-            <returns>Object visitor builder</returns>
+            <param name="builderContext">Object visitor 的构建器上下文</param>
+            <param name="foreachAction">对象访问操作</param>
+            <param name="propertyInfoFilter">筛选要访问的目标对象的属性</param>
+            <typeparam name="T">目标对象的类型</typeparam>
+            <returns>Object visitor 创建者</returns>
         </member>
         <member name="M:Newbe.ObjectVisitor.ForEachExtensions.ForEach``2(Newbe.ObjectVisitor.OVBuilderExt{``0,``1}.IOVBuilderExt_V,System.Linq.Expressions.Expression{System.Action{Newbe.ObjectVisitor.IObjectVisitorContext{``0,``1,System.Object}}},System.Func{System.Reflection.PropertyInfo,System.Boolean})">
             <summary>
-            Register object visiting operation
+            注册对象访问操作
             </summary>
-            <param name="builderContext">Context of object visitor builder</param>
-            <param name="foreachAction">Action of object visiting</param>
-            <param name="propertyInfoFilter">Filter properties of target object those should be visited</param>
-            <typeparam name="T">Type of target object</typeparam>
-            <typeparam name="TExtend">Type of extend data</typeparam>
-            <returns>Object visitor builder</returns>
+            <param name="builderContext">Object visitor 的构建器上下文</param>
+            <param name="foreachAction">对象访问操作</param>
+            <param name="propertyInfoFilter">筛选要访问的目标对象的属性</param>
+            <typeparam name="T">目标对象的类型</typeparam>
+            <typeparam name="TExtend">扩展数据的类型。</typeparam>
+            <returns>Object visitor 创建者</returns>
         </member>
         <member name="M:Newbe.ObjectVisitor.ForEachExtensions.ForEach``2(Newbe.ObjectVisitor.OVBuilderExt{``0,``1}.IOVBuilderExt_V,System.Linq.Expressions.Expression{System.Action{System.String,System.Object,``1}},System.Func{System.Reflection.PropertyInfo,System.Boolean})">
             <summary>
-            Register object visiting operation
+            注册对象访问操作
             </summary>
-            <param name="builderContext">Context of object visitor builder</param>
-            <param name="foreachAction">Action of object visiting</param>
-            <param name="propertyInfoFilter">Filter properties of target object those should be visited</param>
-            <typeparam name="T">Type of target object</typeparam>
-            <typeparam name="TExtend">Type of extend data</typeparam>
-            <returns>Object visitor builder</returns>
+            <param name="builderContext">Object visitor 的构建器上下文</param>
+            <param name="foreachAction">对象访问操作</param>
+            <param name="propertyInfoFilter">筛选要访问的目标对象的属性</param>
+            <typeparam name="T">目标对象的类型</typeparam>
+            <typeparam name="TExtend">扩展数据的类型。</typeparam>
+            <returns>Object visitor 创建者</returns>
         </member>
         <member name="M:Newbe.ObjectVisitor.ForEachExtensions.ForEach``2(Newbe.ObjectVisitor.OVBuilder{``0}.IOVBuilder_V,System.Linq.Expressions.Expression{System.Action{Newbe.ObjectVisitor.IObjectVisitorContext{``0,``1}}},System.Func{System.Reflection.PropertyInfo,System.Boolean})">
             <summary>
-            Register object visiting operation
+            注册对象访问操作
             </summary>
-            <param name="builderContext">Context of object visitor builder</param>
-            <param name="foreachAction">Action of object visiting</param>
-            <param name="propertyInfoFilter">Filter properties of target object those should be visited</param>
-            <typeparam name="T">Type of target object</typeparam>
-            <typeparam name="TValue">Type of property</typeparam>
-            <returns>Object visitor builder</returns>
+            <param name="builderContext">Object visitor 的构建器上下文</param>
+            <param name="foreachAction">对象访问操作</param>
+            <param name="propertyInfoFilter">筛选要访问的目标对象的属性</param>
+            <typeparam name="T">目标对象的类型</typeparam>
+            <typeparam name="TValue">属性类型</typeparam>
+            <returns>Object visitor 创建者</returns>
         </member>
         <member name="M:Newbe.ObjectVisitor.ForEachExtensions.ForEach``2(Newbe.ObjectVisitor.OVBuilder{``0}.IOVBuilder_V,System.Linq.Expressions.Expression{System.Action{System.String,``1}},System.Func{System.Reflection.PropertyInfo,System.Boolean})">
             <summary>
-            Register object visiting operation
+            注册对象访问操作
             </summary>
-            <param name="builderContext">Context of object visitor builder</param>
-            <param name="foreachAction">Action of object visiting</param>
-            <param name="propertyInfoFilter">Filter properties of target object those should be visited</param>
-            <typeparam name="T">Type of target object</typeparam>
-            <typeparam name="TValue">Type of property</typeparam>
-            <returns>Object visitor builder</returns>
+            <param name="builderContext">Object visitor 的构建器上下文</param>
+            <param name="foreachAction">对象访问操作</param>
+            <param name="propertyInfoFilter">筛选要访问的目标对象的属性</param>
+            <typeparam name="T">目标对象的类型</typeparam>
+            <typeparam name="TValue">属性类型</typeparam>
+            <returns>Object visitor 创建者</returns>
         </member>
         <member name="M:Newbe.ObjectVisitor.ForEachExtensions.ForEach``3(Newbe.ObjectVisitor.OVBuilderExt{``0,``1}.IOVBuilderExt_V,System.Linq.Expressions.Expression{System.Action{Newbe.ObjectVisitor.IObjectVisitorContext{``0,``1,``2}}},System.Func{System.Reflection.PropertyInfo,System.Boolean})">
             <summary>
-            Register object visiting operation
+            注册对象访问操作
             </summary>
-            <param name="builderContext">Context of object visitor builder</param>
-            <param name="foreachAction">Action of object visiting</param>
-            <param name="propertyInfoFilter">Filter properties of target object those should be visited</param>
-            <typeparam name="T">Type of target object</typeparam>
-            <typeparam name="TValue">Type of property</typeparam>
-            <typeparam name="TExtend">Type of extend data</typeparam>
-            <returns>Object visitor builder</returns>
+            <param name="builderContext">Object visitor 的构建器上下文</param>
+            <param name="foreachAction">对象访问操作</param>
+            <param name="propertyInfoFilter">筛选要访问的目标对象的属性</param>
+            <typeparam name="T">目标对象的类型</typeparam>
+            <typeparam name="TValue">属性类型</typeparam>
+            <typeparam name="TExtend">扩展数据的类型。</typeparam>
+            <returns>Object visitor 创建者</returns>
         </member>
         <member name="M:Newbe.ObjectVisitor.ForEachExtensions.ForEach``3(Newbe.ObjectVisitor.OVBuilderExt{``0,``1}.IOVBuilderExt_V,System.Linq.Expressions.Expression{System.Action{System.String,``2,``1}},System.Func{System.Reflection.PropertyInfo,System.Boolean})">
             <summary>
-            Register object visiting operation
+            注册对象访问操作
             </summary>
-            <param name="builderContext">Context of object visitor builder</param>
-            <param name="foreachAction">Action of object visiting</param>
-            <param name="propertyInfoFilter">Filter properties of target object those should be visited</param>
-            <typeparam name="T">Type of target object</typeparam>
-            <typeparam name="TValue">Type of property</typeparam>
-            <typeparam name="TExtend">Type of extend data</typeparam>
-            <returns>Object visitor builder</returns>
+            <param name="builderContext">Object visitor 的构建器上下文</param>
+            <param name="foreachAction">对象访问操作</param>
+            <param name="propertyInfoFilter">筛选要访问的目标对象的属性</param>
+            <typeparam name="T">目标对象的类型</typeparam>
+            <typeparam name="TValue">属性类型</typeparam>
+            <typeparam name="TExtend">扩展数据的类型。</typeparam>
+            <returns>Object visitor 创建者</returns>
         </member>
         <member name="T:Newbe.ObjectVisitor.OVBuilder`1">
             <summary>
-            Object visitor builder
+            Object visitor 创建者
             </summary>
             <typeparam name="T"/>
         </member>
         <member name="M:Newbe.ObjectVisitor.OVBuilder`1.#ctor(Newbe.ObjectVisitor.IOvBuilderContext{`0})">
             <summary>
-            Create a object visitor builder
+            创建 Object visitor 的构建器
             </summary>
             <param name="context"/>
         </member>
         <member name="M:Newbe.ObjectVisitor.OVBuilder`1.GetBuilder">
             <summary>
-            Get object visitor builder
+            获得一个 Object visitor 创建者
             </summary>
             <returns/>
         </member>
         <member name="T:Newbe.ObjectVisitor.OVBuilder`1.IOVBuilder_V">
             <summary>
-            Object visitor builder step
+            " object visitor " 构建器步骤
             </summary>
         </member>
         <member name="M:Newbe.ObjectVisitor.OVBuilder`1.IOVBuilder_V.ForEach(System.Linq.Expressions.Expression{System.Action{Newbe.ObjectVisitor.IObjectVisitorContext{`0,System.Object}}})">
             <summary>
-            Add a action to visit properties
+            添加访问属性的操作
             </summary>
             <param name="foreachAction"/>
             <returns/>
         </member>
         <member name="M:Newbe.ObjectVisitor.OVBuilder`1.IOVBuilder_V.ForEach(System.Linq.Expressions.Expression{System.Action{System.String,System.Object}})">
             <summary>
-            Add a action to visit properties
+            添加访问属性的操作
             </summary>
             <param name="foreachAction"/>
             <returns/>
         </member>
         <member name="M:Newbe.ObjectVisitor.OVBuilder`1.IOVBuilder_V.ForEach``1(System.Linq.Expressions.Expression{System.Action{Newbe.ObjectVisitor.IObjectVisitorContext{`0,``0}}})">
             <summary>
-            Add a action to visit properties
+            添加访问属性的操作
             </summary>
             <param name="foreachAction"/>
             <typeparam name="TValue"/>
@@ -695,7 +695,7 @@
         </member>
         <member name="M:Newbe.ObjectVisitor.OVBuilder`1.IOVBuilder_V.ForEach``1(System.Linq.Expressions.Expression{System.Action{System.String,``0}})">
             <summary>
-            Add a action to visit properties
+            添加访问属性的操作
             </summary>
             <param name="foreachAction"/>
             <typeparam name="TValue"/>
@@ -703,45 +703,45 @@
         </member>
         <member name="M:Newbe.ObjectVisitor.OVBuilder`1.IOVBuilder_V.FilterProperty(System.Func{System.Reflection.PropertyInfo,System.Boolean})">
             <summary>
-            Filter properties to visit
+            筛选要访问的属性
             </summary>
             <param name="propertyInfoFilter"/>
             <returns/>
         </member>
         <member name="M:Newbe.ObjectVisitor.OVBuilder`1.IOVBuilder_V.CreateVisitor">
             <summary>
-            Create visitor
+            创建 object visitor
             </summary>
             <returns/>
         </member>
         <member name="M:Newbe.ObjectVisitor.OVBuilder`1.IOVBuilder_V.GetContext">
             <summary>
-            Get context
+            获取上下文
             </summary>
             <returns/>
         </member>
         <member name="T:Newbe.ObjectVisitor.OVBuilder`1.IOVBuilder_VP">
             <summary>
-            Object visitor builder step
+            " object visitor " 构建器步骤
             </summary>
         </member>
         <member name="M:Newbe.ObjectVisitor.OVBuilder`1.IOVBuilder_VP.ForEach(System.Linq.Expressions.Expression{System.Action{Newbe.ObjectVisitor.IObjectVisitorContext{`0,System.Object}}})">
             <summary>
-            Add a action to visit properties
+            添加访问属性的操作
             </summary>
             <param name="foreachAction"/>
             <returns/>
         </member>
         <member name="M:Newbe.ObjectVisitor.OVBuilder`1.IOVBuilder_VP.ForEach(System.Linq.Expressions.Expression{System.Action{System.String,System.Object}})">
             <summary>
-            Add a action to visit properties
+            添加访问属性的操作
             </summary>
             <param name="foreachAction"/>
             <returns/>
         </member>
         <member name="M:Newbe.ObjectVisitor.OVBuilder`1.IOVBuilder_VP.ForEach``1(System.Linq.Expressions.Expression{System.Action{Newbe.ObjectVisitor.IObjectVisitorContext{`0,``0}}})">
             <summary>
-            Add a action to visit properties
+            添加访问属性的操作
             </summary>
             <param name="foreachAction"/>
             <typeparam name="TValue"/>
@@ -749,7 +749,7 @@
         </member>
         <member name="M:Newbe.ObjectVisitor.OVBuilder`1.IOVBuilder_VP.ForEach``1(System.Linq.Expressions.Expression{System.Action{System.String,``0}})">
             <summary>
-            Add a action to visit properties
+            添加访问属性的操作
             </summary>
             <param name="foreachAction"/>
             <typeparam name="TValue"/>
@@ -757,45 +757,45 @@
         </member>
         <member name="T:Newbe.ObjectVisitor.OVBuilderExt`2">
             <summary>
-            Object visitor with extend data
+            具有扩展数据的 object visitor
             </summary>
             <typeparam name="T"/>
             <typeparam name="TExtend"/>
         </member>
         <member name="M:Newbe.ObjectVisitor.OVBuilderExt`2.#ctor(Newbe.ObjectVisitor.IOvBuilderContext{`0,`1})">
             <summary>
-            Create a object visitor
+            创建 object visitor
             </summary>
             <param name="context"/>
         </member>
         <member name="M:Newbe.ObjectVisitor.OVBuilderExt`2.GetBuilder">
             <summary>
-            Create object visitor builder
+            创建 Object visitor 的构建器
             </summary>
             <returns/>
         </member>
         <member name="T:Newbe.ObjectVisitor.OVBuilderExt`2.IOVBuilderExt_V">
             <summary>
-            Object visitor builder step
+            " object visitor " 构建器步骤
             </summary>
         </member>
         <member name="M:Newbe.ObjectVisitor.OVBuilderExt`2.IOVBuilderExt_V.ForEach(System.Linq.Expressions.Expression{System.Action{Newbe.ObjectVisitor.IObjectVisitorContext{`0,`1,System.Object}}})">
             <summary>
-            Add a action to visit properties
+            添加访问属性的操作
             </summary>
             <param name="foreachAction"/>
             <returns/>
         </member>
         <member name="M:Newbe.ObjectVisitor.OVBuilderExt`2.IOVBuilderExt_V.ForEach(System.Linq.Expressions.Expression{System.Action{System.String,System.Object,`1}})">
             <summary>
-            Add a action to visit properties
+            添加访问属性的操作
             </summary>
             <param name="foreachAction"/>
             <returns/>
         </member>
         <member name="M:Newbe.ObjectVisitor.OVBuilderExt`2.IOVBuilderExt_V.ForEach``1(System.Linq.Expressions.Expression{System.Action{Newbe.ObjectVisitor.IObjectVisitorContext{`0,`1,``0}}})">
             <summary>
-            Add a action to visit properties
+            添加访问属性的操作
             </summary>
             <param name="foreachAction"/>
             <typeparam name="TValue"/>
@@ -803,7 +803,7 @@
         </member>
         <member name="M:Newbe.ObjectVisitor.OVBuilderExt`2.IOVBuilderExt_V.ForEach``1(System.Linq.Expressions.Expression{System.Action{System.String,``0,`1}})">
             <summary>
-            Add a action to visit properties
+            添加访问属性的操作
             </summary>
             <param name="foreachAction"/>
             <typeparam name="TValue"/>
@@ -811,45 +811,45 @@
         </member>
         <member name="M:Newbe.ObjectVisitor.OVBuilderExt`2.IOVBuilderExt_V.FilterProperty(System.Func{System.Reflection.PropertyInfo,System.Boolean})">
             <summary>
-            Filter properties to visit
+            筛选要访问的属性
             </summary>
             <param name="propertyInfoFilter"/>
             <returns/>
         </member>
         <member name="M:Newbe.ObjectVisitor.OVBuilderExt`2.IOVBuilderExt_V.CreateVisitor">
             <summary>
-            Create visitor
+            创建 object visitor
             </summary>
             <returns/>
         </member>
         <member name="M:Newbe.ObjectVisitor.OVBuilderExt`2.IOVBuilderExt_V.GetContext">
             <summary>
-            Get context 
+            获取上下文 
             </summary>
             <returns/>
         </member>
         <member name="T:Newbe.ObjectVisitor.OVBuilderExt`2.IOVBuilderExt_VP">
             <summary>
-            Object visitor builder step
+            " object visitor " 构建器步骤
             </summary>
         </member>
         <member name="M:Newbe.ObjectVisitor.OVBuilderExt`2.IOVBuilderExt_VP.ForEach(System.Linq.Expressions.Expression{System.Action{Newbe.ObjectVisitor.IObjectVisitorContext{`0,`1,System.Object}}})">
             <summary>
-            Add a action to visit properties
+            添加访问属性的操作
             </summary>
             <param name="foreachAction"/>
             <returns/>
         </member>
         <member name="M:Newbe.ObjectVisitor.OVBuilderExt`2.IOVBuilderExt_VP.ForEach(System.Linq.Expressions.Expression{System.Action{System.String,System.Object,`1}})">
             <summary>
-            Add a action to visit properties
+            添加访问属性的操作
             </summary>
             <param name="foreachAction"/>
             <returns/>
         </member>
         <member name="M:Newbe.ObjectVisitor.OVBuilderExt`2.IOVBuilderExt_VP.ForEach``1(System.Linq.Expressions.Expression{System.Action{Newbe.ObjectVisitor.IObjectVisitorContext{`0,`1,``0}}})">
             <summary>
-            Add a action to visit properties
+            添加访问属性的操作
             </summary>
             <param name="foreachAction"/>
             <typeparam name="TValue"/>
@@ -857,7 +857,7 @@
         </member>
         <member name="M:Newbe.ObjectVisitor.OVBuilderExt`2.IOVBuilderExt_VP.ForEach``1(System.Linq.Expressions.Expression{System.Action{System.String,``0,`1}})">
             <summary>
-            Add a action to visit properties
+            添加访问属性的操作
             </summary>
             <param name="foreachAction"/>
             <typeparam name="TValue"/>
@@ -865,70 +865,70 @@
         </member>
         <member name="T:Newbe.ObjectVisitor.PropertyInfoFilters">
             <summary>
-            Extend method for creating PropertyInfo filter
+            用于创建 PropertyInfo 过滤器的扩展方法
             </summary>
         </member>
         <member name="F:Newbe.ObjectVisitor.PropertyInfoFilters.AllPropertyInfo">
             <summary>
-            All properties ok
+            所有属性
             </summary>
         </member>
         <member name="M:Newbe.ObjectVisitor.PropertyInfoFilters.IsOrImplOf``1(System.Reflection.PropertyInfo)">
             <summary>
-            Check the type of property 'is' or 'implement' the specified <typeparamref name="TInterface"/>
+            检查属性的类型为“是”或“实现”指定的 <typeparamref name="TInterface"/>
             </summary>
-            <param name="info">PropertyInfo to be checked</param>
+            <param name="info">要检查的 propertyInfo</param>
             <typeparam name="TInterface"/>
             <returns/>
         </member>
         <member name="M:Newbe.ObjectVisitor.PropertyInfoFilters.IsOrImplOf``1(System.Type)">
             <summary>
-            Check the type 'is' or 'implement' the specified <typeparamref name="TInterface"/>
+            检查属性的类型为“是”或“实现”指定的 <typeparamref name="TInterface"/>
             </summary>
-            <param name="type">Type to be checked</param>
-            <typeparam name="TInterface">Type of target interface</typeparam>
+            <param name="type">要检查的类型</param>
+            <typeparam name="TInterface">目标接口类型</typeparam>
             <returns/>
         </member>
         <member name="M:Newbe.ObjectVisitor.PropertyInfoFilters.IsOrImplOf(System.Type,System.Type)">
             <summary>
-            Check the type 'is' or 'implement' the specified <paramref name="interfaceType"/>
+            检查属性的类型为“是”或“实现”指定的 <paramref name="interfaceType"/>
             </summary>
-            <param name="type">Type to be checked</param>
-            <param name="interfaceType">Type of target interface</param>
+            <param name="type">要检查的类型</param>
+            <param name="interfaceType">目标接口类型</param>
             <returns/>
         </member>
         <member name="T:Newbe.ObjectVisitor.GlobalFactories">
             <summary>
-            Global factories
+            全局工厂：
             </summary>
         </member>
         <member name="T:Newbe.ObjectVisitor.GlobalFactories.Validation">
             <summary>
-            Factories for Validation scope
+            验证相关的工厂
             </summary>
         </member>
         <member name="P:Newbe.ObjectVisitor.GlobalFactories.Validation.RegexFactory">
             <summary>
-            Regex factory
+            正则表达式厂
             </summary>
         </member>
         <member name="T:Newbe.ObjectVisitor.ExpressionHelper">
             <summary>
-            Helper about <see cref="T:System.Linq.Expressions.Expression"/>
+            帮助类关于 <see cref="T:System.Linq.Expressions.Expression"/>
             </summary>
         </member>
         <member name="M:Newbe.ObjectVisitor.ExpressionHelper.GetPropertyInfo``2(System.Linq.Expressions.Expression{System.Func{``0,``1}})">
             <summary>
-            Get <see cref="T:System.Reflection.PropertyInfo"/> of a expression body
+            获取 <see cref="T:System.Reflection.PropertyInfo"/> , 它是表达式正文正文的最外层属性
             </summary>
-            <param name="exp">Expression to be checked</param>
+            <param name="exp">要检查的表达式</param>
             <typeparam name="T"/>
             <typeparam name="TValue"/>
             <returns/>
         </member>
         <member name="M:Newbe.ObjectVisitor.ExpressionHelper.AndAlso``1(System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}},System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})">
             <summary>
-            Join <paramref name="exp1"/> and <paramref name="exp2"/> into a new expression with &amp;&amp;
+            连接 <paramref name="exp1"/> 和 <paramref name="exp2"/> 转换为一个使用 &amp;&amp; 连接的新表达式
             </summary>
             <example>
             <code>
@@ -938,14 +938,14 @@
             // exp3 should be as x =&gt; x &gt; 2 &amp;&amp; x &lt; 10
             </code>
             </example>
-            <param name="exp1">First expression</param>
-            <param name="exp2">Second expression</param>
-            <typeparam name="T">Type a expression func input</typeparam>
+            <param name="exp1">第一个表达式</param>
+            <param name="exp2">第二个表达式</param>
+            <typeparam name="T">输入表达式 func 输入</typeparam>
             <returns/>
         </member>
         <member name="M:Newbe.ObjectVisitor.ExpressionHelper.Unwrap(System.Linq.Expressions.LambdaExpression,System.Linq.Expressions.Expression[])">
             <summary>
-            Unwrap a <see cref="T:System.Linq.Expressions.LambdaExpression"/> into a <see cref="T:System.Linq.Expressions.Expression"/> by replacing parameters
+            解包一个 <see cref="T:System.Linq.Expressions.LambdaExpression"/> 成一个 <see cref="T:System.Linq.Expressions.Expression"/> 通过替换其中的参数
             </summary>
             <example>
             <code>
@@ -965,72 +965,72 @@
             // stringLengthCompareExp should be a new expression like str=&gt;str.Length > 2
             </code>
             </example>
-            <param name="lambdaExpression">lambda expression to be unwrapped</param>
-            <param name="parameterExpression">replacement expressions to parameters of <paramref name="lambdaExpression"/></param>
+            <param name="lambdaExpression">要解包的 lambda 表达式</param>
+            <param name="parameterExpression">用于替换的参数表达式列表 <paramref name="lambdaExpression"/></param>
             <returns/>
         </member>
         <member name="T:Newbe.ObjectVisitor.ApiStep">
             <summary>
-            Definition of API step
+            API 步骤的定义
             </summary>
         </member>
         <member name="P:Newbe.ObjectVisitor.ApiStep.SourceContent">
             <summary>
-            Source design content
+            原始设计内容
             </summary>
         </member>
         <member name="P:Newbe.ObjectVisitor.ApiStep.From">
             <summary>
-            State name of action beginning
+            开始状态名称
             </summary>
         </member>
         <member name="P:Newbe.ObjectVisitor.ApiStep.To">
             <summary>
-            State name of action ending
+            结束状态的名称
             </summary>
         </member>
         <member name="P:Newbe.ObjectVisitor.ApiStep.Action">
             <summary>
-            State moving action name
+            状态转移动作名称
             </summary>
         </member>
         <member name="P:Newbe.ObjectVisitor.ApiStep.Share">
             <summary>
-            Indicate that <see cref="P:Newbe.ObjectVisitor.ApiStep.Action"/> share a logic as <see cref="P:Newbe.ObjectVisitor.ApiStep.Share"/>
+            表明 <see cref="P:Newbe.ObjectVisitor.ApiStep.Action"/> 共享逻辑 <see cref="P:Newbe.ObjectVisitor.ApiStep.Share"/>
             </summary>
             <example>
             <code>
-            e.g. 1
-            A --&gt; B : C()
-            there will be a action named C generated.
-            A --&gt; B : C() :shared D()
-            there will be a action named C generated. It is not user custom function, and it invoke D in it`s block and function D is a user custom function
+            例如 1
+            A -&gt; B : C()
+            将生成名为 C 的操作。
+            A -&gt; B : C() :shared D()
+            将生成名为 C 的操作。 它不是用户定制函数，它将调用 D，函数 D 是用户定制函数
             </code>
             </example>
         </member>
         <member name="P:Newbe.ObjectVisitor.ApiStep.Return">
             <summary>
-            Indicate that the returning type of this action. It is often used in final action.
+            指示此操作的返回类型。 它经常被用在最后的方法中。
             </summary>
         </member>
         <member name="P:Newbe.ObjectVisitor.ApiStep.IsStart">
             <summary>
-            This action is a beginning action
+            此操作是一个起始动作
             </summary>
         </member>
         <member name="P:Newbe.ObjectVisitor.ApiStep.IsEnd">
             <summary>
-            This action is a final action
+            此操作是最终操作
             </summary>
         </member>
         <member name="P:Newbe.ObjectVisitor.ApiStep.ContainsShare">
             <summary>
-            Is this action contains share block or not
+            此操作是否包含共享块
             </summary>
         </member>
         <member name="P:Newbe.ObjectVisitor.ApiStep.ContainsReturn">
             <summary>
-            Is this action contains return block or not
+            此操作是否包含返回块
             </summary>
         </member>
         <member name="M:Newbe.ObjectVisitor.ApiStep.ToString">
@@ -1041,47 +1041,47 @@
         </member>
         <member name="T:Newbe.ObjectVisitor.FluentApiDesign">
             <summary>
-            Fluent API design
+            Fluent API 设计
             </summary>
         </member>
         <member name="P:Newbe.ObjectVisitor.FluentApiDesign.SourceDesignContent">
             <summary>
-            Source design content
+            原始设计内容
             </summary>
         </member>
         <member name="P:Newbe.ObjectVisitor.FluentApiDesign.StateDiagramBlock">
             <summary>
-            Content block of state diagram
+            状态图的内容块
             </summary>
         </member>
         <member name="P:Newbe.ObjectVisitor.FluentApiDesign.ParametersBlock">
             <summary>
-            Content block of parameters
+            参数的内容块
             </summary>
         </member>
         <member name="P:Newbe.ObjectVisitor.FluentApiDesign.BuilderContextType">
             <summary>
-            Target builder context type of fluent api
+            Fluent Api 的目标构建器上下文类型
             </summary>
         </member>
         <member name="P:Newbe.ObjectVisitor.FluentApiDesign.Namespace">
             <summary>
-            Namespace of fluent API
+            Fluent API 的名称空间
             </summary>
         </member>
         <member name="P:Newbe.ObjectVisitor.FluentApiDesign.BuilderTypeName">
             <summary>
-            Type of generated builder fluent API
+            生成的Fluent API 构建器的类型
             </summary>
         </member>
         <member name="P:Newbe.ObjectVisitor.FluentApiDesign.ActionMapping">
             <summary>
-            Mapping parsed from <see cref="P:Newbe.ObjectVisitor.FluentApiDesign.ParametersBlock"/>. It indicate the relationship between short name and full name of action. Key: short name, Value: full name
+            映射关系，导入自 <see cref="P:Newbe.ObjectVisitor.FluentApiDesign.ParametersBlock"/>. 它指示短名称与完整操作名称之间的关系。 键: 短名称，值: 全名
             </summary>
         </member>
         <member name="P:Newbe.ObjectVisitor.FluentApiDesign.ApiSteps">
             <summary>
-            API step design of API
+            API 的 API 步骤设计
             </summary>
         </member>
         <member name="T:Newbe.ObjectVisitor.FluentApiDesignParser">
@@ -1097,7 +1097,7 @@
         </member>
         <member name="F:Newbe.ObjectVisitor.FluentApiFileGenerator.EdgeNodeName">
             <summary>
-            Node name of beginning node and end node
+            开始节点和结束节点的节点名
             </summary>
         </member>
         <member name="M:Newbe.ObjectVisitor.FluentApiFileGenerator.Generate(Newbe.ObjectVisitor.FluentApiDesign)">
@@ -1105,12 +1105,12 @@
         </member>
         <member name="T:Newbe.ObjectVisitor.FluentApiFiles">
             <summary>
-            Generated fluent API files
+            生成的 Fluent API 文件
             </summary>
         </member>
         <member name="P:Newbe.ObjectVisitor.FluentApiFiles.Api">
             <summary>
-            Code of API
+            API 代码
             </summary>
         </member>
         <member name="T:Newbe.ObjectVisitor.FluentApiOutput">
