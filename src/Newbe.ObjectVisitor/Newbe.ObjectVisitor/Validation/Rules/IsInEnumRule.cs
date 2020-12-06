@@ -6,7 +6,7 @@ using System.Reflection;
 
 namespace Newbe.ObjectVisitor.Validation
 {
-    public class IsInEnumRule<T, TValue> : PropertyValidationRuleBase<T, TValue>
+    internal class IsInEnumRule<T, TValue> : PropertyValidationRuleBase<T, TValue>
     {
         public IsInEnumRule(
             Type enumType,

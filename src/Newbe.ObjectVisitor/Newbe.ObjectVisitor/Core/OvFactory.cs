@@ -2,7 +2,7 @@
 
 namespace Newbe.ObjectVisitor
 {
-    public class OvFactory : IOvFactory
+    internal class OvFactory : IOvFactory
     {
         public static IOvFactory Instance { get; } = Create();
 

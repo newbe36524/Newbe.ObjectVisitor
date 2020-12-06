@@ -7,7 +7,7 @@ using System.Reflection;
 
 namespace Newbe.ObjectVisitor.Validation
 {
-    public abstract class LengthRuleBase<T, TValue> : PropertyValidationRuleBase<T, TValue>
+    internal abstract class LengthRuleBase<T, TValue> : PropertyValidationRuleBase<T, TValue>
         where TValue : IEnumerable
     {
         protected void Init()

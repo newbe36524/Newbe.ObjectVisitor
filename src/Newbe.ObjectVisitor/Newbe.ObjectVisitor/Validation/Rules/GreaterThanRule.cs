@@ -3,7 +3,7 @@ using System.Linq.Expressions;
 
 namespace Newbe.ObjectVisitor.Validation
 {
-    public class GreaterThanRule<T, TValue> : PropertyValidationRuleBase<T, TValue>
+    internal class GreaterThanRule<T, TValue> : PropertyValidationRuleBase<T, TValue>
     {
         public GreaterThanRule(TValue min,
             Expression<Func<TValue, bool>> must)

@@ -3,7 +3,7 @@ using System.Linq.Expressions;
 
 namespace Newbe.ObjectVisitor.Validation
 {
-    public class IfValidationBlockExpressionFactoryHandler<T> : IValidationBlockExpressionFactoryHandler
+    internal class IfValidationBlockExpressionFactoryHandler<T> : IValidationBlockExpressionFactoryHandler
     {
         private readonly IValidationBlockExpressionFactoryHandler _handler;
         private readonly Expression<Func<T, bool>> _ifExpression;

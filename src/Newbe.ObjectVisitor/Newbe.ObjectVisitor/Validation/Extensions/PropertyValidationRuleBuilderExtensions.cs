@@ -4,8 +4,19 @@ using System.Reflection;
 
 namespace Newbe.ObjectVisitor.Validation
 {
+    /// <summary>
+    /// Extension of property validation fluent API
+    /// </summary>
     public static class PropertyValidationRuleBuilderExtensions
     {
+        /// <summary>
+        /// Add a new validation rule
+        /// </summary>
+        /// <param name="step"></param>
+        /// <param name="func">New validation func</param>
+        /// <typeparam name="T"></typeparam>
+        /// <typeparam name="TValue"></typeparam>
+        /// <returns></returns>
         public static PropertyValidationRuleBuilder<T, TValue>.IPropertyValidationRuleBuilder_S Validate<T, TValue>(
             this PropertyValidationRuleBuilder<T, TValue>.IPropertyValidationRuleBuilder_S step,
             Expression<Func<TValue, bool>> func)
@@ -14,6 +25,14 @@ namespace Newbe.ObjectVisitor.Validation
             return step.Validate(finalExp);
         }
 
+        /// <summary>
+        /// Switch to a new property to validate it
+        /// </summary>
+        /// <param name="source"></param>
+        /// <param name="propertyExpression"></param>
+        /// <typeparam name="T"></typeparam>
+        /// <typeparam name="TValue"></typeparam>
+        /// <returns></returns>
         public static PropertyValidationRuleBuilder<T, TValue>.IPropertyValidationRuleBuilder_S Property<T, TValue>(
             this ValidationRuleGroupBuilder<T>.IValidationRuleGroupBuilder_S source,
             Expression<Func<T, TValue>> propertyExpression)
@@ -23,6 +42,14 @@ namespace Newbe.ObjectVisitor.Validation
                 .GetBuilder(propertyExpression);
         }
 
+        /// <summary>
+        /// Add a new validation rule
+        /// </summary>
+        /// <param name="step"></param>
+        /// <param name="rule">New validation rule</param>
+        /// <typeparam name="T"></typeparam>
+        /// <typeparam name="TValue"></typeparam>
+        /// <returns></returns>
         public static PropertyValidationRuleBuilder<T, TValue>.IPropertyValidationRuleBuilder_S Validate<T, TValue>(
             this PropertyValidationRuleBuilder<T, TValue>.IPropertyValidationRuleBuilder_S step,
             IPropertyValidationRule<T, TValue> rule)

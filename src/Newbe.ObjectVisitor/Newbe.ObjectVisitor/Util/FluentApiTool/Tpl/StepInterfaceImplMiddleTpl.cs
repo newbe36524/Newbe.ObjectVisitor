@@ -1,7 +1,7 @@
 ﻿#pragma warning disable 8618
 namespace Newbe.ObjectVisitor.Tpl
 {
-    public class StepInterfaceImplMiddleTpl : ICodeTpl
+    internal class StepInterfaceImplMiddleTpl : ICodeTpl
     {
         public string MethodName { get; set; }
         public string Args { get; set; }

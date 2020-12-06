@@ -42,7 +42,7 @@ namespace Newbe.ObjectVisitor.Tests.ConnectionStringBuilderFluentApi
                 .ForEach((name, value, sb) => Append(name, value, sb))
                 .Cache();
 
-        private static void Append(string name, object? o, StringBuilder value)
+        private static void Append(string name, object o, StringBuilder value)
         {
             if (o != null)
             {

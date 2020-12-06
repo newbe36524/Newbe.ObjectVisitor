@@ -1,11 +1,12 @@
 ﻿using System.Linq.Expressions;
 #if DEBUG
 using AgileObjects.ReadableExpressions;
+
 #endif
 
 namespace Newbe.ObjectVisitor
 {
-    public class ObjectVisitor : IObjectVisitor
+    internal class ObjectVisitor : IObjectVisitor
     {
         private readonly Expression _expression;
 
@@ -30,7 +31,7 @@ namespace Newbe.ObjectVisitor
         }
     }
 
-    public class ObjectVisitor<T> : IObjectVisitor<T>
+    internal class ObjectVisitor<T> : IObjectVisitor<T>
     {
         private readonly IObjectVisitor _objectVisitor;
 
@@ -45,18 +46,18 @@ namespace Newbe.ObjectVisitor
         {
             return _objectVisitor.CreateExpression();
         }
-        
+
         public override string ToString()
         {
 #if !DEBUG
             return base.ToString();
 #else
-            return _objectVisitor.ToString();
+            return _objectVisitor!.ToString();
 #endif
         }
     }
 
-    public class ObjectVisitor<T, TExtend> : IObjectVisitor<T, TExtend>
+    internal class ObjectVisitor<T, TExtend> : IObjectVisitor<T, TExtend>
     {
         private readonly IObjectVisitor _objectVisitor;
 
@@ -70,13 +71,13 @@ namespace Newbe.ObjectVisitor
         {
             return _objectVisitor.CreateExpression();
         }
-        
+
         public override string ToString()
         {
 #if !DEBUG
             return base.ToString();
 #else
-            return _objectVisitor.ToString();
+            return _objectVisitor!.ToString();
 #endif
         }
     }

@@ -1,11 +1,12 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
+  <Import Project="LocalizationXml.props" />
   <PropertyGroup>
     <DocumentationFile>$(SolutionDir)/Newbe.ObjectVisitor/Newbe.ObjectVisitor.XmlDocuments/Newbe.ObjectVisitor.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup Condition=" '$(Configuration)' == 'Debug' ">
-    <PackageReference Include="AgileObjects.ReadableExpressions" Version="2.5.1"/>
+    <PackageReference Include="AgileObjects.ReadableExpressions" Version="2.5.1" />
   </ItemGroup>
 
 </Project>

@@ -1,6 +1,6 @@
 ﻿namespace Newbe.ObjectVisitor.Validation
 {
-    public static class ScalePrecisionRuleFactory
+    internal static class ScalePrecisionRuleFactory
     {
         public static ScalePrecisionRule<T, TValue> Create<T, TValue>(
             int scale,

@@ -2,10 +2,9 @@
 using System.Linq;
 using FluentAssertions;
 using Newbe.ObjectVisitor.Validation;
-using Newbe.ObjectVisitor.Validator;
 using NUnit.Framework;
 
-namespace Newbe.ObjectVisitor.Tests.Validator
+namespace Newbe.ObjectVisitor.Tests.Validation
 {
     public class ValidationRuleBuilderTest
     {
@@ -35,7 +34,7 @@ namespace Newbe.ObjectVisitor.Tests.Validator
                 .Build();
             rules.Count.Should().Be(1);
             var g = rules.Single();
-            g.RuleRelation.Should().Be(ValidationRuleRelation.Any);
+            g.RuleRelation.Should().Be(ValidationRuleRelation.Or);
         }
     }
 }

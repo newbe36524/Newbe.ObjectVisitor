@@ -5,13 +5,23 @@ using System.Reflection;
 
 namespace Newbe.ObjectVisitor
 {
+    /// <summary>
+    /// Helper about <see cref="Expression"/>
+    /// </summary>
     public static class ExpressionHelper
     {
+        /// <summary>
+        /// Get <see cref="PropertyInfo"/> of a expression body
+        /// </summary>
+        /// <param name="exp">Expression to be checked</param>
+        /// <typeparam name="T"></typeparam>
+        /// <typeparam name="TValue"></typeparam>
+        /// <returns></returns>
         public static PropertyInfo GetPropertyInfo<T, TValue>(this Expression<Func<T, TValue>> exp)
         {
             var visitor = new PropertyExpressionVisitor();
             var propertyInfo = visitor.GetExpression(exp);
-            return propertyInfo;
+            return propertyInfo!;
         }
 
         private class PropertyExpressionVisitor : ExpressionVisitor
@@ -31,17 +41,21 @@ namespace Newbe.ObjectVisitor
             }
         }
 
-        public static Expression<Func<T, TValue, PropertyInfo, bool>> CreateValidateExpression<T, TValue>(
-            Expression<Func<TValue, bool>> func)
-        {
-            var inputExp = Expression.Parameter(typeof(T), "input");
-            var valueExp = Expression.Parameter(typeof(TValue), "value");
-            var pExp = Expression.Parameter(typeof(PropertyInfo), "p");
-            var bodyExp = Expression.Invoke(func, valueExp);
-            var funcExp = Expression.Lambda<Func<T, TValue, PropertyInfo, bool>>(bodyExp, inputExp, valueExp, pExp);
-            return funcExp;
-        }
-
+        /// <summary>
+        /// Join <paramref name="exp1"/> and <paramref name="exp2"/> into a new expression with &amp;&amp;
+        /// </summary>
+        /// <example>
+        /// <code>
+        /// Expression&lt;int,bool&gt; exp1 = x =&gt; x &gt; 2; 
+        /// Expression&lt;int,bool&gt; exp2 = x =&gt; x &lt; 10;
+        /// var exp3 = exp1.AndAlso(exp1);
+        /// // exp3 should be as x =&gt; x &gt; 2 &amp;&amp; x &lt; 10
+        /// </code>
+        /// </example>
+        /// <param name="exp1">First expression</param>
+        /// <param name="exp2">Second expression</param>
+        /// <typeparam name="T">Type a expression func input</typeparam>
+        /// <returns></returns>
         public static Expression<Func<T, bool>> AndAlso<T>(this Expression<Func<T, bool>> exp1,
             Expression<Func<T, bool>> exp2)
         {
@@ -51,12 +65,36 @@ namespace Newbe.ObjectVisitor
             var bodyExp = Expression.AndAlso(exp1Body, exp2Body);
             return Expression.Lambda<Func<T, bool>>(bodyExp, pExp);
         }
-        
+
+        /// <summary>
+        /// Unwrap a <see cref="LambdaExpression"/> into a <see cref="Expression"/> by replacing parameters
+        /// </summary>
+        /// <example>
+        /// <code>
+        /// Expression&lt;int,bool&gt; exp1 = x =&gt; x &gt; 2;
+        /// var bodyExp1 = exp1.Unwrap(Expression.Constant(1));
+        /// // bodyExp1 should be a new Expression like 1 &gt; 2
+        /// // please notice, the new expression is not a lambda.
+        /// </code>
+        /// </example>
+        /// <example>
+        /// <code>
+        /// Expression&lt;int,bool&gt; exp1 = x =&gt; x &gt; 2;
+        /// var stringExp = Expression.Parameter(typeof(string), "str");
+        /// var stringLengthExp = Expression.Property(stringExp, nameof(string.Length));
+        /// var bodyExp1 = exp1.Unwrap(stringLengthExp);
+        /// var stringLengthCompareExp = Expression.Lambda&lt;Func&lt;string, bool&gt;&gt;(bodyExp1, stringExp);
+        /// // stringLengthCompareExp should be a new expression like str=&gt;str.Length > 2
+        /// </code>
+        /// </example>
+        /// <param name="lambdaExpression">lambda expression to be unwrapped</param>
+        /// <param name="parameterExpression">replacement expressions to parameters of <paramref name="lambdaExpression"/></param>
+        /// <returns></returns>
         public static Expression Unwrap(this LambdaExpression lambdaExpression, params Expression[] parameterExpression)
         {
             var ps = lambdaExpression.Parameters;
             var dic = new Dictionary<ParameterExpression, Expression>();
-            for (int i = 0; i < ps.Count; i++)
+            for (var i = 0; i < ps.Count; i++)
             {
                 var p = ps[i];
                 dic.Add(p, parameterExpression[i]);

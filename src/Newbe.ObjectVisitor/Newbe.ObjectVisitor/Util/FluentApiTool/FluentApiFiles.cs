@@ -1,7 +1,13 @@
 ﻿namespace Newbe.ObjectVisitor
 {
+    /// <summary>
+    /// Generated fluent API files
+    /// </summary>
     public class FluentApiFiles
     {
-        public string AutoGenerate { get; set; } = null!;
+        /// <summary>
+        /// Code of API
+        /// </summary>
+        public string Api { get; set; } = null!;
     }
 }

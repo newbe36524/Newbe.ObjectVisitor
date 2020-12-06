@@ -3,12 +3,18 @@ using System.Collections.Generic;
 
 namespace Newbe.ObjectVisitor.Validation
 {
-    public static class GreaterThanRuleFactory
+    internal static class GreaterThanRuleFactory
     {
         public static GreaterThanRule<T, TValue> Create<T, TValue>(TValue min)
             where TValue : IComparable<TValue>
         {
             return new GreaterThanRule<T, TValue>(min, RuleExpressionHelper.Greater(min, true));
+        }
+
+        public static GreaterThanRule<T, TValue?> CreateNullable<T, TValue>(TValue min)
+            where TValue : struct, IComparable<TValue>
+        {
+            return new GreaterThanRule<T, TValue?>(min, RuleExpressionHelper.GreaterNullable(min, true));
         }
 
         public static GreaterThanRule<T, TValue> Create<T, TValue>(TValue min, IComparer<TValue> comparer)

@@ -4,7 +4,7 @@ using System.Linq.Expressions;
 
 namespace Newbe.ObjectVisitor.Validation
 {
-    public static class CreateValidationBlockInputExtensions
+    internal static class CreateValidationBlockInputExtensions
     {
         public static Expression ErrorAdd(this ICreateValidationBlockInput input, Expression valueExpression)
         {

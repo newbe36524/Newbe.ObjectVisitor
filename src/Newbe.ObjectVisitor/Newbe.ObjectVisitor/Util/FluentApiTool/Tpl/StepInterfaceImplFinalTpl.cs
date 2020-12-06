@@ -2,7 +2,7 @@
 
 namespace Newbe.ObjectVisitor.Tpl
 {
-    public class StepInterfaceImplFinalTpl : ICodeTpl
+    internal class StepInterfaceImplFinalTpl : ICodeTpl
     {
         public string Returning { get; set; }
         public string MethodName { get; set; }

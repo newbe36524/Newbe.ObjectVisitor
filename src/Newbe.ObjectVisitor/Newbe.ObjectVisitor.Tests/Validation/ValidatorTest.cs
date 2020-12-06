@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using FluentAssertions;
 using Newbe.ObjectVisitor.Validation;
-using Newbe.ObjectVisitor.Validator;
 using NUnit.Framework;
 
-namespace Newbe.ObjectVisitor.Tests.Validator
+namespace Newbe.ObjectVisitor.Tests.Validation
 {
     public class ValidatorTest
     {
@@ -109,7 +107,7 @@ namespace Newbe.ObjectVisitor.Tests.Validator
                     ErrorMessageExpression = x => "Oh No2!"
                 }
             };
-            validationRuleGroup.RuleRelation = ValidationRuleRelation.Any;
+            validationRuleGroup.RuleRelation = ValidationRuleRelation.Or;
             var rules = new List<ValidationRuleGroup<Yueluo>>
             {
                 validationRuleGroup

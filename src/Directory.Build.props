@@ -7,11 +7,11 @@
     <PackageProjectUrl>https://github.com/newbe36524/Newbe.ObjectVisitor</PackageProjectUrl>
     <RepositoryUrl>https://github.com/newbe36524/Newbe.ObjectVisitor</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
-    <NoWarn>1701;1702;1705;1591</NoWarn>
+    <NoWarn>1701;1702;1705;</NoWarn>
     <LangVersion>8.0</LangVersion>
     <Nullable>enable</Nullable>
     <PackageIcon>icon.png</PackageIcon>
-    <TargetFrameworks>net461;netstandard1.4;netcoreapp2.1;netcoreapp3.1;netcoreapp5</TargetFrameworks>
+    <TargetFrameworks>net461;netstandard1.4;netcoreapp2.1;netcoreapp3.1;net5.0;</TargetFrameworks>
     <PackageReleaseNotes>
     </PackageReleaseNotes>
     <LangVersion>8.0</LangVersion>
@@ -61,7 +61,7 @@ Why do I need this?
     </Description>
   </PropertyGroup>
   <ItemGroup Condition=" '$(IsPackable)' != 'false' ">
-    <None Include="icon.png" Pack="true" PackagePath=""/>
+    <None Include="$(SolutionDir)/icon.png" Link="icon.png" Pack="true" PackagePath=""/>
   </ItemGroup>
   <ItemGroup Condition=" '$(IsUnitTest)' == 'true' ">
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.7.1"/>

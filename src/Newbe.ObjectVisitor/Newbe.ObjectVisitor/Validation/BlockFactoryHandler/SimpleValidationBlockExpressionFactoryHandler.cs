@@ -2,7 +2,7 @@
 
 namespace Newbe.ObjectVisitor.Validation
 {
-    public class SimpleValidationBlockExpressionFactoryHandler<T> : IValidationBlockExpressionFactoryHandler
+    internal class SimpleValidationBlockExpressionFactoryHandler<T> : IValidationBlockExpressionFactoryHandler
     {
         private readonly ValidationRule<T> _rule;
 

@@ -2,7 +2,7 @@
 
 namespace Newbe.ObjectVisitor.Validation
 {
-    public interface ICreateValidationBlockInput
+    internal interface ICreateValidationBlockInput
     {
         ParameterExpression InputExpression { get; }
         ParameterExpression ErrorExpression { get; }

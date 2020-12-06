@@ -4,7 +4,7 @@ using System.Reflection;
 
 namespace Newbe.ObjectVisitor
 {
-    public class ForEachActionContextItem : IOvBuilderContextItem
+    internal class ForEachActionContextItem : IOvBuilderContextItem
     {
         public Func<PropertyInfo, bool> PropertyInfoFilter { get; set; } = PropertyInfoFilters.AllPropertyInfo;
         public Type? ValueExpectedType { get; set; }

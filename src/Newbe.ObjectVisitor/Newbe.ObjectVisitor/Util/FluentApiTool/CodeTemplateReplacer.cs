@@ -4,7 +4,7 @@ using Newbe.ObjectVisitor.Tpl;
 
 namespace Newbe.ObjectVisitor
 {
-    public static class CodeTemplateReplacer<T>
+    internal static class CodeTemplateReplacer<T>
         where T : ICodeTpl
     {
         private static readonly ICachedObjectVisitor<T, CodeInput> Visitor = default(T)!.V()
@@ -40,8 +40,8 @@ namespace Newbe.ObjectVisitor
 
         private class CodeInput
         {
-            public string Template { get; set; }
-            public string Result { get; set; }
+            public string Template { get; set; } = null!;
+            public string Result { get; set; } = null!;
         }
 
         public static string GetContent(T tpl)

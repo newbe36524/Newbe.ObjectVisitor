@@ -4,7 +4,7 @@ using System.Linq.Expressions;
 
 namespace Newbe.ObjectVisitor.Validation
 {
-    public static class IsInRangeRuleFactory
+    internal static class IsInRangeRuleFactory
     {
         public static IsInRangeRule<T, TValue> Create<T, TValue>(
             TValue min,
@@ -20,6 +20,26 @@ namespace Newbe.ObjectVisitor.Validation
             var funcExp = Expression.Lambda<Func<TValue, bool>>(bodyExp.Unwrap(pExp), pExp);
 
             return new IsInRangeRule<T, TValue>(min,
+                max,
+                excludeMin,
+                excludeMax,
+                funcExp);
+        }
+
+        public static IsInRangeRule<T, TValue?> CreateNullable<T, TValue>(
+            TValue min,
+            TValue max,
+            bool excludeMin,
+            bool excludeMax)
+            where TValue : struct, IComparable<TValue>
+        {
+            var pExp = Expression.Parameter(typeof(TValue?), "value");
+            var gtExp = RuleExpressionHelper.GreaterNullable(min, excludeMin);
+            var ltExp = RuleExpressionHelper.LessNullable(max, excludeMax);
+            var bodyExp = gtExp.AndAlso(ltExp);
+            var funcExp = Expression.Lambda<Func<TValue?, bool>>(bodyExp.Unwrap(pExp), pExp);
+
+            return new IsInRangeRule<T, TValue?>(min,
                 max,
                 excludeMin,
                 excludeMax,

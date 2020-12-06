@@ -23,7 +23,7 @@ namespace Newbe.ObjectVisitor.Tests.CarBuilder
 
             var nodesCs = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "../../../", "CarBuilder",
                 "CarBuilder.cs");
-            File.WriteAllText(nodesCs, output.FluentApiFiles.AutoGenerate);
+            File.WriteAllText(nodesCs, output.FluentApiFiles.Api);
             
         }
     }

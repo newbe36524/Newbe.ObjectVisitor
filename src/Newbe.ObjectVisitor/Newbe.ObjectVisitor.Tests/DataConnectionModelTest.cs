@@ -57,7 +57,7 @@ namespace Newbe.ObjectVisitor.Tests
                     .ForEach((name, value, sb) => AppendValueIfNotNull(name, value, sb))
                     .Cache();
 
-            private static void AppendValueIfNotNull(string name, object? value, StringBuilder sb)
+            private static void AppendValueIfNotNull(string name, object value, StringBuilder sb)
             {
                 if (value != null)
                 {

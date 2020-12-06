@@ -4,7 +4,7 @@ using System.Linq.Expressions;
 
 namespace Newbe.ObjectVisitor.Validation
 {
-    public class MaxLengthRule<T, TValue> : LengthRuleBase<T, TValue>
+    internal class MaxLengthRule<T, TValue> : LengthRuleBase<T, TValue>
         where TValue : IEnumerable
     {
         public MaxLengthRule(

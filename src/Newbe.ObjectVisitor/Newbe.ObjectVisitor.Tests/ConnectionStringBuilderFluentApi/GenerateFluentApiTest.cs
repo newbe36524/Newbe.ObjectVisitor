@@ -23,7 +23,7 @@ namespace Newbe.ObjectVisitor.Tests.ConnectionStringBuilderFluentApi
 
             var nodesCs = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "../../../", "ConnectionStringBuilderFluentApi",
                 "ConnectionStringBuilder.cs");
-            File.WriteAllText(nodesCs, output.FluentApiFiles.AutoGenerate);
+            File.WriteAllText(nodesCs, output.FluentApiFiles.Api);
         }
     }
 }

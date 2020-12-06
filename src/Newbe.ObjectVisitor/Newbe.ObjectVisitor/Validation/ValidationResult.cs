@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace Newbe.ObjectVisitor.Validation
 {
-    public class ValidationResult<T> : IValidationResult<T>
+    internal class ValidationResult<T> : IValidationResult<T>
     {
         public ValidationResult(T source, IEnumerable<string>? errors)
         {

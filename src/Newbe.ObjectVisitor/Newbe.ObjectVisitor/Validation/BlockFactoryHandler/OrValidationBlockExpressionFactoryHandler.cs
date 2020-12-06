@@ -5,7 +5,7 @@ using System.Linq.Expressions;
 
 namespace Newbe.ObjectVisitor.Validation
 {
-    public class OrValidationBlockExpressionFactoryHandler<T> : IValidationBlockExpressionFactoryHandler
+    internal class OrValidationBlockExpressionFactoryHandler<T> : IValidationBlockExpressionFactoryHandler
     {
         private readonly ValidationRule<T>[] _blocks;
 

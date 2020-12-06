@@ -37,7 +37,7 @@ namespace Newbe.ObjectVisitor.BenchmarkTest
                     .WithId("netcoreapp31")
                     .WithRuntime(CoreRuntime.Core31),
                 Job.Default
-                    .WithId("netcoreapp5")
+                    .WithId("net5")
                     .WithRuntime(CoreRuntime.Core50));
         }
     }

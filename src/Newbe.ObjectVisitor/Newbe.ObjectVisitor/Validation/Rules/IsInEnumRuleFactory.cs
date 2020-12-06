@@ -2,7 +2,7 @@
 
 namespace Newbe.ObjectVisitor.Validation
 {
-    public static class IsInEnumRuleFactory
+    internal static class IsInEnumRuleFactory
     {
         public static IsInEnumRule<T, TValue> Create<T, TValue>(
             Type enumType,
