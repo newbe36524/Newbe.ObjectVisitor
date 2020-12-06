@@ -3,7 +3,7 @@ name: build and scan
 on:
   push:
     branches:
-      - master
+      - main
       - develop
       - feature/ci
       - feature/ut
