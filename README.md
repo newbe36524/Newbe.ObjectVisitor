@@ -4,9 +4,7 @@
 - [English](README.md)
 
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-
-[![All Contributors](https://img.shields.io/badge/all_contributors-2-orange.svg?style=flat-square)](#contributors-)
-
+[![All Contributors](https://img.shields.io/badge/all_contributors-3-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 - [![build and scan](https://github.com/newbe36524/Newbe.ObjectVisitor/workflows/build%20and%20scan/badge.svg)](https://github.com/newbe36524/Newbe.ObjectVisitor/actions?query=workflow%3A%22build+and+scan%22)
@@ -95,12 +93,12 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
   <tr>
     <td align="center"><a href="https://www.newbe.pro"><img src="https://avatars1.githubusercontent.com/u/7685462?v=4" width="100px;" alt=""/><br /><sub><b>Newbe36524</b></sub></a><br /><a href="#blog-newbe36524" title="Blogposts">📝</a> <a href="https://github.com/newbe36524/Newbe.ObjectVisitor/commits?author=newbe36524" title="Code">💻</a> <a href="https://github.com/newbe36524/Newbe.ObjectVisitor/commits?author=newbe36524" title="Documentation">📖</a> <a href="#tutorial-newbe36524" title="Tutorials">✅</a></td>
     <td align="center"><a href="https://github.com/kotoneme"><img src="https://avatars3.githubusercontent.com/u/43395111?v=4" width="100px;" alt=""/><br /><sub><b>kotone</b></sub></a><br /><a href="#design-kotoneme" title="Design">🎨</a></td>
+    <td align="center"><a href="https://github.com/EventHorizon1024"><img src="https://avatars3.githubusercontent.com/u/21670962?v=4" width="100px;" alt=""/><br /><sub><b>黑洞视界</b></sub></a><br /><a href="#ideas-EventHorizon1024" title="Ideas, Planning, & Feedback">🤔</a></td>
   </tr>
 </table>
 
 <!-- markdownlint-enable -->
 <!-- prettier-ignore-end -->
-
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
 This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
