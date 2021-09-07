@@ -1,3 +1,16 @@
+Ow, my dear fellow, I am very glad that you have paid attention to this repository and made some attempts.
+This repository is still in a very preliminary stage.
+After three seconds of careful consideration. I decide to archive this repository, the main reason is that there are not too many time to maintain.
+Later I'll consider making some simple videos or articles about my experience writing this repository code.
+Thanks again for your interest.
+
+In the meantime, I suggest that if you still have similar needs, why not focus on the following projects or documents.
+
+- [Source Generators](https://docs.microsoft.com/dotnet/csharp/roslyn-sdk/source-generators-overview?WT.mc_id=DX-MVP-5003606)
+- [Natasha Leo](https://github.com/night-moon-studio/Leo)
+
+---
+
 # Newbe.ObjectVisitor
 
 - [简体中文](README_zh_Hans.md)
