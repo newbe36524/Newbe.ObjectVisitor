@@ -1,3 +1,16 @@
+嗷，我亲爱的伙伴，非常高兴你关注到了这个仓库，并且进行了一些尝试。
+这个仓库仍然处于非常初级的阶段。
+经过三秒钟慎重的考虑。我会决定归档这个仓库，主要的原因还是在于没有过多的事件维护。
+后续我考虑将编写这个仓库代码的经验制作成一些简单的视频或者文章。
+再次感谢你的关注。
+
+同时，我建议你，如果你仍然还有类似的需求，不如关注以下以下这些项目或者文档：
+
+- [Source Generators](https://docs.microsoft.com/dotnet/csharp/roslyn-sdk/source-generators-overview?WT.mc_id=DX-MVP-5003606)
+- [Natasha Leo](https://github.com/night-moon-studio/Leo)
+
+---
+
 # Newbe.ObjectVisitor
 
 - [简体中文](README_zh_Hans.md)
